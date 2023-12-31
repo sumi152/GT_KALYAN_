@@ -1,7 +1,13 @@
+import './App.css'
+import Navbar from './Navbar.jsx'
 
 function App() {
+
   return (
-    <h1>Hello</h1>
+    <>
+    <Navbar/>
+    {/* <h1>hello</h1> */}
+    </>
 
   )
 }

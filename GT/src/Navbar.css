@@ -1,0 +1,18 @@
+.my-text {
+    /* Apply styles to avoid overlap */
+    margin-left: 30px; /* Adjust this value to create space between the icon and text */
+    /* Add animation for smooth movement */
+    animation: scrollText 5s infinite linear;
+    white-space: nowrap; /* Ensure the text stays in one line */
+    overflow: hidden; /* Hide any overflowed text */
+  }
+  
+  @keyframes scrollText {
+    from {
+      transform: translateX(0); /* Start from the left edge */
+    }
+    to {
+      transform: translateX(calc(-100% - 30px)); /* Move the text beyond container width */
+    }
+  }
+  
