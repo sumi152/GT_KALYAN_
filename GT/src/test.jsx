@@ -1,31 +1,8 @@
-import React from "react";
-import Home from './Images/home.png';
-import Profile from './Images/profile.png';
-import AddFund from './Images/add.png';
-import Wallet from './Images/wallet.png';
-import WinHistory from './Images/win_history.png';
-import BidHistory from './Images/bid_history.png';
-import Rating from './Images/rating.png';
-import Share from './Images/share.png';
-import ChangePass from './Images/reset_pass.png';
-import "./Sidebar.css";
-import sidebarBackground from './Images/bg.png';
-import logoutImg from './Images/logout.png';
-import logo from './Images/logo.png';
-import call24 from './Images/call_24.png';
-
-
-function Sidebar() {
-  const sidebarStyle = {
-    backgroundImage: `url(${sidebarBackground})`,
-    
-    /* Add other background properties as needed */
-  };
-
-  return (
-    <div className="flex h-screen bg-gray-200">
-      <div className="text-white p-4 overflow-y-auto scrollbar-hide relative" style={sidebarStyle}>
-        <div className="p-4 sticky top-0 ">
+<div className="bg-custom-purple text-white p-4 overflow-y-auto scrollbar-hide">
+      <div>
+        <h1>Hello</h1>
+      </div>
+        <div className="p-4">
           {/* User Info */}
           <div className="text-center mb-4">
             <div className="text-xl font-bold">Username</div>
@@ -33,26 +10,18 @@ function Sidebar() {
           </div>
           {/* Logout Button */}
           <div className="flex justify-center mt-8">
-            <button className="flex items-center justify-center hover:bg-blue-700 text-white font-bold rounded-full w-10 h-10 mx-2">
-              <img
-                  src={call24} // Replace with the path to your Button 1 image
-                  alt="Button 1"
-                  className="w-full h-full object-cover"
-                />
+            <button className="flex items-center justify-center bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-full w-20 h-20 mx-2">
+              Button 1
             </button>
             <div className="flex items-center mx-2">
               <img
-                src={logo}
+                src="center_image.png"
                 alt="Center Image"
-                className="w-20 h-20"
+                className="w-12 h-12"
               />
             </div>
-            <button className="flex items-center justify-center hover:bg-green-700 text-white font-bold rounded-full w-10 h-10 mx-2">
-              <img
-                    src={logoutImg} // Replace with the path to your Button 1 image
-                    alt="Button 1"
-                    className="w-full h-full object-cover"
-                  />
+            <button className="flex items-center justify-center bg-green-500 hover:bg-green-700 text-white font-bold rounded-full w-20 h-20 mx-2">
+              Button 2
             </button>
           </div>
           {/* Sidebar Menu */}
@@ -131,11 +100,4 @@ function Sidebar() {
             </li>
           </ul>
         </div>
-      </div>
-      {/* Main Content */}
-      <div className="w-3/4 p-4 overflow-y-auto scrollbar-hide">Main Content</div>
-    </div>
-  );
-}
-
-export default Sidebar;
+</div>
