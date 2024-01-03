@@ -3,6 +3,7 @@ import HamburgerIcon from './Images/Hamburger.png';
 import './Navbar.css';
 import Sidebar from './Sidebar';
 import React, { useState } from 'react';
+import New from './New';
 
 function Navbar() {
 
@@ -11,7 +12,9 @@ function Navbar() {
     const handleSidebarToggle = () => {
         setShowSidebar(!showSidebar);
     };
+    
     return (
+
         <nav className="bg-custom-purple text-white p-4">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="flex items-center">
@@ -32,7 +35,7 @@ function Navbar() {
                     </li>
                 </ul>
             </div>
-            {showSidebar && <Sidebar />} 
+            {showSidebar && <New />} 
         </nav>
     )
 }
