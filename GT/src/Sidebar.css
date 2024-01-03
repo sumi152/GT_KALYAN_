@@ -12,3 +12,13 @@
   html {
     scrollbar-width: none;
   }
+  /* Sidebar CSS */
+.hs-overlay {
+  /* Other styles */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.hs-overlay::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
