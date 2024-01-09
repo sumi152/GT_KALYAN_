@@ -2,16 +2,32 @@ import WalletIcon from './Images/wallet.png';
 import HamburgerIcon from './Images/Hamburger.png';
 import './Navbar.css';
 import Sidebar from './Sidebar';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import New from './New';
+
 
 function Navbar() {
 
     const [showSidebar, setShowSidebar] = useState(false);
+    const firstDivRef = useRef();
+
+    useEffect(()=>{
+        let handler= (e)=>{
+            if(!firstDivRef.current.contains(e.target)){
+            setShowSidebar(false);
+            }
+        };
+        document.addEventListener("mousedown", handler);
+        return ()=>{
+            document.removeEventListener("mousedown", handler);
+        }
+    });
 
     const handleSidebarToggle = () => {
         setShowSidebar(!showSidebar);
     };
+
+
     
     return (
 
@@ -35,7 +51,7 @@ function Navbar() {
                     </li>
                 </ul>
             </div>
-            {showSidebar && <New />} 
+            {showSidebar && <New firstDivRef={firstDivRef}/>} 
         </nav>
     )
 }
