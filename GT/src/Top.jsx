@@ -1,44 +1,41 @@
 import topBackground from './Images/bg.png';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import cara1 from './Images/top1.jpeg'
-import cara2 from './Images/top2.jpeg'
-import addfund from './Images/add_fund.png'
-import whatsapp from './Images/whatsapp.png'
-import withdraw from './Images/withdraw.png'
-import call from './Images/call_helpline.png'
-import marker from './Images/marker.png'
+import cara1 from './Images/top1.jpeg';
+import cara2 from './Images/top2.jpeg';
+import addfund from './Images/add_fund.png';
+import whatsapp from './Images/whatsapp.png';
+import withdraw from './Images/withdraw.png';
+import call from './Images/call_helpline.png';
+import marker from './Images/marker.png';
 
 function Top() {
   const topStyle = {
     backgroundImage: `url(${topBackground})`,
     backgroundSize: 'cover',
-    height: '400px', // Set the height of the div
+    height: 'auto', // Set the height of the div
     width: '100%', // Set the width of the div
-    display: 'flex',
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    display: 'grid',
+    justifyContent: 'center',
   };
 
   const carouselContainerStyle = {
-    width: '100%', // Set the width of the carousel container
-    display: 'flex',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    margin: "50px -250px"
+    padding: '20px',
+    paddingBottom: '40px',
   };
 
   const imageStyle = {
     maxHeight: '250px', 
     maxWidth: '100%',
     height: 'auto',
-    width: 'auto'
-  }
+    width: '80%',
+  };
+
   const tableStyle = {
+    paddingTop: '50px',
     borderCollapse: 'collapse',
     width: '100%',
-    maxWidth: '600px', // Set a maximum width for the table
-    margin: '70px -80px', // Center the table on the page
+    maxWidth: '600px',  // Center the table on the page
   };
 
   const cellStyle = {
@@ -47,11 +44,13 @@ function Top() {
     border: 'none',
     verticalAlign: 'middle', // Ensure vertical alignment is consistent
   };
+
   const cellImageStyle = {
     maxWidth: '200px',
     maxHeight: '200px',
     objectFit: 'cover',
   };
+
   const buttonStyle = {
     padding: '0px',
     justifyContent: 'center',
@@ -61,18 +60,16 @@ function Top() {
     background: 'none',
     cursor: 'pointer',
   };
-  
-  
+
   const markerStyle = {
-    width:"150px",
-    height:"30px",
-    margin: "320px 0px 0px -550px ",
-    transform: 'translateX(-50%)', // Center horizontally
+    display: 'flex',
+    justifyContent: 'center',
+    paddingBottom: '20px',
+    gridColumn: '1 / -1',
   };
 
-  
   return (
-    <div style={topStyle}>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2" style={topStyle}>
       <div style={carouselContainerStyle}>
         <Carousel
           showStatus={false}
@@ -85,9 +82,9 @@ function Top() {
           stopOnHover={true}
           swipeable={true}
           dynamicHeight={true}
-          width={'1200px'}
-          height={'250px'}
-          centerMode={true}
+          width={'100%'}
+          height={'0px'}
+          centerMode={false}
         >
           <div>
             <img
@@ -107,52 +104,50 @@ function Top() {
           </div>
         </Carousel>
       </div>
-      <div>
       <table style={tableStyle}>
-          <tbody>
-            <tr>
-              <td style={cellStyle}>
-                <button style={buttonStyle} onClick={() => handleButtonClick('addFund')}>
-                  <img
-                    src={addfund}
-                    alt="Add Fund"
-                    style={cellImageStyle}
-                  />
-                </button>
-              </td>
-              <td style={cellStyle}>
-                <button style={buttonStyle} onClick={() => handleButtonClick('withdraw')}>
-                  <img
-                    src={withdraw}
-                    alt="Withdraw"
-                    style={cellImageStyle}
-                  />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td style={cellStyle}>
-                <button style={buttonStyle} onClick={() => handleButtonClick('whatsapp')}>
-                  <img
-                    src={whatsapp}
-                    alt="WhatsApp"
-                    style={cellImageStyle}
-                  />
-                </button>
-              </td>
-              <td style={cellStyle}>
-                <button style={buttonStyle} onClick={() => handleButtonClick('call')}>
-                  <img
-                    src={call}
-                    alt="Call"
-                    style={cellImageStyle}
-                  />
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <tbody>
+          <tr>
+            <td style={cellStyle}>
+              <button style={buttonStyle} onClick={() => handleButtonClick('addFund')}>
+                <img
+                  src={addfund}
+                  alt="Add Fund"
+                  style={cellImageStyle}
+                />
+              </button>
+            </td>
+            <td style={cellStyle}>
+              <button style={buttonStyle} onClick={() => handleButtonClick('withdraw')}>
+                <img
+                  src={withdraw}
+                  alt="Withdraw"
+                  style={cellImageStyle}
+                />
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td style={cellStyle}>
+              <button style={buttonStyle} onClick={() => handleButtonClick('whatsapp')}>
+                <img
+                  src={whatsapp}
+                  alt="WhatsApp"
+                  style={cellImageStyle}
+                />
+              </button>
+            </td>
+            <td style={cellStyle}>
+              <button style={buttonStyle} onClick={() => handleButtonClick('call')}>
+                <img
+                  src={call}
+                  alt="Call"
+                  style={cellImageStyle}
+                />
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <div style={markerStyle}>
         <img src={marker} alt="marker" />
       </div>
