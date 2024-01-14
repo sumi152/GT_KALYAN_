@@ -3,6 +3,8 @@ import Navbar from './Navbar.jsx'
 import Top from './Top.jsx' 
 import Changepass from './Changepass.jsx'
 import GameRates from './GameRates.jsx'
+import Htp from './HowToPlay.jsx'
+import Game from './Game.jsx'
 
 function App() {
 
@@ -12,8 +14,10 @@ function App() {
     <Top/> */}
     
     {/* <Changepass/> */}
-    <GameRates/>
+    {/* <GameRates/> */}
 
+    {/* <Htp/> */}
+    <Game/>
     </>
 
   )
