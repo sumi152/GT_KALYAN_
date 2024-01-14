@@ -16,19 +16,16 @@ function Game() {
     position: "relative",
   };
   const cardStyle = {
-    width:'100vh',
-    height:'450px'
+    width: "100%",
   };
 
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
-    backgroundSize: "cover", // This will make the background image cover the container without
+    backgroundSize: "cover",
     backgroundPosition: "center",
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
+    display: "flex",
     paddingBottom: "150px",
-    marginTop:"-10px"
+    marginTop: "-10px",
   };
 
   return (
@@ -38,51 +35,51 @@ function Game() {
           <BiArrowBack size={24} />
         </button>
         <div>
-          <h1 className="text-white px-3 ">SUPREME DAY</h1>
+          <h1 className="text-white px-3">SUPREME DAY</h1>
         </div>
       </div>
 
-      <div className=" h-screen" style={backStyle}>
-        <div className="grid grid-cols-2 gap-0" style={cardStyle}>
-          <div className="col-span-1 sm:w-2/3 md:w-3/4  lg:w-1/1    p-4">
-            <button className="flex justify-center items-center">
-              <img src={url1} alt="Image 1" className="w-32 h-32 " />
+      <div className="h-screen pl-2 flex justify-center items-center" style={backStyle}>
+        <div className="grid grid-cols-2" style={cardStyle}>
+          <div className="col-span-1 flex justify-center items-center">
+            <button>
+              <img src={url1} alt="Image 1" className="w-32 h-32" />
             </button>
           </div>
-          <div className="col-span-1 sm:w-2/33 md:w-3/4 lg:w-1/1   p-4">
-            <button className="flex justify-center items-center ">
-              <img src={url2} alt="Image 2" className="w-32 h-32 " />
+          <div className="col-span-1 flex justify-center items-center">
+            <button>
+              <img src={url2} alt="Image 2" className="w-32 h-32" />
             </button>
           </div>
 
           {/* Second row with two columns */}
-          <div className="col-span-1 sm:w-2/3 md:w-3/4  lg:w-1/1 p-4">
-            <button className="flex justify-center items-center">
-              <img src={url3} alt="Image 3" className="w-32 h-32 " />
+          <div className="col-span-1 flex justify-center items-center">
+            <button>
+              <img src={url3} alt="Image 3" className="w-32 h-32" />
             </button>
           </div>
-          <div className="col-span-1 sm:w-2/3 md:w-3/4  lg:w-1/1 p-4">
-            <button className="flex justify-center items-center">
-              <img src={url4} alt="Image 4" className="w-32 h-32 " />
+          <div className="col-span-1 flex justify-center items-center">
+            <button>
+              <img src={url4} alt="Image 4" className="w-32 h-32" />
             </button>
           </div>
 
           {/* Third row with one column */}
-          <div className="col-span-2 sm:w-2/3 md:w-3/4 lg:w-1/1  flex justify-center items-center ">
-            <button className="flex justify-center items-center ">
-              <img src={url5} alt="Image 5" className="w-32 h-32 " />
+          <div className="col-span-2 flex justify-center items-center">
+            <button>
+              <img src={url5} alt="Image 5" className="w-32 h-32" />
             </button>
           </div>
 
           {/* Fourth row with two columns */}
-          <div className="col-span-1 sm:w-2/3 md:w-3/4 lg:w-1/1   p-4">
-            <button className="flex justify-center items-center">
-              <img src={url6} alt="Image 6" className="w-32 h-32 " />
+          <div className="col-span-1 flex justify-center items-center">
+            <button>
+              <img src={url6} alt="Image 6" className="w-32 h-32" />
             </button>
           </div>
-          <div className="col-span-1 sm:w-2/3 md:w-3/4 lg:w-1/1 p-4">
-            <button className="flex justify-center items-center">
-              <img src={url7} alt="Image 7" className="w-32 h-32 " />
+          <div className="col-span-1 flex justify-center items-center">
+            <button>
+              <img src={url7} alt="Image 7" className="w-32 h-32" />
             </button>
           </div>
         </div>
@@ -92,3 +89,4 @@ function Game() {
 }
 
 export default Game;
+
