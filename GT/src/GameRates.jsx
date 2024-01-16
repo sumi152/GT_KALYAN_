@@ -3,7 +3,7 @@ import { BiArrowBack } from "react-icons/bi";
 
 import topBackground from './Images/bg.png';
 
-function AddFund() {
+function GameRates() {
   const navbarStyle = {
     height: "60px",
     display: "flex",
@@ -95,4 +95,4 @@ function AddFund() {
   );
 }
 
-export default AddFund;
+export default GameRates;
