@@ -8,19 +8,20 @@ import Game from './Game.jsx'
 import Bid from './Bid.jsx'
 import Win from './Win.jsx'
 import Single from './Single.jsx'
+import AddFunds from './AddFunds.jsx'
 function App() {
 
   return (
     <>
      {/* <Navbar/>
     <Top/>  */}
-    
+    <AddFunds/>
     {/* <Changepass/> */}
     {/* <GameRates/> */}
 
     {/* <Htp/> */}
     {/* <Game/> */}
-    <Single/>
+    {/* <Single/> */}
     {/* <Bid/> */}
     {/* <Win/> */}
   
