@@ -22,10 +22,8 @@ function Game() {
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
     backgroundSize: "cover",
-    backgroundPosition: "center",
-    display: "flex",
     paddingBottom: "150px",
-    marginTop: "-10px",
+
   };
 
   return (
@@ -39,7 +37,7 @@ function Game() {
         </div>
       </div>
 
-      <div className="h-screen pl-2 flex justify-center items-center" style={backStyle}>
+      <div className=" pl-2 flex justify-center items-center" style={backStyle}>
         <div className="grid grid-cols-2" style={cardStyle}>
           <div className="col-span-1 flex justify-center items-center">
             <button>
