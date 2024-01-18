@@ -51,7 +51,7 @@ function Navbar() {
                     </li>
                 </ul>
             </div>
-            {showSidebar && <New firstDivRef={firstDivRef}/>} 
+            {(showSidebar ||   window.innerWidth <= 640)&&<New firstDivRef={firstDivRef}/>} 
         </nav>
     )
 }

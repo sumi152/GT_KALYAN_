@@ -5,19 +5,26 @@ import Changepass from './Changepass.jsx'
 import GameRates from './GameRates.jsx'
 import Htp from './HowToPlay.jsx'
 import Game from './Game.jsx'
-
+import Bid from './Bid.jsx'
+import Win from './Win.jsx'
+import Single from './Single.jsx'
 function App() {
 
   return (
     <>
-    {/* <Navbar/>
-    <Top/> */}
+     {/* <Navbar/>
+    <Top/>  */}
     
     {/* <Changepass/> */}
     {/* <GameRates/> */}
 
     {/* <Htp/> */}
-    <Game/>
+    {/* <Game/> */}
+    <Single/>
+    {/* <Bid/> */}
+    {/* <Win/> */}
+  
+
     </>
 
   )
