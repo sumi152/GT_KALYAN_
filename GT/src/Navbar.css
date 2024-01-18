@@ -6,13 +6,60 @@
     white-space: nowrap; /* Ensure the text stays in one line */
     overflow: hidden; /* Hide any overflowed text */
   }
-  
-  @keyframes scrollText {
-    from {
-      transform: translateX(0); /* Start from the left edge */
-    }
-    to {
-      transform: translateX(calc(-100% - 30px)); /* Move the text beyond container width */
-    }
+
+  .backdrop--active{
+    display: block;
+    position : fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 1;
   }
   
+  .backdrop{
+    position : fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0,0,0,0.4);
+    display: none;
+    
+
+  }
+
+  .sidebar--active{
+    transform: translateX(0);
+    position :fixed;
+    top:0;
+    left:0;
+    width :70%;
+    max-width: 18rem;
+    overflow-y: auto;
+    height:100%;
+    transition: all 1s cubic-bezier(0.075,0.82,0.165,1);
+    box-shadow: 0 0 4px rgba(0.0,0.2);
+    z-index:5;
+  }
+
+  .sidebar{
+    position :fixed;
+    top:0;
+    left:0;
+    width :70%;
+    max-width: 18rem;
+    height:100%;
+    transition: all 1s cubic-bezier(0.075,0.82,0.165,1);
+    box-shadow: 0 0 4px rgba(0.0,0.2);
+    transform: translateX(-100%);
+  }
+
+  .sidebar_profile{
+    padding: 1rem 1.5rem;
+    display: flex;
+    border-bottom: 2px solid rgba(2,2,2,0.1);
+    align-items: center;
+  }

@@ -22,6 +22,7 @@ function Top() {
   const carouselContainerStyle = {
     padding: '20px',
     paddingBottom: '40px',
+    zIndex:'0'
   };
 
   const imageStyle = {
