@@ -9,13 +9,14 @@ import Bid from './Bid.jsx'
 import Win from './Win.jsx'
 import Single from './Single.jsx'
 import AddFunds from './AddFunds.jsx'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 function App() {
 
   return (
     <>
      {/* <Navbar/>
     <Top/>  */}
-    <AddFunds/>
+    {/* <AddFunds/> */}
     {/* <Changepass/> */}
     {/* <GameRates/> */}
 
@@ -24,6 +25,18 @@ function App() {
     {/* <Single/> */}
     {/* <Bid/> */}
     {/* <Win/> */}
+    <BrowserRouter>
+        <Routes>
+        <Route path="/" element={<> <Navbar /><Top /> </>}></Route>
+        <Route path="/addfund"  element={<AddFunds/>}> </Route>
+        <Route path="/win"  element={<Win/>}> </Route>
+        <Route path="/bid"  element={<Bid/>}> </Route>
+        <Route path="/bid"  element={<Bid/>}> </Route>
+        <Route path="/bid"  element={<Bid/>}> </Route>
+        <Route path="/bid"  element={<Bid/>}> </Route>
+        <Route path="/bid"  element={<Bid/>}> </Route>
+        </Routes>
+      </BrowserRouter>
   
 
     </>

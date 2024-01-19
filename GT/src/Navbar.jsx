@@ -18,6 +18,7 @@ import Share from "./Images/share.png";
 import ChangePass from "./Images/reset_pass.png";
 import lock_icon from "./Images/lock_icon.png";
 import user_profile from "./Images/user_profile.png";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   const Hamburg = {
@@ -120,8 +121,8 @@ function Navbar() {
               </a>
             </li>
             <li>
-              <a
-                href="#"
+              <NavLink
+                to='/addfund'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -130,7 +131,7 @@ function Navbar() {
                   className="w-8 h-8 mr-2 inline-block"
                 />
                 Add Funds
-              </a>
+              </NavLink>
             </li>
 
             <li>
@@ -148,8 +149,8 @@ function Navbar() {
             </li>
 
             <li>
-              <a
-                href="#"
+              <NavLink
+                to='/win'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -158,12 +159,12 @@ function Navbar() {
                   className="w-8 h-8 mr-2 inline-block"
                 />
                 Win History
-              </a>
+              </NavLink>
             </li>
 
             <li>
-              <a
-                href="#"
+              <NavLink
+                to='/bid'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -172,7 +173,7 @@ function Navbar() {
                   className="w-8 h-8 mr-2 inline-block"
                 />
                 Bid History
-              </a>
+              </NavLink>
             </li>
 
             <li>
