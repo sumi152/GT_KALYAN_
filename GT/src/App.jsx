@@ -9,6 +9,9 @@ import Bid from './Bid.jsx'
 import Win from './Win.jsx'
 import Single from './Single.jsx'
 import AddFunds from './AddFunds.jsx'
+import About from './About.jsx'
+import Privacy from './Privacy.jsx'
+import Delete from './Delete.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 function App() {
 
@@ -31,10 +34,14 @@ function App() {
         <Route path="/addfund"  element={<AddFunds/>}> </Route>
         <Route path="/win"  element={<Win/>}> </Route>
         <Route path="/bid"  element={<Bid/>}> </Route>
-        <Route path="/bid"  element={<Bid/>}> </Route>
-        <Route path="/bid"  element={<Bid/>}> </Route>
-        <Route path="/bid"  element={<Bid/>}> </Route>
-        <Route path="/bid"  element={<Bid/>}> </Route>
+        <Route path="/gameRates"  element={<GameRates/>}> </Route>
+        <Route path="/game"  element={<Game/>}> </Route>
+        <Route path="/htp"  element={<Htp/>}> </Route>
+        <Route path="/single"  element={<Single/>}> </Route>        
+        <Route path="/about"  element={<About/>}> </Route>
+        <Route path="/privacy"  element={<Privacy/>}> </Route>
+        <Route path="/delete"  element={<Delete/>}> </Route>
+        <Route path="/change"  element={<Changepass/>}> </Route>
         </Routes>
       </BrowserRouter>
   

@@ -3,7 +3,7 @@ import { BiArrowBack } from "react-icons/bi";
 import fund from "./Images/wallet_transparent.png";
 import phone_pe from "./Images/phone_pe.png";
 import gpay from "./Images/gpay.png";
-
+import {useNavigate} from 'react-router-dom';
 function AddFunds() {
   const navbarStyle = {
     height: "60px",
@@ -122,11 +122,15 @@ function AddFunds() {
 
   }
   const backendValue = "Value from Backend";
+  const navigate= useNavigate();
+  const back=()=>{
+    navigate("/");
+  }
 
   return (
     <>
       <div className="bg-custom-purple text-white " style={navbarStyle}>
-        <button className="px-4">
+        <button className="px-4"  onClick={()=>back()}>
           <BiArrowBack size={24} />
         </button>
         <div className="flex justify-center items-center">

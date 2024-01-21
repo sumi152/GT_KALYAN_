@@ -177,8 +177,8 @@ function Navbar() {
             </li>
 
             <li>
-              <a
-                href="#"
+              <NavLink
+                to='/htp'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -187,12 +187,12 @@ function Navbar() {
                   className="w-8 h-8 mr-2 inline-block"
                 />
                 How To Play
-              </a>
+              </NavLink>
             </li>
 
             <li>
-              <a
-                href="#"
+              <NavLink
+                to='/gameRates'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -201,7 +201,7 @@ function Navbar() {
                   className="w-8 h-8 mr-2 inline-block"
                 />
                 Game Rates
-              </a>
+              </NavLink>
             </li>
 
             <li>
@@ -233,8 +233,8 @@ function Navbar() {
             </li>
 
             <li>
-              <a
-                href="#"
+              <NavLink
+                to='/change'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -243,12 +243,12 @@ function Navbar() {
                   className="w-8 h-8 mr-2 inline-block"
                 />
                 Change Password
-              </a>
+              </NavLink>
             </li>
 
             <li>
-              <a
-                href="#"
+              <NavLink
+                to='/delete'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -257,11 +257,11 @@ function Navbar() {
                   className="w-8 h-8 mr-2 inline-block"
                 />
                 Delete Account
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a
-                href="#"
+              <NavLink
+                to='/privacy'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -270,11 +270,11 @@ function Navbar() {
                   className="w-8 h-8 mr-2 inline-block"
                 />
                 Privacy Policy
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a
-                href="#"
+              <NavLink
+                to='/about'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -283,7 +283,7 @@ function Navbar() {
                   className="w-8 h-8 mr-2 inline-block"
                 />
                 About Us
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>

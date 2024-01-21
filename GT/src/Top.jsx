@@ -10,6 +10,7 @@ import call from './Images/call_helpline.png';
 import marker from './Images/marker.png';
 import black from './Images/blackjed.png';
 import topBackground from './Images/bg.png';
+import { useNavigate } from 'react-router-dom';
 
 
 function Top() {
@@ -55,6 +56,10 @@ function Top() {
     paddingBottom: '20px',
     gridColumn: '1 / -1',
   };
+  const navigate = useNavigate();
+  const addF=()=>{
+    navigate('/addfund');
+  }
 
 
   return (
@@ -86,7 +91,7 @@ function Top() {
       <div className="flex flex-col items-center justify-center ">
         <div className="flex">
           <div className='mr-4'>
-            <button onClick={() => handleButtonClick('addFund')}>
+            <button onClick={() =>addF()}>
               <img src={addfund} alt="Add Fund" style={cellImageStyle} />
             </button>
           </div>

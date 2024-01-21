@@ -3,6 +3,7 @@ import topBackground from './Images/bg.png';
 import changePassword from './Images/change_password_icon.png';
 import { FiEye, FiEyeOff, FiLock } from 'react-icons/fi';
 import { BiArrowBack } from 'react-icons/bi';
+import {useNavigate} from 'react-router-dom';
 
 function Changepass() {
   const navbarStyle = {
@@ -35,12 +36,16 @@ function Changepass() {
   const handleToggleConfirmPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
+  const navigate =useNavigate();
+  const back=()=>{
+    navigate("/");
+  }
 
   return (
     <>
       <div>
         <div className="bg-custom-purple text-white" style={navbarStyle}>
-          <button className="px-4">
+          <button className="px-4" onClick={()=>back()}>
           <BiArrowBack size={24} />
           </button>
           <h1 className="text-white px-3">Change Password</h1>

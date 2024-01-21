@@ -2,6 +2,8 @@ import { BiArrowBack } from "react-icons/bi";
 import DatePickerButton from "./Date";
 import buttonBack from "./Images/main_bg.png"
 import topBackground from "./Images/bg.png";
+import {useNavigate} from 'react-router-dom';
+
 
 function Bid() {
   const navbarStyle = {
@@ -22,12 +24,15 @@ function Bid() {
     flexDirection:'column',
     padding:'20px',
   }
-  
+  const navigate =useNavigate();
+  const back=()=>{
+    navigate("/");
+  }
 
   return (
     <>
       <div className="bg-custom-purple text-white" style={navbarStyle}>
-        <button className="px-4">
+        <button className="px-4" onClick={()=>back()}>
           <BiArrowBack size={24} />
         </button>
         <div>
