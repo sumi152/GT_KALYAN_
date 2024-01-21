@@ -7,6 +7,8 @@ import url5 from "./Images/triple_panna.png";
 import url6 from "./Images/half_sangam.png";
 import url7 from "./Images/full_sangam.png";
 import topBackground from "./Images/bg.png";
+import {useNavigate} from 'react-router-dom';
+
 
 function Game() {
   const navbarStyle = {
@@ -25,11 +27,15 @@ function Game() {
     paddingBottom: "150px",
 
   };
+  const navigate = useNavigate();
+  const back=()=>{
+    navigate("/");
+  }
 
   return (
     <>
       <div className="bg-custom-purple text-white" style={navbarStyle}>
-        <button className="px-4">
+        <button className="px-4" onClick={()=>back()}>
           <BiArrowBack size={24} />
         </button>
         <div>
