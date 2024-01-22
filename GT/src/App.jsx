@@ -12,6 +12,7 @@ import AddFunds from './AddFunds.jsx'
 import About from './About.jsx'
 import Privacy from './Privacy.jsx'
 import Delete from './Delete.jsx'
+import Wallet from './Wallet.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
         <Route path="/privacy"  element={<Privacy/>}> </Route>
         <Route path="/delete"  element={<Delete/>}> </Route>
         <Route path="/change"  element={<Changepass/>}> </Route>
+        <Route path="/wallet"  element={<Wallet/>}> </Route>
         </Routes>
       </BrowserRouter>
   

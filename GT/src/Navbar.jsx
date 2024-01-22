@@ -18,6 +18,7 @@ import Share from "./Images/share.png";
 import ChangePass from "./Images/reset_pass.png";
 import lock_icon from "./Images/lock_icon.png";
 import user_profile from "./Images/user_profile.png";
+import question from "./Images/question.png";
 import { NavLink } from "react-router-dom";
 
 function Navbar() {
@@ -66,14 +67,14 @@ function Navbar() {
 
           <ul className="font-bold text-lg flex flex-shrink: 0 absolute right-10 top-15">
           <li className="flex items-center">
-            <a href="#" className="text-white flex items-center">
+            <NavLink to='/wallet' className="text-white flex items-center">
               <img
                 src={WalletIcon}
                 alt="Wallet Icon"
                 className="w-8 h-8 mr-2"
               />
               <span>0 pts</span>
-            </a>
+            </NavLink>
           </li>
         </ul>
         </div>
@@ -135,8 +136,8 @@ function Navbar() {
             </li>
 
             <li>
-              <a
-                href="#"
+              <NavLink
+                to='/wallet'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -145,7 +146,7 @@ function Navbar() {
                   className="w-8 h-8 mr-2 inline-block"
                 />
                 Wallet
-              </a>
+              </NavLink>
             </li>
 
             <li>
@@ -182,7 +183,7 @@ function Navbar() {
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
-                  src={BidHistory}
+                  src={question}
                   alt="How To Play"
                   className="w-8 h-8 mr-2 inline-block"
                 />
@@ -202,20 +203,6 @@ function Navbar() {
                 />
                 Game Rates
               </NavLink>
-            </li>
-
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
-              >
-                <img
-                  src={Rating}
-                  alt="Rating"
-                  className="w-8 h-8 mr-2 inline-block"
-                />
-                Rating
-              </a>
             </li>
 
             <li>

@@ -1,6 +1,7 @@
 import logo from "./Images/logo.png";
 import { BiArrowBack } from "react-icons/bi";
 import topBackground from './Images/bg.png';
+import { useNavigate } from "react-router-dom";
 
 function Htp() {
   const divStyle = {
@@ -21,11 +22,16 @@ function Htp() {
     position:'relative'
   };
 
+  const navigate = useNavigate();
+  const back = () => {
+    navigate("/");
+  };
+
   return (
     <div>
       <div>
         <div className="bg-custom-purple text-white" style={navbarStyle}>
-          <button className="px-4">
+          <button className="px-4" onClick={()=>back()}>
             <BiArrowBack size={24} />
           </button>
           <div>
