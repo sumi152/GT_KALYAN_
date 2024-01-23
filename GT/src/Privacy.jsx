@@ -1,7 +1,29 @@
 import logo from './Images/logo.png'
+import { BiArrowBack } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 function Privacy (){
+  const navbarStyle = {
+    height: "60px",
+    display: "flex",
+    alignItems: "center",
+  };
+  const navigate = useNavigate();
+  const back = () => {
+    navigate("/");
+  };
     return(
     <div>
+      <div
+        className="bg-custom-purple text-white sticky top-0"
+        style={navbarStyle}
+      >
+        <button className="px-4" onClick={() => back()}>
+          <BiArrowBack size={24} />
+        </button>
+        <div>
+          <h1 className="text-white px-3">About Us</h1>
+        </div>
+      </div>
     <div className='sticky top-0 bg-white'>
       <div className="flex justify-center items-center ">
         <img src={logo} alt="Center Image" className="w-40 h-40" />
