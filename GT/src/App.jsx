@@ -15,6 +15,7 @@ import Delete from './Delete.jsx'
 import Wallet from './Wallet.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GameFRONT from './GameFRONT.jsx'
+import Login from './Login.jsx'
 function App() {
 
   return (
@@ -32,6 +33,7 @@ function App() {
     {/* <Win/> */}
     <BrowserRouter>
         <Routes>
+        <Route path="/s" element={<> <Login/> </>}></Route>
         <Route path="/" element={<> <Navbar /><Top /><GameFRONT/> </>}></Route>
         <Route path="/addfund"  element={<AddFunds/>}> </Route>
         <Route path="/win"  element={<Win/>}> </Route>

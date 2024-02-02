@@ -21,7 +21,7 @@ function Wallet() {
   const box1 = {
     border: "3px solid #ccc",
     padding: "10px",
-    width: "400px", // Adjust the width as needed
+     // Adjust the width as needed
     margin: "auto",
     borderRadius: "10px", // Add border-radius for rounded corners
     background: "linear-gradient(to right, #141384, #000000)", // Blue gradient background
@@ -99,7 +99,7 @@ function Wallet() {
         </div>
       </div>
       <div className=" p-5" style={backStyle}>
-        <div className="" style={box1}>
+        <div className="p-5 sm:w-auto md:max-w-lg lg:max-w-lg" style={box1}>
           <p>Current Balance</p>
           <p>RS 0</p>
         </div>

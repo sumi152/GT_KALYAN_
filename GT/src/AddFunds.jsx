@@ -30,7 +30,7 @@ function AddFunds() {
   const box2 = {
     background: "linear-gradient(to right, #33FF42, #7433FF)",
     height: "auto",
-    width: "400px",
+    width: "auto",
     borderRadius: "10px",
     display: "flex",
     flexDirection: "column",
@@ -143,7 +143,7 @@ function AddFunds() {
           <p>Current Balance</p>
           <p>RS 0</p>
         </div>
-        <div className="p-5" style={box2}>
+        <div className="p-5 sm:w-auto md:max-w-lg lg:max-w-lg " style={box2}>
           <h1 className="pb-3">Add Point</h1>
           {/* Input field */}
           <input type="text" placeholder="Enter amount" style={enterAmount} />

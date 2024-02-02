@@ -80,7 +80,7 @@ function Navbar() {
         </div>
         <div onClick={handleBackdropClick} className={isBackdropActive ? "backdrop--active" : "backdrop"}></div>
         <div className={isSidebarActive ? "sidebar--active" : "sidebar"} style={sidebarStyle}>
-          <div class="px-6 pt-4">
+          <div className="px-6 pt-4">
             {/* User Info */}
             <div className="text-center mb-4">
               <div className="text-xl font-bold">Username</div>
@@ -107,7 +107,7 @@ function Navbar() {
               </button>
             </div>
           </div>
-          <ul class="space-y-1.5">
+          <ul className="space-y-1.5">
             <li>
               <a
                 href="#"
