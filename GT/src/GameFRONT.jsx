@@ -2,6 +2,8 @@ import topBackground from './Images/bg.png';
 import chart from './Images/chart.png'
 import close from './Images/close.png'
 import open from './Images/play.png'
+import { useEffect } from 'react';
+
 function GameFRONT(){
 
     const topStyle = {
@@ -28,8 +30,28 @@ function GameFRONT(){
         height:'auto',
         marginTop:'-4px'
     }
-    
+    var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Cookie", "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee");
+
+var raw = JSON.stringify({
+  "env_type": "Prod",
+  "app_key": "jAFaRUulipsumXLLSLPFytYvUUsgfh"
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://kalyanmilanofficialmatka.in/api-starline-game-rates", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
     return(
+      
     <>
       <div style={topStyle}>
       <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-9  h-35 absolute right-10 left-5 rounded border border-white text-white">
@@ -49,6 +71,7 @@ function GameFRONT(){
         </div>
       </div>
       </div>
+      
     </>);
 }
 export default GameFRONT;

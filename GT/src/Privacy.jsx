@@ -21,7 +21,7 @@ function Privacy (){
           <BiArrowBack size={24} />
         </button>
         <div>
-          <h1 className="text-white px-3">About Us</h1>
+          <h1 className="text-white px-3">  Privacy Policy</h1>
         </div>
       </div>
     <div className='sticky top-0 bg-white'>
