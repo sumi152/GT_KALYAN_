@@ -30,26 +30,6 @@ function GameFRONT(){
         height:'auto',
         marginTop:'-4px'
     }
-    var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
-myHeaders.append("Cookie", "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee");
-
-var raw = JSON.stringify({
-  "env_type": "Prod",
-  "app_key": "jAFaRUulipsumXLLSLPFytYvUUsgfh"
-});
-
-var requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
-};
-
-fetch("https://kalyanmilanofficialmatka.in/api-starline-game-rates", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
     return(
       
     <>
