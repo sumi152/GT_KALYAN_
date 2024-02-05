@@ -17,6 +17,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GameFRONT from './GameFRONT.jsx'
 import Login from './Login.jsx'
 import Register from './Register.jsx'
+import Imp from './IMP.jsx'
 function App() {
 
   return (
@@ -35,8 +36,8 @@ function App() {
     <BrowserRouter>
         <Routes>
         <Route path="/register" element={<> <Register/> </>}></Route>  
-        <Route path="/" element={<> <Login/> </>}></Route>
-        <Route path="/home" element={<> <Navbar /><Top /><GameFRONT/> </>}></Route>
+        <Route path="/h" element={<> <Login/> </>}></Route>
+        <Route path="/" element={<> <Imp/></>}></Route>
         <Route path="/addfund"  element={<AddFunds/>}> </Route>
         <Route path="/win"  element={<Win/>}> </Route>
         <Route path="/bid"  element={<Bid/>}> </Route>
