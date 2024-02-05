@@ -1,14 +1,14 @@
 import logo from "./Images/logo.png";
 import { BiArrowBack } from "react-icons/bi";
 import topBackground from "./Images/bg.png";
-import { FiEye, FiEyeOff, FiLock } from "react-icons/fi";
+import { FiAlertTriangle, FiEye, FiEyeOff } from "react-icons/fi";
 import { useState } from "react";
 import whatsapp from './Images/whatsapp.png';
 import call from './Images/call_helpline.png';
 import { Link } from "react-router-dom";
 
 
-function Login() {
+function Register() {
   const navbarStyle = {
     height: "60px",
     display: "flex",
@@ -31,20 +31,35 @@ function Login() {
     maxHeight: '150px',
     objectFit: 'cover',
   };
+
+  const [username, setUsername] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const handleToggleCurrentPassword = () => {
     setShowCurrentPassword(!showCurrentPassword);
   };
 
+  
+
   return (
     <>
+      
       <div style={backStyle} className="text-white">
         <div className="flex justify-center items-center ">
           <img src={logo} alt="Center Image" className="w-40 h-40" />
         </div>
         <div className="flex justify-center item-center p-5">
           <div style={cardStyle}>
+          <p className="">User Name</p>
+            <input
+              type="text"
+              placeholder="User Name"
+              id="myinput"
+              className=" bg-gray-500 pt-3 pr-7 pl-5 pb-3 rounded"
+
+            />
+            
+
             <p className="">Phone Number</p>
             <input
               type="text"
@@ -72,12 +87,14 @@ function Login() {
               <p className="absolute right-0">Forgot Password ?</p>
             </div>
             <div className="flex justify-center mb-5">
-              <button className="p-3 border border-black-500 rounded mt-4 bg-blue-800 w-3/4">
-                Login
+              <button className="p-3 border border-black-500 rounded mt-4 bg-blue-800 w-3/4"
+              
+              >
+                Sign Up
               </button>
             </div>
             <div className="flex justify-center">
-              <p>Don't Have an account ? <Link to='/register' className="text-yellow-500">Register</Link></p>
+              <p>Already Have an Account. <Link to='/' className="text-yellow-500">Login</Link> </p>
             </div>
             <div className="flex  justify-between mt-2">
             <div>
@@ -105,4 +122,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
