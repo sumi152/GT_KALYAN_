@@ -36,10 +36,6 @@ function useGameRate() {
 
       // Update state with the fetched data
       setRes(result);
-      console.log(result['game_rates'][0]['single_digit_val_1']);
-    //   console.log(result.game_rates);
-      // Now you can safely log the data
-      
     } catch (error) {
       console.log('error', error);
     }
