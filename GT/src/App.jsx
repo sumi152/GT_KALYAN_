@@ -35,9 +35,9 @@ function App() {
     {/* <Win/> */}
     <BrowserRouter>
         <Routes>
-        <Route path="/register" element={<> <Register/> </>}></Route>  
+        <Route path="/" element={<> <Register/> </>}></Route>  
         <Route path="/h" element={<> <Login/> </>}></Route>
-        <Route path="/" element={<> <Imp/></>}></Route>
+        <Route path="/m" element={<> <Imp/></>}></Route>
         <Route path="/addfund"  element={<AddFunds/>}> </Route>
         <Route path="/win"  element={<Win/>}> </Route>
         <Route path="/bid"  element={<Bid/>}> </Route>
