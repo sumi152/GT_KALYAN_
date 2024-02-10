@@ -2,12 +2,12 @@ import logo from "./Images/logo.png";
 import { BiArrowBack } from "react-icons/bi";
 import topBackground from "./Images/bg.png";
 import { FiEye, FiEyeOff, FiLock } from "react-icons/fi";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import whatsapp from "./Images/whatsapp.png";
 import call from "./Images/call_helpline.png";
 import { Link } from "react-router-dom";
 import { FiAlertCircle } from "react-icons/fi";
-
+import { useNavigate } from "react-router-dom";
 function Login() {
   const navbarStyle = {
     height: "60px",
@@ -31,55 +31,89 @@ function Login() {
     maxHeight: "150px",
     objectFit: "cover",
   };
-  const initialValues = { phoneno: "", password: "" };
-  const [formValues, setFormValues] = useState(initialValues);
+  const phoneno = useRef();
+  const password = useRef();
   const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [isSubmit, setIsSubmit] =useState(false);
+  const navigate = useNavigate();
 
   const handleToggleCurrentPassword = () => {
     setShowCurrentPassword(!showCurrentPassword);
   };
 
-  const handleChange = (e) => {
-    console.log(e.target);
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
+    const errors = validate(
+      phoneno.current.value,
+      password.current.value
+    );
+
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
+
+    fetchData(
+      phoneno.current.value,
+      password.current.value
+    );
     setIsSubmit(true);
-    console.log(setIsSubmit);
   };
 
-  useEffect(() => {
-    console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-  }, [formErrors]);
-
-  const validate = (values) => {
+  const validate = ( phoneno, password) => {
     const errors = {};
     const regex = /^[6-9]{1}[0-9]{9}$/;
 
-    if(!values.username){
-      errors.username="Username is required!";
-    }
-    if (!values.phoneno) {
+    if (!phoneno) {
       errors.phoneno = "Phone No is required!";
-    } else if (!regex.test(values.phoneno)) {
+    } else if (!regex.test(phoneno)) {
       errors.phoneno = "Phone.No is not Valid!";
     }
 
-    if (!values.password) {
+    if (!password) {
       errors.password = "Password is required!";
     }
-
     return errors;
+  };
+
+  const fetchData = async ( phoneno, password) => {
+    try {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append(
+        "Cookie",
+        "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
+      );
+
+      var raw = JSON.stringify({
+        env_type: "Prod",
+        app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
+        device_id: "{{android_id}}",
+        password: password,
+        mobile: phoneno
+      });
+
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+
+      const response = await fetch(
+        "https://kalyanmilanofficialmatka.in/api-user-login",
+        requestOptions
+      );
+      const result = await response.json();
+      console.log(result);
+      if(result?.status===true){
+        navigate('/imp');
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   return (
@@ -94,9 +128,8 @@ function Login() {
             <input
               type="text"
               placeholder="Phone Number"
+              ref={phoneno}
               className=" bg-gray-500 pt-3 pr-7 pl-5 pb-3 rounded"
-              value={formValues.phoneno}
-              onChange={handleChange}
               name="phoneno"
             />
             <p className="text-red-500">{formErrors.phoneno}</p>
@@ -118,14 +151,12 @@ function Login() {
             <input
               type={showCurrentPassword ? "text" : "password"}
               placeholder="Password"
-              value={formValues.password}
-              onChange={handleChange}
+              ref={password}
               // onChange={(e) => setCurrentPassword(e.target.value)}
               className=" bg-gray-500 pt-3 pr-15 pl-5 pb-3 rounded"
               name="password"
             />
             <p className="text-red-500">{formErrors.password}</p>
-            {/* </div> */}
             <div className="relative -top-14">
               <button
                 type="button"
