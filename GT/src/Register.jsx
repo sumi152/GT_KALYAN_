@@ -1,14 +1,14 @@
 import logo from "./Images/logo.png";
-import { BiArrowBack } from "react-icons/bi";
 import topBackground from "./Images/bg.png";
 import { FiEye, FiEyeOff, FiLock } from "react-icons/fi";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import whatsapp from "./Images/whatsapp.png";
 import call from "./Images/call_helpline.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FiAlertCircle } from "react-icons/fi";
 
-function Login() {
+
+function Register() {
   const navbarStyle = {
     height: "60px",
     display: "flex",
@@ -31,55 +31,98 @@ function Login() {
     maxHeight: "150px",
     objectFit: "cover",
   };
-  const initialValues = { phoneno: "", password: "" };
-  const [formValues, setFormValues] = useState(initialValues);
+  const username = useRef();
+  const phoneno = useRef();
+  const password = useRef();
   const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [isSubmit, setIsSubmit] =useState(false);
+  const navigate = useNavigate();
 
   const handleToggleCurrentPassword = () => {
     setShowCurrentPassword(!showCurrentPassword);
   };
 
-  const handleChange = (e) => {
-    console.log(e.target);
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
+    const errors = validate(
+      username.current.value,
+      phoneno.current.value,
+      password.current.value
+    );
+
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
+
+    fetchData(
+      username.current.value,
+      phoneno.current.value,
+      password.current.value
+    );
     setIsSubmit(true);
-    console.log(setIsSubmit);
   };
 
-  useEffect(() => {
-    console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-  }, [formErrors]);
-
-  const validate = (values) => {
+  const validate = (username, phoneno, password) => {
     const errors = {};
     const regex = /^[6-9]{1}[0-9]{9}$/;
 
-    if (!values.username) {
+    if (!username) {
       errors.username = "Username is required!";
     }
-    if (!values.phoneno) {
+    if (!phoneno) {
       errors.phoneno = "Phone No is required!";
-    } else if (!regex.test(values.phoneno)) {
+    } else if (!regex.test(phoneno)) {
       errors.phoneno = "Phone.No is not Valid!";
     }
 
-    if (!values.password) {
+    if (!password) {
       errors.password = "Password is required!";
     }
-
     return errors;
+  };
+
+  const fetchData = async (username, phoneno, password) => {
+    try {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append(
+        "Cookie",
+        "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
+      );
+
+      const raw = JSON.stringify({
+        env_type: "Prod",
+        app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
+        name: username, // Remove curly braces
+        email: "email",
+        password: password, // Remove curly braces
+        mobile: phoneno, // Remove curly braces
+        security_pin: "123456",
+        device_id: null,
+      });
+
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+
+      const response = await fetch(
+        "https://kalyanmilanofficialmatka.in/api-user-registration",
+        requestOptions
+      );
+      const result = await response.json();
+      console.log(result);
+      if(result?.status===true){
+        navigate('/h');
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   return (
@@ -90,13 +133,12 @@ function Login() {
         </div>
         <div className="flex justify-center item-center p-5">
           <form style={cardStyle} onSubmit={handleSubmit}>
-          <p className="">Username</p>
+            <p className="">Username</p>
             <input
               type="text"
               placeholder="Username"
               className=" bg-gray-500 pt-3 pr-7 pl-5 pb-3 rounded"
-              value={formValues.username}
-              onChange={handleChange}
+              ref={username}
               name="username"
             />
             <p className="text-red-500">{formErrors.username}</p>
@@ -112,14 +154,13 @@ function Login() {
                 </div>
               )}
             </div>
-           
+
             <p className="">Phone Number</p>
             <input
               type="text"
               placeholder="Phone Number"
               className=" bg-gray-500 pt-3 pr-7 pl-5 pb-3 rounded"
-              value={formValues.phoneno}
-              onChange={handleChange}
+              ref={phoneno}
               name="phoneno"
             />
             <p className="text-red-500">{formErrors.phoneno}</p>
@@ -136,19 +177,15 @@ function Login() {
               )}
             </div>
             <p className="mt-2">Password</p>
-            {/* <div className="relative "> */}
 
             <input
               type={showCurrentPassword ? "text" : "password"}
               placeholder="Password"
-              value={formValues.password}
-              onChange={handleChange}
-              // onChange={(e) => setCurrentPassword(e.target.value)}
+              ref={password}
               className=" bg-gray-500 pt-3 pr-15 pl-5 pb-3 rounded"
               name="password"
             />
             <p className="text-red-500">{formErrors.password}</p>
-            {/* </div> */}
             <div className="relative -top-14">
               <button
                 type="button"
@@ -168,15 +205,16 @@ function Login() {
               <button
                 className="p-3 border border-black-500 rounded mt-4 bg-blue-800 w-3/4"
                 type="submit"
+                onSubmit={handleSubmit}
               >
-                Login
+                Register
               </button>
             </div>
             <div className="flex justify-center">
               <p>
                 Don't Have an account ?{" "}
-                <Link to="/register" className="text-yellow-500">
-                  Register
+                <Link to="/h" className="text-yellow-500">
+                  Login
                 </Link>
               </p>
             </div>
@@ -207,4 +245,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
