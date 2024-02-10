@@ -8,6 +8,9 @@ import call from "./Images/call_helpline.png";
 import { Link } from "react-router-dom";
 import { FiAlertCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "./Util/loginSlice";
+
 function Login() {
   const navbarStyle = {
     height: "60px",
@@ -31,6 +34,8 @@ function Login() {
     maxHeight: "150px",
     objectFit: "cover",
   };
+
+  const logdata = useSelector ((store)=>store.userDetail.items);
   const phoneno = useRef();
   const password = useRef();
   const [formErrors, setFormErrors] = useState({});
@@ -40,6 +45,13 @@ function Login() {
 
   const handleToggleCurrentPassword = () => {
     setShowCurrentPassword(!showCurrentPassword);
+  };
+
+  const dispatch = useDispatch();
+
+  const handleAdduser = (username_, unique_token, mobile) => {
+    console.log(username_)
+    dispatch(login({ username: username_, token: unique_token, phone: mobile }));
   };
 
   const handleSubmit = (e) => {
@@ -107,8 +119,10 @@ function Login() {
         requestOptions
       );
       const result = await response.json();
-      console.log(result);
+
+      // console.log(result);
       if(result?.status===true){
+         {handleAdduser(result.user_name, result.unique_token, result.mobile)}
         navigate('/imp');
       }
     } catch (error) {

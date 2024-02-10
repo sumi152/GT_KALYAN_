@@ -19,7 +19,9 @@ import ChangePass from "./Images/reset_pass.png";
 import lock_icon from "./Images/lock_icon.png";
 import user_profile from "./Images/user_profile.png";
 import question from "./Images/question.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from "./Util/loginSlice";
 
 function Navbar() {
   const Hamburg = {
@@ -31,13 +33,15 @@ function Navbar() {
   const sidebarStyle = {
     backgroundImage: `url(${sidebarBackground})`,
     backgroundSize:'cover'
-
-
     /* Add other background properties as needed */
   };
 
+  const username = useSelector(state => state.userDetail.username);
+  const mobile = useSelector(state=>state.userDetail.mobile)
   const [isBackdropActive, setBackdropActive] = useState(false)
   const [isSidebarActive, setSidebarActive] = useState(false)
+  const navigate = useNavigate();
+
 
   const handleHamburgerClick = () => {  
     console.log(isBackdropActive)
@@ -49,7 +53,12 @@ function Navbar() {
     setBackdropActive(!isBackdropActive)
     setSidebarActive(!isSidebarActive)
   };
-  
+  const dispatch = useDispatch();
+
+  const handlelogout =()=>{
+    dispatch(logout());
+    navigate('/') 
+  }
 
 
 
@@ -83,8 +92,8 @@ function Navbar() {
           <div className="px-6 pt-4">
             {/* User Info */}
             <div className="text-center mb-4">
-              <div className="text-xl font-bold">Username</div>
-              <div className="text-sm opacity-75">1234567890</div>
+              <div className="text-xl font-bold">{username ? username : "sumit"}</div>
+              <div className="text-sm opacity-75">{mobile}</div>
             </div>
             {/* Logout Button */}
             <div className="flex justify-center mt-8">
@@ -98,7 +107,7 @@ function Navbar() {
               <div className="flex items-center mx-2">
                 <img src={logo} alt="Center Image" className="w-20 h-20" />
               </div>
-              <button className="flex items-center justify-center hover:bg-green-700 text-white font-bold rounded-full w-10 h-10 mx-2">
+              <button className="flex items-center justify-center hover:bg-green-700 text-white font-bold rounded-full w-10 h-10 mx-2" onClick={handlelogout}>
                 <img
                   src={logoutImg} // Replace with the path to your Button 1 image
                   alt="Button 1"
