@@ -18,6 +18,8 @@ import GameFRONT from './GameFRONT.jsx'
 import Login from './Login.jsx'
 import Register from './Register.jsx'
 import Imp from './IMP.jsx'
+import { Provider } from 'react-redux'
+import appStore from "./Util/appStore";
 function App() {
 
   return (
@@ -33,6 +35,7 @@ function App() {
     {/* <Single/> */}
     {/* <Bid/> */}
     {/* <Win/> */}
+    <Provider store={appStore}>
     <BrowserRouter>
         <Routes>
         <Route path="/r" element={<> <Register/> </>}></Route>  
@@ -52,7 +55,7 @@ function App() {
         <Route path="/wallet"  element={<Wallet/>}> </Route>
         </Routes>
       </BrowserRouter>
-  
+      </Provider>
 
     </>
 
