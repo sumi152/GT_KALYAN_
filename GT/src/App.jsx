@@ -42,8 +42,8 @@ function App() {
         <Routes>
         <Route path="/r" element={<> <Register/> </>}></Route>  
         <Route path="/star" element={<> <Starline/> </>}></Route>
-        <Route path="/v" element={<> <Login/> </>}></Route>
-        <Route path="/" element={<> <Imp/></>}></Route>
+        <Route path="/" element={<> <Login/> </>}></Route>
+        <Route path="/imp" element={<> <Imp/></>}></Route>
         <Route path="/addfund"  element={<AddFunds/>}> </Route>
         <Route path="/win"  element={<Win/>}> </Route>
         <Route path="/bid"  element={<Bid/>}> </Route>
