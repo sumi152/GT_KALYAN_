@@ -26,7 +26,7 @@ function Win() {
   }
   const navigate= useNavigate();
   const back=()=>{
-    navigate('/');
+    navigate(-1);
   }
   
 

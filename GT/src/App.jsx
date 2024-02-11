@@ -13,13 +13,15 @@ import About from './About.jsx'
 import Privacy from './Privacy.jsx'
 import Delete from './Delete.jsx'
 import Wallet from './Wallet.jsx'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import GameFRONT from './GameFRONT.jsx'
 import Login from './Login.jsx'
 import Register from './Register.jsx'
 import Imp from './IMP.jsx'
 import { Provider } from 'react-redux'
-import appStore from "./Util/appStore";
+import appStore from "./Util/appStore"
+import Starline from './Starline.jsx'
+import Profile from './Profile.jsx'
 function App() {
 
   return (
@@ -39,8 +41,9 @@ function App() {
     <BrowserRouter>
         <Routes>
         <Route path="/r" element={<> <Register/> </>}></Route>  
-        <Route path="/" element={<> <Login/> </>}></Route>
-        <Route path="/imp" element={<> <Imp/></>}></Route>
+        <Route path="/star" element={<> <Starline/> </>}></Route>
+        <Route path="/v" element={<> <Login/> </>}></Route>
+        <Route path="/" element={<> <Imp/></>}></Route>
         <Route path="/addfund"  element={<AddFunds/>}> </Route>
         <Route path="/win"  element={<Win/>}> </Route>
         <Route path="/bid"  element={<Bid/>}> </Route>
@@ -53,6 +56,7 @@ function App() {
         <Route path="/delete"  element={<Delete/>}> </Route>
         <Route path="/change"  element={<Changepass/>}> </Route>
         <Route path="/wallet"  element={<Wallet/>}> </Route>
+        <Route path="/profile" element={<> <Profile/> </>}></Route>
         </Routes>
       </BrowserRouter>
       </Provider>

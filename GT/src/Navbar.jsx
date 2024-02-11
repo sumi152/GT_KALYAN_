@@ -8,7 +8,7 @@ import logoutImg from "./Images/logout.png";
 import logo from "./Images/logo.png";
 import call24 from "./Images/call_24.png";
 import Home from "./Images/home.png";
-import Profile from "./Images/profile.png";
+import profile from "./Images/profile.png";
 import AddFund from "./Images/add.png";
 import Wallet from "./Images/wallet.png";
 import WinHistory from "./Images/win_history.png";
@@ -129,6 +129,19 @@ function Navbar() {
                 />
                 Home
               </a>
+            </li>
+            <li>
+              <NavLink
+                to='/profile'
+                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
+              >
+                <img
+                  src={profile}
+                  alt="Add Funds"
+                  className="w-8 h-8 mr-2 inline-block"
+                />
+                Profile
+              </NavLink>
             </li>
             <li>
               <NavLink

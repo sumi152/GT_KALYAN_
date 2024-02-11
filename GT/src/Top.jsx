@@ -102,7 +102,8 @@ function Top() {
           </div>
         </div>
         <div style={centerStyle}>
-          <button onClick={() => handleButtonClick('addFund')} className='flex justify-center'>
+          <button onClick={() => navigate('/star')} className='flex justify-center'
+          >
             <img src={black} alt="Add Fund" style={cellImageStyle} />
           </button>
         </div>

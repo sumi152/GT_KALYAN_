@@ -8,6 +8,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FiAlertCircle } from "react-icons/fi";
 
 
+
 function Register() {
   const navbarStyle = {
     height: "60px",

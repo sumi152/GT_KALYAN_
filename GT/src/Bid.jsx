@@ -26,7 +26,7 @@ function Bid() {
   }
   const navigate =useNavigate();
   const back=()=>{
-    navigate("/");
+    navigate(-1);
   }
 
   return (
