@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState , useEffect } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import cara1 from './Images/top1.jpeg';
@@ -11,6 +11,9 @@ import marker from './Images/marker.png';
 import black from './Images/blackjed.png';
 import topBackground from './Images/bg.png';
 import { useNavigate } from 'react-router-dom';
+import useCarosuel from './Hooks/useCarosuel';
+import {  useSelector } from 'react-redux';
+
 
 
 function Top() {
@@ -56,6 +59,16 @@ function Top() {
     paddingBottom: '20px',
     gridColumn: '1 / -1',
   };
+  const token = useSelector(state=>state.userDetail.token)
+  const res = useCarosuel(token);
+  const [sd, setsd] = useState([]);
+  useEffect(() => {
+    if (res && res.sliderdata ) {
+      setsd(res.sliderdata);
+    }
+  }, [res]);
+  console.log(sd[0]);
+  console.log(sd[1]?.image_id)
   const navigate = useNavigate();
   const addF=()=>{
     navigate('/addfund');
@@ -81,10 +94,10 @@ function Top() {
           centerMode={false}
         >
           <div>
-            <img src={cara1} alt="image 1" className="h-full w-full object-cover rounded-xl" style={imageStyle} />
+            <img src={sd[0]?.slider_image} alt="image 1" className="h-full w-full object-cover rounded-xl" style={imageStyle} />
           </div>
           <div>
-            <img src={cara2} alt="image 2" className="h-full w-full object-cover rounded-xl" style={imageStyle} />
+            <img src={sd[1]?.slider_image} alt="image 2" className="h-full w-full object-cover rounded-xl" style={imageStyle} />
           </div>
         </Carousel>
       </div>

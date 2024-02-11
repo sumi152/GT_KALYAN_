@@ -18,6 +18,9 @@ const loginSlice = createSlice({
             state.username = null;
             state.token = null;
             state.mobile = null;
+            console.log('kushagra ');
+            console.log(state.username);
+            console.log(state.token);
         }
     },
 });
