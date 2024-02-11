@@ -213,7 +213,7 @@ function Register() {
             <div className="flex justify-center">
               <p>
                 Don't Have an account ?{" "}
-                <Link to="/h" className="text-yellow-500">
+                <Link to="/" className="text-yellow-500">
                   Login
                 </Link>
               </p>
