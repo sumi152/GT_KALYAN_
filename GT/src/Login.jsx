@@ -35,11 +35,11 @@ function Login() {
     objectFit: "cover",
   };
 
-  const logdata = useSelector ((store)=>store.userDetail.items);
   const phoneno = useRef();
   const password = useRef();
   const [formErrors, setFormErrors] = useState({});
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [errorText, setErrorText] = useState(""); 
   const [isSubmit, setIsSubmit] =useState(false);
   const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ function Login() {
     dispatch(login({ username: username_, token: unique_token, phone: mobile }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validate(
       phoneno.current.value,
@@ -67,11 +67,15 @@ function Login() {
       return;
     }
 
-    fetchData(
-      phoneno.current.value,
-      password.current.value
-    );
-    setIsSubmit(true);
+    try {
+      await fetchData(
+        phoneno.current.value,
+        password.current.value
+      );
+      setIsSubmit(true);
+    } catch (error) {
+      setErrorText("Username or password incorrect"); // Set error message
+    }
   };
 
   const validate = ( phoneno, password) => {
@@ -91,42 +95,39 @@ function Login() {
   };
 
   const fetchData = async ( phoneno, password) => {
-    try {
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append(
-        "Cookie",
-        "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
-      );
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Cookie",
+      "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
+    );
 
-      var raw = JSON.stringify({
-        env_type: "Prod",
-        app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
-        device_id: "{{android_id}}",
-        password: password,
-        mobile: phoneno
-      });
+    const raw = JSON.stringify({
+      env_type: "Prod",
+      app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
+      device_id: "{{android_id}}",
+      password: password,
+      mobile: phoneno
+    });
 
-      const requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-      };
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
 
-      const response = await fetch(
-        "https://kalyanmilanofficialmatka.in/api-user-login",
-        requestOptions
-      );
-      const result = await response.json();
+    const response = await fetch(
+      "https://kalyanmilanofficialmatka.in/api-user-login",
+      requestOptions
+    );
+    const result = await response.json();
 
-      // console.log(result);
-      if(result?.status===true){
-         {handleAdduser(result.user_name, result.unique_token, result.mobile)}
-        navigate('/imp');
-      }
-    } catch (error) {
-      console.log("error", error);
+    if(result?.status===true){
+       {handleAdduser(result.user_name, result.unique_token, result.mobile)}
+      navigate('/imp');
+    } else {
+      throw new Error("Invalid username and password");
     }
   };
 
@@ -160,13 +161,10 @@ function Login() {
               )}
             </div>
             <p className="mt-2">Password</p>
-            {/* <div className="relative "> */}
-
             <input
               type={showCurrentPassword ? "text" : "password"}
               placeholder="Password"
               ref={password}
-              // onChange={(e) => setCurrentPassword(e.target.value)}
               className=" bg-gray-500 pt-3 pr-15 pl-5 pb-3 rounded"
               name="password"
             />
@@ -186,6 +184,7 @@ function Login() {
             <div className="relative mb-5 mt-9">
               <p className="absolute right-0">Forgot Password ?</p>
             </div>
+            {errorText && <p className="text-red-500">{errorText}</p>} {/* Render error message */}
             <div className="flex justify-center mb-5">
               <button
                 className="p-3 border border-black-500 rounded mt-4 bg-blue-800 w-3/4"
@@ -197,7 +196,7 @@ function Login() {
             <div className="flex justify-center">
               <p>
                 Don't Have an account ?{" "}
-                <Link to="/register" className="text-yellow-500">
+                <Link to="/r" className="text-yellow-500">
                   Register
                 </Link>
               </p>

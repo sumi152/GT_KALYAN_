@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 
-function useGameFront() {
+
+function useGameFront(unique) {
   const [res, setRes] = useState([]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const fetchData = async () => {
     try {
@@ -19,6 +17,7 @@ function useGameFront() {
       const raw = JSON.stringify({
         env_type: "Prod",
         app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
+        unique_token: unique,
       });
 
       const requestOptions = {
@@ -29,17 +28,27 @@ function useGameFront() {
       };
 
       const response = await fetch(
-        "https://kalyanmilanofficialmatka.in/api-starline-game",
+        "https://kalyanmilanofficialmatka.in/api-get-dashboard-data",
         requestOptions
       );
       const result = await response.json();
 
       // Update state with the fetched data
       setRes(result);
+      console.log(result);
     } catch (error) {
       console.log('error', error);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+    const intervalId = setInterval(fetchData, 5000);
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
+
 
   return res;
 }
