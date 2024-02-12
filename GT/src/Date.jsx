@@ -1,16 +1,22 @@
 // DatePickerButton.js
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import cal from "./Images/calendar_icon.png";
 
-const DatePickerButton = () => {
-  const [startDate, setStartDate] = useState(new Date());
+const DatePickerButton = ({ selectedDate, onDateChange }) => {
+  const [startDate, setStartDate] = useState(selectedDate || new Date());
   const datePickerRef = useRef(null);
+
+  useEffect(() => {
+    //console.log(startDate); // Log the updated startDate after it has been set
+  }, [startDate]);
 
   const handleDateChange = (date) => {
     setStartDate(date);
-    // Additional logic you want to perform on date change
+    if (onDateChange) {
+      onDateChange(date);
+    }
   };
 
   const openDatePicker = () => {
@@ -25,8 +31,8 @@ const DatePickerButton = () => {
       <DatePicker
         selected={startDate}
         onChange={(date) => handleDateChange(date)}
-        ref={datePickerRef}
         className="bg-blue-500"
+        ref={datePickerRef}
       />
     </div>
   );

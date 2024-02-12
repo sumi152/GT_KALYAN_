@@ -1,9 +1,9 @@
+// Win.js
 import { BiArrowBack } from "react-icons/bi";
 import DatePickerButton from "./Date";
-import buttonBack from "./Images/main_bg.png"
 import topBackground from "./Images/bg.png";
 import { useNavigate } from "react-router-dom";
-
+import { useState } from "react";
 
 function Win() {
   const navbarStyle = {
@@ -13,7 +13,7 @@ function Win() {
   };
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
-    backgroundSize: 'cover', // This will make the background image cover the container without 
+    backgroundSize: 'cover', 
     backgroundPosition: 'center',
     position:'relative',
     paddingBottom:'400px',
@@ -23,12 +23,78 @@ function Win() {
     display:'flex',
     flexDirection:'column',
     padding:'20px',
-  }
+  };
   const navigate= useNavigate();
-  const back=()=>{
-    navigate(-1);
+
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedEndDate, setSelectedEndDate] = useState(new Date());
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  const handleEndDateChange= (date) => {
+    setSelectedEndDate(date);
+  };
+
+  const handleSubmit = async() => {
+    console.log("From Date:", selectedDate);
+    console.log("To Date:", selectedEndDate);
+    const startdate1=changedate(selectedDate);
+    const enddate1= changedate(selectedEndDate);
+    try {
+      await fetchData(startdate1, enddate1);
+      // setIsSubmit(true);
+    } catch (error) {
+      setErrorText("Username or password incorrect");
+
+    }
+
+  };
+
+  const fetchData = async ( startdate1, enddate1) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Cookie",
+      "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
+    );
+
+    var raw = JSON.stringify({
+      env_type: "Prod",
+      app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
+      unique_token: "un5ChwLA8EJqiLqCBolQwC0gY31AAL",
+      date_from: startdate1,
+      date_to: enddate1
+    });
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    const response = await fetch(
+      "https://kalyanmilanofficialmatka.in/api-wining-history-data",
+      requestOptions
+    );
+    const result = await response.json();
+    console.log(result);
+  };
+
+  const changedate =( selectedDate)=>{
+    if(selectedDate===null)return;
+    const startday = selectedDate.getDate(); // Returns the day of the month (1-31)
+    const startmonth = selectedDate.getMonth()+1; // Returns the month (0-11)
+    const startyear = selectedDate.getFullYear();
+    const date= startday+'/'+startmonth+'/'+startyear;
+    console.log(date);
+    return date;
   }
-  
+
+  const back = () => {
+    navigate(-1);
+  };
 
   return (
     <>
@@ -42,17 +108,17 @@ function Win() {
       </div>
       <div style={backStyle} className="text-white">
         <div className="flex justify-center item-center p-5" >
-        <div className="border border-black-500"style={cardStyle} >
-        <p className="inline-block rounded p-3 border border-white mb-2 bg-blue-500 w-1/2" >Select Dates</p>
-        <p className="mb-2">From Date</p>
-        <DatePickerButton />
-        <p className="mb-2 mt-2" >To Date</p>
-        <DatePickerButton />
-        <div className="flex justify-center  ">
-          <button className="p-3 border border-black-500 rounded mt-4 bg-green-500 w-1/2">Submit</button>
+          <div className="border border-black-500" style={cardStyle} >
+            <p className="inline-block rounded p-3 border border-white mb-2 bg-blue-500 w-1/2" >Select Dates</p>
+            <p className="mb-2">From Date</p>
+            <DatePickerButton selectedDate={selectedDate} onDateChange={handleDateChange} />
+            <p className="mb-2 mt-2" >To Date</p>
+            <DatePickerButton selectedDate={selectedEndDate} onDateChange={handleEndDateChange} />
+            <div className="flex justify-center  ">
+              <button className="p-3 border border-black-500 rounded mt-4 bg-green-500 w-1/2" onClick={handleSubmit}>Submit</button>
+            </div>
           </div>
-      </div>
-      </div>
+        </div>
       </div>
     </>
   );
