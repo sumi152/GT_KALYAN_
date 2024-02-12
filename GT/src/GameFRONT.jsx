@@ -52,9 +52,9 @@ function GameFRONT() {
             <p>00.00.00</p>
           </div>
           <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 flex flex-col rounded-3xl border">
-            <div className={`text-${game.msg === "Market closed" ? "red" : "green"}-500 text-sm flex justify-center items-center`}>
-              {game.msg === "Market closed" ? "Market Closed" : "Market Running"}
-              {console.log('hello')}
+            <div className={`text-${game.msg_status === 2 ? "red" : "green"}-500 text-sm flex justify-center items-center`}>
+              {game.msg_status === 2 ? "Market Closed" : "Market Running"}
+              {/* {console.log('hello')} */}
               {console.log(game.game_name)}
               {console.log(game.msg)};
             </div>
@@ -64,7 +64,7 @@ function GameFRONT() {
               </div>
               <p>***_**_***</p>
               <button>
-                <img src={game.msg === "Market closed" ? close : open} style={imgstyle} alt="" />
+                <img src={game.msg_status === 2 ? close : open} style={imgstyle} alt="" />
               </button>
             </div>
             <div style={laststyle}>
