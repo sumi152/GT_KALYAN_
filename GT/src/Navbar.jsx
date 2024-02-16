@@ -1,7 +1,7 @@
 import WalletIcon from "./Images/wallet.png";
 import HamburgerIcon from "./Images/Hamburger.png";
 import "./Navbar.css";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef ,useMemo} from "react";
 import New from "./New";
 import sidebarBackground from "./Images/bg.png";
 import logoutImg from "./Images/logout.png";
@@ -301,4 +301,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default React.memo(Navbar) ;

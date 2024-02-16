@@ -4,6 +4,7 @@ import Top from "./Top";
 import GameFRONT from "./GameFRONT";
 import topBackground from './Images/bg.png';
 import { Provider } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Imp() {
   const topStyle = {
@@ -16,7 +17,10 @@ function Imp() {
 
   const memoizedNavbar = useMemo(() => <Navbar />, []);
   const memoizedTop = useMemo(() => <Top />, []);
-
+  const token = useSelector(state => state.userDetail.token);
+  const username = useSelector(state => state.userDetail.token);
+  console.log(username);
+  console.log(token);
   return (
     <>
       <div className="relative">

@@ -1,30 +1,34 @@
-import React, { useState } from 'react';
-import topBackground from './Images/bg.png';
-import changePassword from './Images/change_password_icon.png';
-import { FiEye, FiEyeOff, FiLock } from 'react-icons/fi';
-import { BiArrowBack } from 'react-icons/bi';
-import {useNavigate} from 'react-router-dom';
+import React, { useState, useRef } from "react";
+import topBackground from "./Images/bg.png";
+import changePassword from "./Images/change_password_icon.png";
+import { FiEye, FiEyeOff, FiLock } from "react-icons/fi";
+import { BiArrowBack } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 function Changepass() {
   const navbarStyle = {
-    height: '60px',
-    display: 'flex',
-    alignItems: 'center',
+    height: "60px",
+    display: "flex",
+    alignItems: "center",
   };
 
   const changePassStyle = {
     backgroundImage: `url(${topBackground})`,
-    backgroundSize: 'cover',
+    backgroundSize: "cover",
   };
-  
 
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const currentPassword = useRef();
+  const newPassword = useRef();
+  const confirmPassword = useRef();
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
+  const [errorText, setErrorText] = useState("");
+  const [msg, setmsg]= useState("");
 
+  
   const handleToggleCurrentPassword = () => {
     setShowCurrentPassword(!showCurrentPassword);
   };
@@ -36,38 +40,123 @@ function Changepass() {
   const handleToggleConfirmPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
-  const navigate =useNavigate();
-  const back=()=>{
+  const navigate = useNavigate();
+  const back = () => {
     navigate("/imp");
-  }
+  };
+  
+  const token = useSelector(state => state.userDetail.token);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const errors = validate(
+      currentPassword.current.value,
+      newPassword.current.value,
+      confirmPassword.current.value
+    );
+
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
+
+    try {
+       await fetchData(currentPassword.current.value, newPassword.current.value,token);
+      setIsSubmit(true);
+    } catch (error) {
+      setErrorText("Old password is incorrect"); // Set error message
+    }
+  };
+
+  const validate = (currentPassword, newPassword, confirmPassword) => {
+    const errors = {};
+
+    if (!currentPassword) {
+      errors.conf0 = "Current Password is required!";
+    }
+
+    if (!newPassword) {
+      errors.conf1 = "New Password is required!";
+    }
+    if (!confirmPassword) {
+      errors.conf2 = "Confirm Password is required!";
+    }
+    if (newPassword && confirmPassword &&newPassword != confirmPassword) {
+      errors.conf3 = "Confirm Password is not equal to New Password!";
+    }
+    return errors;
+  };
+
+  const fetchData = async ( currentPassword, newPassword,token) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Cookie",
+      "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
+    );
+
+    const raw = JSON.stringify({
+      
+        env_type: "Prod",
+        app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
+        unique_token: token,
+        old_pass: currentPassword,
+        new_pass: newPassword
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    const response = await fetch(
+      "https://kalyanmilanofficialmatka.in/api-change-password",
+      requestOptions
+    );
+    const result = await response.json();
+
+    if(result?.status===true){
+       setmsg(result?.msg);
+       console.log(msg+'updated sumti');
+    } else {
+      throw new Error("Invalid username and password");
+    }
+  };
 
   return (
     <>
       <div>
         <div className="bg-custom-purple text-white" style={navbarStyle}>
-          <button className="px-4" onClick={()=>back()}>
-          <BiArrowBack size={24} />
+          <button className="px-4" onClick={() => back()}>
+            <BiArrowBack size={24} />
           </button>
           <h1 className="text-white px-3">Change Password</h1>
         </div>
       </div>
       <div style={changePassStyle}>
         <div className="flex justify-center items-center h-screen">
+        <form  onSubmit={handleSubmit}>
           <div className="bg-transparent p-6 rounded-md shadow-md">
             <div className="mb-6 relative">
-              <label className="block mb-1 font-medium text-white">Current Password</label>
+              <label className="block mb-1 font-medium text-white">
+                Current Password
+              </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <img src={changePassword} alt="" className="h-5 w-5" />
                 </div>
                 <input
-                  type={showCurrentPassword ? 'text' : 'password'}
-                  placeholder="Enter Old Password"
-                  value={currentPassword}
-                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  type={showCurrentPassword ? "text" : "password"}
+                  placeholder="Password"
+                  ref={currentPassword}
                   className="w-full rounded-md border-gray-300 bg-gray-300 focus:ring-indigo-500 focus:border-indigo-500 pl-10 p-3 text-black"
-                  style={{ width: '300px' }} // Set the width here as per your requirement
+                  style={{ width: "300px" }} // Set the width here as per your requirement
+                  name="password"
                 />
+
                 <button
                   type="button"
                   onClick={handleToggleCurrentPassword}
@@ -75,21 +164,24 @@ function Changepass() {
                 >
                   {showCurrentPassword ? <FiEyeOff /> : <FiEye />}
                 </button>
+                <p className="text-red-500">{formErrors.conf0}</p>
               </div>
             </div>
             <div className="mb-6 relative">
-              <label className="block mb-1 font-medium text-white">New Password</label>
+              <label className="block mb-1 font-medium text-white">
+                New Password
+              </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FiLock className="h-6 w-6 text-black" />
                 </div>
                 <input
-                  type={showNewPassword ? 'text' : 'password'}
+                  type={showNewPassword ? "text" : "password"}
                   placeholder="Enter New Password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
+                  ref={newPassword}
                   className="w-full rounded-md border-gray-300 bg-gray-300 focus:ring-indigo-500 focus:border-indigo-500 pl-10 p-3 text-black"
-                  style={{ width: '300px' }} // Set the width here as per your requirement
+                  style={{ width: "300px" }} // Set the width here as per your requirement
+                  name="newPassword"
                 />
                 <button
                   type="button"
@@ -98,21 +190,24 @@ function Changepass() {
                 >
                   {showNewPassword ? <FiEyeOff /> : <FiEye />}
                 </button>
+                <p className="text-red-500">{formErrors.conf1}</p>
               </div>
             </div>
             <div className="mb-6 relative">
-              <label className="block mb-1 font-medium text-white">Confirm New Password</label>
+              <label className="block mb-1 font-medium text-white">
+                Confirm New Password
+              </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FiLock className="h-6 w-6 text-black" />
                 </div>
                 <input
-                  type={showConfirmPassword ? 'text' : 'password'}
+                  type={showConfirmPassword ? "text" : "password"}
                   placeholder="Enter Confirm Password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  ref={confirmPassword}
                   className="w-full rounded-md border-gray-300 bg-gray-300 focus:ring-indigo-500 focus:border-indigo-500 pl-10 p-3 text-black"
-                  style={{ width: '300px' }} // Set the width here as per your requirement
+                  style={{ width: "300px" }} // Set the width here as per your requirement
+                  name="confirmPassword"
                 />
                 <button
                   type="button"
@@ -121,18 +216,24 @@ function Changepass() {
                 >
                   {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
                 </button>
+                <p className="text-red-500">{formErrors.conf2}</p>
+                <p className="text-red-500">{formErrors.conf3}</p>
+                <p className="text-green-500">{msg}</p>
+                
               </div>
             </div>
             <div className="flex justify-center items-center">
-              <button className="text-white px-10 py-2 rounded-md bg-gradient-to-r from-green-100 to-green-700">
+              <button
+                className="text-white px-10 py-2 rounded-md bg-gradient-to-r from-green-100 to-green-700"
+                type="submit"
+              >
                 Change
               </button>
             </div>
           </div>
+        </form>
         </div>
       </div>
-
-
     </>
   );
 }
