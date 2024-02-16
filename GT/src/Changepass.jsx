@@ -38,7 +38,7 @@ function Changepass() {
   };
   const navigate =useNavigate();
   const back=()=>{
-    navigate("/");
+    navigate("/imp");
   }
 
   return (

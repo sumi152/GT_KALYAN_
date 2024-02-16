@@ -42,7 +42,7 @@ function GameRates() {
   }, [resinfo]);
 
   const back = () => {
-    navigate("/");
+    navigate("/imp");
   };
 
   return (

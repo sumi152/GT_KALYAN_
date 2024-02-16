@@ -45,7 +45,7 @@ function Starline() {
 
   const navigate = useNavigate();
   const back=()=>{
-    navigate(-1);
+    navigate('/imp');
   }
 
   return (

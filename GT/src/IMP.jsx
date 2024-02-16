@@ -1,36 +1,36 @@
+import React, { useMemo } from "react";
 import Navbar from "./Navbar";
 import Top from "./Top";
 import GameFRONT from "./GameFRONT";
 import topBackground from './Images/bg.png';
 import { Provider } from "react-redux";
 
+function Imp() {
+  const topStyle = {
+    backgroundImage: `url(${topBackground})`,
+    backgroundSize: 'cover',
+    height: 'auto',
+    width: '100%',
+    paddingBottom:'20px'
+  };
 
-function Imp(){
-    const topStyle = {
-        backgroundImage: `url(${topBackground})`,
-        backgroundSize: 'cover',
-        height: 'auto', // Set the height of the div
-        width: '100%', // Set the width of the div
-        paddingBottom:'20px'
-      };
-    return (
-        <>
-        <div className="relative">
+  const memoizedNavbar = useMemo(() => <Navbar />, []);
+  const memoizedTop = useMemo(() => <Top />, []);
+
+  return (
+    <>
+      <div className="relative">
         <div className="sticky top-0">
-        <Navbar />
-        <Top />
+          {memoizedNavbar}
+          {memoizedTop}
         </div>
-        
-      <div className="" style={topStyle}>
 
-        <GameFRONT/>
-        {/* <GameFRONT/> */}
-
+        <div className="" style={topStyle}>
+          <GameFRONT />
+        </div>
       </div>
-      </div>
-
-        </>
-    );
+    </>
+  );
 }
 
 export default Imp;

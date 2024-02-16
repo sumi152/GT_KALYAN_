@@ -8,7 +8,7 @@ import { useState } from "react";
 function Profile() {
   const navigate = useNavigate();
   const back = () => {
-    navigate(-1);
+    navigate('/imp');
   };
 
   const navbarStyle = {

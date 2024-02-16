@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState , useEffect, useMemo } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import cara1 from './Images/top1.jpeg';
@@ -67,7 +67,6 @@ function Top() {
       setsd(res.sliderdata);
     }
   }, [res]);
-  console.log(sd[0]);
   console.log(sd[1]?.image_id)
   const navigate = useNavigate();
   const addF=()=>{
@@ -115,7 +114,7 @@ function Top() {
           </div>
         </div>
         <div style={centerStyle}>
-          <button onClick={() => navigate('/star')} className='flex justify-center'
+          <button onClick={() => navigate('/imp2')} className='flex justify-center'
           >
             <img src={black} alt="Add Fund" style={cellImageStyle} />
           </button>
@@ -140,4 +139,4 @@ function Top() {
   );
 }
 
-export default Top;
+export default React.memo(Top);
