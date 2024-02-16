@@ -93,7 +93,7 @@ function Win() {
   }
 
   const back = () => {
-    navigate(-1);
+    navigate('/imp');
   };
 
   return (

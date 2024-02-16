@@ -26,7 +26,7 @@ function Bid() {
   }
   const navigate =useNavigate();
   const back=()=>{
-    navigate(-1);
+    navigate('/imp');
   }
 
   return (

@@ -29,7 +29,7 @@ function Game() {
   };
   const navigate = useNavigate();
   const back=()=>{
-    navigate("/");
+    navigate("/imp");
   }
 
   return (

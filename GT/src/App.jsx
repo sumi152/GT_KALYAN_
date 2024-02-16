@@ -22,6 +22,7 @@ import { Provider } from 'react-redux'
 import appStore from "./Util/appStore"
 import Starline from './Starline.jsx'
 import Profile from './Profile.jsx'
+import IMP2 from './IMP2.jsx'
 function App() {
 
   return (
@@ -57,6 +58,7 @@ function App() {
         <Route path="/change"  element={<Changepass/>}> </Route>
         <Route path="/wallet"  element={<Wallet/>}> </Route>
         <Route path="/profile" element={<> <Profile/> </>}></Route>
+        <Route path='/imp2' element={<><IMP2/></>}></Route>
         </Routes>
       </BrowserRouter>
       </Provider>

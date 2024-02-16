@@ -2,8 +2,13 @@ import logo from "./Images/logo.png";
 import { BiArrowBack } from "react-icons/bi";
 import topBackground from './Images/bg.png';
 import { useNavigate } from "react-router-dom";
+import useHowtoPlay from "./Hooks/useHowtoPlay";
+import { useState, useEffect } from "react";
 
 function Htp() {
+  
+  const [status, setStatus] = useState(false);
+  const [gameRates, setGameRates] = useState([]);
   const divStyle = {
      // Adjust the border width and color as needed
     padding: "20px", // Optional: Adding padding for better visibility
@@ -24,13 +29,25 @@ function Htp() {
 
   const navigate = useNavigate();
   const back = () => {
-    navigate("/");
+    navigate("/imp");
   };
+  const resinfo = useHowtoPlay();
+  useEffect(() => {
+    if (resinfo && resinfo["result"]) {
+      setStatus(true);
+      setGameRates(resinfo["result"]);
+    }
+  }, [resinfo]);
+  console.log(resinfo);
+
+  const renderHowToPlayContent = () => {
+    return {__html: resinfo?.content?.[0]?.how_to_play_content};
+  }
 
   return (
-    <div>
-      <div>
-        <div className="bg-custom-purple text-white" style={navbarStyle}>
+    <div className="relative h-svh">
+      <div className="ticky top-0">
+        <div className="bg-custom-purple text-white s" style={navbarStyle}>
           <button className="px-4" onClick={()=>back()}>
             <BiArrowBack size={24} />
           </button>
@@ -40,23 +57,16 @@ function Htp() {
         </div>
       </div>
       <div className="h-screen" style={backStyle}>
-      <div
-        className="sticky top-0 text-white "
-        style={divStyle}
-      >
-        <div className="flex justify-center items-center ">
-          <img src={logo} alt="Center Image" className="w-40 h-40" />
+        <div
+          className="sticky top-5 text-white "
+          style={divStyle}
+        >
+          <div className="flex justify-center items-center ">
+            <img src={logo} alt="Center Image" className="w-40 h-40" />
+          </div>
         </div>
-      </div>
-      <div className="text-white flex flex-col p-5">
-        <p className="m-3">Simply download our application from Google Play Store or from our official Website.</p>
-        <p className="m-3">Register with your Mobile Number, Email ID, User Name with our platform.</p>
-        <p className="m-3">Login with the application using Mobile Number and Password with your secure PIN code.</p>
-        <p className="m-3">Select the Game type, select your favorite number and start to Play Game.</p>
-        <p className="m-3"> Get a chance to win upto 10 Lac Points.</p>
-      </div>
-
-
+        <div className="text-white flex flex-col p-5" dangerouslySetInnerHTML={renderHowToPlayContent()}>
+        </div>
       </div>
     </div>
   );

@@ -124,7 +124,7 @@ function AddFunds() {
   const backendValue = "Value from Backend";
   const navigate= useNavigate();
   const back=()=>{
-    navigate("/");
+    navigate("/imp");
   }
 
   return (

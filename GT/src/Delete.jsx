@@ -10,7 +10,7 @@ function Del (){
   };
   const navigate = useNavigate();
   const back = () => {
-    navigate("/");
+    navigate("/imp");
   };
 
   const divStyle = {

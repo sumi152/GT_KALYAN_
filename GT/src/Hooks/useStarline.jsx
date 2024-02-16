@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 
-function useCarosuel() {
-  const [res, setRes] = useState(null);
 
- 
-  const fetchData = async (unique) => {
+function useStarline(unique) {
+  const [res, setRes] = useState([]);
+
+
+  const fetchData = async () => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
@@ -16,7 +17,6 @@ function useCarosuel() {
       const raw = JSON.stringify({
         env_type: "Prod",
         app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
-        unique_token: unique,
       });
 
       const requestOptions = {
@@ -27,28 +27,29 @@ function useCarosuel() {
       };
 
       const response = await fetch(
-        "https://kalyanmilanofficialmatka.in/api-get-slider-images",
+        "https://kalyanmilanofficialmatka.in/api-starline-game",
         requestOptions
       );
       const result = await response.json();
-      // console.log(result);
 
       // Update state with the fetched data
       setRes(result);
+      console.log(result);
     } catch (error) {
       console.log('error', error);
     }
   };
+
   useEffect(() => {
-    if(res===null){
-      console.log("hii "+res);
-      fetchData();
-    }
-    
+    fetchData();
+    const intervalId = setInterval(fetchData, 5000);
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(intervalId);
   }, []);
 
 
   return res;
 }
 
-export default useCarosuel;
+export default useStarline;
