@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 function useGameFront(unique) {
   const [res, setRes] = useState([]);
+  console.log('token'+unique);
 
 
   const fetchData = async () => {
@@ -35,7 +36,7 @@ function useGameFront(unique) {
 
       // Update state with the fetched data
       setRes(result);
-      console.log(result);
+      // console.log(result);
     } catch (error) {
       console.log('error', error);
     }
