@@ -1,6 +1,7 @@
 import { BiArrowBack } from "react-icons/bi";
 import WalletIcon from "./Images/wallet.png";
 import topBackground from "./Images/bg.png";
+import { useNavigate } from "react-router-dom";
 
 function Single() {
   const navbarStyle = {
@@ -21,10 +22,17 @@ function Single() {
     flexDirection:'column',
     padding:'20px',
   }
+
+  const navigate = useNavigate();
+  const back=()=>{
+    navigate(-1)
+  }
+
   return (
     <>
       <div className="bg-custom-purple text-white" style={navbarStyle}>
-        <button className="px-4">
+        <button className="px-4"
+        onClick={back}>
           <BiArrowBack size={24} />
         </button>
         <div>

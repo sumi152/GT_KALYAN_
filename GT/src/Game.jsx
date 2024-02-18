@@ -28,7 +28,12 @@ function Game() {
   };
   const navigate = useNavigate();
   const back=()=>{
-    navigate("/imp");
+    navigate(-1);
+  }
+
+  const goTo=()=>
+  {
+    navigate("/single")
   }
 
   return (
@@ -45,43 +50,50 @@ function Game() {
       <div className=" pl-2 flex justify-center items-center " style={backStyle}>
         <div className="grid grid-cols-2" style={cardStyle}>
           <div className="col-span-1 flex justify-center items-center ">
-            <button>
+            <button
+            onClick={goTo}>
               <img src={url1} alt="Image 1" className="w-64 h-48" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center   ">
-            <button>
+            <button
+            onClick={goTo}>
               <img src={url2} alt="Image 2" className="w-64 h-48" />
             </button>
           </div>
 
           {/* Second row with two columns */}
           <div className="col-span-1 flex justify-center items-center mt-4">
-            <button>
+            <button
+            onClick={goTo}>
               <img src={url3} alt="Image 3" className="w-64 h-48" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center mt-4">
-            <button>
+            <button
+            onClick={goTo}>
               <img src={url4} alt="Image 4" className="w-64 h-48" />
             </button>
           </div>
 
           {/* Third row with one column */}
           <div className="col-span-2 flex justify-center items-center mt-4">
-            <button>
-              <img src={url5} alt="Image 5" className="w-64 h-48" />
+            <button
+            onClick={goTo}>
+              <img src={url5} alt="Image 5" className="w-64 h-48 pt-2 " />
             </button>
           </div>
 
           {/* Fourth row with two columns */}
           <div className="col-span-1 flex justify-center items-center mt-4">
-            <button>
+            <button
+            onClick={goTo}>
               <img src={url6} alt="Image 6" className="w-64 h-48" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center mt-4">
-            <button>
+            <button
+            onClick={goTo}>
               <img src={url7} alt="Image 7" className="w-64 h-48" />
             </button>
           </div>
