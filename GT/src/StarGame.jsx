@@ -10,7 +10,7 @@ import topBackground from "./Images/bg.png";
 import {useNavigate} from 'react-router-dom';
 
 
-function Game() {
+function StarGame() {
   const navbarStyle = {
     height: "60px",
     display: "flex",
@@ -24,7 +24,6 @@ function Game() {
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
     backgroundSize: "cover",
-    paddingBottom:'250px'
   };
   const navigate = useNavigate();
   const back=()=>{
@@ -42,47 +41,28 @@ function Game() {
         </div>
       </div>
 
-      <div className=" pl-2 flex justify-center items-center " style={backStyle}>
+      <div className=" pl-2 flex justify-center items-start h-svh" style={backStyle}>
         <div className="grid grid-cols-2" style={cardStyle}>
           <div className="col-span-1 flex justify-center items-center ">
             <button>
-              <img src={url1} alt="Image 1" className="w-64 h-48" />
+              <img src={url1} alt="Image 1" className="w-64 h-64" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center   ">
             <button>
-              <img src={url2} alt="Image 2" className="w-64 h-48" />
+              <img src={url2} alt="Image 2" className="w-64 h-64" />
             </button>
           </div>
 
           {/* Second row with two columns */}
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button>
-              <img src={url3} alt="Image 3" className="w-64 h-48" />
+              <img src={url3} alt="Image 3" className="w-64 h-64" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button>
-              <img src={url4} alt="Image 4" className="w-64 h-48" />
-            </button>
-          </div>
-
-          {/* Third row with one column */}
-          <div className="col-span-2 flex justify-center items-center mt-4">
-            <button>
-              <img src={url5} alt="Image 5" className="w-64 h-48" />
-            </button>
-          </div>
-
-          {/* Fourth row with two columns */}
-          <div className="col-span-1 flex justify-center items-center mt-4">
-            <button>
-              <img src={url6} alt="Image 6" className="w-64 h-48" />
-            </button>
-          </div>
-          <div className="col-span-1 flex justify-center items-center mt-4">
-            <button>
-              <img src={url7} alt="Image 7" className="w-64 h-48" />
+              <img src={url4} alt="Image 4" className="w-64 h-64" />
             </button>
           </div>
         </div>
@@ -91,5 +71,5 @@ function Game() {
   );
 }
 
-export default Game;
+export default StarGame;
 

@@ -23,6 +23,7 @@ import appStore from "./Util/appStore"
 import Starline from './Starline.jsx'
 import Profile from './Profile.jsx'
 import IMP2 from './IMP2.jsx'
+import StarGame from './StarGame.jsx'
 function App() {
 
   return (
@@ -59,6 +60,7 @@ function App() {
         <Route path="/wallet"  element={<Wallet/>}> </Route>
         <Route path="/profile" element={<> <Profile/> </>}></Route>
         <Route path='/imp2' element={<><IMP2/></>}></Route>
+        <Route path='/stargame' element={<><StarGame/></>}></Route>
         </Routes>
       </BrowserRouter>
       </Provider>
