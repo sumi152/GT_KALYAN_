@@ -48,29 +48,25 @@ function StarGame() {
       <div className=" pl-2 flex justify-center items-start h-svh" style={backStyle}>
         <div className="grid grid-cols-2" style={cardStyle}>
           <div className="col-span-1 flex justify-center items-center ">
-            <button
-            onClick={goTo}>
-              <img src={url1} alt="Image 1" className="w-64 h-48" />
+            <button>
+              <img src={url1} alt="Image 1" className="w-64 h-64" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center   ">
-            <button
-            onClick={goTo}>
-              <img src={url2} alt="Image 2" className="w-64 h-48" />
+            <button>
+              <img src={url2} alt="Image 2" className="w-64 h-64" />
             </button>
           </div>
 
           {/* Second row with two columns */}
           <div className="col-span-1 flex justify-center items-center mt-4">
-            <button
-            onClick={goTo}>
-              <img src={url3} alt="Image 3" className="w-64 h-48" />
+            <button>
+              <img src={url3} alt="Image 3" className="w-64 h-64" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center mt-4">
-            <button
-            onClick={goTo}>
-              <img src={url4} alt="Image 4" className="w-64 h-48" />
+            <button>
+              <img src={url4} alt="Image 4" className="w-64 h-64" />
             </button>
           </div>
         </div>
