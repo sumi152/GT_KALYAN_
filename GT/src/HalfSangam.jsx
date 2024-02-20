@@ -2,7 +2,7 @@ import { BiArrowBack } from "react-icons/bi";
 import WalletIcon from "./Images/wallet.png";
 import topBackground from "./Images/bg.png";
 
-function Single() {
+function HalfSangam() {
   const navbarStyle = {
     height: "60px",
     display: "flex",
@@ -74,8 +74,11 @@ function Single() {
             </label>
           </div>
           </div>
+          
+          <p>Open Digit</p>
+          <input type="text" name=""  placeholder="Enter Digit"id="" className="w-full p-4 border border-black-500 rounded" />
           <p>Close Digit</p>
-          <input type="text" name="" id="" className="w-full p-4 border border-black-500 rounded" />
+          <input type="text" name=""  placeholder="Enter Pana"id="" className="w-full p-4 border border-black-500 rounded" />
           <p>Points</p>
           <input type="text" name="" id="" className="w-full  p-4 border border-black-500 rounded" />
           <div className="flex justify-center">
@@ -87,4 +90,4 @@ function Single() {
     </>
   );
 }
-export default Single;
+export default HalfSangam;

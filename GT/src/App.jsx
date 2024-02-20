@@ -7,7 +7,7 @@ import Htp from './HowToPlay.jsx'
 import Game from './Game.jsx'
 import Bid from './Bid.jsx'
 import Win from './Win.jsx'
-import Single from './Single.jsx'
+import Single from './Games/Single.jsx'
 import AddFunds from './AddFunds.jsx'
 import About from './About.jsx'
 import Privacy from './Privacy.jsx'
@@ -24,6 +24,16 @@ import Starline from './Starline.jsx'
 import Profile from './Profile.jsx'
 import IMP2 from './IMP2.jsx'
 import StarGame from './StarGame.jsx'
+import StarSingle from './Stargame/StarSingle.jsx'
+import Ssinglepana from './Stargame/Ssinglepana.jsx'
+import Sdoublepana from './Stargame/Sdoublepana.jsx'
+import Stripplepana from './Stargame/Stripplepana.jsx'
+import FullSangam from './Games/FullSangam.jsx'
+import HalfSangam from './Games/HalfSangam.jsx'
+import TripplePana from './Games/TripplePana.jsx'
+import SinglePana from './Games/SinglePana.jsx'
+import DoublePana from './Games/DoublePana.jsx'
+import Jodi from './Games/Jodi.jsx'
 function App() {
 
   return (
@@ -52,7 +62,7 @@ function App() {
         <Route path="/gameRates"  element={<GameRates/>}> </Route>
         <Route path="/game"  element={<Game/>}> </Route>
         <Route path="/htp"  element={<Htp/>}> </Route>
-        <Route path="/single"  element={<Single/>}> </Route>        
+      
         <Route path="/about"  element={<About/>}> </Route>
         <Route path="/privacy"  element={<Privacy/>}> </Route>
         <Route path="/delete"  element={<Delete/>}> </Route>
@@ -60,7 +70,24 @@ function App() {
         <Route path="/wallet"  element={<Wallet/>}> </Route>
         <Route path="/profile" element={<> <Profile/> </>}></Route>
         <Route path='/imp2' element={<><IMP2/></>}></Route>
+
+
         <Route path='/stargame' element={<><StarGame/></>}></Route>
+        <Route path='/ssinglepana' element={<><Ssinglepana/></>}></Route>
+        <Route path='/sdoublepana' element={<><Sdoublepana/></>}></Route>
+        <Route path='/stripplepana' element={<><Stripplepana/></>}></Route>
+        <Route path='/starsingle' element={<><StarSingle/></>}></Route>
+
+        <Route path="/single"  element={<Single/>}> </Route>  
+        <Route path='/fullsangam' element={<><FullSangam/></>}></Route>
+        <Route path='/halfsangam' element={<><HalfSangam/></>}></Route>
+        <Route path='/tripplepana' element={<><TripplePana/></>}></Route>
+        <Route path='/doublepana' element={<><DoublePana/></>}></Route>
+        <Route path='/singlepana' element={<><SinglePana/></>}></Route>
+        <Route path='/jodi' element={<><Jodi/></>}></Route>
+        
+        
+        
         </Routes>
       </BrowserRouter>
       </Provider>
