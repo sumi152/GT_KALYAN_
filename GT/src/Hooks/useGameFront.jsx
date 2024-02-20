@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 function useGameFront(unique) {
   const [res, setRes] = useState([]);
-  console.log('token'+unique);
+  // console.log('token'+unique);
 
 
   const fetchData = async () => {

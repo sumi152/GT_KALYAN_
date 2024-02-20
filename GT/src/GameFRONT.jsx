@@ -5,12 +5,13 @@ import open from "./Images/play.png";
 import { useEffect, useState } from "react";
 import useGameFront from "./Hooks/useGameFront";
 import {  useSelector } from "react-redux";
+import { NavLink, useNavigate} from "react-router-dom";
 
 function GameFRONT() {
   const [status, setStatus] = useState(false);
   const [gameRates, setGameRates] = useState([{}]);
   const unique = useSelector(state =>state.userDetail.token)
-  console.log(unique);
+  // console.log(unique);
 
   const centerstyle = {
     display: "flex",
@@ -37,11 +38,14 @@ function GameFRONT() {
     }
   }, [resinfo]);
 
+  const navigate = useNavigate();
 
 
 
-  console.log(resinfo['result']);
-  console.log(gameRates);
+
+
+  // console.log(resinfo['result']);
+  // console.log(gameRates);
 
   return (
     <div>
@@ -55,15 +59,22 @@ function GameFRONT() {
             <div className={`text-${game.msg_status === 2 ? "red" : "green"}-500 text-sm flex justify-center items-center`}>
               {game.msg_status === 2 ? "Market Closed" : "Market Running"}
               {/* {console.log('hello')} */}
-              {console.log(game.game_name)}
-              {console.log(game.msg)};
+              {/* {console.log(game.game_name)} */}
+              {/* {console.log(game.msg)}; */}
             </div>
             <div style={centerstyle}>
               <div>
                 <img src={chart} style={imgstyle} alt="" />
               </div>
               <p>***_**_***</p>
-              <button>
+              <button
+              onClick={()=>{
+                // console.log(game.msg_status)
+                if(game.msg_status === 1)
+                {
+                  navigate("/game", { state: { gameId: game.game_id } })
+                }
+              }}>
                 <img src={game.msg_status === 2 ? close : open} style={imgstyle} alt="" />
               </button>
             </div>

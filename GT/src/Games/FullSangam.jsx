@@ -2,6 +2,7 @@ import { BiArrowBack } from "react-icons/bi";
 import WalletIcon from "../Images/wallet.png";
 import topBackground from "../Images/bg.png";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function FullSangam() {
   const todayDate = new Date().toISOString().split("T")[0];
@@ -28,6 +29,9 @@ function FullSangam() {
   const back=()=>{
     navigate(-1)
   }
+  const { gameId } = useLocation().state;
+  console.log(gameId);
+
 
   return (
     <>

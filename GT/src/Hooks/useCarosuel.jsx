@@ -41,7 +41,7 @@ function useCarosuel() {
   };
   useEffect(() => {
     if(res===null){
-      console.log("hii "+res);
+      // console.log("hii "+res);
       fetchData();
     }
     

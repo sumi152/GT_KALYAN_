@@ -2,6 +2,7 @@ import { BiArrowBack } from "react-icons/bi";
 import WalletIcon from "../Images/wallet.png";
 import topBackground from "../Images/bg.png";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Single() {
   const todayDate = new Date().toISOString().split("T")[0];
@@ -28,6 +29,9 @@ function Single() {
   const back = () => {
     navigate(-1);
   };
+  const { gameId } = useLocation().state;
+  console.log(gameId);
+
 
   return (
     <>
@@ -68,10 +72,10 @@ function Single() {
                   type="radio"
                   id="option1"
                   name="radioGroup"
-                  class="form-radio text-blue-500 focus:ring-2 focus:ring-blue-500"
-                  checked
+                  className="form-radio text-blue-500 focus:ring-2 focus:ring-blue-500"
+                  defaultChecked
                 />
-                <label for="option1" class="ml-2 text-gray-700">
+                <label htmlFor="option1" className="ml-2 text-gray-700">
                   Open
                 </label>
               </div>
@@ -80,9 +84,9 @@ function Single() {
                   type="radio"
                   id="option2"
                   name="radioGroup"
-                  class="form-radio text-blue-500 focus:ring-2 focus:ring-blue-500"
+                  className="form-radio text-blue-500 focus:ring-2 focus:ring-blue-500"
                 />
-                <label for="option2" class="ml-2 text-gray-700">
+                <label htmlFor="option2" className="ml-2 text-gray-700">
                   Close
                 </label>
               </div>

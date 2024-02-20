@@ -19,8 +19,8 @@ function Imp() {
   const memoizedTop = useMemo(() => <Top />, []);
   const token = useSelector(state => state.userDetail.token);
   const username = useSelector(state => state.userDetail.token);
-  console.log(username);
-  console.log(token);
+  // console.log(username);
+  // console.log(token);
   return (
     <>
       <div className="relative">

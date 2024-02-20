@@ -8,6 +8,7 @@ import url6 from "./Images/half_sangam.png";
 import url7 from "./Images/full_sangam.png";
 import topBackground from "./Images/bg.png";
 import {useNavigate} from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 
 function Game() {
@@ -30,11 +31,9 @@ function Game() {
   const back=()=>{
     navigate(-1);
   }
+  const { gameId } = useLocation().state;
+  console.log(gameId);
 
-  const goTo=()=>
-  {
-    navigate("/single")
-  }
 
   return (
     <>
@@ -51,13 +50,17 @@ function Game() {
         <div className="grid grid-cols-2" style={cardStyle}>
           <div className="col-span-1 flex justify-center items-center ">
             <button
-            onClick={goTo}>
+            onClick={()=>{
+              navigate("/single" , { state: { gameId} })
+            }}>
               <img src={url1} alt="Image 1" className="w-64 h-48" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center   ">
             <button
-            onClick={goTo}>
+             onClick={()=>{
+              navigate("/jodi" , { state: { gameId} })
+            }}>
               <img src={url2} alt="Image 2" className="w-64 h-48" />
             </button>
           </div>
@@ -65,13 +68,17 @@ function Game() {
           {/* Second row with two columns */}
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button
-            onClick={goTo}>
+             onClick={()=>{
+              navigate("/singlepana" , { state: { gameId} })
+            }}>
               <img src={url3} alt="Image 3" className="w-64 h-48" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button
-            onClick={goTo}>
+             onClick={()=>{
+              navigate("/doublepana" , { state: { gameId} })
+            }}>
               <img src={url4} alt="Image 4" className="w-64 h-48" />
             </button>
           </div>
@@ -79,21 +86,27 @@ function Game() {
           {/* Third row with one column */}
           <div className="col-span-2 flex justify-center items-center mt-4">
             <button
-            onClick={goTo}>
-              <img src={url5} alt="Image 5" className="w-64 h-48 pt-2 " />
+             onClick={()=>{
+              navigate("/tripplepana" , { state: { gameId} })
+            }}>
+              <img src={url5} alt="Image 5" className="w-48 h-48 pt-2 " />
             </button>
           </div>
 
           {/* Fourth row with two columns */}
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button
-            onClick={goTo}>
+             onClick={()=>{
+              navigate("/halfsangam" , { state: { gameId} })
+            }}>
               <img src={url6} alt="Image 6" className="w-64 h-48" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button
-            onClick={goTo}>
+             onClick={()=>{
+              navigate("/fullsangam" , { state: { gameId} })
+            }}>
               <img src={url7} alt="Image 7" className="w-64 h-48" />
             </button>
           </div>
