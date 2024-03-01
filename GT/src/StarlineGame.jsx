@@ -2,8 +2,9 @@ import topBackground from "./Images/bg.png";
 import chart from "./Images/chart.png";
 import close from "./Images/close.png";
 import open from "./Images/play.png";
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import useStarline from "./Hooks/useStarline";
+import { NavLink, useNavigate} from "react-router-dom"
 
 function StarlineGame() {
   const [status, setStatus] = useState(false);
@@ -35,6 +36,8 @@ function StarlineGame() {
   // console.log(resinfo['result']);
   console.log(gameRates);
 
+  const navigate = useNavigate();
+
   return (
     <div>
       {gameRates.map((game) => (
@@ -45,17 +48,32 @@ function StarlineGame() {
           </div>
           <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 flex flex-col rounded-3xl border">
             <div className="flex justify-center items-center">
-            <p>******</p>             
+              <p>******</p>
             </div>
-          <div style={centerstyle}>
+            <div style={centerstyle}>
               <div>
                 <img src={chart} style={imgstyle} alt="" />
               </div>
-              <div className={`text-${game.msg_status === 2 ? "red" : "green"}-500 text-sm flex justify-center items-center`}>
-              {game.msg_status === 2 ? "Market Closed" : "Market Running"}
-            </div>
-              <button>
-                <img src={game.msg_status === 2 ? close : open} style={imgstyle} alt="" />
+              <div
+                className={`text-${
+                  game.msg_status === 2 ? "red" : "green"
+                }-500 text-sm flex justify-center items-center`}
+              >
+                {game.msg_status === 2 ? "Market Closed" : "Market Running"}
+              </div>
+              <button
+                onClick={() => {
+                  // console.log(game.msg_status)
+                  if (game.msg_status === 2) {
+                    navigate("/stargame", { state: { gameId: game.game_id } });
+                  }
+                }}
+              >
+                <img
+                  src={game.msg_status === 2 ? close : open}
+                  style={imgstyle}
+                  alt=""
+                />
               </button>
             </div>
             <div style={laststyle}>

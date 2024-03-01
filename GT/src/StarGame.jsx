@@ -7,8 +7,7 @@ import url5 from "./Images/triple_panna.png";
 import url6 from "./Images/half_sangam.png";
 import url7 from "./Images/full_sangam.png";
 import topBackground from "./Images/bg.png";
-import {useNavigate} from 'react-router-dom';
-
+import { useNavigate, useLocation } from "react-router-dom";
 
 function StarGame() {
   const navbarStyle = {
@@ -26,18 +25,16 @@ function StarGame() {
     backgroundSize: "cover",
   };
   const navigate = useNavigate();
-  const back=()=>{
+  const back = () => {
     navigate(-1);
-  }
-  const goTo=()=>
-  {
-    navigate("/single")
-  }
+  };
+  const { gameId } = useLocation().state;
+  console.log(gameId);
 
   return (
     <>
       <div className="bg-custom-purple text-white" style={navbarStyle}>
-        <button className="px-4" onClick={()=>back()}>
+        <button className="px-4" onClick={() => back()}>
           <BiArrowBack size={24} />
         </button>
         <div>
@@ -45,10 +42,17 @@ function StarGame() {
         </div>
       </div>
 
-      <div className=" pl-2 flex justify-center items-start h-svh" style={backStyle}>
+      <div
+        className=" pl-2 flex justify-center items-start h-svh"
+        style={backStyle}
+      >
         <div className="grid grid-cols-2" style={cardStyle}>
           <div className="col-span-1 flex justify-center items-center ">
-            <button>
+            <button
+              onClick={() => {
+                navigate("/ssinglepana", { state: { gameId } });
+              }}
+            >
               <img src={url1} alt="Image 1" className="w-64 h-64" />
             </button>
           </div>
@@ -60,12 +64,20 @@ function StarGame() {
 
           {/* Second row with two columns */}
           <div className="col-span-1 flex justify-center items-center mt-4">
-            <button>
+            <button
+              onClick={() => {
+                navigate("/starsingle", { state: { gameId } });
+              }}
+            >
               <img src={url3} alt="Image 3" className="w-64 h-64" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center mt-4">
-            <button>
+            <button
+              onClick={() => {
+                navigate("/sdoublepana", { state: { gameId } });
+              }}
+            >
               <img src={url4} alt="Image 4" className="w-64 h-64" />
             </button>
           </div>
@@ -76,4 +88,3 @@ function StarGame() {
 }
 
 export default StarGame;
-

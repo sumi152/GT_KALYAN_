@@ -1,6 +1,7 @@
 import { BiArrowBack } from "react-icons/bi";
 import WalletIcon from "../Images/wallet.png";
 import topBackground from "../Images/bg.png";
+import { useLocation ,useNavigate} from "react-router-dom";
 
 function Sdoublepana() {
   const todayDate = new Date().toISOString().split("T")[0];
@@ -22,10 +23,16 @@ function Sdoublepana() {
     flexDirection:'column',
     padding:'20px',
   }
+  const navigate=useNavigate();
+  const back = () => {
+    navigate(-1);
+  };
+  const { gameId } = useLocation().state;
+  console.log(gameId);
   return (
     <>
       <div className="bg-custom-purple text-white" style={navbarStyle}>
-        <button className="px-4">
+        <button className="px-4" onClick={back}>
           <BiArrowBack size={24} />
         </button>
         <div>

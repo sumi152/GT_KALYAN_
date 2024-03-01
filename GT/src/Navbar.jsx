@@ -37,6 +37,8 @@ function Navbar() {
   };
 
   const username = useSelector(state => state.userDetail.username);
+  const token = useSelector(state => state.userDetail.token);
+  console.log(token);
   const mobile = useSelector(state=>state.userDetail.mobile)
   const [isBackdropActive, setBackdropActive] = useState(false)
   const [isSidebarActive, setSidebarActive] = useState(false)
