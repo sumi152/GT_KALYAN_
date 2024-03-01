@@ -2,7 +2,8 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import topBackground from "./Images/bg.png";
 import { BiArrowBack } from "react-icons/bi";
 import starMarker from "./Images/strline_market.png";
-
+import useStarGameRate from "./Hooks/useStarGameRate";
+import { useState, useEffect } from "react";
 function Starline() {
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
@@ -48,6 +49,18 @@ function Starline() {
     navigate('/imp');
   }
 
+  const [status, setStatus] = useState(false);
+  const [gameRates, setGameRates] = useState([]);
+  const resinfo = useStarGameRate();
+
+  useEffect(() => {
+    if (resinfo && resinfo['game_rates']) {
+      setStatus(true);
+      setGameRates(resinfo['game_rates'][0]);
+    }
+  }, [resinfo]);
+
+
   return (
     <>
       <div>
@@ -78,7 +91,38 @@ function Starline() {
               </button>
             </div>
             <div className="flex justify-center align-items-center">
-              <div style={priceStyle}></div>
+              <div style={priceStyle} className="px-5 py-2 text-white">
+                
+              <div className="flex flex-row justify-between p-2">
+              <p>Single Digit</p>
+              <p>:-</p>
+              <p>{gameRates['single_digit_val_1']}-{gameRates['single_digit_val_2']}</p>
+              </div>
+
+
+              
+              <div className="flex flex-row justify-between p-2">
+              <p>Single Panna</p>
+              <p>:-</p>
+              <p>{gameRates['single_pana_val_1']}-{gameRates['single_pana_val_2']}</p>
+              </div>
+
+              <div className="flex flex-row justify-between p-2">
+              <p>Double Panna</p>
+              <p>:-</p>
+              <p>{gameRates['double_pana_val_1']}-{gameRates['double_pana_val_2']}</p>
+              </div>
+
+
+
+              <div className="flex flex-row justify-between p-2">
+              <p>Tripple Panna</p>
+              <p>:-</p>
+              <p>{gameRates['tripple_pana_val_1']}-{gameRates['tripple_pana_val_2']}</p>
+              </div>
+
+              </div>
+
             </div>
             <div style={marker}>
                 <img src={starMarker} alt="" />

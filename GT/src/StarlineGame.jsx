@@ -33,7 +33,7 @@ function StarlineGame() {
   }, [resinfo]);
 
   // console.log(resinfo['result']);
-  console.log(gameRates);
+  // console.log(gameRates);
 
   return (
     <div>

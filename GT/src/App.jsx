@@ -34,6 +34,7 @@ import TripplePana from './Games/TripplePana.jsx'
 import SinglePana from './Games/SinglePana.jsx'
 import DoublePana from './Games/DoublePana.jsx'
 import Jodi from './Games/Jodi.jsx'
+import Test from './Test.jsx'
 function App() {
 
   return (
@@ -85,6 +86,10 @@ function App() {
         <Route path='/doublepana' element={<><DoublePana/></>}></Route>
         <Route path='/singlepana' element={<><SinglePana/></>}></Route>
         <Route path='/jodi' element={<><Jodi/></>}></Route>
+
+
+        {/* <Route path='/' element={<><Test/></>}></Route> */}
+
         
         
         
