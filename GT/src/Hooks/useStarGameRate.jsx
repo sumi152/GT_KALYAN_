@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 
-
-function useStarline(unique) {
+function useStarGameRate() {
   const [res, setRes] = useState([]);
 
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -27,29 +29,20 @@ function useStarline(unique) {
       };
 
       const response = await fetch(
-        "https://kalyanmilanofficialmatka.in/api-starline-game",
+        "https://kalyanmilanofficialmatka.in/api-starline-game-rates",
         requestOptions
       );
       const result = await response.json();
 
       // Update state with the fetched data
       setRes(result);
-      // console.log(result);
+      console.log(res);
     } catch (error) {
       console.log('error', error);
     }
   };
 
-  useEffect(() => {
-    fetchData();
-    const intervalId = setInterval(fetchData, 5000);
-
-    // Clean up the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []);
-
-
   return res;
 }
 
-export default useStarline;
+export default useStarGameRate;
