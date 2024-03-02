@@ -21,10 +21,10 @@ function Register() {
     backgroundSize: "cover",
   };
   const cardStyle = {
-    width: "400px",
+    width: "370px",
     display: "flex",
     flexDirection: "column",
-    padding: "20px",
+    padding: "",
     position: "relative",
   };
   const cellImageStyle = {
@@ -36,6 +36,7 @@ function Register() {
   const phoneno = useRef();
   const password = useRef();
   const [formErrors, setFormErrors] = useState({});
+  const [ERR, setERR]=useState();
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [isSubmit, setIsSubmit] =useState(false);
   const navigate = useNavigate();
@@ -121,6 +122,9 @@ function Register() {
       if(result?.status===true){
         navigate('/h');
       }
+      else {
+        
+      }
     } catch (error) {
       console.log("error", error);
     }
@@ -128,13 +132,14 @@ function Register() {
 
   return (
     <>
-      <div style={backStyle} className="text-white">
+      <div style={backStyle} className="text-white flex flex-col justify-center items-center">
         <div className="flex justify-center items-center ">
           <img src={logo} alt="Center Image" className="w-40 h-40" />
         </div>
-        <div className="flex justify-center item-center p-5">
-          <form style={cardStyle} onSubmit={handleSubmit}>
-            <p className="">Username</p>
+        {/* <div className="flex justify-center item-center p-5"> */}
+          <div style={cardStyle}>
+          <form style={cardStyle} className="p-5" onSubmit={handleSubmit}>
+            <p className="mt-2">Username</p>
             <input
               type="text"
               placeholder="Username"
@@ -142,7 +147,7 @@ function Register() {
               ref={username}
               name="username"
             />
-            <p className="text-red-500">{formErrors.username}</p>
+            <p className="text-red-500 ">{formErrors.username}</p>
             <div className="relative -top-14">
               {formErrors.username && (
                 <div
@@ -156,7 +161,7 @@ function Register() {
               )}
             </div>
 
-            <p className="">Phone Number</p>
+            <p className="mt-2">Phone Number</p>
             <input
               type="text"
               placeholder="Phone Number"
@@ -210,6 +215,7 @@ function Register() {
               >
                 Register
               </button>
+              <p className="text-red-500">{ERR}</p>
             </div>
             <div className="flex justify-center">
               <p>
@@ -219,6 +225,7 @@ function Register() {
                 </Link>
               </p>
             </div>
+            </form>
             <div className="flex  justify-between mt-2">
               <div>
                 <button>
@@ -239,8 +246,8 @@ function Register() {
               </a>
               <hr className="w-1/2" />
             </div>
-          </form>
-        </div>
+            </div> 
+        {/* </div> */}
       </div>
     </>
   );
