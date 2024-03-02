@@ -1,49 +1,54 @@
 import React, { useState, useEffect } from "react";
 
-const Timer = ({ openTime, closeTime }) => {
+
+
+const Timer = ({ closeTime }) => {
+
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes,setMinutes]=useState(0);
+  const [secs,setSeconds]=useState(0);
+
   const calculateTimeLeft = () => {
-    const openTimeWithoutSuffix = openTime.replace(/\s[AaPp][Mm]$/, '');
+
     const closeTimeWithoutSuffix = closeTime.replace(/\s[AaPp][Mm]$/, '');
-  
-    const open = new Date(`2000-01-01T${openTimeWithoutSuffix}`);
-    const close = new Date(`2000-01-01T${closeTimeWithoutSuffix}`);
-  
-    if (openTime.match(/[Pp][Mm]$/)) {
-      const openHours = open.getHours();
-      open.setHours(openHours === 12 ? 12 : openHours + 12);
-    }
+    const closeDateString = new Date().toLocaleDateString(); // Get current date as a string
+    const close = `${closeDateString}T${closeTimeWithoutSuffix}`;
+    const parts = close.split("T");
+    const dateParts = parts[0].split("/");
+    const timeParts = parts[1].split(":");
+    const formattedDateString = `${dateParts[2]}-${dateParts[0].padStart(2, "0")}-${dateParts[1].padStart(2, "0")}T${timeParts[0].padStart(2, "0")}:${timeParts[1].padStart(2, "0")}:00`;
+    let closeDate=new Date(`${dateParts[2]}-${dateParts[0].padStart(2, "0")}-${dateParts[1].padStart(2, "0")}T${timeParts[0].padStart(2, "0")}:${timeParts[1].padStart(2, "0")}:00`);
     if (closeTime.match(/[Pp][Mm]$/)) {
-      const closeHours = close.getHours();
-      close.setHours(closeHours === 12 ? 12 : closeHours + 12);
+      const closeHours = closeDate.getHours();
+      closeDate.setHours(closeHours === 12 ? 12 : closeHours + 12);
     }
-  
-    const timeDifference = Math.abs(close - open);
-    return timeDifference; // Return total time difference in milliseconds
+
+    const closeMillisec = Date.parse(closeDate);
+    console.log(closeMillisec);
+    const totalTime=closeMillisec-Date.now();
+    setDays(Math.floor(totalTime/(1000*60*60*24)))
+    setHours(Math.floor(totalTime / (1000 * 60 * 60)%24));
+    setMinutes(Math.floor((totalTime/1000/60)%60));
+    setSeconds(Math.floor((totalTime /1000 )%60));
+
   };
 
-  const [totalTime, setTotalTime] = useState(calculateTimeLeft());
+
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      // Recalculate remaining time based on current state
-      setTotalTime(prevTotalTime => prevTotalTime - 1000);
-    }, 1000);
-
+    const timer = setInterval(() => calculateTimeLeft(), 1000);
     return () => clearInterval(timer); // Cleanup timer on component unmount
-  }, [openTime, closeTime]);
+  }, []);
 
   const formatTime = (time) => {
     return time < 10 ? `0${time}` : time;
   };
 
-  // Calculate remaining hours, minutes, and seconds
-  const remainingHours = Math.floor(totalTime / (1000 * 60 * 60));
-  const remainingMinutes = Math.floor((totalTime % (1000 * 60 * 60)) / (1000 * 60));
-  const remainingSeconds = Math.floor((totalTime % (1000 * 60)) / 1000);
 
   return (
     <span>
-      {`${formatTime(remainingHours)}:${formatTime(remainingMinutes)}:${formatTime(remainingSeconds)}`}
+      {`${formatTime(hours)}:${formatTime(minutes)}:${formatTime(secs)}`}
     </span>
   );
 };
