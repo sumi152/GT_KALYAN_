@@ -1,26 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const getStoredCredentials = () => {
+  const storedCredentials = localStorage.getItem('userCredentials');
+  return storedCredentials ? JSON.parse(storedCredentials) : null;
+};
+
 const loginSlice = createSlice({
     name:'userDetail',
-    initialState: {
+    initialState: getStoredCredentials() || {
         username: null,
         token: null,
         mobile: null
     },
     reducers: {
         login: (state, action) => {
-            const { username, token, phone } = action.payload;
+            const { username, token, mobile } = action.payload;
             state.username = username;
             state.token = token;
-            state.mobile = phone;
+            state.mobile = mobile;
+            localStorage.setItem('userCredentials', JSON.stringify({ username, token, mobile }));
         },
         logout: (state) => {
             state.username = null;
             state.token = null;
             state.mobile = null;
-            // console.log('kushagra ');
-            // console.log(state.username);
-            // console.log(state.token);
+            localStorage.removeItem('userCredentials');
         }
     },
 });

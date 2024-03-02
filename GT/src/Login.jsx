@@ -52,7 +52,7 @@ function Login() {
 
   const handleAdduser = (username_, unique_token, mobile) => {
     console.log(username_)
-    dispatch(login({ username: username_, token: unique_token, phone: mobile }));
+    dispatch(login({ username: username_, token: unique_token, mobile: mobile }));
   };
 
   const handleSubmit = async (e) => {
