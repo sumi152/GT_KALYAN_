@@ -54,7 +54,7 @@ function Login() {
     console.log(username_)
     dispatch(login({ username: username_, token: unique_token, mobile: mobile }));
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validate(
@@ -142,7 +142,8 @@ function Login() {
           <form style={cardStyle} className="p-5" onSubmit={handleSubmit}>
             <p className="">Phone Number</p>
             <input
-              type="text"
+              type="number"
+              inputMode="numeric"
               placeholder="Phone Number"
               ref={phoneno}
               className=" bg-gray-500 pt-3 pr-7 pl-5 pb-3 rounded"

@@ -12,7 +12,6 @@ function GameFRONT() {
   const [status, setStatus] = useState(false);
   const [gameRates, setGameRates] = useState([{}]);
   const unique = useSelector(state =>state.userDetail.token)
-  // console.log(unique);
 
   const centerstyle = {
     display: "flex",
@@ -32,6 +31,7 @@ function GameFRONT() {
   };
 
   const resinfo = useGameFront(unique);
+
   useEffect(() => {
     if (resinfo && resinfo["result"]) {
       setStatus(true);
@@ -46,11 +46,6 @@ function GameFRONT() {
 
 
 
-
-
-  // console.log(resinfo['result']);
-  // console.log(gameRates);
-
   return (
     <div>
       {gameRates.map((game) => (
@@ -63,9 +58,6 @@ function GameFRONT() {
           <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 flex flex-col rounded-3xl border">
             <div className={`text-${game.msg_status === 2 ? "red" : "green"}-500 text-sm flex justify-center items-center`}>
               {game.msg_status === 2 ? "Market Closed" : "Market Running"}
-              {/* {console.log('hello')} */}
-              {/* {console.log(game.game_name)} */}
-              {/* {console.log(game.msg)}; */}
             </div>
             <div style={centerstyle}>
               <div>
@@ -74,8 +66,7 @@ function GameFRONT() {
               <p>***_**_***</p>
               <button
               onClick={()=>{
-                // console.log(game.msg_status)
-                if(game.msg_status === 1)
+                if(game.msg_status === 2)
                 {
                   navigate("/game", { state: { gameId: game.game_id } })
                 }

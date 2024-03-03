@@ -32,8 +32,10 @@ import HalfSangam from './Games/HalfSangam.jsx'
 import TripplePana from './Games/TripplePana.jsx'
 import SinglePana from './Games/SinglePana.jsx'
 import DoublePana from './Games/DoublePana.jsx'
+import LandingIMP from './LandingPage/LandingIMP.jsx'
 import Jodi from './Games/Jodi.jsx'
 import Test from './Test.jsx'
+
 
 import Windata from './WIN/Windata.jsx'
 import IMP3 from './WIN/IMP3.jsx'
@@ -47,6 +49,10 @@ import IMP5 from './STARBID/IMP5.jsx'
 import IMP6 from './STARWIN/IMP6.jsx'
 import IMP7 from './WALLET/IMP7.jsx'
 import Transaction from './WALLET/Transaction.jsx'
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
 
   return (
@@ -67,8 +73,9 @@ function App() {
         <Routes>
         <Route path="/r" element={<> <Register/> </>}></Route>  
         <Route path="/star" element={<> <Starline/> </>}></Route>
-        <Route path="/" element={<> <Login/> </>}></Route>
+        <Route path="/login" element={<> <Login/> </>}></Route>
         <Route path="/imp" element={<> <Imp/></>}></Route>
+        <Route path="/" element={<> <LandingIMP/></>}></Route>
         <Route path="/addfund"  element={<AddFunds/>}> </Route>
         <Route path="/win"  element={<Win/>}> </Route>
         <Route path='/windata' element={<Windata/>}></Route>
@@ -124,6 +131,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       </Provider>
+      <ToastContainer />
 
     </>
 

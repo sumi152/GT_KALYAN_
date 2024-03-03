@@ -1,30 +1,27 @@
-import WalletIcon from "./Images/wallet.png";
-import HamburgerIcon from "./Images/Hamburger.png";
-import "./Navbar.css";
+import WalletIcon from "../Images/wallet.png";
+import HamburgerIcon from "../Images/Hamburger.png";
+import "./LandingNavbar.css";
 import React, { useState, useEffect, useRef ,useMemo} from "react";
-import "./Sidebar.css";
-import sidebarBackground from "./Images/bg.png";
-import logoutImg from "./Images/logout.png";
-import logo from "./Images/logo.png";
-import call24 from "./Images/call_24.png";
-import Home from "./Images/home.png";
-import profile from "./Images/profile.png";
-import AddFund from "./Images/add.png";
-import Wallet from "./Images/wallet.png";
-import WinHistory from "./Images/win_history.png";
-import BidHistory from "./Images/bid_history.png";
-import Rating from "./Images/rating.png";
-import Share from "./Images/share.png";
-import ChangePass from "./Images/reset_pass.png";
-import lock_icon from "./Images/lock_icon.png";
-import user_profile from "./Images/user_profile.png";
-import question from "./Images/question.png";
+import sidebarBackground from "../Images/bg.png";
+import logoutImg from "../Images/logout.png";
+import logo from "../Images/logo.png";
+import call24 from "../Images/call_24.png";
+import Home from "../Images/home.png";
+import profile from "../Images/profile.png";
+import AddFund from "../Images/add.png";
+import Wallet from "../Images/wallet.png";
+import WinHistory from "../Images/win_history.png";
+import BidHistory from "../Images/bid_history.png";
+import Rating from "../Images/rating.png";
+import Share from "../Images/share.png";
+import ChangePass from "../Images/reset_pass.png";
+import lock_icon from "../Images/lock_icon.png";
+import user_profile from "../Images/user_profile.png";
+import question from "../Images/question.png";
 import { NavLink, useNavigate} from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from "./Util/loginSlice";
-import useGameFront from "./Hooks/useGameFront";
 
-function Navbar() {
+
+function LandingNavbar() {
   const Hamburg = {
     transform: "translateY(3px)",
     display: "flex",
@@ -37,31 +34,22 @@ function Navbar() {
     /* Add other background properties as needed */
   };
   
-  const username = useSelector(state => state.userDetail.username);
-  const token = useSelector(state => state.userDetail.token);
-  const mobile = useSelector(state=>state.userDetail.mobile)
   const [isBackdropActive, setBackdropActive] = useState(false)
   const [isSidebarActive, setSidebarActive] = useState(false)
   const navigate = useNavigate();
-  const resinfo = useGameFront(token);
-  console.log(resinfo)
 
 
   const handleHamburgerClick = () => {  
-    console.log(isBackdropActive)
     setBackdropActive(!isBackdropActive)
     setSidebarActive(!isSidebarActive)
   };
   const handleBackdropClick = () => {  
-    console.log(isBackdropActive)
     setBackdropActive(!isBackdropActive)
     setSidebarActive(!isSidebarActive)
   };
-  const dispatch = useDispatch();
 
   const handlelogout =()=>{
-    dispatch(logout());
-    navigate('/') 
+    navigate('login') 
   }
 
 
@@ -75,24 +63,17 @@ function Navbar() {
           </div>
 
           <div className="text-xl fading-text">
-
             <div className="w-40">
             <marquee scrollamount="4"> GT KALYAN MILAN MATKA</marquee>
             </div>
             
           </div>
 
-
           <ul className="font-bold text-lg flex flex-shrink: 0 absolute right-10 top-15">
           <li className="flex items-center">
-            <NavLink to='/wallet' className="text-white flex items-center">
-              <img
-                src={WalletIcon}
-                alt="Wallet Icon"
-                className="w-8 h-8 mr-2"
-               
-              />
-              <span>{resinfo.wallet_amt}</span>
+            <NavLink to='login' className="text-white flex items-center">
+
+              <span>Login</span>
             </NavLink>
           </li>
         </ul>
@@ -102,12 +83,15 @@ function Navbar() {
           <div className="px-6 pt-4">
             {/* User Info */}
             <div className="text-center mb-4">
-              <div className="text-xl font-bold">{username ? username : "sumit"}</div>
-              <div className="text-sm opacity-75">{mobile}</div>
+              <div className="text-xl font-bold">User</div>
+              <div className="text-sm opacity-75"></div>
             </div>
             {/* Logout Button */}
             <div className="flex justify-center mt-8">
-              <button className="flex items-center justify-center text-white font-bold rounded-full w-10 h-10 mx-2">
+              <button className="flex items-center justify-center text-white font-bold rounded-full w-10 h-10 mx-2"
+              onClick={()=>{
+                navigate('login');
+              }}>
                 <img
                   src={call24} // Replace with the path to your Button 1 image
                   alt="Button 1"
@@ -128,23 +112,21 @@ function Navbar() {
           </div>
           <ul className="space-y-1.5">
             <li>
-              <NavLink
-                to='/imp'
+              <a
+                href="login"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
-                onClick={handleBackdropClick}
               >
                 <img
                   src={Home}
                   alt="Home"
                   className="w-8 h-8 mr-2 inline-block"
-
                 />
                 Home
-              </NavLink>
+              </a>
             </li>
             <li>
               <NavLink
-                to='/profile'
+                to='login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -157,7 +139,7 @@ function Navbar() {
             </li>
             <li>
               <NavLink
-                to='/addfund'
+                to='login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -171,7 +153,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/imp7'
+                to='login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -185,7 +167,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/imp3'
+                to='login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -199,7 +181,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/imp4'
+                to='login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -213,7 +195,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/htp'
+                to='login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -227,7 +209,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/gameRates'
+                to='login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -241,7 +223,7 @@ function Navbar() {
 
             <li>
               <a
-                href="#"
+                href="login"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -255,7 +237,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/change'
+                to='login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -269,7 +251,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/delete'
+                to='login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -313,4 +295,4 @@ function Navbar() {
   );
 }
 
-export default React.memo(Navbar) ;
+export default React.memo(LandingNavbar) ;

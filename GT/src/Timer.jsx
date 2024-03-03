@@ -25,7 +25,6 @@ const Timer = ({ closeTime }) => {
     }
 
     const closeMillisec = Date.parse(closeDate);
-    console.log(closeMillisec);
     const totalTime=closeMillisec-Date.now();
     setDays(Math.floor(totalTime/(1000*60*60*24)))
     setHours(Math.floor(totalTime / (1000 * 60 * 60)%24));
