@@ -33,8 +33,11 @@ import HalfSangam from './Games/HalfSangam.jsx'
 import TripplePana from './Games/TripplePana.jsx'
 import SinglePana from './Games/SinglePana.jsx'
 import DoublePana from './Games/DoublePana.jsx'
+import LandingIMP from './LandingPage/LandingIMP.jsx'
 import Jodi from './Games/Jodi.jsx'
 import Test from './Test.jsx'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
 
   return (
@@ -55,8 +58,9 @@ function App() {
         <Routes>
         <Route path="/r" element={<> <Register/> </>}></Route>  
         <Route path="/star" element={<> <Starline/> </>}></Route>
-        <Route path="/" element={<> <Login/> </>}></Route>
+        <Route path="/login" element={<> <Login/> </>}></Route>
         <Route path="/imp" element={<> <Imp/></>}></Route>
+        <Route path="/" element={<> <LandingIMP/></>}></Route>
         <Route path="/addfund"  element={<AddFunds/>}> </Route>
         <Route path="/win"  element={<Win/>}> </Route>
         <Route path="/bid"  element={<Bid/>}> </Route>
@@ -96,6 +100,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       </Provider>
+      <ToastContainer />
 
     </>
 

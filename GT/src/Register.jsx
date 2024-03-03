@@ -158,7 +158,8 @@ function Register() {
 
             <p className="">Phone Number</p>
             <input
-              type="text"
+              type="number"
+              inputMode="numeric"
               placeholder="Phone Number"
               className=" bg-gray-500 pt-3 pr-7 pl-5 pb-3 rounded"
               ref={phoneno}

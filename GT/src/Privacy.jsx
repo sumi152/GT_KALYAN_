@@ -9,7 +9,7 @@ function Privacy (){
   };
   const navigate = useNavigate();
   const back = () => {
-    navigate("/imp");
+    navigate(-1);
   };
     return(
     <div>

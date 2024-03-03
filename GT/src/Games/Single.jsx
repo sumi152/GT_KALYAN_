@@ -2,7 +2,12 @@ import { BiArrowBack } from "react-icons/bi";
 import WalletIcon from "../Images/wallet.png";
 import topBackground from "../Images/bg.png";
 import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { TrashIcon } from "@heroicons/react/outline";
+import { useState, useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
+import useGameFront from "../Hooks/useGameFront";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Single() {
   const todayDate = new Date().toISOString().split("T")[0];
@@ -13,7 +18,7 @@ function Single() {
   };
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
-    backgroundSize: "cover", // This will make the background image cover the container without
+    backgroundSize: "cover",
     backgroundPosition: "center",
     position: "relative",
     paddingBottom: "400px",
@@ -25,12 +30,77 @@ function Single() {
     padding: "20px",
   };
 
+  const digit = useRef();
+  const point = useRef();
+  const [formErrors, setFormErrors] = useState({});
   const navigate = useNavigate();
   const back = () => {
     navigate(-1);
   };
-  const { gameId } = useLocation().state;
-  console.log(gameId);
+  const unique = useSelector(state => state.userDetail.token);
+  const resinfo = useGameFront(unique);
+  const [walletAmt, setWalletAmt] = useState();
+  const [submittedData, setSubmittedData] = useState([]);
+
+  useEffect(() => {
+    if (resinfo && !walletAmt) {
+      setWalletAmt(parseInt(resinfo.wallet_amt));
+      console.log("hello");
+    }
+  }, [resinfo]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = validate(
+      digit.current.value,
+      point.current.value
+    );
+
+    setFormErrors(errors);
+    setFormErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      if (errors.digit) {
+        toast(errors.digit);
+      } else {
+        toast(errors.point);
+      }
+      return;
+    }
+    setFormErrors({});
+    const newData = {
+      digit: digit.current.value,
+      point: point.current.value,
+    };
+    setSubmittedData(prevData => [...prevData, newData]);
+    setDigitValue('');
+    setPointValue('');
+
+
+  };
+  const setDigitValue = (value) => {
+    digit.current.value = value;
+  };
+  
+  const setPointValue = (value) => {
+    point.current.value = value;
+  };
+
+  const validate = (digit, point) => {
+    const errors = {};
+    if (!digit) {
+      errors.digit = "Please enter the number";
+    } else if (parseInt(digit) >= 10) {
+      errors.digit = `Number ${digit} is not valid`;
+    }
+    if (!point) {
+      errors.point = "Please enter point";
+    } else if (parseInt(point) < 10) {
+      errors.point = "Required minimum bid amount is 10";
+    } else if (parseInt(point) > walletAmt) {
+      errors.point = "Insufficient balance please refill your account";
+    }
+    return errors;
+  };
 
 
   return (
@@ -51,12 +121,12 @@ function Single() {
                 alt="Wallet Icon"
                 className="w-8 h-8 mr-2"
               />
-              <span>0 pts</span>
+              <span>{walletAmt}</span>
             </a>
           </li>
         </ul>
       </div>
-      <div style={backStyle} className="text-white">
+      <form style={backStyle} className="text-white" onSubmit={handleSubmit}>
         <div className="flex justify-center items-center pt-5 ">
           <div className="" style={cardStyle}>
             <input
@@ -93,29 +163,61 @@ function Single() {
             </div>
             <p className="my-2">Open Digit</p>
             <input
-              type="text"
-              name=""
-              id=""
+              type="number"
+              inputMode="numeric"
+              ref={digit}
               placeholder="Enter Digit"
-              className="w-full p-4 border border-black-500 rounded-xl"
+              className="w-full p-4 border border-black-500 rounded-xl text-black"
             />
             <p className="my-2">Points</p>
             <input
-              type="text"
-              name=""
-              id=""
+              type="number"
+              inputMode="numeric"
+              ref={point}
               placeholder="Enter Points"
-              className="w-full  p-4 border border-black-500 rounded-xl"
+              className="w-full  p-4 border border-black-500 rounded-xl text-black"
             />
-            <div className="flex justify-center">
-              <button className="p-4 border border-black-500 rounded-xl  bg-blue-500 mt-4 w-full ">
+            <div className="flex justify-center mb-4">
+              <button className="p-4 border border-black-500 rounded-xl bg-blue-500 mt-4 w-full "
+                type="submit">
                 Proceed
               </button>
             </div>
+            {submittedData.map((data, index) => {
+              const handleClickRemoveDiv = (indexToRemove) => () => {
+                const newData = submittedData.filter((_, i) => i !== indexToRemove);
+                setSubmittedData(newData);
+                console.log(formErrors);
+                
+              };
+
+              return (
+                <div key={index} className="w-full flex mb-3 ">
+                  <div
+                    className="w-10/12  p-1  border border-black-500 bg-white text-black flex justify-between"
+                    style={{ borderRadius: "25px" }}
+                  >
+                    <div className="flex flex-col items-center ml-4">
+                      <h3>Close Digit</h3>
+                      <h3>{data.digit}</h3>
+                    </div>
+                    <div className="flex flex-col items-center mr-4">
+                      <h3>Points</h3>
+                      <h3>{data.point}</h3>
+                    </div>
+                  </div>
+                  <button className="bg-white p-4 flex items-center justify-center ml-1" style={{ borderRadius: "20px" }}
+                    onClick={handleClickRemoveDiv(index)}>
+                    <TrashIcon className="h-6 w-6 text-red-500" />
+                  </button>
+                </div>
+              );
+            })}
           </div>
         </div>
-      </div>
+      </form>
     </>
   );
 }
+
 export default Single;
