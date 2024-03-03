@@ -1,11 +1,10 @@
-// Win.js
 import { BiArrowBack } from "react-icons/bi";
-import DatePickerButton from "./Date";
-import topBackground from "./Images/bg.png";
+import DatePickerButton from "../Date";
+import topBackground from "../Images/bg.png";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function Win() {
+function Starwin({onDataFetch}) {
   const navbarStyle = {
     height: "60px",
     display: "flex",
@@ -16,7 +15,7 @@ function Win() {
     backgroundSize: 'cover', 
     backgroundPosition: 'center',
     position:'relative',
-    paddingBottom:'400px',
+    paddingBottom:'',
   };
   const cardStyle={
     width:'400px',
@@ -29,6 +28,10 @@ function Win() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState(new Date());
 
+  useEffect(() => {
+    fetchData(changedate(selectedDate), changedate(selectedEndDate));
+  }, []); // Empty dependency array means this effect runs only once when the component mounts
+
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
@@ -40,19 +43,23 @@ function Win() {
   const handleSubmit = async() => {
     console.log("From Date:", selectedDate);
     console.log("To Date:", selectedEndDate);
+   
     const startdate1=changedate(selectedDate);
     const enddate1= changedate(selectedEndDate);
+    console.log(startdate1)
+    console.log(enddate1)
     try {
       await fetchData(startdate1, enddate1);
       // setIsSubmit(true);
     } catch (error) {
-      setErrorText("Username or password incorrect");
+      // setErrorText("Username or password incorrect");
 
     }
 
   };
 
   const fetchData = async ( startdate1, enddate1) => {
+    // Your fetchData implementation here
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append(
@@ -75,11 +82,13 @@ function Win() {
     };
 
     const response = await fetch(
-      "https://kalyanmilanofficialmatka.in/api-wining-history-data",
+      "https://kalyanmilanofficialmatka.in/api-starline-wining-history-data",
       requestOptions
     );
     const result = await response.json();
-    console.log(result);
+    if(result?.status==true)onDataFetch(true , result);
+    else onDataFetch(false,null);
+    // console.log(result);
   };
 
   const changedate =( selectedDate)=>{
@@ -87,7 +96,7 @@ function Win() {
     const startday = selectedDate.getDate(); // Returns the day of the month (1-31)
     const startmonth = selectedDate.getMonth()+1; // Returns the month (0-11)
     const startyear = selectedDate.getFullYear();
-    const date= startday+'/'+startmonth+'/'+startyear;
+    const date= startmonth+'/'+startday+'/'+startyear;
     console.log(date);
     return date;
   }
@@ -108,7 +117,7 @@ function Win() {
       </div>
       <div style={backStyle} className="text-white">
         <div className="flex justify-center item-center p-5" >
-          <div className="border border-black-500" style={cardStyle} >
+          <div className="" style={cardStyle} >
             <p className="inline-block rounded p-3 border border-white mb-2 bg-blue-500 w-1/2" >Select Dates</p>
             <p className="mb-2">From Date</p>
             <DatePickerButton selectedDate={selectedDate} onDateChange={handleDateChange} />
@@ -124,4 +133,4 @@ function Win() {
   );
 }
 
-export default Win;
+export default Starwin;

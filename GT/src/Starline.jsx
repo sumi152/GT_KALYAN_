@@ -78,14 +78,14 @@ function Starline() {
               <button
                 className="text-white rounded border border-white  "
                 style={btnStyle}
-                onClick={() => navigate("/bid")}
+                onClick={() => navigate("/imp5")}
               >
                 Bid History
               </button>
               <button
                 className="text-white rounded border border-white "
                 style={btnStyle}
-                onClick={() => navigate("/win")}
+                onClick={() => navigate("/imp6")}
               >
                 Win History
               </button>
