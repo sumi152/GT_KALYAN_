@@ -23,10 +23,10 @@ function Login() {
     backgroundSize: "cover",
   };
   const cardStyle = {
-    width: "400px",
+    width: "370px",
     display: "flex",
     flexDirection: "column",
-    padding: "20px",
+    padding: "",
     position: "relative",
   };
   const cellImageStyle = {
@@ -134,12 +134,12 @@ function Login() {
 
   return (
     <>
-      <div style={backStyle} className="text-white">
+      <div style={backStyle} className="text-white flex flex-col justify-center items-center">
         <div className="flex justify-center items-center ">
           <img src={logo} alt="Center Image" className="w-40 h-40" />
         </div>
-        <div className="flex justify-center item-center p-5">
-          <form style={cardStyle} onSubmit={handleSubmit}>
+        <div style={cardStyle}  >
+          <form style={cardStyle} className="p-5" onSubmit={handleSubmit}>
             <p className="">Phone Number</p>
             <input
               type="number"
@@ -202,8 +202,9 @@ function Login() {
                   Register
                 </Link>
               </p>
-            </div>
-            <div className="flex  justify-between mt-2">
+            </div>  
+          </form>
+          <div className="flex  justify-between mt-2">
               <div>
                 <button>
                   <img src={call} alt="Add Fund" style={cellImageStyle} />
@@ -223,7 +224,6 @@ function Login() {
               </a>
               <hr className="w-1/2" />
             </div>
-          </form>
         </div>
       </div>
     </>
