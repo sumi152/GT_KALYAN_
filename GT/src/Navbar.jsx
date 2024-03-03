@@ -2,7 +2,7 @@ import WalletIcon from "./Images/wallet.png";
 import HamburgerIcon from "./Images/Hamburger.png";
 import "./Navbar.css";
 import React, { useState, useEffect, useRef ,useMemo} from "react";
-import New from "./New";
+import "./Sidebar.css";
 import sidebarBackground from "./Images/bg.png";
 import logoutImg from "./Images/logout.png";
 import logo from "./Images/logo.png";
@@ -75,11 +75,13 @@ function Navbar() {
           </div>
 
           <div className="text-xl fading-text">
+
             <div className="w-40">
             <marquee scrollamount="4"> GT KALYAN MILAN MATKA</marquee>
             </div>
             
           </div>
+
 
           <ul className="font-bold text-lg flex flex-shrink: 0 absolute right-10 top-15">
           <li className="flex items-center">
@@ -88,6 +90,7 @@ function Navbar() {
                 src={WalletIcon}
                 alt="Wallet Icon"
                 className="w-8 h-8 mr-2"
+               
               />
               <span>{resinfo.wallet_amt}</span>
             </NavLink>
@@ -125,17 +128,19 @@ function Navbar() {
           </div>
           <ul className="space-y-1.5">
             <li>
-              <a
-                href="#"
+              <NavLink
+                to='/imp'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
+                onClick={handleBackdropClick}
               >
                 <img
                   src={Home}
                   alt="Home"
                   className="w-8 h-8 mr-2 inline-block"
+
                 />
                 Home
-              </a>
+              </NavLink>
             </li>
             <li>
               <NavLink
@@ -166,7 +171,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/wallet'
+                to='/imp7'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -180,7 +185,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/win'
+                to='/imp3'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -194,7 +199,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/bid'
+                to='/imp4'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img

@@ -5,14 +5,13 @@ import Changepass from './Changepass.jsx'
 import GameRates from './GameRates.jsx'
 import Htp from './HowToPlay.jsx'
 import Game from './Game.jsx'
-import Bid from './Bid.jsx'
-import Win from './Win.jsx'
+
 import Single from './Games/Single.jsx'
 import AddFunds from './AddFunds.jsx'
 import About from './About.jsx'
 import Privacy from './Privacy.jsx'
 import Delete from './Delete.jsx'
-import Wallet from './Wallet.jsx'
+import Wallet from './WALLET/Wallet.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import GameFRONT from './GameFRONT.jsx'
 import Login from './Login.jsx'
@@ -36,8 +35,24 @@ import DoublePana from './Games/DoublePana.jsx'
 import LandingIMP from './LandingPage/LandingIMP.jsx'
 import Jodi from './Games/Jodi.jsx'
 import Test from './Test.jsx'
+
+
+import Windata from './WIN/Windata.jsx'
+import IMP3 from './WIN/IMP3.jsx'
+import Win from './WIN/Win.jsx'
+
+import Biddata from './BID/Biddata.jsx'
+import Bid from './BID/Bid.jsx'
+import IMP4 from './BID/IMP4.jsx'
+
+import IMP5 from './STARBID/IMP5.jsx'
+import IMP6 from './STARWIN/IMP6.jsx'
+import IMP7 from './WALLET/IMP7.jsx'
+import Transaction from './WALLET/Transaction.jsx'
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
 
   return (
@@ -63,10 +78,25 @@ function App() {
         <Route path="/" element={<> <LandingIMP/></>}></Route>
         <Route path="/addfund"  element={<AddFunds/>}> </Route>
         <Route path="/win"  element={<Win/>}> </Route>
+        <Route path='/windata' element={<Windata/>}></Route>
         <Route path="/bid"  element={<Bid/>}> </Route>
         <Route path="/gameRates"  element={<GameRates/>}> </Route>
         <Route path="/game"  element={<Game/>}> </Route>
         <Route path="/htp"  element={<Htp/>}> </Route>
+
+
+        <Route path='/imp3' element={<IMP3/>}></Route>
+        <Route path='/imp4' element={<IMP4/>}></Route>
+        <Route path='/imp5' element={<IMP5/>}></Route>
+        <Route path='/imp6' element={<IMP6/>}></Route>
+        <Route path='/imp7' element={<IMP7/>}></Route>
+        <Route path='/transaction' element={<Transaction/>}></Route>
+        
+        
+        
+        
+
+
       
         <Route path="/about"  element={<About/>}> </Route>
         <Route path="/privacy"  element={<Privacy/>}> </Route>
@@ -75,6 +105,7 @@ function App() {
         <Route path="/wallet"  element={<Wallet/>}> </Route>
         <Route path="/profile" element={<> <Profile/> </>}></Route>
         <Route path='/imp2' element={<><IMP2/></>}></Route>
+
 
 
         <Route path='/stargame' element={<><StarGame/></>}></Route>

@@ -1,10 +1,10 @@
-import topBackground from "./Images/bg.png";
+import topBackground from "../Images/bg.png";
 import { BiArrowBack } from "react-icons/bi";
-import fund from "./Images/wallet_transparent.png";
-import phone_pe from "./Images/phone_pe.png";
-import gpay from "./Images/gpay.png";
-import frame from "./Images/frame_addfund.png"
-import paytm from "./Images/paytm.png"
+import fund from "../Images/wallet_transparent.png";
+import phone_pe from "../Images/phone_pe.png";
+import gpay from "../Images/gpay.png";
+import frame from "../Images/frame_addfund.png"
+import paytm from "../Images/paytm.png"
 import { useNavigate } from "react-router-dom";
 function Wallet() {
   const navbarStyle = {
@@ -13,11 +13,14 @@ function Wallet() {
     alignItems: "center",
     position: "relative",
   };
-  const backStyle = {
-    paddingBottom: "500px",
+  const topStyle = {
     backgroundImage: `url(${topBackground})`,
     backgroundSize: "cover",
+    height: "auto ", // Set the height of the div
+    width: "100%", // Set the width of the div
+    padding:''
   };
+
   const box1 = {
     border: "3px solid #ccc",
     padding: "10px",
@@ -78,7 +81,7 @@ function Wallet() {
   };
 
 
-  const backendValue = "Value from Backend";
+  // const backendValue = "Value from Backend";
   const navigate = useNavigate();
   const back = () => {
     navigate("/imp");
@@ -98,7 +101,7 @@ function Wallet() {
           <h1 className="text-white px-3">Wallet</h1>
         </div>
       </div>
-      <div className=" p-5" style={backStyle}>
+      <div className=" p-5" style={topStyle}>
         <div className="p-5 sm:w-auto md:max-w-lg lg:max-w-lg" style={box1}>
           <p>Current Balance</p>
           <p>RS 0</p>
@@ -146,9 +149,8 @@ function Wallet() {
             </button>
           </div>
         </div>
-        <h1 className="text-white mt-20 flex justify-center">
-          Recent Transaction
-        </h1>
+        
+        <p className="mt-4 text-center text-white" >Transactions</p>
       </div>
     </>
   );
