@@ -10,6 +10,7 @@ import { FiAlertCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "./Util/loginSlice";
+import { addPass } from "./Util/passslice";
 
 function Login() {
   const navbarStyle = {
@@ -50,8 +51,9 @@ function Login() {
   const dispatch = useDispatch();
 
 
-  const handleAdduser = (username_, unique_token, mobile) => {
+  const handleAdduser = (username_, unique_token, mobile,password) => {
     console.log(username_)
+    dispatch(addPass({password: password}));
     dispatch(login({ username: username_, token: unique_token, mobile: mobile }));
   };
   
@@ -94,6 +96,7 @@ function Login() {
     }
     return errors;
   };
+  
 
   const fetchData = async ( phoneno, password) => {
     const myHeaders = new Headers();
@@ -125,7 +128,7 @@ function Login() {
     const result = await response.json();
 
     if(result?.status===true){
-       {handleAdduser(result.user_name, result.unique_token, result.mobile)}
+       {handleAdduser(result.user_name, result.unique_token, result.mobile, password)}
       navigate('/imp');
     } else {
       throw new Error("Invalid username and password");

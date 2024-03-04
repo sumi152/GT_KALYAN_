@@ -3,7 +3,7 @@ import topBackground from "./Images/bg.png";
 import { BiArrowBack } from "react-icons/bi";
 import profile from "./Images/profile.png";
 import user_profile from "./Images/user_profile.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { useSelector , useDispatch} from "react-redux";
 
@@ -156,6 +156,8 @@ function Profile() {
       console.error("Error occurred during data fetching:", error);
     }
   };
+
+  
   
   
 

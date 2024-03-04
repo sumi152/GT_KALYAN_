@@ -23,6 +23,7 @@ import { NavLink, useNavigate} from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from "./Util/loginSlice";
 import useGameFront from "./Hooks/useGameFront";
+import { removePass } from "./Util/passslice";
 
 function Navbar() {
   const Hamburg = {
@@ -61,6 +62,7 @@ function Navbar() {
 
   const handlelogout =()=>{
     dispatch(logout());
+    dispatch(removePass());
     navigate('/') 
   }
 
