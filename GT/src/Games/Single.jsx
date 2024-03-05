@@ -47,7 +47,7 @@ function Single() {
   const [showModal,setShowModal] = useState(false);
   const closeModal = ()=> setShowModal(false);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const { gameId, openTime } = useLocation().state;
 
 
@@ -81,7 +81,6 @@ function Single() {
       }
 
       setRes(result);
-      console.log(res);
     } catch (error) {
       console.log("error", error);
     }
@@ -119,9 +118,13 @@ function Single() {
     } else {
       setIsProceed(true);
       setFormErrors({});
+      const sessionValue = document.getElementById("option2").checked ? "open" : "close";
       const newDataObject = {
         digit: digit.current.value,
+        closeddigits: null,
         point: point.current.value,
+        session: sessionValue,
+        
       };
       const newWalletAmt = walletAmt - parseInt(point.current.value);
 
@@ -129,6 +132,7 @@ function Single() {
 
       setSubmittedData((prevData) => {
         const updatedData = [...prevData, newDataObject];
+        console.log(submittedData)
         return updatedData;
       });
       setDigitValue("");
@@ -187,10 +191,11 @@ function Single() {
 
     const openMillisec = Date.parse(openDate);
     if (openMillisec <= Date.now()) {
-      setIsOpen(true);
+      setIsOpen(false);
     }
   };
 
+  const totalPoints=submittedData.reduce((acc, curr) => acc + parseInt(curr.point), 0)
   return (
     <>
       <div className="bg-custom-purple text-white" style={navbarStyle}>
@@ -299,7 +304,12 @@ function Single() {
                     >
                       Submit
                     </button>
-                    {showModal && <MyModal closeModal={closeModal} />}
+                    {showModal &&(
+                    <MyModal 
+                    closeModal={closeModal}
+                    totalIndex={submittedData.length} 
+                    totalPoints={totalPoints}    
+                  />)}
                   </>
                 )}
             </div>
@@ -315,7 +325,7 @@ function Single() {
                 if (newData.length === 0) {
                   setIsProceed(false); // Set isProceed to false if only one item is left
                 }
-                console.log(formErrors);
+                console.log(submittedData);
               };
 
               return (

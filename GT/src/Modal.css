@@ -29,10 +29,3 @@
     font-family: "Work Sans" , sans-serif;
     transform: scale(0.9);
 }
-
-.model-btn:hover{
-    background-color: #fff;
-    color: #212121;
-    border : #212121;
-
-}
