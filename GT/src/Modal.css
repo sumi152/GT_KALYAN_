@@ -9,13 +9,13 @@
 
 .modal-container {
     position: fixed;
-    max-width: 30rem;
+    width: 370px;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    max-width:30rem;
+    /* width:30rem; */
     background-color: #fff;
-    padding: 2rem 3rem;
+    
 }
 
 .modal-btn {
