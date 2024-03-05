@@ -66,9 +66,9 @@ function GameFRONT() {
               <p>***_**_***</p>
               <button
               onClick={()=>{
-                if(game.msg_status === 2)
+                if(game.msg_status === 1)
                 {
-                  navigate("/game", { state: { gameId: game.game_id } })
+                  navigate("/game", { state: { gameId: game.game_id, openTime:game.open_time } })
                 }
               }}>
                 <img src={game.msg_status === 2 ? close : open} style={imgstyle} alt="" />
