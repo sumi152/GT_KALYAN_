@@ -6,6 +6,7 @@ import user_profile from "./Images/user_profile.png";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { useSelector , useDispatch} from "react-redux";
+import {login} from './Util/loginSlice'
 
 function Profile() {
   
