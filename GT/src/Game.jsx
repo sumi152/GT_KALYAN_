@@ -31,7 +31,7 @@ function Game() {
   const back=()=>{
     navigate(-1);
   }
-  const { gameId } = useLocation().state;
+  const { gameId,openTime } = useLocation().state;
   console.log(gameId);
 
 
@@ -51,7 +51,7 @@ function Game() {
           <div className="col-span-1 flex justify-center items-center ">
             <button
             onClick={()=>{
-              navigate("/single" , { state: { gameId} })
+              navigate("/single" , { state: { gameId,openTime} })
             }}>
               <img src={url1} alt="Image 1" className="w-64 h-48" />
             </button>
@@ -59,7 +59,7 @@ function Game() {
           <div className="col-span-1 flex justify-center items-center   ">
             <button
              onClick={()=>{
-              navigate("/jodi" , { state: { gameId} })
+              navigate("/jodi" , { state: { gameId,openTime} })
             }}>
               <img src={url2} alt="Image 2" className="w-64 h-48" />
             </button>
@@ -69,7 +69,7 @@ function Game() {
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button
              onClick={()=>{
-              navigate("/singlepana" , { state: { gameId} })
+              navigate("/singlepana" , { state: { gameId,openTime} })
             }}>
               <img src={url3} alt="Image 3" className="w-64 h-48" />
             </button>
@@ -77,7 +77,7 @@ function Game() {
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button
              onClick={()=>{
-              navigate("/doublepana" , { state: { gameId} })
+              navigate("/doublepana" , { state: { gameId,openTime} })
             }}>
               <img src={url4} alt="Image 4" className="w-64 h-48" />
             </button>
@@ -87,7 +87,7 @@ function Game() {
           <div className="col-span-2 flex justify-center items-center mt-4">
             <button
              onClick={()=>{
-              navigate("/tripplepana" , { state: { gameId} })
+              navigate("/tripplepana" , { state: { gameId,openTime} })
             }}>
               <img src={url5} alt="Image 5" className="w-48 h-48 pt-2 " />
             </button>
@@ -97,7 +97,7 @@ function Game() {
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button
              onClick={()=>{
-              navigate("/halfsangam" , { state: { gameId} })
+              navigate("/halfsangam" , { state: { gameId,openTime} })
             }}>
               <img src={url6} alt="Image 6" className="w-64 h-48" />
             </button>
@@ -105,7 +105,7 @@ function Game() {
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button
              onClick={()=>{
-              navigate("/fullsangam" , { state: { gameId} })
+              navigate("/fullsangam" , { state: { gameId,openTime} })
             }}>
               <img src={url7} alt="Image 7" className="w-64 h-48" />
             </button>

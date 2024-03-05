@@ -1,0 +1,38 @@
+.modal-wrapper {
+    position : fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: rgb(189, 189, 189,0.9);
+}
+
+.modal-container {
+    position: fixed;
+    max-width: 30rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    max-width:30rem;
+    background-color: #fff;
+    padding: 2rem 3rem;
+}
+
+.modal-btn {
+    padding : 0.6rem 1.4rem;
+    font-size: 1.4rem;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: #212121;
+    color: #fff;
+    cursor: pointer;
+    font-family: "Work Sans" , sans-serif;
+    transform: scale(0.9);
+}
+
+.model-btn:hover{
+    background-color: #fff;
+    color: #212121;
+    border : #212121;
+
+}

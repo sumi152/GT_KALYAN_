@@ -34,7 +34,7 @@ import SinglePana from './Games/SinglePana.jsx'
 import DoublePana from './Games/DoublePana.jsx'
 import LandingIMP from './LandingPage/LandingIMP.jsx'
 import Jodi from './Games/Jodi.jsx'
-import Test from './Test.jsx'
+
 
 
 import Windata from './WIN/Windata.jsx'
