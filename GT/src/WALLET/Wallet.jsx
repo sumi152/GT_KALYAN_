@@ -8,6 +8,7 @@ import paytm from "../Images/paytm.png";
 import { useNavigate } from "react-router-dom";
 import PaymentModal from "../PaymentModel.jsx";
 import { useState } from "react";
+
 function Wallet() {
   const navbarStyle = {
     height: "60px",
@@ -79,26 +80,28 @@ function Wallet() {
     flexDirection: "column",
   };
 
-  // const backendValue = "Value from Backend";
   const navigate = useNavigate();
+
   const back = () => {
     navigate("/imp");
   };
 
   const addf = () => {
     navigate("/addfund");
-  }
-  const trans = ()=>{
-    navigate("/transfer");
-  }
-
   };
+
+  const trans = () => {
+    navigate("/transfer");
+  };
+
   const [showModal, setShowModal] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+
   const handleClick = (option) => {
     setSelectedOption(option);
     setShowModal(true);
   };
+
   const closeModal = () => {
     setShowModal(false);
     setSelectedOption(null);
@@ -134,7 +137,7 @@ function Wallet() {
           </div>
 
           <div>
-            <button className="bg-teal-500" style={box3} onClick={()=>trans()}>
+            <button className="bg-teal-500" style={box3} onClick={() => trans()}>
               Transfer
             </button>
           </div>
@@ -144,39 +147,24 @@ function Wallet() {
         </div>
         <div style={Container}>
           <div className="mr-6">
-            <>
-            <button style={box2} 
-            onClick={()=> handleClick("1")}>
+            <button style={box2} onClick={() => handleClick("1")}>
               <img src={phone_pe} alt="PhonePe" style={radioImageStyle} />
               PhonePe
             </button>
-            </>
           </div>
           <div className="mr-6">
-            <button style={box2}
-            onClick={()=> handleClick("2")}>
-              <img
-                className="mb-1 mt-2"
-                src={paytm}
-                alt="PhonePe"
-                style={radioImageStyle}
-              />
+            <button style={box2} onClick={() => handleClick("2")}>
+              <img className="mb-1 mt-2" src={paytm} alt="PhonePe" style={radioImageStyle} />
               Paytm
             </button>
           </div>
 
           <div>
-            <button style={box2}
-            onClick={()=> handleClick("3")}>
+            <button style={box2} onClick={() => handleClick("3")}>
               <img src={gpay} alt="PhonePe" style={radioImageStyle} />
               GPay
             </button>
-            {showModal &&
-             <PaymentModal
-             closeModal={closeModal}
-             option={selectedOption}
-
-              />}
+            {showModal && <PaymentModal closeModal={closeModal} option={selectedOption} />}
           </div>
         </div>
 
