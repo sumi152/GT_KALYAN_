@@ -3,9 +3,11 @@ import { BiArrowBack } from "react-icons/bi";
 import fund from "../Images/wallet_transparent.png";
 import phone_pe from "../Images/phone_pe.png";
 import gpay from "../Images/gpay.png";
-import frame from "../Images/frame_addfund.png"
-import paytm from "../Images/paytm.png"
+import frame from "../Images/frame_addfund.png";
+import paytm from "../Images/paytm.png";
 import { useNavigate } from "react-router-dom";
+import PaymentModal from "../PaymentModel.jsx";
+import { useState } from "react";
 function Wallet() {
   const navbarStyle = {
     height: "60px",
@@ -18,31 +20,31 @@ function Wallet() {
     backgroundSize: "cover",
     height: "auto ", // Set the height of the div
     width: "100%", // Set the width of the div
-    padding:''
+    padding: "",
   };
 
   const box1 = {
     border: "3px solid #ccc",
     padding: "10px",
-     // Adjust the width as needed
+    // Adjust the width as needed
     margin: "auto",
     borderRadius: "10px", // Add border-radius for rounded corners
     background: "linear-gradient(to right, #141384, #000000)", // Blue gradient background
     color: "#fff", // Text color
     marginBottom: "20px",
-    height:"100px"
+    height: "100px",
   };
 
   const box2 = {
     width: "90px",
     padding: "20px",
     display: "flex",
-    justifyContent: "center", 
-    alignItems: "center", 
-    flexDirection:"column",
-    background:"white",
-    borderRadius:"20px",
-    height:"95px"
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    background: "white",
+    borderRadius: "20px",
+    height: "95px",
   };
 
   const Container = {
@@ -60,9 +62,8 @@ function Wallet() {
     alignItems: "center", // Align items to the start (top) of the container
     width: "auto",
     color: "white",
-    display:"flex",
-    justifyContent:"center"
-    
+    display: "flex",
+    justifyContent: "center",
   };
 
   const radioImageStyle = {
@@ -73,13 +74,10 @@ function Wallet() {
     width: "auto",
     padding: "20px",
     display: "flex",
-    justifyContent: "center", 
-    alignItems: "center", 
-    flexDirection:"column",
-
-    
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
   };
-
 
   // const backendValue = "Value from Backend";
   const navigate = useNavigate();
@@ -87,9 +85,19 @@ function Wallet() {
     navigate("/imp");
   };
 
-  const addf = ()=>{
+  const addf = () => {
     navigate("/addfund");
-  }
+  };
+  const [showModal, setShowModal] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const handleClick = (option) => {
+    setSelectedOption(option);
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedOption(null);
+  };
   return (
     <>
       <div className="bg-custom-purple text-white " style={navbarStyle}>
@@ -109,7 +117,7 @@ function Wallet() {
 
         <div style={Container}>
           <div>
-            <button onClick={() => addf()} className= "bg-red-700" style={box3}>
+            <button onClick={() => addf()} className="bg-red-700" style={box3}>
               + Add Fund
             </button>
           </div>
@@ -129,28 +137,44 @@ function Wallet() {
           <img src={frame} alt="" />
         </div>
         <div style={Container}>
-          <div className="mr-6" >
-            <button style={box2}>
-            <img src={phone_pe} alt="PhonePe" style={radioImageStyle} />
-                PhonePe
+          <div className="mr-6">
+            <>
+            <button style={box2} 
+            onClick={()=> handleClick("1")}>
+              <img src={phone_pe} alt="PhonePe" style={radioImageStyle} />
+              PhonePe
             </button>
+            </>
           </div>
-          <div className="mr-6" >
-            <button style={box2}>
-            <img className= "mb-1 mt-2"src={paytm} alt="PhonePe" style={radioImageStyle} />
-                Paytm
+          <div className="mr-6">
+            <button style={box2}
+            onClick={()=> handleClick("2")}>
+              <img
+                className="mb-1 mt-2"
+                src={paytm}
+                alt="PhonePe"
+                style={radioImageStyle}
+              />
+              Paytm
             </button>
           </div>
 
-          <div >
-            <button style={box2}>
-            <img src={gpay} alt="PhonePe" style={radioImageStyle} />
-                GPay
+          <div>
+            <button style={box2}
+            onClick={()=> handleClick("3")}>
+              <img src={gpay} alt="PhonePe" style={radioImageStyle} />
+              GPay
             </button>
+            {showModal &&
+             <PaymentModal
+             closeModal={closeModal}
+             option={selectedOption}
+
+              />}
           </div>
         </div>
-        
-        <p className="mt-4 text-center text-white" >Transactions</p>
+
+        <p className="mt-4 text-center text-white">Transactions</p>
       </div>
     </>
   );
