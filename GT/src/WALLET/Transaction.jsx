@@ -21,7 +21,8 @@ function Transaction() {
       setGameRates([]);
     }
   }, [resinfo]);
-  console.log(gameRates);
+  // console.log(gameRates);
+  console.log('sumti')
   console.log(gameRates);
   return (
     <>

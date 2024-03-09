@@ -23,6 +23,7 @@ function IMP7() {
         </div>
 
         <div className="  text-white flex flex-col  " style={topStyle}>
+          {console.log('')}
           <Transaction />
         </div>
       </div>
