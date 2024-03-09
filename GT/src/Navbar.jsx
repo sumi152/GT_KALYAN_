@@ -87,7 +87,7 @@ function Navbar() {
 
           <ul className="font-bold text-lg flex flex-shrink: 0 absolute right-10 top-15">
           <li className="flex items-center">
-            <NavLink to='/wallet' className="text-white flex items-center">
+            <NavLink to='/imp7' className="text-white flex items-center">
               <img
                 src={WalletIcon}
                 alt="Wallet Icon"

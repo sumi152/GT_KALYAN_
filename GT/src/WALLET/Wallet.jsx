@@ -90,6 +90,9 @@ function Wallet() {
   const addf = ()=>{
     navigate("/addfund");
   }
+  const trans = ()=>{
+    navigate("/transfer");
+  }
   return (
     <>
       <div className="bg-custom-purple text-white " style={navbarStyle}>
@@ -120,7 +123,7 @@ function Wallet() {
           </div>
 
           <div>
-            <button className="bg-teal-500" style={box3}>
+            <button className="bg-teal-500" style={box3} onClick={()=>trans()}>
               Transfer
             </button>
           </div>

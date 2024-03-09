@@ -2,7 +2,7 @@ import "./Modal.css";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-const MyModal = ({ closeModal, totalIndex, totalPoints, submittedData, gameId }) => {
+const TransferModel = ({ closeModal, totalIndex, totalPoints, submittedData, gameId }) => {
   console.log(gameId + 'show');
 
   useEffect(() => {
@@ -89,4 +89,4 @@ const MyModal = ({ closeModal, totalIndex, totalPoints, submittedData, gameId })
     </>
   );
 };
-export default MyModal;
+export default TransferModel;

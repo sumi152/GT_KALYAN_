@@ -61,7 +61,9 @@ function GameFRONT() {
             </div>
             <div style={centerstyle}>
               <div>
+                <a href={game.web_chart_url} target="_blank" >
                 <img src={chart} style={imgstyle} alt="" />
+                </a>
               </div>
               <p>***_**_***</p>
               <button

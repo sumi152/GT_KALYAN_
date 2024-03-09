@@ -49,7 +49,7 @@ function Single() {
 
   const [isOpen, setIsOpen] = useState(true);
   const { gameId, openTime } = useLocation().state;
-
+  console.log(gameId);
 
   const fetchData = async () => {
     try {
@@ -165,6 +165,7 @@ function Single() {
   };
 
   const calculateTimeLeft = () => {
+    
     const openTimeWithoutSuffix = openTime.replace(/\s[AaPp][Mm]$/, "");
     const openDateString = new Date().toLocaleDateString(); // Get current date as a string
     const open = `${openDateString}T${openTimeWithoutSuffix}`;
@@ -194,7 +195,6 @@ function Single() {
       setIsOpen(false);
     }
   };
-
   const totalPoints=submittedData.reduce((acc, curr) => acc + parseInt(curr.point), 0)
   return (
     <>
@@ -308,7 +308,8 @@ function Single() {
                     <MyModal 
                     closeModal={closeModal}
                     totalIndex={submittedData.length} 
-                    totalPoints={totalPoints}    
+                    totalPoints={totalPoints}   
+                    gameId={gameId} 
                   />)}
                   </>
                 )}

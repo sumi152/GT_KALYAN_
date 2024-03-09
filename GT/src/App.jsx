@@ -49,9 +49,11 @@ import IMP5 from './STARBID/IMP5.jsx'
 import IMP6 from './STARWIN/IMP6.jsx'
 import IMP7 from './WALLET/IMP7.jsx'
 import Transaction from './WALLET/Transaction.jsx'
+import MyModal from './ShowModal.jsx'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Transfer from './WALLET/Transfer.jsx'
 
 function App() {
 
@@ -91,6 +93,10 @@ function App() {
         <Route path='/imp6' element={<IMP6/>}></Route>
         <Route path='/imp7' element={<IMP7/>}></Route>
         <Route path='/transaction' element={<Transaction/>}></Route>
+        <Route path='/mymodel' element={<MyModal/>}></Route>
+        <Route path='/transfer' element={<Transfer/>}></Route>
+        
+        
         
         
         

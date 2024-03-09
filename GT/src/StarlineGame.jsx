@@ -34,7 +34,7 @@ function StarlineGame() {
   }, [resinfo]);
 
   // console.log(resinfo['result']);
-  // console.log(gameRates);
+  console.log(gameRates);
 
   const navigate = useNavigate();
 

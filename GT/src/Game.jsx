@@ -32,7 +32,7 @@ function Game() {
     navigate(-1);
   }
   const { gameId,openTime } = useLocation().state;
-  console.log(gameId);
+
 
 
   return (
@@ -51,7 +51,10 @@ function Game() {
           <div className="col-span-1 flex justify-center items-center ">
             <button
             onClick={()=>{
-              navigate("/single" , { state: { gameId,openTime} })
+              if (gameId) {
+                console.log(gameId)
+                navigate("/single", { state: { gameId : "yes", openTime : openTime } });
+              }
             }}>
               <img src={url1} alt="Image 1" className="w-64 h-48" />
             </button>
