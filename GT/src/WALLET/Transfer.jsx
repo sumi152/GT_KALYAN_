@@ -1,12 +1,12 @@
 import { BiArrowBack } from "react-icons/bi";
 import WalletIcon from "../Images/wallet.png";
 import topBackground from "../Images/main_bg.png";
-import fund from "../Images/wallet_transparent.png";
 import transf from "../Images/transfer_img.png";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../Util/loginSlice";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import TransferModel from "./TransferModel";
 
 function Transfer() {
   const navbarStyle = {
@@ -39,7 +39,9 @@ function Transfer() {
   const [errorText, setErrorText] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
   const navigate = useNavigate();
-
+  const [showModal,setShowModal] = useState(false);
+  const closeModal = ()=> setShowModal(false);
+  const [transactionData, setTransactionData] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,11 +56,17 @@ function Transfer() {
     if (Object.keys(errors).length > 0) {
       return;
     }
-    console.log('hello sumit')
+
     try {
-      await fetchData(phoneno.current.value, points.current.value,token);
-      console.log("sumit");
-      setIsSubmit(true);
+      const result = await fetchData(phoneno.current.value, points.current.value, token);
+      if (result?.status === true) {
+        setTransactionData(result); // Set transaction data from API response
+        console.log(transactionData);
+        setIsSubmit(true);
+        setShowModal(true); // Show the transaction model
+      } else {
+        throw new Error("Invalid username and password");
+      }
     } catch (error) {
       setErrorText("Username or password incorrect"); // Set error message
     }
@@ -93,12 +101,10 @@ function Transfer() {
     );
 
     const raw = JSON.stringify({
-      env_type: "Prod",
-      app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
-      unique_token: token,
-      amount: points,
-      mobile_no: phoneno,
-      transfer_note: "",
+            env_type: "Prod",
+            app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
+            unique_token: token,
+            mobile_no: phoneno,
     });
 
     const requestOptions = {
@@ -109,18 +115,10 @@ function Transfer() {
     };
 
     const response = await fetch(
-      "https://kalyanmilanofficialmatka.in/api-user-transfer-wallet-balance",
+      "https://kalyanmilanofficialmatka.in/api-check-user-for-transfer-amt",
       requestOptions
     );
-    const result = await response.json();
-    console.log(result);
-
-    if (result?.status === true) {
-
-      navigate("/imp");
-    } else {
-      throw new Error("Invalid username and password");
-    }
+    return await response.json();
   };
 
   return (
@@ -173,7 +171,16 @@ function Transfer() {
             >
               Transfer
             </button>
-          </div>
+            {showModal && (
+              <TransferModel
+              closeModal={closeModal}
+                points={points.current.value}
+                name={transactionData.user_name} // Pass name from transactionData
+                number={phoneno.current.value} // Pass number from transactionData
+              />
+            )}
+          
+           </div>
         </form>
         <div className="  mt-16 bg-white items-center w-auto p-2 rounded-xl">
           <img className="w-48 h-48" src={transf} alt="" />
