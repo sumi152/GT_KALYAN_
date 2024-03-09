@@ -4,11 +4,15 @@ import close from "./Images/close.png";
 import open from "./Images/play.png";
 import { useEffect, useState} from "react";
 import useStarline from "./Hooks/useStarline";
-import { NavLink, useNavigate} from "react-router-dom"
+import { NavLink, useNavigate} from "react-router-dom";
+import {  useSelector } from "react-redux";
+import Timer from "./Timer";
 
 function StarlineGame() {
   const [status, setStatus] = useState(false);
   const [gameRates, setGameRates] = useState([{}]);
+  const unique = useSelector(state =>state.userDetail.token)
+
   const centerstyle = {
     display: "flex",
     justifyContent: "space-between",
@@ -34,8 +38,11 @@ function StarlineGame() {
   }, [resinfo]);
 
   // console.log(resinfo['result']);
+
   console.log(gameRates);
 
+
+  console.log(resinfo);
   const navigate = useNavigate();
 
   return (
@@ -44,7 +51,8 @@ function StarlineGame() {
         <div key={game.game_id} className="mb-5">
           <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-9 ml-2 mr-4 h-35 rounded-xl border border-white text-white">
             <p className="top-0 right-0">{game.game_name}</p>
-            <p>00.00.00</p>
+            {console.log(game.close_time)}
+            {(game.open_time && game.close_time && game.msg_status === 1  ) ? <Timer closeTime={game.close_time} />:"00:00:00"}
           </div>
           <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 flex flex-col rounded-3xl border">
             <div className="flex justify-center items-center">
@@ -77,7 +85,7 @@ function StarlineGame() {
               </button>
             </div>
             <div style={laststyle}>
-              <p className="text-green-500">Open - 10.05AM </p>
+              <p className="text-green-500">Open - {game.open_time} </p>
               <p className="text-red-500">Close - 12.05PM </p>
             </div>
           </div>
