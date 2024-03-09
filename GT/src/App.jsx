@@ -54,6 +54,7 @@ import MyModal from './ShowModal.jsx'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Transfer from './WALLET/Transfer.jsx'
+import TransferModel from './WALLET/TransferModel.jsx'
 
 function App() {
 
@@ -95,6 +96,7 @@ function App() {
         <Route path='/transaction' element={<Transaction/>}></Route>
         <Route path='/mymodel' element={<MyModal/>}></Route>
         <Route path='/transfer' element={<Transfer/>}></Route>
+        <Route path='/transfermodel' element={<TransferModel/>}></Route>
         
         
         
