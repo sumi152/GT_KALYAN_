@@ -56,7 +56,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import Transfer from './WALLET/Transfer.jsx'
 import TransferModel from './WALLET/TransferModel.jsx'
 
+
 import WithdrawFunds from './WALLET/WithdrawFund.jsx'
+
+
+import Otp from './Otp'
+
 
 
 function App() {
@@ -81,6 +86,7 @@ function App() {
         <Route path="/star" element={<> <Starline/> </>}></Route>
         <Route path="/login" element={<> <Login/> </>}></Route>
         <Route path="/imp" element={<> <Imp/></>}></Route>
+        <Route path="/otp" element={<> <Otp/></>}></Route>
         <Route path="/" element={<> <LandingIMP/></>}></Route>
         <Route path="/addfund"  element={<AddFunds/>}> </Route>
         <Route path="/win"  element={<Win/>}> </Route>

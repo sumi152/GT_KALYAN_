@@ -36,9 +36,9 @@ function useGameFront(unique) {
 
       // Update state with the fetched data
       setRes(result);
-      // console.log(result);
+       console.log(result);
     } catch (error) {
-      console.log('error', error);
+      // console.log('error', error);
     }
   };
 
