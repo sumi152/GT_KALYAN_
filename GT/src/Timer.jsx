@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 
 const Timer = ({ closeTime }) => {
 
-  console.log("hello")
+  // console.log("hello")
 
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);

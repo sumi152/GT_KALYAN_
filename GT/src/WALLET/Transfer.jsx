@@ -4,9 +4,10 @@ import topBackground from "../Images/main_bg.png";
 import transf from "../Images/transfer_img.png";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../Util/loginSlice";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TransferModel from "./TransferModel";
+import useWallet from "../Hooks/useWallet";
 
 function Transfer() {
   const navbarStyle = {
@@ -29,7 +30,7 @@ function Transfer() {
     padding: "20px",
   };
   const back = () => {
-    navigate('/imp');
+    navigate("/imp");
   };
   const phoneno = useRef();
   const points = useRef();
@@ -39,9 +40,13 @@ function Transfer() {
   const [errorText, setErrorText] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
   const navigate = useNavigate();
-  const [showModal,setShowModal] = useState(false);
-  const closeModal = ()=> setShowModal(false);
+  const [showModal, setShowModal] = useState(false);
+  const closeModal = () => {
+    setShowModal(false);
+    rerenderPage(); // Trigger a rerender when the modal is closed
+  };
   const [transactionData, setTransactionData] = useState({});
+  const [walletAmt, setWalletAmt] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,7 +63,11 @@ function Transfer() {
     }
 
     try {
-      const result = await fetchData(phoneno.current.value, points.current.value, token);
+      const result = await fetchData(
+        phoneno.current.value,
+        points.current.value,
+        token
+      );
       if (result?.status === true) {
         setTransactionData(result); // Set transaction data from API response
         console.log(transactionData);
@@ -101,10 +110,10 @@ function Transfer() {
     );
 
     const raw = JSON.stringify({
-            env_type: "Prod",
-            app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
-            unique_token: token,
-            mobile_no: phoneno,
+      env_type: "Prod",
+      app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
+      unique_token: token,
+      mobile_no: phoneno,
     });
 
     const requestOptions = {
@@ -120,6 +129,14 @@ function Transfer() {
     );
     return await response.json();
   };
+  
+
+  const res = useWallet(token);
+  useEffect(() => {
+    if (res && res.wallet_amt) {
+      setWalletAmt(res.wallet_amt);
+    }
+  }, [res.wallet_amt]);
 
   return (
     <>
@@ -139,7 +156,7 @@ function Transfer() {
                 alt="Wallet Icon"
                 className="w-8 h-8 mr-2"
               />
-              {/* <span>{walletAmt}</span> */}
+              <span>{res?.wallet_amt}</span>
             </a>
           </li>
         </ul>
@@ -173,14 +190,13 @@ function Transfer() {
             </button>
             {showModal && (
               <TransferModel
-              closeModal={closeModal}
+                closeModal={closeModal}
                 points={points.current.value}
                 name={transactionData.user_name} // Pass name from transactionData
                 number={phoneno.current.value} // Pass number from transactionData
               />
             )}
-          
-           </div>
+          </div>
         </form>
         <div className="  mt-16 bg-white items-center w-auto p-2 rounded-xl">
           <img className="w-48 h-48" src={transf} alt="" />
