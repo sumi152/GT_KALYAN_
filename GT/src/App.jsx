@@ -58,6 +58,7 @@ import Transfer from './WALLET/Transfer.jsx'
 import TransferModel from './WALLET/TransferModel.jsx'
 
 import WithdrawFunds from './WithdrawFund.jsx'
+import Otp from './Otp'
 
 
 function App() {
@@ -82,6 +83,7 @@ function App() {
         <Route path="/star" element={<> <Starline/> </>}></Route>
         <Route path="/login" element={<> <Login/> </>}></Route>
         <Route path="/imp" element={<> <Imp/></>}></Route>
+        <Route path="/otp" element={<> <Otp/></>}></Route>
         <Route path="/" element={<> <LandingIMP/></>}></Route>
         <Route path="/addfund"  element={<AddFunds/>}> </Route>
         <Route path="/withdrawfund"  element={<WithdrawFund/>}> </Route>

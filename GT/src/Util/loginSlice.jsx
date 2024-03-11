@@ -19,6 +19,7 @@ const loginSlice = createSlice({
             state.token = token;
             state.mobile = mobile;
             localStorage.setItem('userCredentials', JSON.stringify({ username, token, mobile }));
+            console.log("login")
         },
         logout: (state) => {
             state.username = null;

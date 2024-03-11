@@ -6,7 +6,9 @@ import whatsapp from "./Images/whatsapp.png";
 import call from "./Images/call_helpline.png";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FiAlertCircle } from "react-icons/fi";
-
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "./Util/registerSlice";
+import {login } from "./Util/loginSlice"
 
 
 function Register() {
@@ -21,10 +23,10 @@ function Register() {
     backgroundSize: "cover",
   };
   const cardStyle = {
-    width: "370px",
+    width: "400px",
     display: "flex",
     flexDirection: "column",
-    padding: "",
+    padding: "20px",
     position: "relative",
   };
   const cellImageStyle = {
@@ -32,21 +34,31 @@ function Register() {
     maxHeight: "150px",
     objectFit: "cover",
   };
+
+
+
   const username = useRef();
   const phoneno = useRef();
   const password = useRef();
   const [formErrors, setFormErrors] = useState({});
-  const [ERR, setERR]=useState();
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
   const [isSubmit, setIsSubmit] =useState(false);
+  const [errorMsg,setErrorMsg] = useState()
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  
+  
   const handleToggleCurrentPassword = () => {
     setShowCurrentPassword(!showCurrentPassword);
   };
+  var data={}
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    
     const errors = validate(
       username.current.value,
       phoneno.current.value,
@@ -58,14 +70,33 @@ function Register() {
     if (Object.keys(errors).length > 0) {
       return;
     }
+    
+    setIsRegistering(true);
 
-    fetchData(
-      username.current.value,
-      phoneno.current.value,
-      password.current.value
-    );
-    setIsSubmit(true);
+    try {
+      // Fetch OTP data or retrieve it from wherever necessary
+      const otpData = await fetchData(phoneno.current.value); // Example function to fetch OTP data
+      console.log(otpData)
+      if (otpData?.status) {
+        // Dispatch action with OTP data
+        dispatch(register({ 
+          username: username.current.value, 
+          phone: phoneno.current.value, 
+          password: password.current.value, 
+          otp: otpData?.otp 
+        }));
+        navigate('/Otp');
+      } else {
+        console.error("Failed to fetch OTP data");
+      }
+    } catch (error) {
+      // console.error("Error registering:", error);
+    }
+   
+
   };
+
+
 
   const validate = (username, phoneno, password) => {
     const errors = {};
@@ -86,60 +117,53 @@ function Register() {
     return errors;
   };
 
-  const fetchData = async (username, phoneno, password) => {
+
+  const fetchData = async (phoneno) => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-      myHeaders.append(
-        "Cookie",
-        "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
-      );
-
+  
       const raw = JSON.stringify({
         env_type: "Prod",
         app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
-        name: username, // Remove curly braces
-        email: "email",
-        password: password, // Remove curly braces
-        mobile: phoneno, // Remove curly braces
-        security_pin: "123456",
-        device_id: null,
+        mobile: phoneno,
       });
-
+  
       const requestOptions = {
         method: "POST",
         headers: myHeaders,
         body: raw,
         redirect: "follow",
       };
-
+  
       const response = await fetch(
-        "https://kalyanmilanofficialmatka.in/api-user-registration",
+        "https://kalyanmilanofficialmatka.in/api-check-mobile",
         requestOptions
       );
       const result = await response.json();
       console.log(result);
-      if(result?.status===true){
-        navigate('/h');
+      if(result?.status){
+        setIsSubmit(true);
+        return result;
       }
-      else {
-        
+      
+      
       }
-    } catch (error) {
-      console.log("error", error);
+     catch (error) {
+      setIsRegistering(false);
     }
   };
 
+  
   return (
     <>
-      <div style={backStyle} className="text-white flex flex-col justify-center items-center">
+      <div style={backStyle} className="text-white">
         <div className="flex justify-center items-center ">
           <img src={logo} alt="Center Image" className="w-40 h-40" />
         </div>
-        {/* <div className="flex justify-center item-center p-5"> */}
-          <div style={cardStyle}>
-          <form style={cardStyle} className="p-5" onSubmit={handleSubmit}>
-            <p className="mt-2">Username</p>
+        <div className="flex justify-center item-center p-5">
+          <form style={cardStyle} onSubmit={handleSubmit}>
+            <p className="">Username</p>
             <input
               type="text"
               placeholder="Username"
@@ -147,7 +171,7 @@ function Register() {
               ref={username}
               name="username"
             />
-            <p className="text-red-500 ">{formErrors.username}</p>
+            <p className="text-red-500">{formErrors.username}</p>
             <div className="relative -top-14">
               {formErrors.username && (
                 <div
@@ -161,10 +185,9 @@ function Register() {
               )}
             </div>
 
-            <p className="mt-2">Phone Number</p>
+            <p className="">Phone Number</p>
             <input
-              type="number"
-              inputMode="numeric"
+              type="text"
               placeholder="Phone Number"
               className=" bg-gray-500 pt-3 pr-7 pl-5 pb-3 rounded"
               ref={phoneno}
@@ -193,11 +216,12 @@ function Register() {
               name="password"
             />
             <p className="text-red-500">{formErrors.password}</p>
+            <p className="text-red-500">{errorMsg}</p>
             <div className="relative -top-14">
               <button
                 type="button"
                 className={`absolute ${
-                  formErrors.password ? "top-0" : "top-5"
+                  formErrors && errorMsg ? "top-0" : "top-6"
                 } right-4`}
                 onClick={handleToggleCurrentPassword}
               >
@@ -214,9 +238,8 @@ function Register() {
                 type="submit"
                 onSubmit={handleSubmit}
               >
-                Register
+               {isRegistering && isSubmit? 'Registering...' : 'Register'}
               </button>
-              <p className="text-red-500">{ERR}</p>
             </div>
             <div className="flex justify-center">
               <p>
@@ -226,7 +249,6 @@ function Register() {
                 </Link>
               </p>
             </div>
-            </form>
             <div className="flex  justify-between mt-2">
               <div>
                 <button>
@@ -247,8 +269,8 @@ function Register() {
               </a>
               <hr className="w-1/2" />
             </div>
-            </div> 
-        {/* </div> */}
+          </form>
+        </div>
       </div>
     </>
   );
