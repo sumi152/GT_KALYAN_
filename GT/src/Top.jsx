@@ -67,7 +67,7 @@ function Top() {
       setsd(res.sliderdata);
     }
   }, [res]);
-  // console.log(sd[1]?.image_id)
+  console.log(sd[0]?.slider_image)
   const navigate = useNavigate();
   const addF=()=>{
     navigate('/addfund');

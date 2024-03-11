@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 
-function useCarosuel() {
-  const [res, setRes] = useState(null);
 
- 
-  const fetchData = async (unique) => {
+function useWallet(unique) {
+  const [res, setRes] = useState([]);
+  // console.log('token'+unique);
+
+
+  const fetchData = async () => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
@@ -12,7 +14,6 @@ function useCarosuel() {
         "Cookie",
         "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
       );
-
       const raw = JSON.stringify({
         env_type: "Prod",
         app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
@@ -25,31 +26,26 @@ function useCarosuel() {
         body: raw,
         redirect: "follow",
       };
-
       const response = await fetch(
-        "https://kalyanmilanofficialmatka.in/api-get-slider-images",
+        "https://kalyanmilanofficialmatka.in/api-user-wallet-balance",
         requestOptions
       );
       const result = await response.json();
-      // console.log('hi');
-      // console.log(result);
 
-      // Update state with the fetched data
       setRes(result);
+      console.log('hi')
+      console.log(result);
     } catch (error) {
-      console.log('error', error);
+    //   console.log("error", error);
     }
   };
+
   useEffect(() => {
-    if(res===null){
-      // console.log("hii "+res);
-      fetchData();
-    }
-    
+    fetchData();
   }, []);
 
 
   return res;
 }
 
-export default useCarosuel;
+export default useWallet;

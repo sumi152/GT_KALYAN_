@@ -90,6 +90,10 @@ function Wallet() {
     navigate("/addfund");
   };
 
+  const withd = () => {
+    navigate("/withdraw");
+  };
+
   const trans = () => {
     navigate("/transfer");
   };
@@ -131,7 +135,7 @@ function Wallet() {
             </button>
           </div>
           <div>
-            <button className="bg-orange-500" style={box3}>
+            <button onClick={() => withd()} className="bg-orange-500" style={box3}>
               - Withdraw Fund
             </button>
           </div>
