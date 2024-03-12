@@ -58,6 +58,7 @@ import TransferModel from './WALLET/TransferModel.jsx'
 
 
 import WithdrawFunds from './WALLET/WithdrawFund.jsx'
+import IMP8 from './WALLET/IMP8.jsx'
 
 
 import Otp from './Otp'
@@ -102,6 +103,7 @@ function App() {
         <Route path='/imp5' element={<IMP5/>}></Route>
         <Route path='/imp6' element={<IMP6/>}></Route>
         <Route path='/imp7' element={<IMP7/>}></Route>
+        <Route path='/imp8' element={<IMP8/>}></Route>
         <Route path='/transaction' element={<Transaction/>}></Route>
         <Route path='/mymodel' element={<MyModal/>}></Route>
         <Route path='/transfer' element={<Transfer/>}></Route>

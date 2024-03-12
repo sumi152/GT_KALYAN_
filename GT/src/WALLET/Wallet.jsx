@@ -91,7 +91,7 @@ function Wallet() {
   };
 
   const withd = () => {
-    navigate("/withdraw");
+    navigate("/imp8");
   };
 
   const trans = () => {

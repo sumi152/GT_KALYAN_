@@ -63,35 +63,28 @@ function Otp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (data2 == null && otp2 == otp) {
-      console.log("firstcondintion");
-      setIsSubmit(true);
-    }
-     else if (data2 !== null && data2 == otp) {
-      setIsSubmit(true);
-      console.log(data2);
-    } else {
-      console.log(data2 + "dat2");
-      console.log(otp2 + "otp2");
-      console.log(otp + "otp");
-      setIsSubmit(false);
-      setErrorMsg("Enter Valid OTP");
-      return;
-    }
-
+  
     try {
-      if (isSubmit) {
-        console.log("s");
-        const a= await fetchData(username, mobile, password);
-        console.log(a);
+      console.log("Entered OTP:", otp);
+      console.log("OTP from Redux (otp2):", otp2);
+      console.log("OTP from data2:", data2);
+  
+      // Check if the entered OTP matches either the OTP received from the server (otp2) or the data2
+      if (otp == otp2 || otp == data2) {
+        console.log("OTP is valid. Proceeding with form submission...");
+        setIsSubmit(true);
+        const a = await fetchData(username, mobile, password);
         handleAdduser(a?.user_name, a?.unique_token, mobile);
         navigate("/imp");
+      } else {
+        console.log("Entered OTP does not match the expected OTPs.");
+        setErrorMsg("Enter Valid OTP");
       }
     } catch (error) {
       console.error("Error registering:", error);
     }
   };
+  
 
   const fetchData = async (username, mobile, password) => {
     try {
@@ -137,25 +130,24 @@ function Otp() {
       console.error("Error registering:", error);
     }
   };
-
   const fetchResendOtp = async (username, phoneno, password) => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-
+  
       const raw = JSON.stringify({
         env_type: "Prod",
         app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
         mobile: phoneno,
       });
-
+  
       const requestOptions = {
         method: "POST",
         headers: myHeaders,
         body: raw,
         redirect: "follow",
       };
-
+  
       const response = await fetch(
         "https://kalyanmilanofficialmatka.in/api-resend-otp",
         requestOptions
@@ -163,12 +155,12 @@ function Otp() {
       const result = await response.json();
       console.log("resend");
       console.log(result?.otp);
-      setdata2(result?.otp);
+      setdata2(result?.otp); // Ensure data2 is correctly updated here
     } catch (error) {
-      // setIsRegistering(false);
+      console.error("Error:", error);
     }
   };
-
+  
   return (
     <>
       <div style={backStyle}>
