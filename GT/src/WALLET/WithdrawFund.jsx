@@ -16,12 +16,13 @@ function WithdrawFunds() {
     position: "relative",
   };
 
-  const backStyle = {
-    paddingBottom: "500px",
+  const topStyle = {
     backgroundImage: `url(${topBackground})`,
     backgroundSize: "cover",
+    height: "auto ", // Set the height of the div
+    width: "100%", // Set the width of the div
+    padding: "",
   };
-
   const box1 = {
     border: "3px solid #ccc",
     padding: "10px",
@@ -61,7 +62,9 @@ function WithdrawFunds() {
 
 
   const amount = useRef();
-  const method = useRef();
+  // const method = useRef();
+  const [method2, setMethod] = useState("");
+
   const token = useSelector((state) => state.userDetail.token);
   const number = useSelector((state) => state.userDetail.mobile);
   const [formErrors, setFormErrors] = useState({});
@@ -77,7 +80,10 @@ function WithdrawFunds() {
 
   const handleUPIChange = (event) => {
     setSelectedUPI(event.target.value);
+    const selectedUpiType = gamesUpi.find(upi => upi.value === event.target.value)?.type;
+    setMethod(selectedUpiType);
   };
+  
   const [walletAmt, setWalletAmt] = useState();
   const res = usePayment(token, number);
   const res2 = useWallet(token);
@@ -108,7 +114,7 @@ function WithdrawFunds() {
 
     try {
       await fetchData(
-        token, Number(amount.current.value), number, method.current.value
+        token, Number(amount.current.value), number, method2
       );
       setIsSubmit(true);
     } catch (error) {
@@ -129,7 +135,7 @@ function WithdrawFunds() {
   };
   
 
-  const fetchData = async ( token, amount, number, method) => {
+  const fetchData = async ( token, amount, number, method2) => {
     const errors={}
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -144,7 +150,7 @@ function WithdrawFunds() {
       unique_token: token,
       mobile: number,
       request_amount: amount,
-      payment_method: method
+      payment_method: method2
     });
 
     const requestOptions = {
@@ -158,6 +164,7 @@ function WithdrawFunds() {
       "https://kalyanmilanofficialmatka.in/api-user-withdraw-fund-request",
       requestOptions
     );
+    console.log(method2);
     const result = await response.json();
     console.log(result)
     if(result?.status===true){
@@ -166,6 +173,11 @@ function WithdrawFunds() {
       setErrorText(result?.msg)
     }
   };
+  useEffect(() => {
+    if (gamesUpi.length > 0) { // Check if gamesUpi list is not empty
+      setMethod(gamesUpi[0]?.type); // Set method2 with the type of the first value in gamesUpi list
+    }
+  }, [gamesUpi]); 
 
   return (
     <>
@@ -178,7 +190,7 @@ function WithdrawFunds() {
           <h1 className="text-white px-3">Withdraw Fund</h1>
         </div>
       </div>
-      <div className=" p-5" style={backStyle}>
+      <div className=" p-5" style={topStyle}>
         <div className="" style={box1}>
           <p>Current Balance</p>
           <p>RS {walletAmt}</p>
@@ -193,7 +205,7 @@ function WithdrawFunds() {
             value={selectedUPI}
             onChange={handleUPIChange}
             style={enterAmount}
-            ref={method}
+            
           >
             {/* <option value="">Select UPI Details</option> */}
             {gamesUpi.map((upi, index) => (
