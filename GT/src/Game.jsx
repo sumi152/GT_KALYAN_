@@ -31,7 +31,7 @@ function Game() {
   const back=()=>{
     navigate(-1);
   }
-  const { gameId,openTime } = useLocation().state;
+  const { gameId,openTime, gameName } = useLocation().state;
 
 
 
@@ -53,7 +53,7 @@ function Game() {
             onClick={()=>{
               if (gameId) {
                 console.log(gameId)
-                navigate("/single", { state: { gameId : "yes", openTime : openTime } });
+                navigate("/single", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Single Digit' } });
               }
             }}>
               <img src={url1} alt="Image 1" className="w-64 h-48" />
@@ -62,7 +62,10 @@ function Game() {
           <div className="col-span-1 flex justify-center items-center   ">
             <button
              onClick={()=>{
-              navigate("/jodi" , { state: { gameId,openTime} })
+              if (gameId) {
+                console.log(gameId)
+                navigate("/jodi", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Jodi Digit' } });
+              }
             }}>
               <img src={url2} alt="Image 2" className="w-64 h-48" />
             </button>
@@ -72,7 +75,10 @@ function Game() {
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button
              onClick={()=>{
-              navigate("/singlepana" , { state: { gameId,openTime} })
+              if (gameId) {
+                console.log(gameId)
+                navigate("/singlepana", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Single Pana' } });
+              }
             }}>
               <img src={url3} alt="Image 3" className="w-64 h-48" />
             </button>
@@ -80,7 +86,10 @@ function Game() {
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button
              onClick={()=>{
-              navigate("/doublepana" , { state: { gameId,openTime} })
+              if (gameId) {
+                console.log(gameId)
+                navigate("/doublepana", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Double Pana' } });
+              }
             }}>
               <img src={url4} alt="Image 4" className="w-64 h-48" />
             </button>
@@ -90,7 +99,10 @@ function Game() {
           <div className="col-span-2 flex justify-center items-center mt-4">
             <button
              onClick={()=>{
-              navigate("/tripplepana" , { state: { gameId,openTime} })
+              if (gameId) {
+                console.log(gameId)
+                navigate("/tripplepana", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Triple Pana' } });
+              }
             }}>
               <img src={url5} alt="Image 5" className="w-48 h-48 pt-2 " />
             </button>
@@ -100,7 +112,10 @@ function Game() {
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button
              onClick={()=>{
-              navigate("/halfsangam" , { state: { gameId,openTime} })
+              if (gameId) {
+                console.log(gameId)
+                navigate("/halfsangam", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Half Sangam' } });
+              }
             }}>
               <img src={url6} alt="Image 6" className="w-64 h-48" />
             </button>
@@ -108,7 +123,10 @@ function Game() {
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button
              onClick={()=>{
-              navigate("/fullsangam" , { state: { gameId,openTime} })
+              if (gameId) {
+                console.log(gameId)
+                navigate("/fullsangam", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Full Sangam' } });
+              }
             }}>
               <img src={url7} alt="Image 7" className="w-64 h-48" />
             </button>

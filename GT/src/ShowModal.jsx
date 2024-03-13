@@ -2,8 +2,21 @@ import "./Modal.css";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-const MyModal = ({ closeModal, totalIndex, totalPoints, submittedData, gameId }) => {
-  console.log(gameId + 'show');
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const MyModal = ({ closeModal, totalIndex, totalPoints, submittedData, gameId , gameName, pana, date}) => {
+  console.log(totalIndex);
+  console.log(totalPoints)
+  console.log(submittedData)
+  console.log(gameId)
+  console.log(gameName)
+  console.log(pana)
+  console.log(date)
+  const notify = () => {
+    toast("Result Submitted");
+};
+
 
   useEffect(() => {
     document.body.style.overflowY = "hidden";
@@ -17,24 +30,34 @@ const MyModal = ({ closeModal, totalIndex, totalPoints, submittedData, gameId })
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetchData(token, gameId, submittedData);
-      setIsSubmit(true);
+        await fetchData(token, gameId, submittedData, gameName , pana, totalPoints, date);
+        notify();
+        closeModal(); // Close the modal here
     } catch (error) {
-      console.log(error);
+        console.log(error);
     }
-  };
+};
 
-  const fetchData = async (token, game_id, submittedData) => {
+  const fetchData = async (token, gameId, submittedData, gameName, pana,totalPoints,date) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Cookie", "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee");
 
     const raw = JSON.stringify({
       env_type: "Prod",
-      app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
-      unique_token: token,
-      new_result: submittedData,
-      game_id: game_id
+    app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
+    unique_token: token,
+    game_id: gameId,
+    new_result: {
+        unique_token: token,
+        Gamename: gameName,
+        totalbit: totalPoints,
+        gameid: gameId,
+        pana: pana,
+        bid_date: date,
+        session: "Close",
+        result: submittedData
+    }
     });
 
     const requestOptions = {
