@@ -12,20 +12,6 @@ import MyModal from "../ShowModal.jsx"
 
 function Single() {
   const todayDate = new Date().toISOString().split("T")[0];
-  const months = [
-    "January", "February", "March", "April", "May", "June", "July", "August",
-    "September", "October", "November", "December"
-  ];
-  
-  const newDate = new Date();
-  const day = newDate.getDate();
-  const monthIndex = newDate.getMonth();
-  const year = newDate.getFullYear();
-  
-  const formattedDate = day + "-" + months[monthIndex] + "-" + year;
-  const [submit, setSubmit]= useState('');
-  
-  console.log(formattedDate);
   const navbarStyle = {
     height: "60px",
     display: "flex",
@@ -46,7 +32,6 @@ function Single() {
   };
 
   const digit = useRef();
-  const date = useRef();
   const point = useRef();
   const [formErrors, setFormErrors] = useState({});
   const navigate = useNavigate();
@@ -63,7 +48,7 @@ function Single() {
   const closeModal = ()=> setShowModal(false);
 
   const [isOpen, setIsOpen] = useState(true);
-  const { gameId, openTime, gameName, pana } = useLocation().state;
+  const { gameId, openTime } = useLocation().state;
   console.log(gameId);
 
   const fetchData = async () => {
@@ -105,11 +90,9 @@ function Single() {
     console.log(isOpen);
   }, [res.wallet_amt]);
 
-
   useEffect(() => {
     if (res && res.wallet_amt) {
       setWalletAmt(resinfo.wallet_amt);
-      console.log(typeof(walletAmt))
     }
   }, [res.wallet_amt]);
 
@@ -137,12 +120,13 @@ function Single() {
       setFormErrors({});
       const sessionValue = document.getElementById("option2").checked ? "open" : "close";
       const newDataObject = {
-        digits: digit.current.value,
-        closedigits: "",
-        points: point.current.value,
+        digit: digit.current.value,
+        closeddigits: null,
+        point: point.current.value,
         session: sessionValue,
+        
       };
-      const newWalletAmt = walletAmt - point.current.value;
+      const newWalletAmt = walletAmt - parseInt(point.current.value);
 
       setWalletAmt(newWalletAmt);
 
@@ -211,7 +195,7 @@ function Single() {
       setIsOpen(false);
     }
   };
-  const totalPoints=submittedData.reduce((acc, curr) => acc + parseInt(curr.points), 0)
+  const totalPoints=submittedData.reduce((acc, curr) => acc + parseInt(curr.point), 0)
   return (
     <>
       <div className="bg-custom-purple text-white" style={navbarStyle}>
@@ -324,13 +308,8 @@ function Single() {
                     <MyModal 
                     closeModal={closeModal}
                     totalIndex={submittedData.length} 
-                    totalPoints={totalPoints}
-                    submittedData={submittedData}   
+                    totalPoints={totalPoints}   
                     gameId={gameId} 
-                    gameName= {gameName}
-                    pana= {pana}
-                    date={formattedDate}
-                    
                   />)}
                   </>
                 )}
@@ -342,16 +321,8 @@ function Single() {
                 );
                 setSubmittedData(newData);
                 setFormErrors({});
-                const removedItem = submittedData[indexToRemove];
-                const removedItemPoint = parseInt(removedItem.points);
-                
-                // Check if removedItemPoint is a valid number
-                if (!isNaN(removedItemPoint)) {
-                  const newWalletAmt = walletAmt + removedItemPoint;
-                  setWalletAmt(newWalletAmt);
-                } else {
-                  console.error('Invalid points data:', removedItem);
-                }
+                const newWalletAmt = walletAmt + parseInt(data.point);
+                setWalletAmt(newWalletAmt);
                 if (newData.length === 0) {
                   setIsProceed(false); // Set isProceed to false if only one item is left
                 }
@@ -366,11 +337,11 @@ function Single() {
                   >
                     <div className="flex flex-col items-center ml-4">
                       <h3>Close Digit</h3>
-                      <h3>{data.digits}</h3>
+                      <h3>{data.digit}</h3>
                     </div>
                     <div className="flex flex-col items-center mr-4">
                       <h3>Points</h3>
-                      <h3>{data.points}</h3>
+                      <h3>{data.point}</h3>
                     </div>
                   </div>
                   <button
