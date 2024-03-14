@@ -6,7 +6,7 @@ import { useEffect, useState} from "react";
 import useStarline from "./Hooks/useStarline";
 import { NavLink, useNavigate} from "react-router-dom";
 import {  useSelector } from "react-redux";
-import Timer from "./Timer";
+import TimerStar from "./TimerStar";
 
 function StarlineGame() {
   const [status, setStatus] = useState(false);
@@ -44,6 +44,7 @@ function StarlineGame() {
 
   console.log(resinfo);
   const navigate = useNavigate();
+  
 
   return (
     <div>
@@ -52,7 +53,7 @@ function StarlineGame() {
           <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-9 ml-2 mr-4 h-35 rounded-xl border border-white text-white">
             <p className="top-0 right-0">{game.game_name}</p>
             {console.log(game.close_time)}
-            {(game.open_time && game.close_time && game.msg_status === 1  ) ? <Timer closeTime={game.close_time} />:"00:00:00"}
+            {(game.open_time && game.close_time_srt && game.msg_status === 1  ) ? <TimerStar closeTime={game.close_time_srt} />:"00:00:00"}
           </div>
           <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 flex flex-col rounded-3xl border">
             <div className="flex justify-center items-center">
