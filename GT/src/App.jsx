@@ -7,7 +7,7 @@ import Htp from './HowToPlay.jsx'
 import Game from './Game.jsx'
 
 import Single from './Games/Single.jsx'
-import AddFunds from './AddFunds.jsx'
+
 import About from './About.jsx'
 import Privacy from './Privacy.jsx'
 import Delete from './Delete.jsx'
@@ -56,9 +56,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import Transfer from './WALLET/Transfer.jsx'
 import TransferModel from './WALLET/TransferModel.jsx'
 
-
+import AddFunds from './WALLET/AddFund.jsx'
 import WithdrawFunds from './WALLET/WithdrawFund.jsx'
 import IMP8 from './WALLET/IMP8.jsx'
+import IMP9 from './WALLET/IMP9.jsx'
 
 
 import Otp from './Otp'
@@ -106,12 +107,11 @@ function App() {
         <Route path='/imp6' element={<IMP6/>}></Route>
         <Route path='/imp7' element={<IMP7/>}></Route>
         <Route path='/imp8' element={<IMP8/>}></Route>
+        <Route path='/imp9' element={<IMP9/>}></Route>
         <Route path='/transaction' element={<Transaction/>}></Route>
         <Route path='/mymodel' element={<MyModal/>}></Route>
         <Route path='/transfer' element={<Transfer/>}></Route>
         <Route path='/transfermodel' element={<TransferModel/>}></Route>
-        
-        
         
         
         
@@ -127,6 +127,7 @@ function App() {
         <Route path="/profile" element={<> <Profile/> </>}></Route>
         <Route path='/imp2' element={<><IMP2/></>}></Route>
         <Route path="/withdraw"  element={<WithdrawFunds/>}> </Route>
+        {/* <Route path="/withdraw"  element={<AddFunds/>}> </Route> */}
 
 
 

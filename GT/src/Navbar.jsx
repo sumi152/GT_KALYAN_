@@ -159,7 +159,7 @@ function Navbar() {
             </li>
             <li>
               <NavLink
-                to='/addfund'
+                to='/imp9'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
