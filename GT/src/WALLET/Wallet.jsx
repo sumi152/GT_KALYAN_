@@ -101,7 +101,7 @@ function Wallet() {
   const [showModal, setShowModal] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleClick = (option) => {
+  const handleClick = async (option) => {
     setSelectedOption(option);
     setShowModal(true);
   };
@@ -110,6 +110,10 @@ function Wallet() {
     setShowModal(false);
     setSelectedOption(null);
   };
+
+
+
+  
 
   return (
     <>

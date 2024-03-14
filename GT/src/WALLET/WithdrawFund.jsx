@@ -210,7 +210,9 @@ function WithdrawFunds() {
             {/* <option value="">Select UPI Details</option> */}
             {gamesUpi.map((upi, index) => (
               <option key={index} value={upi.value} className="text-black">
-                {upi.name}: {upi.value}
+                {upi?.name}: {upi?.value}
+                {console.log(upi?.name)}
+                {console.log('sumti+sumit ')}
               </option>
             ))}
           </select>

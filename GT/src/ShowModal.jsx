@@ -13,6 +13,7 @@ const MyModal = ({ closeModal, totalIndex, totalPoints, submittedData, gameId , 
   console.log(gameName)
   console.log(pana)
   console.log(date)
+
   const notify = () => {
     toast("Result Submitted");
 };
@@ -73,7 +74,8 @@ const MyModal = ({ closeModal, totalIndex, totalPoints, submittedData, gameId , 
     console.log('submit result out')
     if (result?.status === true) {
       console.log('submit result');
-      // navigate('/imp');
+      
+      navigate('/single');
     } else {
       throw new Error("Invalid username and password");
     }

@@ -5,6 +5,7 @@ import gpay from "./Images/gpay.png";
 import paytm from "./Images/paytm.png";
 import phone from "./Images/phone_icon.png"
 import { useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 
 const PaymentModal = ({ closeModal, option }) => {
   useEffect(() => {
@@ -43,7 +44,8 @@ const PaymentModal = ({ closeModal, option }) => {
 
   const phoneno = useRef();
   const [Errors, setErrors] = useState({});
-  const mobile = useSelector(state=>state.userDetail.mobile)
+  
+  const navigate = useNavigate();
   
   const validate = (phoneno) => {
     let errors = {};
@@ -67,61 +69,59 @@ const PaymentModal = ({ closeModal, option }) => {
       return;
     }
     try {
-      await fetchData(
+      const otpData =await fetchData(
         phoneno.current.value,
       );
+      console.log(otpData)
+      if (otpData?.status) {
+        
+        const phoneNumber = phoneno.current.value;
+        const otp2 = otpData.otp
+        navigate('/Otp2',{state : {phoneNumber,otp2,option}});
+      } else {
+        console.error("Failed to fetch OTP data");
+      }
+      
 
     } catch (error) {
     }
+    
   };
 
   const fetchData = async (phoneno) => {
-    switch (option) {
-      case "1":
-        isphonepe=phoneno
-        break;
-      case "2":
-        ispaytm=phoneno
-        break;
-      case "3":
-        isgooglepe=phoneno
-        break;
-      default:
-    }
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-      myHeaders.append(
-        "Cookie",
-        "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
-      );
+  
       const raw = JSON.stringify({
         env_type: "Prod",
         app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
-        unique_token: "un5ChwLA8EJqiLqCBolQwC0gY31AAL",
-        mobile_no: mobile,
-        upi_type: option,
-        paytm_no: ispaytm,
-        google_pay_no: isgooglepe,
-        phon_pay_no: isphonepe
+        mobile: phoneno,
       });
-
+  
       const requestOptions = {
         method: "POST",
         headers: myHeaders,
         body: raw,
         redirect: "follow",
       };
+  
       const response = await fetch(
-        "https://kalyanmilanofficialmatka.in/api-add-user-upi-details",
+        "https://kalyanmilanofficialmatka.in/api-resend-otp",
         requestOptions
       );
       const result = await response.json();
-      console.log(result);
-    } catch (error) {
-      console.log("error", error);
+      if(result?.status){
+        return result;
+      }
+      
+      
+      }
+     catch (error) {
     }
   };
+
+  
 
   return (
     <>

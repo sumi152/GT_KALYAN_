@@ -62,6 +62,7 @@ import IMP8 from './WALLET/IMP8.jsx'
 
 
 import Otp from './Otp'
+import Otp2 from './Otp2'
 
 
 
@@ -88,6 +89,7 @@ function App() {
         <Route path="/login" element={<> <Login/> </>}></Route>
         <Route path="/imp" element={<> <Imp/></>}></Route>
         <Route path="/otp" element={<> <Otp/></>}></Route>
+        <Route path="/otp2" element={<> <Otp2/></>}></Route>
         <Route path="/" element={<> <LandingIMP/></>}></Route>
         <Route path="/addfund"  element={<AddFunds/>}> </Route>
         <Route path="/win"  element={<Win/>}> </Route>
