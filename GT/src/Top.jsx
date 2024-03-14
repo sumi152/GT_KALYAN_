@@ -70,7 +70,7 @@ function Top() {
   console.log(sd[0]?.slider_image)
   const navigate = useNavigate();
   const addF=()=>{
-    navigate('/addfund');
+    navigate('/imp9');
   }
 
 
@@ -103,12 +103,12 @@ function Top() {
       <div className="flex flex-col items-center justify-center ">
         <div className="flex">
           <div className='mr-4'>
-            <button onClick={() =>addF()}>
+            <button onClick={() => navigate('/imp9')}>
               <img src={addfund} alt="Add Fund" style={cellImageStyle} />
             </button>
           </div>
           <div>
-            <button onClick={() => handleButtonClick('addFund')}>
+            <button onClick={() => navigate('/imp7')}>
               <img src={withdraw} alt="Add Fund" style={cellImageStyle} />
             </button>
           </div>
