@@ -30,6 +30,7 @@ const MyModal = ({ closeModal, totalIndex, totalPoints, submittedData, gameId , 
   console.log(token)
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('submite pressed')
     try {
         await fetchData(token, gameId, submittedData, gameName , pana, totalPoints, date);
         notify();
