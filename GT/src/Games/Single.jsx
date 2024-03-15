@@ -24,6 +24,7 @@ function Single() {
   
   const formattedDate = day + "-" + months[monthIndex] + "-" + year;
   const [submit, setSubmit]= useState('');
+
   
   console.log(formattedDate);
   const navbarStyle = {
@@ -61,6 +62,9 @@ function Single() {
   const [isProceed, setIsProceed] = useState(false);
   const [showModal,setShowModal] = useState(false);
   const closeModal = ()=> setShowModal(false);
+  const clearSubmittedData = () => {
+    setSubmittedData([]); // Function to clear submittedData
+  };
 
   const [isOpen, setIsOpen] = useState(true);
   const { gameId, openTime, gameName, pana } = useLocation().state;
@@ -330,7 +334,7 @@ function Single() {
                     gameName= {gameName}
                     pana= {pana}
                     date={formattedDate}
-                    
+                    clearSubmittedData={clearSubmittedData}
                   />)}
                   </>
                 )}
