@@ -63,6 +63,7 @@ function Single() {
   const [showModal,setShowModal] = useState(false);
   const closeModal = ()=> setShowModal(false);
   const clearSubmittedData = () => {
+    setIsProceed(false);
     setSubmittedData([]); // Function to clear submittedData
   };
 

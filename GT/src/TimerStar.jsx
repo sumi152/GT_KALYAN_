@@ -22,7 +22,8 @@ const TimerStar = ({ closeTime }) => {
 
   useEffect(() => {
     const timer = setInterval(() => calculateTimeLeft(), 1000);
-    return () => clearInterval(timer); // Cleanup timer on component unmount
+    return () => clearInterval(timer);
+    
   }, []);
 
   const formatTime = (time) => {
