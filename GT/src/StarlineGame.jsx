@@ -73,8 +73,8 @@ function StarlineGame() {
               <button
                 onClick={() => {
                   // console.log(game.msg_status)
-                  if (game.msg_status === 2) {
-                    navigate("/stargame", { state: { gameId: game.game_id } });
+                  if (game.msg_status === 1) {
+                    navigate("/stargame", { state: { gameId: game.game_id, openTime:game.open_time , gameName: game.game_name} });
                   }
                 }}
               >

@@ -28,7 +28,8 @@ function StarGame() {
   const back = () => {
     navigate(-1);
   };
-  const { gameId } = useLocation().state;
+  const { gameId,openTime, gameName } = useLocation().state;
+
   console.log(gameId);
 
   return (
@@ -50,15 +51,18 @@ function StarGame() {
           <div className="col-span-1 flex justify-center items-center ">
             <button
               onClick={() => {
-                navigate("/ssinglepana", { state: { gameId } });
+                navigate("/starsingle", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Single Pana' } });
               }}
             >
               <img src={url1} alt="Image 1" className="w-64 h-64" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center   ">
-            <button>
-              <img src={url2} alt="Image 2" className="w-64 h-64" />
+            <button
+            onClick={() => {
+              navigate("/ssinglepana", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Single Pana' } });
+            }}>
+              <img src={url3} alt="Image 2" className="w-64 h-64" />
             </button>
           </div>
 
@@ -66,19 +70,19 @@ function StarGame() {
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button
               onClick={() => {
-                navigate("/starsingle", { state: { gameId } });
+                navigate("/sdoublepana",{ state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Single Pana' } });
               }}
             >
-              <img src={url3} alt="Image 3" className="w-64 h-64" />
+              <img src={url4} alt="Image 3" className="w-64 h-64" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center mt-4">
             <button
               onClick={() => {
-                navigate("/sdoublepana", { state: { gameId } });
+                navigate("/stripplepana", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Single Pana' } });
               }}
             >
-              <img src={url4} alt="Image 4" className="w-64 h-64" />
+              <img src={url5} alt="Image 4" className="w-64 h-64" />
             </button>
           </div>
         </div>
