@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import MyModal from "../ShowModal.jsx"
 
 function Single() {
+  const singleDigitArray = Array.from({ length: 10 }, (_, index) => index.toString());
   const todayDate = new Date().toISOString().split("T")[0];
   const months = [
     "January", "February", "March", "April", "May", "June", "July", "August",
@@ -172,7 +173,7 @@ function Single() {
     const errors = {};
     if (!digit) {
       errors.digit = "Please enter the number";
-    } else if (parseInt(digit) >= 10) {
+    } else if (!singleDigitArray.includes(digit)) {
       errors.digit = `Number ${digit} is not valid`;
     }
     if (!point) {
@@ -299,7 +300,14 @@ function Single() {
               ref={digit}
               placeholder="Enter Digit"
               className="w-full p-4 border border-black-500 rounded-xl text-black"
+              list="digitList" // Step 2: Add list attribute
+              autoComplete="off" 
             />
+            <datalist id="digitList">
+  {singleDigitArray.map((digit, index) => (
+    <option key={index} value={digit} />
+  ))}
+</datalist>
             <p className="my-2">Points</p>
             <input
               type="number"

@@ -8,22 +8,154 @@ import { useSelector } from "react-redux";
 import useGameFront from "../Hooks/useGameFront";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import MyModal from "../ShowModal.jsx"
+import MyModal from "../ShowModal.jsx";
 
 function SinglePana() {
+  const singlePanaArray = [
+    "120",
+    "123",
+    "124",
+    "125",
+    "126",
+    "127",
+    "128",
+    "129",
+    "130",
+    "134",
+    "135",
+    "136",
+    "137",
+    "138",
+    "139",
+    "140",
+    "145",
+    "146",
+    "147",
+    "148",
+    "149",
+    "150",
+    "156",
+    "157",
+    "158",
+    "159",
+    "160",
+    "167",
+    "168",
+    "169",
+    "170",
+    "178",
+    "179",
+    "180",
+    "189",
+    "190",
+    "230",
+    "234",
+    "235",
+    "236",
+    "237",
+    "238",
+    "239",
+    "240",
+    "245",
+    "246",
+    "247",
+    "248",
+    "249",
+    "250",
+    "256",
+    "257",
+    "258",
+    "259",
+    "260",
+    "267",
+    "268",
+    "269",
+    "270",
+    "278",
+    "279",
+    "280",
+    "289",
+    "290",
+    "340",
+    "345",
+    "346",
+    "347",
+    "348",
+    "349",
+    "350",
+    "356",
+    "357",
+    "358",
+    "359",
+    "360",
+    "367",
+    "368",
+    "369",
+    "370",
+    "378",
+    "379",
+    "380",
+    "389",
+    "390",
+    "450",
+    "456",
+    "457",
+    "458",
+    "459",
+    "460",
+    "467",
+    "468",
+    "469",
+    "470",
+    "478",
+    "479",
+    "480",
+    "489",
+    "490",
+    "560",
+    "567",
+    "568",
+    "569",
+    "570",
+    "578",
+    "579",
+    "580",
+    "589",
+    "590",
+    "670",
+    "678",
+    "679",
+    "680",
+    "689",
+    "690",
+    "780",
+    "789",
+    "790",
+    "890",
+  ];
   const todayDate = new Date().toISOString().split("T")[0];
   const months = [
-    "January", "February", "March", "April", "May", "June", "July", "August",
-    "September", "October", "November", "December"
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
-  
+
   const newDate = new Date();
   const day = newDate.getDate();
   const monthIndex = newDate.getMonth();
   const year = newDate.getFullYear();
-  
+
   const formattedDate = day + "-" + months[monthIndex] + "-" + year;
-  const [submit, setSubmit]= useState('');
+  const [submit, setSubmit] = useState("");
 
   const navbarStyle = {
     height: "60px",
@@ -32,17 +164,17 @@ function SinglePana() {
   };
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
-    backgroundSize: 'cover', // This will make the background image cover the container without 
-    backgroundPosition: 'center',
-    position:'relative',
-    paddingBottom:'400px',
+    backgroundSize: "cover", // This will make the background image cover the container without
+    backgroundPosition: "center",
+    position: "relative",
+    paddingBottom: "400px",
   };
-  const cardStyle={
-    width:'400px',
-    display:'flex',
-    flexDirection:'column',
-    padding:'20px',
-  }
+  const cardStyle = {
+    width: "400px",
+    display: "flex",
+    flexDirection: "column",
+    padding: "20px",
+  };
 
   const digit = useRef();
   const date = useRef();
@@ -58,8 +190,8 @@ function SinglePana() {
   const [submittedData, setSubmittedData] = useState([]);
   const [res, setRes] = useState({});
   const [isProceed, setIsProceed] = useState(false);
-  const [showModal,setShowModal] = useState(false);
-  const closeModal = ()=> setShowModal(false);
+  const [showModal, setShowModal] = useState(false);
+  const closeModal = () => setShowModal(false);
   const clearSubmittedData = () => {
     setIsProceed(false);
     setSubmittedData([]); // Function to clear submittedData
@@ -108,11 +240,10 @@ function SinglePana() {
     console.log(isOpen);
   }, [res.wallet_amt]);
 
-
   useEffect(() => {
     if (res && res.wallet_amt) {
       setWalletAmt(resinfo.wallet_amt);
-      console.log(typeof(walletAmt))
+      console.log(typeof walletAmt);
     }
   }, [res.wallet_amt]);
 
@@ -122,8 +253,7 @@ function SinglePana() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    
+
     setFormErrors({});
     const errors = validate(digit.current.value, point.current.value);
 
@@ -138,7 +268,9 @@ function SinglePana() {
     } else {
       setIsProceed(true);
       setFormErrors({});
-      const sessionValue = document.getElementById("option2").checked ? "open" : "close";
+      const sessionValue = document.getElementById("option2").checked
+        ? "open"
+        : "close";
       const newDataObject = {
         digits: digit.current.value,
         closedigits: "",
@@ -151,7 +283,7 @@ function SinglePana() {
 
       setSubmittedData((prevData) => {
         const updatedData = [...prevData, newDataObject];
-        console.log(submittedData)
+        console.log(submittedData);
         return updatedData;
       });
       setDigitValue("");
@@ -170,7 +302,7 @@ function SinglePana() {
     const errors = {};
     if (!digit) {
       errors.digit = "Please enter the number";
-    } else if (parseInt(digit) >= 10) {
+    } else if (!singlePanaArray.includes(digit)) {
       errors.digit = `Number ${digit} is not valid`;
     }
     if (!point) {
@@ -184,7 +316,6 @@ function SinglePana() {
   };
 
   const calculateTimeLeft = () => {
-    
     const openTimeWithoutSuffix = openTime.replace(/\s[AaPp][Mm]$/, "");
     const openDateString = new Date().toLocaleDateString(); // Get current date as a string
     const open = `${openDateString}T${openTimeWithoutSuffix}`;
@@ -214,14 +345,15 @@ function SinglePana() {
       setIsOpen(false);
     }
   };
-  const totalPoints=submittedData.reduce((acc, curr) => acc + parseInt(curr.points), 0)
-
+  const totalPoints = submittedData.reduce(
+    (acc, curr) => acc + parseInt(curr.points),
+    0
+  );
 
   return (
     <>
       <div className="bg-custom-purple text-white" style={navbarStyle}>
-        <button className="px-4"
-        onClick={back}>
+        <button className="px-4" onClick={back}>
           <BiArrowBack size={24} />
         </button>
         <div>
@@ -242,17 +374,16 @@ function SinglePana() {
         </ul>
       </div>
       <div style={backStyle} className="text-white">
-      <div className="flex justify-center items-center pt-5 ">
-        <div className="" style={cardStyle}>
-        <input
+        <div className="flex justify-center items-center pt-5 ">
+          <div className="" style={cardStyle}>
+            <input
               type="date"
               value={todayDate}
               readOnly
               className="w-full flex justify-center p-4 text-black border border-black-500 rounded-xl text-center"
-            />  
-          <p className="m-2">Choose Session</p>
-          <div className="flex space-x-4 justify-center items-center w-full ">
-              
+            />
+            <p className="m-2">Choose Session</p>
+            <div className="flex space-x-4 justify-center items-center w-full ">
               {isOpen ? (
                 <div className="flex justify-center items-center w-1/2 border border-black-500 p-4 bg-white rounded-xl">
                   <input
@@ -300,7 +431,14 @@ function SinglePana() {
               ref={digit}
               placeholder="Enter Pana"
               className="w-full p-4 border border-black-500 rounded-xl text-black"
+              list="digitList" // Step 2: Add list attribute
+              autoComplete="off"
             />
+            <datalist id="digitList">
+              {singlePanaArray.map((digit, index) => (
+                <option key={index} value={digit} />
+              ))}
+            </datalist>
             <p className="my-2">Points</p>
             <input
               type="number"
@@ -319,27 +457,28 @@ function SinglePana() {
                 Proceed
               </button>
               {isProceed && (
-                  <>
-                    <button
-                      className="p-4 border border-black-500 rounded-xl bg-blue-500 mt-4 w-full ml-3"
-                      onClick={() => setShowModal(true)}
-                    >
-                      Submit
-                    </button>
-                    {showModal &&(
-                    <MyModal 
-                    closeModal={closeModal}
-                    totalIndex={submittedData.length} 
-                    totalPoints={totalPoints}
-                    submittedData={submittedData}   
-                    gameId={gameId} 
-                    gameName= {gameName}
-                    pana= {pana}
-                    date={formattedDate}
-                    clearSubmittedData={clearSubmittedData}
-                  />)}
-                  </>
-                )}
+                <>
+                  <button
+                    className="p-4 border border-black-500 rounded-xl bg-blue-500 mt-4 w-full ml-3"
+                    onClick={() => setShowModal(true)}
+                  >
+                    Submit
+                  </button>
+                  {showModal && (
+                    <MyModal
+                      closeModal={closeModal}
+                      totalIndex={submittedData.length}
+                      totalPoints={totalPoints}
+                      submittedData={submittedData}
+                      gameId={gameId}
+                      gameName={gameName}
+                      pana={pana}
+                      date={formattedDate}
+                      clearSubmittedData={clearSubmittedData}
+                    />
+                  )}
+                </>
+              )}
             </div>
             {submittedData.map((data, index) => {
               const handleClickRemoveDiv = (indexToRemove) => () => {
@@ -350,13 +489,13 @@ function SinglePana() {
                 setFormErrors({});
                 const removedItem = submittedData[indexToRemove];
                 const removedItemPoint = parseInt(removedItem.points);
-                
+
                 // Check if removedItemPoint is a valid number
                 if (!isNaN(removedItemPoint)) {
                   const newWalletAmt = walletAmt + removedItemPoint;
                   setWalletAmt(newWalletAmt);
                 } else {
-                  console.error('Invalid points data:', removedItem);
+                  console.error("Invalid points data:", removedItem);
                 }
                 if (newData.length === 0) {
                   setIsProceed(false); // Set isProceed to false if only one item is left
@@ -389,8 +528,8 @@ function SinglePana() {
                 </div>
               );
             })}
+          </div>
         </div>
-      </div>
       </div>
     </>
   );

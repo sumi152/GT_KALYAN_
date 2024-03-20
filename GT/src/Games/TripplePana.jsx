@@ -8,21 +8,43 @@ import { useSelector } from "react-redux";
 import useGameFront from "../Hooks/useGameFront";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import MyModal from "../ShowModal.jsx"
+import MyModal from "../ShowModal.jsx";
 function TripplePana() {
+  const triplePanaArray = [
+    "000",
+    "111",
+    "222",
+    "333",
+    "444",
+    "555",
+    "666",
+    "777",
+    "888",
+    "999",
+  ];
   const todayDate = new Date().toISOString().split("T")[0];
   const months = [
-    "January", "February", "March", "April", "May", "June", "July", "August",
-    "September", "October", "November", "December"
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
-  
+
   const newDate = new Date();
   const day = newDate.getDate();
   const monthIndex = newDate.getMonth();
   const year = newDate.getFullYear();
-  
+
   const formattedDate = day + "-" + months[monthIndex] + "-" + year;
-  const [submit, setSubmit]= useState('');
+  const [submit, setSubmit] = useState("");
 
   const navbarStyle = {
     height: "60px",
@@ -31,17 +53,17 @@ function TripplePana() {
   };
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
-    backgroundSize: 'cover', // This will make the background image cover the container without 
-    backgroundPosition: 'center',
-    position:'relative',
-    paddingBottom:'400px',
+    backgroundSize: "cover", // This will make the background image cover the container without
+    backgroundPosition: "center",
+    position: "relative",
+    paddingBottom: "400px",
   };
-  const cardStyle={
-    width:'400px',
-    display:'flex',
-    flexDirection:'column',
-    padding:'20px',
-  }
+  const cardStyle = {
+    width: "400px",
+    display: "flex",
+    flexDirection: "column",
+    padding: "20px",
+  };
 
   const digit = useRef();
   const date = useRef();
@@ -57,8 +79,8 @@ function TripplePana() {
   const [submittedData, setSubmittedData] = useState([]);
   const [res, setRes] = useState({});
   const [isProceed, setIsProceed] = useState(false);
-  const [showModal,setShowModal] = useState(false);
-  const closeModal = ()=> setShowModal(false);
+  const [showModal, setShowModal] = useState(false);
+  const closeModal = () => setShowModal(false);
   const clearSubmittedData = () => {
     setIsProceed(false);
     setSubmittedData([]); // Function to clear submittedData
@@ -107,11 +129,10 @@ function TripplePana() {
     console.log(isOpen);
   }, [res.wallet_amt]);
 
-
   useEffect(() => {
     if (res && res.wallet_amt) {
       setWalletAmt(resinfo.wallet_amt);
-      console.log(typeof(walletAmt))
+      console.log(typeof walletAmt);
     }
   }, [res.wallet_amt]);
 
@@ -121,8 +142,7 @@ function TripplePana() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    
+
     setFormErrors({});
     const errors = validate(digit.current.value, point.current.value);
 
@@ -137,7 +157,9 @@ function TripplePana() {
     } else {
       setIsProceed(true);
       setFormErrors({});
-      const sessionValue = document.getElementById("option2").checked ? "open" : "close";
+      const sessionValue = document.getElementById("option2").checked
+        ? "open"
+        : "close";
       const newDataObject = {
         digits: digit.current.value,
         closedigits: "",
@@ -150,7 +172,7 @@ function TripplePana() {
 
       setSubmittedData((prevData) => {
         const updatedData = [...prevData, newDataObject];
-        console.log(submittedData)
+        console.log(submittedData);
         return updatedData;
       });
       setDigitValue("");
@@ -169,7 +191,7 @@ function TripplePana() {
     const errors = {};
     if (!digit) {
       errors.digit = "Please enter the number";
-    } else if (parseInt(digit) >= 10) {
+    } else if (!triplePanaArray.includes(digit)) {
       errors.digit = `Number ${digit} is not valid`;
     }
     if (!point) {
@@ -183,7 +205,6 @@ function TripplePana() {
   };
 
   const calculateTimeLeft = () => {
-    
     const openTimeWithoutSuffix = openTime.replace(/\s[AaPp][Mm]$/, "");
     const openDateString = new Date().toLocaleDateString(); // Get current date as a string
     const open = `${openDateString}T${openTimeWithoutSuffix}`;
@@ -213,14 +234,15 @@ function TripplePana() {
       setIsOpen(false);
     }
   };
-  const totalPoints=submittedData.reduce((acc, curr) => acc + parseInt(curr.points), 0)
-
+  const totalPoints = submittedData.reduce(
+    (acc, curr) => acc + parseInt(curr.points),
+    0
+  );
 
   return (
     <>
       <div className="bg-custom-purple text-white" style={navbarStyle}>
-        <button className="px-4"
-        onClick={back}>
+        <button className="px-4" onClick={back}>
           <BiArrowBack size={24} />
         </button>
         <div>
@@ -241,17 +263,16 @@ function TripplePana() {
         </ul>
       </div>
       <div style={backStyle} className="text-white">
-      <div className="flex justify-center items-center pt-5 ">
-        <div className="" style={cardStyle}>
-        <input
+        <div className="flex justify-center items-center pt-5 ">
+          <div className="" style={cardStyle}>
+            <input
               type="date"
               value={todayDate}
               readOnly
               className="w-full flex justify-center p-4 text-black border border-black-500 rounded-xl text-center"
-            />  
-          <p className="m-2">Choose Session</p>
-          <div className="flex space-x-4 justify-center items-center w-full ">
-              
+            />
+            <p className="m-2">Choose Session</p>
+            <div className="flex space-x-4 justify-center items-center w-full ">
               {isOpen ? (
                 <div className="flex justify-center items-center w-1/2 border border-black-500 p-4 bg-white rounded-xl">
                   <input
@@ -291,7 +312,6 @@ function TripplePana() {
                 </label>
               </div>
             </div>
-
             <p className="my-2">{isOpen ? "Open Pana" : "Close Pana"}</p>
             <input
               type="number"
@@ -299,7 +319,14 @@ function TripplePana() {
               ref={digit}
               placeholder="Enter Pana"
               className="w-full p-4 border border-black-500 rounded-xl text-black"
-            />
+              list="digitList" // Step 2: Add list attribute
+              autoComplete="off"
+            />{" "}
+            <datalist id="digitList">
+              {triplePanaArray.map((digit, index) => (
+                <option key={index} value={digit} />
+              ))}
+            </datalist>
             <p className="my-2">Points</p>
             <input
               type="number"
@@ -318,27 +345,28 @@ function TripplePana() {
                 Proceed
               </button>
               {isProceed && (
-                  <>
-                    <button
-                      className="p-4 border border-black-500 rounded-xl bg-blue-500 mt-4 w-full ml-3"
-                      onClick={() => setShowModal(true)}
-                    >
-                      Submit
-                    </button>
-                    {showModal &&(
-                    <MyModal 
-                    closeModal={closeModal}
-                    totalIndex={submittedData.length} 
-                    totalPoints={totalPoints}
-                    submittedData={submittedData}   
-                    gameId={gameId} 
-                    gameName= {gameName}
-                    pana= {pana}
-                    date={formattedDate}
-                    clearSubmittedData={clearSubmittedData}
-                  />)}
-                  </>
-                )}
+                <>
+                  <button
+                    className="p-4 border border-black-500 rounded-xl bg-blue-500 mt-4 w-full ml-3"
+                    onClick={() => setShowModal(true)}
+                  >
+                    Submit
+                  </button>
+                  {showModal && (
+                    <MyModal
+                      closeModal={closeModal}
+                      totalIndex={submittedData.length}
+                      totalPoints={totalPoints}
+                      submittedData={submittedData}
+                      gameId={gameId}
+                      gameName={gameName}
+                      pana={pana}
+                      date={formattedDate}
+                      clearSubmittedData={clearSubmittedData}
+                    />
+                  )}
+                </>
+              )}
             </div>
             {submittedData.map((data, index) => {
               const handleClickRemoveDiv = (indexToRemove) => () => {
@@ -349,13 +377,13 @@ function TripplePana() {
                 setFormErrors({});
                 const removedItem = submittedData[indexToRemove];
                 const removedItemPoint = parseInt(removedItem.points);
-                
+
                 // Check if removedItemPoint is a valid number
                 if (!isNaN(removedItemPoint)) {
                   const newWalletAmt = walletAmt + removedItemPoint;
                   setWalletAmt(newWalletAmt);
                 } else {
-                  console.error('Invalid points data:', removedItem);
+                  console.error("Invalid points data:", removedItem);
                 }
                 if (newData.length === 0) {
                   setIsProceed(false); // Set isProceed to false if only one item is left
@@ -388,8 +416,8 @@ function TripplePana() {
                 </div>
               );
             })}
+          </div>
         </div>
-      </div>
       </div>
     </>
   );

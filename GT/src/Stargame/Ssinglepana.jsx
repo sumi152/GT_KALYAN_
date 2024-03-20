@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import useGameFront from "../Hooks/useGameFront";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import MyModal from "../ShowModal.jsx"
+import StarModal from "./StarModal.jsx"
 
 function Ssinglepana() {
   const todayDate = new Date().toISOString().split("T")[0];
@@ -242,7 +242,7 @@ function Ssinglepana() {
                       Submit
                     </button>
                     {showModal &&(
-                    <MyModal 
+                    <StarModal 
                     closeModal={closeModal}
                     totalIndex={submittedData.length} 
                     totalPoints={totalPoints}
