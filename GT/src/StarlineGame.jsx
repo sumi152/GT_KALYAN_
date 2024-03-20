@@ -61,7 +61,9 @@ function StarlineGame() {
             </div>
             <div style={centerstyle}>
               <div>
+              <a href={resinfo.web_starline_chart_url} target="_blank">
                 <img src={chart} style={imgstyle} alt="" />
+              </a>
               </div>
               <div
                 className={`text-${
@@ -84,10 +86,6 @@ function StarlineGame() {
                   alt=""
                 />
               </button>
-            </div>
-            <div style={laststyle}>
-              <p className="text-green-500">Open - {game.open_time} </p>
-              <p className="text-red-500">Close - 12.05PM </p>
             </div>
           </div>
         </div>
