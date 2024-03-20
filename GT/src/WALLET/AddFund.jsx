@@ -3,29 +3,40 @@ import { BiArrowBack } from "react-icons/bi";
 import fund from "../Images/wallet_transparent.png";
 import phone_pe from "../Images/phone_pe.png";
 import gpay from "../Images/gpay.png";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import useUpiOption from "../Hooks/useUpiOtion";
+import { useSelector } from "react-redux";
+import useWallet from "../Hooks/useWallet"
+
 function AddFunds() {
+  const [currentBalance, setCurrentBalance] = useState(0);
+  const [amountToAdd, setAmountToAdd] = useState(0);
+  const navigate = useNavigate();
+
   const navbarStyle = {
     height: "60px",
     display: "flex",
     alignItems: "center",
     position: "relative",
   };
+
   const topStyle = {
     backgroundImage: `url(${topBackground})`,
     backgroundSize: "cover",
-    height: "auto ", // Set the height of the div
-    width: "100%", // Set the width of the div
+    height: "auto ",
+    width: "100%",
     padding: "",
   };
+
   const box1 = {
     border: "3px solid #ccc",
     padding: "10px",
-    width: "300px", // Adjust the width as needed
+    width: "300px",
     margin: "auto",
-    borderRadius: "10px", // Add border-radius for rounded corners
-    background: "linear-gradient(to right, #141384, #000000)", // Blue gradient background
-    color: "#fff", // Text color
+    borderRadius: "10px",
+    background: "linear-gradient(to right, #141384, #000000)",
+    color: "#fff",
     marginBottom: "20px",
   };
 
@@ -60,11 +71,10 @@ function AddFunds() {
     background: "#061050",
     color: "#fff",
     cursor: "pointer",
-    // Make the button span 2 columns in the second row
   };
 
   const secondRowButtonStyle = {
-    gridColumn: "span 3", // Make the button span 2 columns in the second row
+    gridColumn: "span 3",
     ...buttonStyle,
   };
 
@@ -90,7 +100,7 @@ function AddFunds() {
   };
 
   const radioLabelStyle = {
-    marginLeft: "16px", // Adjust the margin as needed
+    marginLeft: "16px",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -100,20 +110,20 @@ function AddFunds() {
     background: "linear-gradient(to right, #33FF42, #7433FF)",
     borderRadius: "20px",
     padding: "8px 3px 8px 5px",
-    alignItems: "center", // Align items to the start (top) of the container
+    alignItems: "center",
     width: "115px"
   };
 
   const radioImageStyle = {
-    width: "30px", // Adjust the width as needed
+    width: "30px",
   };
 
   const box4 = {
     width: "auto",
     padding: "20px",
     display: "flex",
-    justifyContent: "center", // Center horizontally
-    alignItems: "center" // Center vertically
+    justifyContent: "center",
+    alignItems: "center"
   }
 
   const btnStyle = {
@@ -121,18 +131,36 @@ function AddFunds() {
     width: "300px",
     padding: "7px",
     borderRadius: "15px",
-
   }
+
+  const mobile = useSelector((state) => state.userDetail.mobile);
+  const unique = useSelector((state) => state.userDetail.token);
+  const resinfo = useUpiOption(unique, mobile);
+  console.log('sumit')
+  console.log(resinfo)
+
   const backendValue = "Value from Backend";
-  const navigate= useNavigate();
-  const back=()=>{
+  const back = () => {
     navigate("/imp");
   }
+
+  const handleAddFunds = () => {
+    setCurrentBalance(prevBalance => prevBalance + parseInt(amountToAdd));
+    setAmountToAdd(0); // Reset input field after adding funds
+  };
+
+  const res = useWallet(unique);
+  useEffect(() => {
+    if (res && res.wallet_amt) {
+      // setWalletAmt(res.wallet_amt);
+    }
+  }, [res.wallet_amt]);
+
 
   return (
     <>
       <div className="bg-custom-purple text-white " style={navbarStyle}>
-        <button className="px-4"  onClick={()=>back()}>
+        <button className="px-4" onClick={back}>
           <BiArrowBack size={24} />
         </button>
         <div className="flex justify-center items-center">
@@ -143,27 +171,33 @@ function AddFunds() {
       <div className=" p-5" style={topStyle}>
         <div className="" style={box1}>
           <p>Current Balance</p>
-          <p>RS 0</p>
+          <p>RS {res.wallet_amt}</p>
         </div>
         <div className="p-5 sm:w-auto md:max-w-lg lg:max-w-lg " style={box2}>
           <h1 className="pb-3">Add Point</h1>
-          {/* Input field */}
-          <input type="text" placeholder="Enter amount" style={enterAmount} />
-          {/* Button grid */}
+          <input
+            type="number"
+            placeholder="Enter amount"
+            style={enterAmount}
+            value={amountToAdd}
+            onChange={(e) => setAmountToAdd(e.target.value)}
+          />
           <div style={gridContainer}>
-            {/* First Row */}
-            <button className="col-span-2" style={buttonStyle}>
+            <button className="col-span-2" style={buttonStyle} onClick={() => setAmountToAdd(500)}>
               500
             </button>
-            <button className="col-span-2" style={buttonStyle}>
+            <button className="col-span-2" style={buttonStyle} onClick={() => setAmountToAdd(1000)}>
               1000
             </button>
-            <button className="col-span-2" style={buttonStyle}>
+            <button className="col-span-2" style={buttonStyle} onClick={() => setAmountToAdd(2000)}>
               2000
             </button>
-            {/* Second Row */}
-            <button style={secondRowButtonStyle}>5000</button>
-            <button style={secondRowButtonStyle}>10000</button>
+            <button style={secondRowButtonStyle} onClick={() => setAmountToAdd(5000)}>
+              5000
+            </button>
+            <button style={secondRowButtonStyle} onClick={() => setAmountToAdd(10000)}>
+              10000
+            </button>
           </div>
         </div>
         <div style={radioContainer}>
@@ -185,7 +219,6 @@ function AddFunds() {
               </span>
             </label>
           </div>
-
           <div style={box3}>
             <label style={radioStyle}>
               <input type="radio" style={radioInputStyle} name="radioGroup" />
@@ -196,7 +229,7 @@ function AddFunds() {
           </div>
         </div>
         <div style={box4}>
-          <button className="text-white rounded" style={btnStyle}>
+          <button className="text-white rounded" style={btnStyle} onClick={handleAddFunds}>
             Add Money
           </button>
         </div>
@@ -204,6 +237,7 @@ function AddFunds() {
       </div>
     </>
   );
+
 }
 
 export default AddFunds;
