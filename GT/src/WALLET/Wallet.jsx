@@ -87,7 +87,7 @@ function Wallet() {
   };
 
   const addf = () => {
-    navigate("/addfund");
+    navigate("/imp9");
   };
 
   const withd = () => {

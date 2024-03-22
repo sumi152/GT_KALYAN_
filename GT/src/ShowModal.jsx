@@ -1,7 +1,5 @@
-import "./Modal.css";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -17,13 +15,7 @@ const MyModal = ({
   date,
   clearSubmittedData,
 }) => {
-  console.log(totalIndex);
-  console.log(totalPoints);
-  console.log(submittedData);
-  console.log(gameId);
-  console.log(gameName);
-  console.log(pana);
-  console.log(date);
+  const [isSubmitting, setIsSubmitting] = useState(false); // State to track form submission
 
   const navigate = useNavigate();
   const notify = () => {
@@ -38,25 +30,30 @@ const MyModal = ({
   }, []);
 
   const token = useSelector((state) => state.userDetail.token);
-  console.log(token);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("submite pressed");
-    try {
-      await fetchData(
-        token,
-        gameId,
-        submittedData,
-        gameName,
-        pana,
-        totalPoints,
-        date
-      );
-      notify();
-      closeModal(); // Close the modal here
-      clearSubmittedData()
-    } catch (error) {
-      console.log(error);
+    if (!isSubmitting) { // Check if form is already being submitted
+      setIsSubmitting(true); // Set submitting state to true
+      console.log("submit pressed");
+      try {
+        await fetchData(
+          token,
+          gameId,
+          submittedData,
+          gameName,
+          pana,
+          totalPoints,
+          date
+        );
+        notify();
+        closeModal();
+        clearSubmittedData();
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsSubmitting(false); // Reset submitting state to false
+      }
     }
   };
 
@@ -146,8 +143,12 @@ const MyModal = ({
             CANCEL
           </button>
           <form onSubmit={handleSubmit}>
-            <button type="submit" className="bg-green-500 rounded-xl p-4">
-              SUBMIT
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="bg-green-500 rounded-xl p-4"
+            >
+              {isSubmitting ? "Submitting..." : "SUBMIT"}
             </button>
           </form>
         </div>
@@ -155,4 +156,5 @@ const MyModal = ({
     </>
   );
 };
+
 export default MyModal;
