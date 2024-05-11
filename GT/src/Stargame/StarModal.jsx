@@ -122,7 +122,7 @@ const StarModal = ({
         <p>Once you placed a bid, it will not be cancelled</p>
         <p className="text-center">in any situation</p>
         <p className="text-center bg-green-400 mb-2 py-2 text-white">
-          Single Digit
+          {pana}
         </p>
         <div className="flex justify-between align-middle bg-green-900 text-white mb-2 py-2 px-2">
           <div className="flex flex-col">
