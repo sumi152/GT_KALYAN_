@@ -1,7 +1,8 @@
 import useTransaction from "../Hooks/useTransaction";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-
+import topBackground from "../Images/bg.png";
+import { BiArrowBack } from "react-icons/bi";
 import close from "../Images/close.png";
 import open from "../Images/play.png";
 
@@ -11,6 +12,21 @@ function Transaction() {
   const unique = useSelector((state) => state.userDetail.token);
   const resinfo = useTransaction(unique);
   console.log(resinfo);
+  const topStyle = {
+    backgroundImage: `url(${topBackground})`,
+    backgroundSize: "cover",
+    height: "auto ", // Set the height of the div
+    width: "100%", // Set the width of the div
+    paddingTop:'50px', 
+    paddingBottom:'100px'
+  };
+  const navbarStyle = {
+    height: "60px",
+    display: "flex",
+    alignItems: "center",
+    position: "relative",
+  };
+  
 
   useEffect(() => {
     if (resinfo && resinfo["transaction_history"]) {
@@ -26,6 +42,16 @@ function Transaction() {
   console.log(gameRates);
   return (
     <>
+    <div className="bg-custom-purple text-white " style={navbarStyle}>
+        <button className="px-4" onClick={() => back()}>
+          <BiArrowBack size={24} />
+        </button>
+        <div className="flex justify-center items-center">
+          {/* <img src={fund} alt="Wallet" /> */}
+          <h1 className="text-white px-3">Wallet History</h1>
+        </div>
+      </div>
+    <div style={topStyle}>
       <div className="">
         {gameRates.map((game, index) => (
           <div key={index} className="mb-8">
@@ -47,6 +73,7 @@ function Transaction() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </>
   );

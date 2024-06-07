@@ -253,7 +253,7 @@ function AddFunds() {
         <p className="text-white mb-2">Or</p>
         </div>
         <div style={box4}>
-          <button className="text-black border rounded w-64" style={{background: "#E5B80B",width: "300px",padding: "7px",borderRadius: "15px",}} onClick={handleAddFunds}>
+          <button className="text-black border rounded w-64" style={{background: "#E5B80B",width: "300px",padding: "7px",borderRadius: "15px",}}  onClick={() => navigate('/qrpay')} >
             QR PAY
           </button>
         </div>
