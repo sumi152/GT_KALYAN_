@@ -84,7 +84,7 @@ function Win({onDataFetch}) {
     };
 
     const response = await fetch(
-      "https://kalyanmilanofficialmatka.in/api-wining-history-data",
+      "https://kalyanmilanofficialmatka.in/api-galidisawar-wining-history-data",
       requestOptions
     );
     const result = await response.json();
@@ -120,13 +120,13 @@ function Win({onDataFetch}) {
       <div style={backStyle} className="text-white">
         <div className="flex justify-center item-center p-5" >
           <div className="" style={cardStyle} >
-            <p className="inline-block rounded p-3 border border-white mb-2 bg-blue-500 w-1/2" >Select Dates</p>
+            <p className="inline-block rounded p-3 border border-white mb-2 bg-blue-950 w-full" >Select Dates</p>
             <p className="mb-2">From Date</p>
             <DatePickerButton selectedDate={selectedDate} onDateChange={handleDateChange} />
             <p className="mb-2 mt-2" >To Date</p>
             <DatePickerButton selectedDate={selectedEndDate} onDateChange={handleEndDateChange} />
             <div className="flex justify-center  ">
-              <button className="p-3 border border-black-500 rounded mt-4 bg-green-500 w-1/2" onClick={handleSubmit}>Submit</button>
+              <button className="p-3 border border-black-500 rounded mt-4 bg-green-500 w-full" onClick={handleSubmit}>Submit</button>
             </div>
           </div>
         </div>

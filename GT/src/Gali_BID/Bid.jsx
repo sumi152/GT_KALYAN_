@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-function Win({onDataFetch}) {
+function Bid({onDataFetch}) {
   const navbarStyle = {
     height: "60px",
     display: "flex",
@@ -60,38 +60,57 @@ function Win({onDataFetch}) {
 
   };
 
-  const fetchData = async ( startdate1, enddate1) => {
-    // Your fetchData implementation here
+  const fetchData = async (startdate1, enddate1) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append(
       "Cookie",
       "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
     );
-
+  
     var raw = JSON.stringify({
       env_type: "Prod",
       app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
       unique_token: token,
-      date_from: startdate1,
-      date_to: enddate1
+      bid_from: startdate1,
+      bid_to: enddate1
     });
+  
     const requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
     };
-
-    const response = await fetch(
-      "https://kalyanmilanofficialmatka.in/api-wining-history-data",
-      requestOptions
-    );
-    const result = await response.json();
-    if(result?.status==true)onDataFetch(true , result);
-    else onDataFetch(false,null);
-    // console.log(result);
+  
+    try {
+      const response = await fetch(
+        "https://kalyanmilanofficialmatka.in/api-galidisawar-bid-history-data",
+        requestOptions
+      );
+  
+      if (!response.ok) {
+        // Handle HTTP errors
+        const errorText = await response.text();
+        console.error('HTTP Error:', response.status, errorText);
+        onDataFetch(false, null);
+        return;
+      }
+  
+      const result = await response.json();
+      if (result?.status === true) {
+        onDataFetch(true, result);
+      } else {
+        onDataFetch(false, null);
+      }
+      console.log(result);
+    } catch (error) {
+      // Handle network or other errors
+      console.error('Fetch Error:', error);
+      onDataFetch(false, null);
+    }
   };
+  
 
   const changedate =( selectedDate)=>{
     if(selectedDate===null)return;
@@ -114,19 +133,19 @@ function Win({onDataFetch}) {
           <BiArrowBack size={24} />
         </button>
         <div>
-          <h1 className="text-white px-3">WIN HISTORY</h1>
+          <h1 className="text-white px-3">BID HISTORY</h1>
         </div>
       </div>
       <div style={backStyle} className="text-white">
         <div className="flex justify-center item-center p-5" >
           <div className="" style={cardStyle} >
-            <p className="inline-block rounded p-3 border border-white mb-2 bg-blue-500 w-1/2" >Select Dates</p>
+            <p className="inline-block rounded p-3 border border-white mb-2 bg-blue-950 w-full" >Select Dates</p>
             <p className="mb-2">From Date</p>
             <DatePickerButton selectedDate={selectedDate} onDateChange={handleDateChange} />
             <p className="mb-2 mt-2" >To Date</p>
             <DatePickerButton selectedDate={selectedEndDate} onDateChange={handleEndDateChange} />
             <div className="flex justify-center  ">
-              <button className="p-3 border border-black-500 rounded mt-4 bg-green-500 w-1/2" onClick={handleSubmit}>Submit</button>
+              <button className="p-3 border border-black-500 rounded mt-4 bg-green-500 w-full" onClick={handleSubmit}>Submit</button>
             </div>
           </div>
         </div>
@@ -135,4 +154,4 @@ function Win({onDataFetch}) {
   );
 }
 
-export default Win;
+export default Bid;
