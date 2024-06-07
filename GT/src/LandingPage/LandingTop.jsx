@@ -47,8 +47,7 @@ function LandingTop() {
     width: 'auto',
     padding: '10px',
     borderRadius: '50%', // Make it circular
-    backgroundColor: 'white',
-    background: "linear-gradient(to right, #a832a6, #242224)",
+
 
 
   };
@@ -109,7 +108,7 @@ function LandingTop() {
         <div style={centerStyle}>
           <button onClick={()=>goTo()} className='flex justify-center'
           >
-            <img src={black} alt="Add Fund" style={cellImageStyle} />
+            <img  className=" h-24" src={black} alt="Add Fund" style={cellImageStyle} />
           </button>
         </div>
         <div className="flex">

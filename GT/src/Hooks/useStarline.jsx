@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 
-function useStarline(unique) {
+function useStarline() {
   const [res, setRes] = useState([]);
 
 

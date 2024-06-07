@@ -124,7 +124,7 @@ function Navbar() {
               <div className="flex items-center mx-2">
                 <img src={logo} alt="Center Image" className="w-20 h-20" />
               </div>
-              <button className="flex items-center justify-center hover:bg-green-700 text-white font-bold rounded-full w-10 h-10 mx-2" onClick={handlelogout}>
+              <button className="flex items-center justify-center hover:bg-green-700 text-white font-bold rounded-full w-10 h-10 mx-2" >
                 <img
                   src={telegram_icon} // Replace with the path to your Button 1 image
                   alt="Button 1"
@@ -343,10 +343,11 @@ function Navbar() {
               </NavLink>
             </li>
 
-            <li>
+            <li  onClick={handlelogout}>
               <NavLink
-                to='/about'
+              
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
+               
               >
                 <img
                   src={logoutImg}
