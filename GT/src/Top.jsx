@@ -13,6 +13,8 @@ import topBackground from './Images/bg.png';
 import { useNavigate } from 'react-router-dom';
 import useCarosuel from './Hooks/useCarosuel';
 import {  useSelector } from 'react-redux';
+import star from './Images/play_starline.png'
+import gali from './Images/gali_disawar.png'
 
 
 
@@ -47,13 +49,14 @@ function Top() {
     width: 'auto',
     padding: '10px',
     borderRadius: '50%', // Make it circular
-    backgroundColor: 'white',
-    background: "linear-gradient(to right, #a832a6, #242224)",
+    // backgroundColor: 'white',
+    // background: "linear-gradient(to right, #a832a6, #242224)",
 
 
   };
 
   const markerStyle = {
+    marginTop: '5px',
     display: 'flex',
     justifyContent: 'center',
     paddingBottom: '20px',
@@ -114,9 +117,9 @@ function Top() {
           </div>
         </div>
         <div style={centerStyle}>
-          <button onClick={() => navigate('/galiIMP')} className='flex justify-center'
+          <button onClick={() => navigate('/gameRates')} className='flex justify-center'
           >
-            <img src={black} alt="Add Fund" style={cellImageStyle} />
+            <img className='h-24' src={black} alt="Add Fund" style={cellImageStyle} />
           </button>
         </div>
         <div className="flex">
@@ -134,6 +137,14 @@ function Top() {
       </div>
       <div style={markerStyle}>
         <img src={marker} alt="marker" />
+      </div>
+      <div className='flex justify-center items-start pb-5 col-span-full'>
+      <button className='mr-3' onClick={() => navigate('/galiIMP')}>
+              <img src={gali} alt="Add Fund" className='w-64 h-15' />
+            </button>
+            <button onClick={() => navigate('/imp2')}>
+              <img src={star} alt="Add Fund" className='w-64 h-15' />
+            </button>
       </div>
     </div>
   );

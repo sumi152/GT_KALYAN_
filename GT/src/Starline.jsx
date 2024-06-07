@@ -2,8 +2,9 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import topBackground from "./Images/bg.png";
 import { BiArrowBack } from "react-icons/bi";
 import starMarker from "./Images/strline_market.png";
-import useStarGameRate from "./Hooks/useStarGameRate";
 import { useState, useEffect } from "react";
+import useStarGameRate from "./Hooks/useStarGameRate";
+import useStarline from "./Hooks/useStarline"
 function Starline() {
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
@@ -26,7 +27,6 @@ function Starline() {
   const box1 = {
     alignItems: "center",
     justifyContent: "center",
-    gap: "20%",
   };
 
   const priceStyle = {
@@ -51,6 +51,10 @@ function Starline() {
 
   const [status, setStatus] = useState(false);
   const [gameRates, setGameRates] = useState([]);
+  const [status1, setStatus1] = useState(false);
+  const [gameRates1, setGameRates1] = useState([]);
+  
+  const resinfo1 = useStarline();
   const resinfo = useStarGameRate();
 
   useEffect(() => {
@@ -59,6 +63,15 @@ function Starline() {
       setGameRates(resinfo['game_rates'][0]);
     }
   }, [resinfo]);
+  useEffect(() => {
+    if (resinfo1 && resinfo1["result"]) {
+      setStatus1(true);
+      setGameRates1(resinfo1["result"]);
+    }
+  }, [resinfo1]);
+  const handleClick = () => {
+    window.location.href = resinfo1['web_starline_chart_url'];
+  };
 
 
   return (
@@ -74,22 +87,29 @@ function Starline() {
         </div>
         <div>
           <div style={backStyle}>
-            <div className="flex " style={box1}>
-              <button
-                className="text-white rounded border border-white  "
-                style={btnStyle}
-                onClick={() => navigate("/imp5")}
-              >
-                Bid History
-              </button>
-              <button
-                className="text-white rounded border border-white "
-                style={btnStyle}
-                onClick={() => navigate("/imp6")}
-              >
-                Win History
-              </button>
-            </div>
+          <div className="flex " style={box1}>
+                <button
+                  className="text-white rounded border border-white  "
+                  style={btnStyle}
+                  onClick={() => navigate("/imp5")}
+                >
+                  Bid History
+                </button>
+                <button
+                  className="text-white rounded border border-white  "
+                  style={btnStyle}
+                  onClick={() => navigate("/imp6")}
+                >
+                  WIN History
+                </button>
+                <button
+                  className="text-white rounded border border-white"
+                  style={btnStyle}
+                  onClick={handleClick}
+                >
+                  CHART
+                </button>
+              </div>
             <div className="flex justify-center align-items-center">
               <div style={priceStyle} className="px-5 py-2 text-white">
                 
