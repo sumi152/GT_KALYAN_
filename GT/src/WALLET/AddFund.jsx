@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 import useUpiOption from "../Hooks/useUpiOtion";
 import { useSelector } from "react-redux";
 import useWallet from "../Hooks/useWallet"
+import deposit_history_btn from "../Images/deposit_history_btn.png";
+import deposit_rules_btn from "../Images/deposit_rules_btn.png";
 
 function AddFunds() {
   const [currentBalance, setCurrentBalance] = useState(0);
@@ -41,7 +43,8 @@ function AddFunds() {
   };
 
   const box2 = {
-    background: "linear-gradient(to right, #33FF42, #7433FF)",
+    background: "linear-gradient(to right, #141384, #000000)",
+    border: "3px solid #ccc",
     height: "auto",
     width: "auto",
     borderRadius: "10px",
@@ -51,11 +54,12 @@ function AddFunds() {
   };
 
   const enterAmount = {
+    
     padding: "8px",
-    borderRadius: "5px",
-    border: "1px solid #ffffff",
+    borderRadius: "15px",
+    border: "3px solid #ccc",
     display: "flex",
-    background: "linear-gradient(to right, #70D578, #033407)",
+    background: "linear-gradient(to right, #141384, #000000)",
   };
 
   const gridContainer = {
@@ -107,7 +111,7 @@ function AddFunds() {
   };
 
   const box3 = {
-    background: "linear-gradient(to right, #33FF42, #7433FF)",
+    background: "white",
     borderRadius: "20px",
     padding: "8px 3px 8px 5px",
     alignItems: "center",
@@ -127,8 +131,8 @@ function AddFunds() {
   }
 
   const btnStyle = {
-    background: "linear-gradient(to right, #33FF42, #7433FF)",
-    width: "300px",
+    background: "#E5B80B",
+    width: "200px",
     padding: "7px",
     borderRadius: "15px",
   }
@@ -168,15 +172,27 @@ function AddFunds() {
           <h1 className="text-white px-3">Add Fund</h1>
         </div>
       </div>
+
       <div className=" p-5" style={topStyle}>
+      <div  style={{   
+    padding: "10px",
+    width: "250px",
+    margin: "auto",
+
+    marginBottom: "20px",}}>
+        <button >
+          <img src={deposit_rules_btn}/>
+        </button>
+      </div>
         <div className="" style={box1}>
           <p>Current Balance</p>
           <p>RS {res.wallet_amt}</p>
         </div>
         <div className="p-5 sm:w-auto md:max-w-lg lg:max-w-lg " style={box2}>
-          <h1 className="pb-3">Add Point</h1>
+          <h1 className="pb-3 text-white">Add Point</h1>
           <input
             type="number"
+            className="text-white border rounded p-2 placeholder-white"
             placeholder="Enter amount"
             style={enterAmount}
             value={amountToAdd}
@@ -229,11 +245,29 @@ function AddFunds() {
           </div>
         </div>
         <div style={box4}>
-          <button className="text-white rounded" style={btnStyle} onClick={handleAddFunds}>
-            Add Money
+          <button className="text-black border rounded" style={btnStyle} onClick={handleAddFunds}>
+            ADD MONEY
           </button>
         </div>
-        <h1 className="text-white mx-auto flex justify-center">Recent Transaction</h1>
+        <div className="flex justify-center items-center">
+        <p className="text-white mb-2">Or</p>
+        </div>
+        <div style={box4}>
+          <button className="text-black border rounded w-64" style={{background: "#E5B80B",width: "300px",padding: "7px",borderRadius: "15px",}} onClick={handleAddFunds}>
+            QR PAY
+          </button>
+        </div>
+        <div  style={{   
+    padding: "10px",
+    width: "250px",
+    margin: "auto",
+
+    marginBottom: "20px",}}>
+        <button >
+          <img src={deposit_history_btn}/>
+        </button>
+      </div>
+
       </div>
     </>
   );

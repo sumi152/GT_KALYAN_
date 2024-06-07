@@ -225,11 +225,6 @@ function WithdrawFunds() {
           <p className="text-red-500 ">{errorText}</p>
 
         </div>
-        
-
-        <h1 className="text-white mx-auto flex justify-center">
-          Recent Transaction
-        </h1>
       </div>
     </>
   );

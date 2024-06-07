@@ -144,7 +144,7 @@ function AddFunds() {
           <p>RS 0</p>
         </div>
         <div className="p-5 sm:w-auto md:max-w-lg lg:max-w-lg " style={box2}>
-          <h1 className="pb-3">Add Point</h1>
+          <h1 className="pb-3 text-white">Add Point</h1>
           {/* Input field */}
           <input type="text" placeholder="Enter amount" style={enterAmount} />
           {/* Button grid */}
