@@ -5,6 +5,7 @@ import topBackground from "../Images/bg.png";
 import { BiArrowBack } from "react-icons/bi";
 import close from "../Images/close.png";
 import open from "../Images/play.png";
+import { useNavigate } from "react-router-dom";
 
 function Transaction() {
   const [status, setStatus] = useState(false);
@@ -18,7 +19,7 @@ function Transaction() {
     height: "auto ", // Set the height of the div
     width: "100%", // Set the width of the div
     paddingTop:'50px', 
-    paddingBottom:'100px'
+    paddingBottom:'900px'
   };
   const navbarStyle = {
     height: "60px",
@@ -40,6 +41,10 @@ function Transaction() {
   // console.log(gameRates);
   console.log('sumti')
   console.log(gameRates);
+  const navigate = useNavigate();
+  const back = () => {
+    navigate("/imp7");
+  }
   return (
     <>
     <div className="bg-custom-purple text-white " style={navbarStyle}>

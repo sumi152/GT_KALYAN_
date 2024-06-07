@@ -263,7 +263,7 @@ function AddFunds() {
     margin: "auto",
 
     marginBottom: "20px",}}>
-        <button >
+        <button onClick={() => navigate('/addfundhistory')} >
           <img src={deposit_history_btn}/>
         </button>
       </div>
