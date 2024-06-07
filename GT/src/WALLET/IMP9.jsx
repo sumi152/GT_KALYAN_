@@ -22,10 +22,10 @@ function IMP9() {
           <AddFund/>
         </div>
 
-        <div className="  text-white flex flex-col -mt-8  " style={topStyle}>
+        {/* <div className="  text-white flex flex-col -mt-8  " style={topStyle}>
           {console.log('Hello')}
           <AddFundHistory />
-        </div>
+        </div> */}
       </div>
     
 
