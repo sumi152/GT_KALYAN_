@@ -72,6 +72,7 @@ import GaliAllGame from './GaliAllGame.jsx'
 import LeftDigit from './Gali_games/LeftDigit.jsx'
 import RightDigit from './Gali_games/RightDigit.jsx'
 import JodiDigit from './Gali_games/JodiDigit.jsx'
+import QR_PAY from './QR_PAY.jsx'
 
 // import RightDigit from './Gali_games/RightDigit.jsx'
 
@@ -122,6 +123,7 @@ function App() {
         <Route path='/mymodel' element={<MyModal/>}></Route>
         <Route path='/transfer' element={<Transfer/>}></Route>
         <Route path='/transfermodel' element={<TransferModel/>}></Route>
+
         
         
         
@@ -137,6 +139,7 @@ function App() {
         <Route path="/profile" element={<> <Profile/> </>}></Route>
         <Route path='/imp2' element={<><IMP2/></>}></Route>
         <Route path="/withdraw"  element={<WithdrawFunds/>}> </Route>
+        <Route path="/qrpay" element={<QR_PAY/>}></Route>
         {/* <Route path="/withdraw"  element={<AddFunds/>}> </Route> */}
 
 

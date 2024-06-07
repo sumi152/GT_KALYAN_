@@ -10,6 +10,7 @@ import PaymentModal from "../PaymentModel.jsx";
 import { useState , useEffect } from "react";
 import useWallet from "../Hooks/useWallet.jsx";
 import { useSelector } from "react-redux";
+import wallet_history_btn from "../Images/wallet_history_btn.png"
 
 function Wallet() {
   const navbarStyle = {
@@ -21,7 +22,7 @@ function Wallet() {
   const topStyle = {
     backgroundImage: `url(${topBackground})`,
     backgroundSize: "cover",
-    height: "auto ", // Set the height of the div
+    height: "100vh ", // Set the height of the div
     width: "100%", // Set the width of the div
     padding: "",
   };
@@ -186,8 +187,20 @@ function Wallet() {
             {showModal && <PaymentModal closeModal={closeModal} option={selectedOption} />}
           </div>
         </div>
+        <div  style={{   
+    padding: "10px",
+    width: "250px",
+    margin: "auto",
 
-        <p className="mt-4 text-center text-white">Transactions</p>
+    marginBottom: "20px",}}>
+        <button onClick={() => navigate('/transaction')} >
+          <img src={wallet_history_btn}/>
+        </button>
+      </div>
+
+
+        {/* <p className="mt-4 text-center text-white">Transactions</p> */}
+
       </div>
     </>
   );
