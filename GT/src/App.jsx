@@ -69,6 +69,10 @@ import GALIIMP from './GALIIMP.jsx'
 import IMPWIN from './Gali_WIN/IMPWIN.jsx'
 import IMPBID from './Gali_BID/IMPBID.jsx'
 import GaliAllGame from './GaliAllGame.jsx'
+import LeftDigit from './Gali_games/LeftDigit.jsx'
+import RightDigit from './Gali_games/RightDigit.jsx'
+import JodiDigit from './Gali_games/JodiDigit.jsx'
+
 // import RightDigit from './Gali_games/RightDigit.jsx'
 
 
@@ -148,6 +152,9 @@ function App() {
         <Route path='/impwin' element={<><IMPWIN/></>}></Route>
         <Route path='/impbid' element={<><IMPBID/></>}></Route>
         <Route path='/galiallgame' element={<><GaliAllGame/></>}></Route>
+        <Route path='/leftdigit' element={<><LeftDigit/></>}></Route>
+        <Route path='/rightdigit' element={<><RightDigit/></>}></Route>
+        <Route path='/jodidigit' element={<><JodiDigit/></>}></Route>
         {/* <Route path="/right"  element={<RightDigit/>}> </Route>   */}
         
 

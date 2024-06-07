@@ -19,6 +19,11 @@ import ChangePass from "./Images/reset_pass.png";
 import lock_icon from "./Images/lock_icon.png";
 import user_profile from "./Images/user_profile.png";
 import question from "./Images/question.png";
+import website from "./Images/website.png";
+import share_icon from "./Images/share_icon.png";
+import policy from "./Images/policy.png";
+import telegram_icon from "./Images/telegram_icon.png";
+
 import { NavLink, useNavigate} from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from "./Util/loginSlice";
@@ -121,7 +126,7 @@ function Navbar() {
               </div>
               <button className="flex items-center justify-center hover:bg-green-700 text-white font-bold rounded-full w-10 h-10 mx-2" onClick={handlelogout}>
                 <img
-                  src={logoutImg} // Replace with the path to your Button 1 image
+                  src={telegram_icon} // Replace with the path to your Button 1 image
                   alt="Button 1"
                   className="w-full h-full object-cover"
                 />
@@ -242,16 +247,58 @@ function Navbar() {
             </li>
 
             <li>
+              <NavLink
+                to='/gameRates'
+                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
+              >
+                <img
+                  src={Rating}
+                  alt="Game Rates"
+                  className="w-8 h-8 mr-2 inline-block"
+                />
+                Rate our App
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to='/gameRates'
+                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
+              >
+                <img
+                  src={website}
+                  alt="Game Rates"
+                  className="w-8 h-8 mr-2 inline-block"
+                />
+                Visit our Website
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to='/gameRates'
+                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
+              >
+                <img
+                  src={Rating}
+                  alt="Game Rates"
+                  className="w-8 h-8 mr-2 inline-block"
+                />
+                Mail us
+              </NavLink>
+            </li>
+
+            <li>
               <a
                 href="#"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
-                  src={Share}
+                  src={share_icon}
                   alt="Share"
                   className="w-8 h-8 mr-2 inline-block"
                 />
-                Share
+                Share our App
               </a>
             </li>
 
@@ -271,24 +318,11 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/delete'
-                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
-              >
-                <img
-                  src={ChangePass}
-                  alt="Delete Account"
-                  className="w-8 h-8 mr-2 inline-block"
-                />
-                Delete Account
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
                 to='/privacy'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
-                  src={lock_icon}
+                  src={policy}
                   alt="Privacy Policy"
                   className="w-8 h-8 mr-2 inline-block"
                 />
@@ -306,6 +340,20 @@ function Navbar() {
                   className="w-8 h-8 mr-2 inline-block"
                 />
                 About Us
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to='/about'
+                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
+              >
+                <img
+                  src={logoutImg}
+                  alt="User Profile"
+                  className="w-8 h-8 mr-2 inline-block"
+                />
+                Log out
               </NavLink>
             </li>
           </ul>

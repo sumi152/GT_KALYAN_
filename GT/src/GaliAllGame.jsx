@@ -49,7 +49,7 @@ function GaliAllGame() {
              onClick={()=>{
               if (gameId) {
                 console.log(gameId)
-                navigate("/singlepana", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Single Pana' } });
+                navigate("/leftdigit", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Single Pana' } });
               }
             }}>
               <img src={left} alt="Image 3" className="w-64 h-48" />
@@ -60,7 +60,7 @@ function GaliAllGame() {
              onClick={()=>{
               if (gameId) {
                 console.log(gameId)
-                navigate("/right", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Right Digit' } });
+                navigate("/rightdigit", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Right Digit' } });
               }
             }}>
               <img src={right} alt="Image 4" className="w-64 h-48" />
@@ -73,7 +73,7 @@ function GaliAllGame() {
              onClick={()=>{
               if (gameId) {
                 console.log(gameId)
-                navigate("/tripplepana", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Triple Pana' } });
+                navigate("/jodidigit", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Triple Pana' } });
               }
             }}>
               <img src={jodi} alt="Image 5" className="w-48 h-48 pt-2 " />
