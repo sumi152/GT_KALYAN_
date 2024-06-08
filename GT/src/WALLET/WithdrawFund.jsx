@@ -7,7 +7,7 @@ import usePayment from "../Hooks/usePayment";
 import { useSelector } from "react-redux";
 import useWallet from "../Hooks/useWallet";
 
-import { useRef } from "react";
+// import { useRef } from "react";
 import withdraw_history_btn from "../Images/withdraw_history_btn.png";
 import withdraw_rules_btn from "../Images/withdraw_rules_btn.png";
 
@@ -201,7 +201,7 @@ function WithdrawFunds() {
     margin: "auto",
 
     marginBottom: "20px",}}>
-        <button >
+        <button onClick={() => navigate('/withdrawrule')}>
           <img src={withdraw_rules_btn}/>
         </button>
       </div>
@@ -252,7 +252,7 @@ function WithdrawFunds() {
     margin: "auto",
 
     marginBottom: "20px",}}>
-        <button >
+        <button onClick={()=>navigate('/withdrawhistory')}>
           <img src={withdraw_history_btn}/>
         </button>
       </div>

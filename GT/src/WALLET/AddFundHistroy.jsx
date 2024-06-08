@@ -52,7 +52,7 @@ function AddFundHistory() {
         </button>
         <div className="flex justify-center items-center">
           {/* <img src={fund} alt="Wallet" /> */}
-          <h1 className="text-white px-3">Wallet History</h1>
+          <h1 className="text-white px-3">Deposit History</h1>
         </div>
       </div>
     <div style={topStyle}>

@@ -75,6 +75,9 @@ function Top() {
   const addF=()=>{
     navigate('/imp9');
   }
+  
+  const phoneNumber = "5555555";
+  const whatsappUrl = `https://wa.me/${phoneNumber}`;
 
 
   return (
@@ -124,9 +127,11 @@ function Top() {
         </div>
         <div className="flex">
           <div className='mr-4'>
-            <button onClick={() => handleButtonClick('addFund')}>
-              <img src={whatsapp} alt="Add Fund" style={cellImageStyle} />
-            </button>
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex justify-center items-center">
+          <button>
+            <img src={whatsapp} alt="Add Fund" style={cellImageStyle} />
+          </button>
+        </a>
           </div>
           <div>
             <button onClick={() => handleButtonClick('addFund')}>

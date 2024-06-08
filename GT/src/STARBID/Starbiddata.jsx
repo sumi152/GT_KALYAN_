@@ -23,21 +23,6 @@ function Starbiddata({ data }) {
             </div>
           )}
   
-          {data.pana === "Jodi Digit" && (
-            <div className="bg-white text-black mr-2 ml-4 z-2 -mt-1 p-1 flex justify-between align-middle border rounded-t-2xl rounded-tr-2xl rounded-br-2xl rounded-bl-0 pl-4 pr-5">
-              <div className="flex flex-col">
-                <p>
-                  {data.session} Digit: {data.digits}
-                </p>
-                <p>{/* Any additional content you want to render */}</p>
-                <p>Date: {data.bid_date}</p>
-              </div>
-              <div className="flex flex-col justify-around">
-                <p className="font-bold">{data.pana}</p>
-                <p className="font-bold">{data.points} pts</p>
-              </div>
-            </div>
-          )}
   
           {data.pana === "Single Pana" && (
             <div className="bg-white text-black mr-2 ml-4 z-2 -mt-1 p-1 flex justify-between align-middle border rounded-t-2xl rounded-tr-2xl rounded-br-2xl rounded-bl-0 pl-4 pr-5">
@@ -87,37 +72,6 @@ function Starbiddata({ data }) {
             </div>
           )}
   
-          {data.pana === "Half Sangam" && (
-            <div className="bg-white text-black mr-2 ml-4 z-2 -mt-1 p-1 flex justify-between align-middle border rounded-t-2xl rounded-tr-2xl rounded-br-2xl rounded-bl-0 pl-4 pr-5">
-              <div className="flex flex-col">
-                <p>
-                  {data.session} Digit {data.digits}
-                </p>
-                <p>{/* Any additional content you want to render */}</p>
-                <p>Date: {data.bid_date}</p>
-              </div>
-              <div className="flex flex-col justify-around">
-                <p className="font-bold">{data.pana}</p>
-                <p className="font-bold">{data.points} pts</p>
-              </div>
-            </div>
-          )}
-  
-          {data.pana === "Full Sangam" && (
-            <div className="bg-white text-black mr-2 ml-4 z-2 -mt-1 p-1 flex justify-between align-middle border rounded-t-2xl rounded-tr-2xl rounded-br-2xl rounded-bl-0 pl-4 pr-5">
-              <div className="flex flex-col">
-                <p>
-                  Open Pana: {data.digits}
-                </p>
-                <p>Close Pana: {data.closedigits}</p>
-                <p>Date: {data.bid_date}</p>
-              </div>
-              <div className="flex flex-col justify-around">
-                <p className="font-bold">{data.pana}</p>
-                <p className="font-bold">{data.points} pts</p>
-              </div>
-            </div>
-          )}
         </div>
       </>
     );

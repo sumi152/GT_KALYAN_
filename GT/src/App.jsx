@@ -74,7 +74,9 @@ import RightDigit from './Gali_games/RightDigit.jsx'
 import JodiDigit from './Gali_games/JodiDigit.jsx'
 import QR_PAY from './QR_PAY.jsx'
 import AddFundHistory from './WALLET/AddFundHistroy.jsx'
-
+import WithdrawRule from './WALLET/WithdrawRule.jsx'
+import DepositRule from './WALLET/DepositRule.jsx'
+import WithdrawHistory from './WALLET/WithdrawHistory.jsx'
 // import RightDigit from './Gali_games/RightDigit.jsx'
 
 
@@ -112,7 +114,6 @@ function App() {
         <Route path="/game"  element={<Game/>}> </Route>
         <Route path="/htp"  element={<Htp/>}> </Route>
 
-
         <Route path='/imp3' element={<IMP3/>}></Route>
         <Route path='/imp4' element={<IMP4/>}></Route>
         <Route path='/imp5' element={<IMP5/>}></Route>
@@ -125,6 +126,9 @@ function App() {
         <Route path='/transfer' element={<Transfer/>}></Route>
         <Route path='/transfermodel' element={<TransferModel/>}></Route>
         <Route path='/addfundhistory' element={<AddFundHistory/>}></Route>
+        <Route path='/withdrawrule' element={<WithdrawRule/>}></Route>
+        <Route path='/depositrule' element={<DepositRule/>}></Route>
+        <Route path="/withdrawhistory"  element={<WithdrawHistory/>}> </Route>
 
         
         
