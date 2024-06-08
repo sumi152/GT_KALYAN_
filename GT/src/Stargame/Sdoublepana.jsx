@@ -11,6 +11,98 @@ import "react-toastify/dist/ReactToastify.css";
 import StarModal from "./StarModal.jsx"
 
 function Sdoublepana() {
+  const singleDigitArray  = [
+    "100",
+    "110",
+    "112",
+    "113",
+    "114",
+    "115",
+    "116",
+    "117",
+    "118",
+    "119",
+    "122",
+    "133",
+    "144",
+    "155",
+    "166",
+    "177",
+    "188",
+    "199",
+    "200",
+    "220",
+    "223",
+    "224",
+    "225",
+    "226",
+    "227",
+    "228",
+    "229",
+    "233",
+    "244",
+    "255",
+    "266",
+    "277",
+    "288",
+    "299",
+    "300",
+    "330",
+    "334",
+    "335",
+    "336",
+    "337",
+    "338",
+    "339",
+    "344",
+    "355",
+    "366",
+    "377",
+    "388",
+    "399",
+    "400",
+    "440",
+    "445",
+    "446",
+    "447",
+    "448",
+    "449",
+    "455",
+    "466",
+    "477",
+    "488",
+    "499",
+    "500",
+    "550",
+    "556",
+    "557",
+    "558",
+    "559",
+    "566",
+    "577",
+    "588",
+    "599",
+    "600",
+    "660",
+    "667",
+    "668",
+    "669",
+    "677",
+    "688",
+    "699",
+    "700",
+    "770",
+    "778",
+    "779",
+    "788",
+    "799",
+    "800",
+    "880",
+    "889",
+    "899",
+    "900",
+    "990",
+  ];
   const todayDate = new Date().toISOString().split("T")[0];
   const months = [
     "January", "February", "March", "April", "May", "June", "July", "August",
@@ -24,24 +116,28 @@ function Sdoublepana() {
   
   const formattedDate = day + "-" + months[monthIndex] + "-" + year;
   const [submit, setSubmit]= useState('');
- const navbarStyle = {
+
+  
+  console.log(formattedDate);
+  const navbarStyle = {
     height: "60px",
     display: "flex",
     alignItems: "center",
   };
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
-    backgroundSize: 'cover', // This will make the background image cover the container without 
-    backgroundPosition: 'center',
-    position:'relative',
-    paddingBottom:'400px',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    position: "relative",
+    paddingBottom: "400px",
   };
-  const cardStyle={
-    width:'400px',
-    display:'flex',
-    flexDirection:'column',
-    padding:'20px',
-  }
+  const cardStyle = {
+    width: "400px",
+    display: "flex",
+    flexDirection: "column",
+    padding: "20px",
+  };
+
   const digit = useRef();
   const date = useRef();
   const point = useRef();
@@ -113,6 +209,11 @@ function Sdoublepana() {
       console.log(typeof(walletAmt))
     }
   }, [res.wallet_amt]);
+
+  useEffect(() => {
+    calculateTimeLeft(); // Call calculateTimeLeft whenever openTime changes
+  }, [openTime]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -131,11 +232,12 @@ function Sdoublepana() {
     } else {
       setIsProceed(true);
       setFormErrors({});
+
       const newDataObject = {
         digits: digit.current.value,
         closedigits: "",
         points: point.current.value,
-        session: "close",
+        session: "",
       };
       const newWalletAmt = walletAmt - point.current.value;
 
@@ -162,7 +264,7 @@ function Sdoublepana() {
     const errors = {};
     if (!digit) {
       errors.digit = "Please enter the number";
-    } else if (parseInt(digit) >= 10) {
+    } else if (!singleDigitArray.includes(digit)) {
       errors.digit = `Number ${digit} is not valid`;
     }
     if (!point) {
@@ -174,8 +276,39 @@ function Sdoublepana() {
     }
     return errors;
   };
+
+  const calculateTimeLeft = () => {
+    
+    const openTimeWithoutSuffix = openTime.replace(/\s[AaPp][Mm]$/, "");
+    const openDateString = new Date().toLocaleDateString(); // Get current date as a string
+    const open = `${openDateString}T${openTimeWithoutSuffix}`;
+    const parts = open.split("T");
+    const dateParts = parts[0].split("/");
+    const timeParts = parts[1].split(":");
+    const formattedDateString = `${dateParts[2]}-${dateParts[0].padStart(
+      2,
+      "0"
+    )}-${dateParts[1].padStart(2, "0")}T${timeParts[0].padStart(
+      2,
+      "0"
+    )}:${timeParts[1].padStart(2, "0")}:00`;
+    let openDate = new Date(
+      `${dateParts[2]}-${dateParts[0].padStart(2, "0")}-${dateParts[1].padStart(
+        2,
+        "0"
+      )}T${timeParts[0].padStart(2, "0")}:${timeParts[1].padStart(2, "0")}:00`
+    );
+    if (openTime.match(/[Pp][Mm]$/)) {
+      const openHours = openDate.getHours();
+      openDate.setHours(openHours === 12 ? 12 : openHours + 12);
+    }
+
+    const openMillisec = Date.parse(openDate);
+    if (openMillisec <= Date.now()) {
+      setIsOpen(false);
+    }
+  };
   const totalPoints=submittedData.reduce((acc, curr) => acc + parseInt(curr.points), 0)
-  console.log(isProceed)
   return (
     <>
       <div className="bg-custom-purple text-white" style={navbarStyle}>
@@ -183,7 +316,7 @@ function Sdoublepana() {
           <BiArrowBack size={24} />
         </button>
         <div>
-          <h1 className="text-white px-3">Single Digit</h1>
+          <h1 className="text-white px-3">Double Pana</h1>
         </div>
 
         <ul className="font-bold text-lg flex flex-shrink: 0 absolute right-10 top-15">
@@ -199,23 +332,30 @@ function Sdoublepana() {
           </li>
         </ul>
       </div>
-      <div style={backStyle} className="text-white">
-      <div className="flex justify-center items-center pt-5 ">
-        <div className="" style={cardStyle}>
-        <input
+      <div style={backStyle} className="text-white" >
+        <div className="flex justify-center items-center pt-5 ">
+          <div className="" style={cardStyle}>
+            <input
               type="date"
               value={todayDate}
               readOnly
               className="w-full flex justify-center p-4 text-black border border-black-500 rounded-xl text-center"
-            />  
-          <p className="my-2"> Digit</p>
-          <input
+            />
+            <p className="my-2">Open Digit</p>
+            <input
               type="number"
               inputMode="numeric"
               ref={digit}
               placeholder="Enter Digit"
               className="w-full p-4 border border-black-500 rounded-xl text-black"
+              list="digitList" // Step 2: Add list attribute
+              autoComplete="off" 
             />
+            <datalist id="digitList">
+  {singleDigitArray.map((digit, index) => (
+    <option key={index} value={digit} />
+  ))}
+</datalist>
             <p className="my-2">Points</p>
             <input
               type="number"
@@ -305,9 +445,10 @@ function Sdoublepana() {
               );
             })}
           </div>
-      </div>
+        </div>
       </div>
     </>
   );
 }
+
 export default Sdoublepana;
