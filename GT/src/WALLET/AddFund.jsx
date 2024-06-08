@@ -180,7 +180,7 @@ function AddFunds() {
     margin: "auto",
 
     marginBottom: "20px",}}>
-        <button >
+        <button  onClick={() => navigate('/depositrule')}>
           <img src={deposit_rules_btn}/>
         </button>
       </div>
