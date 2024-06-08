@@ -2,11 +2,10 @@ import topBackground from "../Images/bg.png";
 import { BiArrowBack } from "react-icons/bi";
 import fund from "../Images/wallet_transparent.png";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react"; // Import useEffect
+import { useState, useEffect, useRef } from "react"; // Combined import statements
 import usePayment from "../Hooks/usePayment";
 import { useSelector } from "react-redux";
 import useWallet from "../Hooks/useWallet";
-import { useRef } from "react";
 
 function WithdrawFunds() {
   const navbarStyle = {
@@ -19,18 +18,19 @@ function WithdrawFunds() {
   const topStyle = {
     backgroundImage: `url(${topBackground})`,
     backgroundSize: "cover",
-    height: "auto ", // Set the height of the div
-    width: "100%", // Set the width of the div
+    height: "auto",
+    width: "100%",
     padding: "",
   };
+
   const box1 = {
     border: "3px solid #ccc",
     padding: "10px",
-    width: "300px", // Adjust the width as needed
+    width: "300px",
     margin: "auto",
-    borderRadius: "10px", // Add border-radius for rounded corners
-    background: "linear-gradient(to right, #141384, #000000)", // Blue gradient background
-    color: "#fff", // Text color
+    borderRadius: "10px",
+    background: "linear-gradient(to right, #141384, #000000)",
+    color: "#fff",
     marginBottom: "20px",
   };
 
@@ -47,8 +47,8 @@ function WithdrawFunds() {
     width: "auto",
     padding: "20px",
     display: "flex",
-    justifyContent: "center", // Center horizontally
-    alignItems: "center", // Center vertically
+    justifyContent: "center",
+    alignItems: "center",
   };
 
   const btnStyle = {
@@ -58,35 +58,21 @@ function WithdrawFunds() {
     borderRadius: "15px",
   };
 
-
-
-
   const amount = useRef();
-  // const method = useRef();
   const [method2, setMethod] = useState("");
-
   const token = useSelector((state) => state.userDetail.token);
   const number = useSelector((state) => state.userDetail.mobile);
   const [formErrors, setFormErrors] = useState({});
-  const [errorText, setErrorText] = useState(""); 
+  const [errorText, setErrorText] = useState("");
   const [selectedUPI, setSelectedUPI] = useState("");
   const [gamesUpi, setGamesUpi] = useState([]);
+  const [walletAmt, setWalletAmt] = useState();
+  const [isSubmitting, setIsSubmitting] = useState(false); // State to track form submission
 
   const navigate = useNavigate();
-
-  const back = () => {
-    navigate("/imp");
-  };
-
-  const handleUPIChange = (event) => {
-    setSelectedUPI(event.target.value);
-    const selectedUpiType = gamesUpi.find(upi => upi.value === event.target.value)?.type;
-    setMethod(selectedUpiType);
-  };
-  
-  const [walletAmt, setWalletAmt] = useState();
   const res = usePayment(token, number);
   const res2 = useWallet(token);
+
   useEffect(() => {
     if (res2 && res2.wallet_amt) {
       setWalletAmt(res2.wallet_amt);
@@ -99,50 +85,59 @@ function WithdrawFunds() {
     }
   }, [res.result]);
 
+  useEffect(() => {
+    if (gamesUpi.length > 0) {
+      setMethod(gamesUpi[0]?.type);
+    }
+  }, [gamesUpi]);
+
+  const back = () => {
+    navigate("/imp");
+  };
+
+  const handleUPIChange = (event) => {
+    setSelectedUPI(event.target.value);
+    const selectedUpiType = gamesUpi.find((upi) => upi.value === event.target.value)?.type;
+    setMethod(selectedUpiType);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errors = validate(
-      amount.current.value, Number(walletAmt)
-    );
+    if (isSubmitting) return; // Prevent duplicate submissions
 
+    setIsSubmitting(true); // Set submitting state to true
+
+    const errors = validate(amount.current.value, Number(walletAmt));
     setFormErrors(errors);
 
     if (Object.keys(errors).length > 0) {
+      setIsSubmitting(false); // Reset submitting state if there are validation errors
       return;
     }
 
     try {
-      await fetchData(
-        token, Number(amount.current.value), number, method2
-      );
-      setIsSubmit(true);
+      await fetchData(token, Number(amount.current.value), number, method2);
     } catch (error) {
-      // setErrorText("Username or password incorrect"); // Set error message
+      console.error(error);
+    } finally {
+      setIsSubmitting(false); // Always reset submitting state after request is completed
     }
   };
 
-  const validate = ( amount, walletAmt) => {
+  const validate = (amount, walletAmt) => {
     const errors = {};
-    const regex = /^[6-9]{1}[0-9]{9}$/;
-
     if (!amount) {
       errors.amount = "Amount is required!";
-    }else if(amount>walletAmt){
-      errors.amount="Wallet Limit Excedded"
+    } else if (amount > walletAmt) {
+      errors.amount = "Wallet Limit Exceeded";
     }
     return errors;
   };
-  
 
-  const fetchData = async ( token, amount, number, method2) => {
-    const errors={}
+  const fetchData = async (token, amount, number, method2) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append(
-      "Cookie",
-      "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
-    );
+    myHeaders.append("Cookie", "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee");
 
     const raw = JSON.stringify({
       env_type: "Prod",
@@ -150,7 +145,7 @@ function WithdrawFunds() {
       unique_token: token,
       mobile: number,
       request_amount: amount,
-      payment_method: method2
+      payment_method: method2,
     });
 
     const requestOptions = {
@@ -160,28 +155,18 @@ function WithdrawFunds() {
       redirect: "follow",
     };
 
-    const response = await fetch(
-      "https://kalyanmilanofficialmatka.in/api-user-withdraw-fund-request",
-      requestOptions
-    );
-    console.log(method2);
+    const response = await fetch("https://kalyanmilanofficialmatka.in/api-user-withdraw-fund-request", requestOptions);
     const result = await response.json();
-    console.log(result)
-    if(result?.status===true){
-      
+    if (result?.status === true) {
+      setErrorText("");
     } else {
-      setErrorText(result?.msg)
+      setErrorText(result?.msg);
     }
   };
-  useEffect(() => {
-    if (gamesUpi.length > 0) { // Check if gamesUpi list is not empty
-      setMethod(gamesUpi[0]?.type); // Set method2 with the type of the first value in gamesUpi list
-    }
-  }, [gamesUpi]); 
 
   return (
     <>
-      <div className="bg-custom-purple text-white " style={navbarStyle}>
+      <div className="bg-custom-purple text-white" style={navbarStyle}>
         <button className="px-4" onClick={() => back()}>
           <BiArrowBack size={24} />
         </button>
@@ -190,40 +175,36 @@ function WithdrawFunds() {
           <h1 className="text-white px-3">Withdraw Fund</h1>
         </div>
       </div>
-      <div className=" p-5" style={topStyle}>
+      <div className="p-5" style={topStyle}>
         <div className="" style={box1}>
           <p>Current Balance</p>
           <p>RS {walletAmt}</p>
         </div>
-        <div className="flex flex-col"style={box4}>
-          <input type="text" placeholder="Enter amount" ref={amount} className="placeholder-white text-white mb-2" style={enterAmount} />
+        <div className="flex flex-col" style={box4}>
+          <input
+            type="text"
+            placeholder="Enter amount"
+            ref={amount}
+            className="placeholder-white text-white mb-2"
+            style={enterAmount}
+          />
           <p className="text-red-500 ">{formErrors.amount}</p>
         </div>
-        
         <div style={box4}>
-          <select className="text-white"
-            value={selectedUPI}
-            onChange={handleUPIChange}
-            style={enterAmount}
-            
-          >
-            {/* <option value="">Select UPI Details</option> */}
+          <select className="text-white" value={selectedUPI} onChange={handleUPIChange} style={enterAmount}>
             {gamesUpi.map((upi, index) => (
               <option key={index} value={upi.value} className="text-black">
                 {upi?.name}: {upi?.value}
-                {console.log(upi?.name)}
-                {console.log('sumti+sumit ')}
               </option>
             ))}
           </select>
         </div>
         <div style={box4} className="flex flex-col">
-          <button className="text-white rounded" style={btnStyle} onClick={handleSubmit}>
-            Withdraw Now
+          <button className="text-white rounded" style={btnStyle} onClick={handleSubmit} disabled={isSubmitting}>
+            {isSubmitting ? "Submitting..." : "Withdraw Now"}
           </button>
           <p className="text-red-500 mt-2">Withdraw Timings :- 07:00AM -10:00AM</p>
           <p className="text-red-500 ">{errorText}</p>
-
         </div>
       </div>
     </>
