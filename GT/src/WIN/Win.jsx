@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-function Win({onDataFetch}) {
+function Win({ onDataFetch }) {
   const navbarStyle = {
     height: "60px",
     display: "flex",
@@ -28,11 +28,12 @@ function Win({onDataFetch}) {
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState(new Date());
-  const token = useSelector(state=>state.userDetail.token)
+  const [isSubmitting, setIsSubmitting] = useState(false); // Added isSubmitting state
+  const token = useSelector(state => state.userDetail.token);
 
   useEffect(() => {
     fetchData(changedate(selectedDate), changedate(selectedEndDate));
-  }, []); // Empty dependency array means this effect runs only once when the component mounts
+  }, []); 
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -42,26 +43,27 @@ function Win({onDataFetch}) {
     setSelectedEndDate(date);
   };
 
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
+    if (isSubmitting) return; // Prevent duplicate submissions
+
+    setIsSubmitting(true);
     console.log("From Date:", selectedDate);
     console.log("To Date:", selectedEndDate);
-   
+
     const startdate1=changedate(selectedDate);
     const enddate1= changedate(selectedEndDate);
-    console.log(startdate1)
-    console.log(enddate1)
+    console.log(startdate1);
+    console.log(enddate1);
     try {
       await fetchData(startdate1, enddate1);
-      // setIsSubmit(true);
     } catch (error) {
-      // setErrorText("Username or password incorrect");
-
+      // Handle error
+    } finally {
+      setIsSubmitting(false);
     }
-
   };
 
   const fetchData = async ( startdate1, enddate1) => {
-    // Your fetchData implementation here
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append(
@@ -90,7 +92,6 @@ function Win({onDataFetch}) {
     const result = await response.json();
     if(result?.status==true)onDataFetch(true , result);
     else onDataFetch(false,null);
-    // console.log(result);
   };
 
   const changedate =( selectedDate)=>{
@@ -99,7 +100,6 @@ function Win({onDataFetch}) {
     const startmonth = selectedDate.getMonth()+1; // Returns the month (0-11)
     const startyear = selectedDate.getFullYear();
     const date= startmonth+'/'+startday+'/'+startyear;
-    console.log(date);
     return date;
   }
 
@@ -126,7 +126,13 @@ function Win({onDataFetch}) {
             <p className="mb-2 mt-2" >To Date</p>
             <DatePickerButton selectedDate={selectedEndDate} onDateChange={handleEndDateChange} />
             <div className="flex justify-center  ">
-              <button className="p-3 border border-black-500 rounded mt-4 bg-green-500 w-1/2" onClick={handleSubmit}>Submit</button>
+              <button 
+                className="p-3 border border-black-500 rounded mt-4 bg-green-500 w-1/2" 
+                onClick={handleSubmit}
+                disabled={isSubmitting} // Disable button when submitting
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit'} {/* Change button text based on isSubmitting */}
+              </button>
             </div>
           </div>
         </div>

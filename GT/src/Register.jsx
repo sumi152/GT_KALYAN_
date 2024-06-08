@@ -1,15 +1,12 @@
 import logo from "./Images/logo.png";
 import topBackground from "./Images/bg.png";
-import { FiEye, FiEyeOff, FiLock } from "react-icons/fi";
-import { useState, useEffect, useRef } from "react";
+import { FiEye, FiEyeOff, FiAlertCircle } from "react-icons/fi";
+import { useState, useRef } from "react";
 import whatsapp from "./Images/whatsapp.png";
 import call from "./Images/call_helpline.png";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { FiAlertCircle } from "react-icons/fi";
-import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { register } from "./Util/registerSlice";
-import {login } from "./Util/loginSlice"
-
 
 function Register() {
   const navbarStyle = {
@@ -35,30 +32,28 @@ function Register() {
     objectFit: "cover",
   };
 
-
-
   const username = useRef();
   const phoneno = useRef();
   const password = useRef();
   const [formErrors, setFormErrors] = useState({});
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
-  const [isRegistering, setIsRegistering] = useState(false);
-  const [isSubmit, setIsSubmit] =useState(false);
-  const [errorMsg,setErrorMsg] = useState()
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  
-  
   const handleToggleCurrentPassword = () => {
     setShowCurrentPassword(!showCurrentPassword);
   };
-  var data={}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
+    if (isSubmitting) return; // Prevent duplicate submissions
+
+    setIsSubmitting(true);
+
     const errors = validate(
       username.current.value,
       phoneno.current.value,
@@ -68,17 +63,13 @@ function Register() {
     setFormErrors(errors);
 
     if (Object.keys(errors).length > 0) {
+      setIsSubmitting(false);
       return;
     }
-    
-    setIsRegistering(true);
 
     try {
-      // Fetch OTP data or retrieve it from wherever necessary
-      const otpData = await fetchData(phoneno.current.value); // Example function to fetch OTP data
-      console.log(otpData)
+      const otpData = await fetchData(phoneno.current.value);
       if (otpData?.status) {
-        // Dispatch action with OTP data
         dispatch(register({ 
           username: username.current.value, 
           phone: phoneno.current.value, 
@@ -87,16 +78,14 @@ function Register() {
         }));
         navigate('/Otp');
       } else {
-        console.error("Failed to fetch OTP data");
+        setErrorMsg("Failed to fetch OTP data");
       }
     } catch (error) {
-      // console.error("Error registering:", error);
+      setErrorMsg("Error registering: " + error.message);
+    } finally {
+      setIsSubmitting(false);
     }
-   
-
   };
-
-
 
   const validate = (username, phoneno, password) => {
     const errors = {};
@@ -117,48 +106,42 @@ function Register() {
     return errors;
   };
 
-
   const fetchData = async (phoneno) => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-  
+
       const raw = JSON.stringify({
         env_type: "Prod",
         app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
         mobile: phoneno,
       });
-  
+
       const requestOptions = {
         method: "POST",
         headers: myHeaders,
         body: raw,
         redirect: "follow",
       };
-  
+
       const response = await fetch(
         "https://kalyanmilanofficialmatka.in/api-check-mobile",
         requestOptions
       );
       const result = await response.json();
-      console.log(result);
-      if(result?.status){
+      if (result?.status) {
         setIsSubmit(true);
         return result;
       }
-      
-      
-      }
-     catch (error) {
-      setIsRegistering(false);
+    } catch (error) {
+      setIsSubmitting(false);
     }
   };
 
-  
   return (
     <>
       <div style={backStyle} className="text-white">
-        <div className="flex justify-center items-center ">
+        <div className="flex justify-center items-center">
           <img src={logo} alt="Center Image" className="w-40 h-40" />
         </div>
         <div className="flex justify-center item-center p-5">
@@ -167,7 +150,7 @@ function Register() {
             <input
               type="text"
               placeholder="Username"
-              className=" bg-gray-500 pt-3 pr-7 pl-5 pb-3 rounded"
+              className="bg-gray-500 pt-3 pr-7 pl-5 pb-3 rounded"
               ref={username}
               name="username"
             />
@@ -189,7 +172,7 @@ function Register() {
             <input
               type="text"
               placeholder="Phone Number"
-              className=" bg-gray-500 pt-3 pr-7 pl-5 pb-3 rounded"
+              className="bg-gray-500 pt-3 pr-7 pl-5 pb-3 rounded"
               ref={phoneno}
               name="phoneno"
             />
@@ -212,7 +195,7 @@ function Register() {
               type={showCurrentPassword ? "text" : "password"}
               placeholder="Password"
               ref={password}
-              className=" bg-gray-500 pt-3 pr-15 pl-5 pb-3 rounded"
+              className="bg-gray-500 pt-3 pr-15 pl-5 pb-3 rounded"
               name="password"
             />
             <p className="text-red-500">{formErrors.password}</p>
@@ -236,20 +219,20 @@ function Register() {
               <button
                 className="p-3 border border-black-500 rounded mt-4 bg-blue-800 w-3/4"
                 type="submit"
-                onSubmit={handleSubmit}
+                disabled={isSubmitting}
               >
-               {isRegistering && isSubmit? 'Registering...' : 'Register'}
+                {isSubmitting ? 'Registering...' : 'Register'}
               </button>
             </div>
             <div className="flex justify-center">
               <p>
-                Don't Have an account ?{" "}
+                Already have an account?{" "}
                 <Link to="/" className="text-yellow-500">
                   Login
                 </Link>
               </p>
             </div>
-            <div className="flex  justify-between mt-2">
+            <div className="flex justify-between mt-2">
               <div>
                 <button>
                   <img src={call} alt="Add Fund" style={cellImageStyle} />
@@ -262,10 +245,10 @@ function Register() {
                 </button>
               </div>
             </div>
-            <div className=" flex flex-col justify-center items-center  ">
-              <p className="mt-2 ">By logging in you are agree to these</p>
+            <div className="flex flex-col justify-center items-center">
+              <p className="mt-2">By logging in you agree to these</p>
               <a href="" className="mb-2 text-green-500">
-                Terms Aand Conditions and Privacy Policy
+                Terms and Conditions and Privacy Policy
               </a>
               <hr className="w-1/2" />
             </div>
