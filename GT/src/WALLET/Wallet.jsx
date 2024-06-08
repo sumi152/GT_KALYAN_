@@ -114,6 +114,7 @@ function Wallet() {
     setSelectedOption(null);
   };
   const unique = useSelector((state) => state.userDetail.token);
+  console.log(unique);
 
   const res = useWallet(unique);
   useEffect(() => {

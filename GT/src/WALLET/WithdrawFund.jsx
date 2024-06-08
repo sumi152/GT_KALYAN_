@@ -7,6 +7,8 @@ import usePayment from "../Hooks/usePayment";
 import { useSelector } from "react-redux";
 import useWallet from "../Hooks/useWallet";
 import { useRef } from "react";
+import withdraw_history_btn from "../Images/withdraw_history_btn.png";
+import withdraw_rules_btn from "../Images/withdraw_rules_btn.png";
 
 function WithdrawFunds() {
   const navbarStyle = {
@@ -39,7 +41,7 @@ function WithdrawFunds() {
     borderRadius: "5px",
     border: "1px solid #ffffff",
     display: "flex",
-    background: "linear-gradient(to right, #70D578, #033407)",
+    background: "linear-gradient(to right, #141384, #000000)",
     width: "300px",
   };
 
@@ -47,13 +49,13 @@ function WithdrawFunds() {
     width: "auto",
     padding: "20px",
     display: "flex",
-    justifyContent: "center", // Center horizontally
-    alignItems: "center", // Center vertically
+    justifyContent: "center",
+    alignItems: "center"
   };
 
   const btnStyle = {
-    background: "linear-gradient(to right, #33FF42, #7433FF)",
-    width: "300px",
+    background: "#E5B80B",
+    width: "200px",
     padding: "7px",
     borderRadius: "15px",
   };
@@ -71,6 +73,7 @@ function WithdrawFunds() {
   const [errorText, setErrorText] = useState(""); 
   const [selectedUPI, setSelectedUPI] = useState("");
   const [gamesUpi, setGamesUpi] = useState([]);
+  
 
   const navigate = useNavigate();
 
@@ -143,7 +146,7 @@ function WithdrawFunds() {
       "Cookie",
       "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
     );
-
+    
     const raw = JSON.stringify({
       env_type: "Prod",
       app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
@@ -152,6 +155,7 @@ function WithdrawFunds() {
       request_amount: amount,
       payment_method: method2
     });
+    
 
     const requestOptions = {
       method: "POST",
@@ -191,12 +195,26 @@ function WithdrawFunds() {
         </div>
       </div>
       <div className=" p-5" style={topStyle}>
+        <div style={{background:"white",width:"300px",margin:"auto",padding:"7px",borderRadius: "20px",marginBottom: "20px",}}>
+        <p className="text-red-500 mt-2">Withdraw Timings :- 07:00AM -10:00AM</p>
+        <p className="text-red-500 ">{errorText}</p>
+        </div>
+        <div  style={{   
+    padding: "10px",
+    width: "250px",
+    margin: "auto",
+
+    marginBottom: "20px",}}>
+        <button >
+          <img src={withdraw_rules_btn}/>
+        </button>
+      </div>
         <div className="" style={box1}>
           <p>Current Balance</p>
           <p>RS {walletAmt}</p>
         </div>
         <div className="flex flex-col"style={box4}>
-          <input type="text" placeholder="Enter amount" ref={amount} className="placeholder-white text-white mb-2" style={enterAmount} />
+          <input type="text" placeholder="Enter Points" ref={amount} className="placeholder-white text-white mb-2" style={enterAmount} />
           <p className="text-red-500 ">{formErrors.amount}</p>
         </div>
         
@@ -207,24 +225,37 @@ function WithdrawFunds() {
             style={enterAmount}
             
           >
-            {/* <option value="">Select UPI Details</option> */}
-            {gamesUpi.map((upi, index) => (
+        {gamesUpi.length === 0 ? (
+          <option value="" disabled>
+            Please set the method and number first
+          </option>
+        ) : (
+            gamesUpi.map((upi, index) => (
               <option key={index} value={upi.value} className="text-black">
                 {upi?.name}: {upi?.value}
                 {console.log(upi?.name)}
                 {console.log('sumti+sumit ')}
               </option>
-            ))}
-          </select>
-        </div>
-        <div style={box4} className="flex flex-col">
-          <button className="text-white rounded" style={btnStyle} onClick={handleSubmit}>
-            Withdraw Now
-          </button>
-          <p className="text-red-500 mt-2">Withdraw Timings :- 07:00AM -10:00AM</p>
-          <p className="text-red-500 ">{errorText}</p>
+          ))
+        )}
+      </select>
 
         </div>
+        <div style={box4} className="flex flex-col">
+          <button className="text-black border rounded" style={btnStyle} onClick={handleSubmit}>
+            SUBMIT
+          </button>
+        </div>
+        <div  style={{   
+    padding: "10px",
+    width: "250px",
+    margin: "auto",
+
+    marginBottom: "20px",}}>
+        <button >
+          <img src={withdraw_history_btn}/>
+        </button>
+      </div>
       </div>
     </>
   );
