@@ -11,6 +11,128 @@ import "react-toastify/dist/ReactToastify.css";
 import StarModal from "./StarModal.jsx"
 
 function Ssinglepana() {
+  const singleDigitArray = [
+    "120",
+    "123",
+    "124",
+    "125",
+    "126",
+    "127",
+    "128",
+    "129",
+    "130",
+    "134",
+    "135",
+    "136",
+    "137",
+    "138",
+    "139",
+    "140",
+    "145",
+    "146",
+    "147",
+    "148",
+    "149",
+    "150",
+    "156",
+    "157",
+    "158",
+    "159",
+    "160",
+    "167",
+    "168",
+    "169",
+    "170",
+    "178",
+    "179",
+    "180",
+    "189",
+    "190",
+    "230",
+    "234",
+    "235",
+    "236",
+    "237",
+    "238",
+    "239",
+    "240",
+    "245",
+    "246",
+    "247",
+    "248",
+    "249",
+    "250",
+    "256",
+    "257",
+    "258",
+    "259",
+    "260",
+    "267",
+    "268",
+    "269",
+    "270",
+    "278",
+    "279",
+    "280",
+    "289",
+    "290",
+    "340",
+    "345",
+    "346",
+    "347",
+    "348",
+    "349",
+    "350",
+    "356",
+    "357",
+    "358",
+    "359",
+    "360",
+    "367",
+    "368",
+    "369",
+    "370",
+    "378",
+    "379",
+    "380",
+    "389",
+    "390",
+    "450",
+    "456",
+    "457",
+    "458",
+    "459",
+    "460",
+    "467",
+    "468",
+    "469",
+    "470",
+    "478",
+    "479",
+    "480",
+    "489",
+    "490",
+    "560",
+    "567",
+    "568",
+    "569",
+    "570",
+    "578",
+    "579",
+    "580",
+    "589",
+    "590",
+    "670",
+    "678",
+    "679",
+    "680",
+    "689",
+    "690",
+    "780",
+    "789",
+    "790",
+    "890",
+  ];
   const todayDate = new Date().toISOString().split("T")[0];
   const months = [
     "January", "February", "March", "April", "May", "June", "July", "August",
@@ -24,24 +146,28 @@ function Ssinglepana() {
   
   const formattedDate = day + "-" + months[monthIndex] + "-" + year;
   const [submit, setSubmit]= useState('');
- const navbarStyle = {
+
+  
+  console.log(formattedDate);
+  const navbarStyle = {
     height: "60px",
     display: "flex",
     alignItems: "center",
   };
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
-    backgroundSize: 'cover', // This will make the background image cover the container without 
-    backgroundPosition: 'center',
-    position:'relative',
-    paddingBottom:'400px',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    position: "relative",
+    paddingBottom: "400px",
   };
-  const cardStyle={
-    width:'400px',
-    display:'flex',
-    flexDirection:'column',
-    padding:'20px',
-  }
+  const cardStyle = {
+    width: "400px",
+    display: "flex",
+    flexDirection: "column",
+    padding: "20px",
+  };
+
   const digit = useRef();
   const date = useRef();
   const point = useRef();
@@ -113,6 +239,11 @@ function Ssinglepana() {
       console.log(typeof(walletAmt))
     }
   }, [res.wallet_amt]);
+
+  useEffect(() => {
+    calculateTimeLeft(); // Call calculateTimeLeft whenever openTime changes
+  }, [openTime]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -131,11 +262,12 @@ function Ssinglepana() {
     } else {
       setIsProceed(true);
       setFormErrors({});
+
       const newDataObject = {
         digits: digit.current.value,
         closedigits: "",
         points: point.current.value,
-        session: "close",
+        session: "",
       };
       const newWalletAmt = walletAmt - point.current.value;
 
@@ -162,7 +294,7 @@ function Ssinglepana() {
     const errors = {};
     if (!digit) {
       errors.digit = "Please enter the number";
-    } else if (parseInt(digit) >= 10) {
+    } else if (!singleDigitArray.includes(digit)) {
       errors.digit = `Number ${digit} is not valid`;
     }
     if (!point) {
@@ -174,8 +306,39 @@ function Ssinglepana() {
     }
     return errors;
   };
+
+  const calculateTimeLeft = () => {
+    
+    const openTimeWithoutSuffix = openTime.replace(/\s[AaPp][Mm]$/, "");
+    const openDateString = new Date().toLocaleDateString(); // Get current date as a string
+    const open = `${openDateString}T${openTimeWithoutSuffix}`;
+    const parts = open.split("T");
+    const dateParts = parts[0].split("/");
+    const timeParts = parts[1].split(":");
+    const formattedDateString = `${dateParts[2]}-${dateParts[0].padStart(
+      2,
+      "0"
+    )}-${dateParts[1].padStart(2, "0")}T${timeParts[0].padStart(
+      2,
+      "0"
+    )}:${timeParts[1].padStart(2, "0")}:00`;
+    let openDate = new Date(
+      `${dateParts[2]}-${dateParts[0].padStart(2, "0")}-${dateParts[1].padStart(
+        2,
+        "0"
+      )}T${timeParts[0].padStart(2, "0")}:${timeParts[1].padStart(2, "0")}:00`
+    );
+    if (openTime.match(/[Pp][Mm]$/)) {
+      const openHours = openDate.getHours();
+      openDate.setHours(openHours === 12 ? 12 : openHours + 12);
+    }
+
+    const openMillisec = Date.parse(openDate);
+    if (openMillisec <= Date.now()) {
+      setIsOpen(false);
+    }
+  };
   const totalPoints=submittedData.reduce((acc, curr) => acc + parseInt(curr.points), 0)
-  console.log(isProceed)
   return (
     <>
       <div className="bg-custom-purple text-white" style={navbarStyle}>
@@ -183,7 +346,7 @@ function Ssinglepana() {
           <BiArrowBack size={24} />
         </button>
         <div>
-          <h1 className="text-white px-3">Single Digit</h1>
+          <h1 className="text-white px-3">Single Pana</h1>
         </div>
 
         <ul className="font-bold text-lg flex flex-shrink: 0 absolute right-10 top-15">
@@ -199,23 +362,30 @@ function Ssinglepana() {
           </li>
         </ul>
       </div>
-      <div style={backStyle} className="text-white">
-      <div className="flex justify-center items-center pt-5 ">
-        <div className="" style={cardStyle}>
-        <input
+      <div style={backStyle} className="text-white" >
+        <div className="flex justify-center items-center pt-5 ">
+          <div className="" style={cardStyle}>
+            <input
               type="date"
               value={todayDate}
               readOnly
               className="w-full flex justify-center p-4 text-black border border-black-500 rounded-xl text-center"
-            />  
-          <p className="my-2"> Digit</p>
-          <input
+            />
+            <p className="my-2">Open Digit</p>
+            <input
               type="number"
               inputMode="numeric"
               ref={digit}
               placeholder="Enter Digit"
               className="w-full p-4 border border-black-500 rounded-xl text-black"
+              list="digitList" // Step 2: Add list attribute
+              autoComplete="off" 
             />
+            <datalist id="digitList">
+  {singleDigitArray.map((digit, index) => (
+    <option key={index} value={digit} />
+  ))}
+</datalist>
             <p className="my-2">Points</p>
             <input
               type="number"
@@ -305,9 +475,10 @@ function Ssinglepana() {
               );
             })}
           </div>
-      </div>
+        </div>
       </div>
     </>
   );
 }
+
 export default Ssinglepana;

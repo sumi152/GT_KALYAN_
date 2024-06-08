@@ -4,8 +4,7 @@ import logo from "./Images/logo.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import OtpInput from "otp-input-react";
-import { useSelector, useDispatch } from "react-redux";
-
+import { useSelector } from "react-redux";
 
 function Otp2() {
   const backStyle = {
@@ -22,44 +21,22 @@ function Otp2() {
 
   const location = useLocation();
   const { state } = location;
+  const { phoneNumber, otp2, option } = state;
   const [isSubmit, setIsSubmit] = useState(false);
   const [errorMsg, setErrorMsg] = useState();
   const [data, setdata] = useState({});
   const [data2, setdata2] = useState(null);
-  const { phoneNumber ,otp2,option} = state;
-  const mobile = useSelector(state=>state.userDetail.mobile)
-  const unique = useSelector(state=>state.userDetail.token)
-
+  const mobile = useSelector((state) => state.userDetail.mobile);
+  const unique = useSelector((state) => state.userDetail.token);
 
   console.log("Phone Number:", phoneNumber);
   console.log("otp", otp2);
-  console.log(option)
-
-  let ispaytm,isphonepe,isgooglepe;
-  switch (option) {
-    case "1":
-      ispaytm="";
-      isgooglepe=""
-      break;
-    case "2":
-      isphonepe="";
-      isgooglepe="";
-      break;
-    case "3":
-      isgooglepe="";
-      ispaytm="";
-      break;
-    default:
-      buttonText = "Add";
-  }
-
+  console.log(option);
 
   const navigate = useNavigate();
   const back = () => {
     navigate(-1);
   };
-
-
 
   const [counter, setCounter] = useState(30);
 
@@ -71,17 +48,13 @@ function Otp2() {
 
   const [otp, setOtp] = useState(null);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    try {
 
-  
-      // Check if the entered OTP matches either the OTP received from the server (otp2) or the data2
+    try {
       if (otp == otp2 || otp == data2) {
         console.log("OTP is valid. Proceeding with form submission...");
-        postData(phoneNumber)
+        await postData(phoneNumber);
         navigate("/imp7");
       } else {
         console.log("Entered OTP does not match the expected OTPs.");
@@ -91,8 +64,6 @@ function Otp2() {
       console.error("Error registering:", error);
     }
   };
-  
-
 
   const handleResendOtp = async (e) => {
     e.preventDefault();
@@ -104,24 +75,25 @@ function Otp2() {
       console.error("Error registering:", error);
     }
   };
+
   const fetchResendOtp = async (mobile) => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-  
+
       const raw = JSON.stringify({
         env_type: "Prod",
         app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
         mobile: mobile,
       });
-  
+
       const requestOptions = {
         method: "POST",
         headers: myHeaders,
         body: raw,
         redirect: "follow",
       };
-  
+
       const response = await fetch(
         "https://kalyanmilanofficialmatka.in/api-resend-otp",
         requestOptions
@@ -129,25 +101,33 @@ function Otp2() {
       const result = await response.json();
       console.log("resend");
       console.log(result?.otp);
-      setdata2(result?.otp); // Ensure data2 is correctly updated here
+      setdata2(result?.otp);
     } catch (error) {
       console.error("Error:", error);
     }
   };
-  
+
   const postData = async (phoneno) => {
+    let ispaytm = null;
+    let isphonepe = null;
+    let isgooglepe = null;
+
     switch (option) {
       case "1":
-        isphonepe=phoneno
+        ispaytm = phoneno;
         break;
       case "2":
-        ispaytm=phoneno
+        isphonepe = phoneno;
         break;
       case "3":
-        isgooglepe=phoneno
+        isgooglepe = phoneno;
         break;
       default:
+        break;
     }
+    console.log(option);
+    console.log(isphonepe);
+    console.log(ispaytm);
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
@@ -163,7 +143,7 @@ function Otp2() {
         upi_type: option,
         paytm_no: ispaytm,
         google_pay_no: isgooglepe,
-        phon_pay_no: isphonepe
+        phon_pay_no: isphonepe,
       });
 
       const requestOptions = {
@@ -182,11 +162,12 @@ function Otp2() {
       console.log("error", error);
     }
   };
+
   return (
     <>
       <div style={backStyle}>
         <div className="bg-custom-purple text-white" style={navbarStyle}>
-          <button className="px-4" onClick={() => back()}>
+          <button className="px-4" onClick={back}>
             <BiArrowBack size={24} />
           </button>
           <div>
