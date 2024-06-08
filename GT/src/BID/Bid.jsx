@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-function Bid({onDataFetch}) {
+function Bid({ onDataFetch }) {
   const navbarStyle = {
     height: "60px",
     display: "flex",
@@ -13,22 +13,23 @@ function Bid({onDataFetch}) {
   };
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
-    backgroundSize: 'cover', 
+    backgroundSize: 'cover',
     backgroundPosition: 'center',
-    position:'relative',
-    paddingBottom:'',
+    position: 'relative',
+    paddingBottom: '',
   };
-  const cardStyle={
-    width:'400px',
-    display:'flex',
-    flexDirection:'column',
-    padding:'20px',
+  const cardStyle = {
+    width: '400px',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '20px',
   };
-  const navigate= useNavigate();
+  const navigate = useNavigate();
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState(new Date());
-  const token = useSelector(state=>state.userDetail.token)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const token = useSelector(state => state.userDetail.token);
 
   useEffect(() => {
     fetchData(changedate(selectedDate), changedate(selectedEndDate));
@@ -38,30 +39,32 @@ function Bid({onDataFetch}) {
     setSelectedDate(date);
   };
 
-  const handleEndDateChange= (date) => {
+  const handleEndDateChange = (date) => {
     setSelectedEndDate(date);
   };
 
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
+    if (isSubmitting) return; // Prevent duplicate submissions
+
+    setIsSubmitting(true);
     console.log("From Date:", selectedDate);
     console.log("To Date:", selectedEndDate);
-   
-    const startdate1=changedate(selectedDate);
-    const enddate1= changedate(selectedEndDate);
-    console.log(startdate1)
-    console.log(enddate1)
+
+    const startdate1 = changedate(selectedDate);
+    const enddate1 = changedate(selectedEndDate);
+    console.log(startdate1);
+    console.log(enddate1);
     try {
       await fetchData(startdate1, enddate1);
       // setIsSubmit(true);
     } catch (error) {
       // setErrorText("Username or password incorrect");
-
+    } finally {
+      setIsSubmitting(false);
     }
-
   };
 
-  const fetchData = async ( startdate1, enddate1) => {
-    // Your fetchData implementation here
+  const fetchData = async (startdate1, enddate1) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append(
@@ -88,20 +91,20 @@ function Bid({onDataFetch}) {
       requestOptions
     );
     const result = await response.json();
-    if(result?.status==true)onDataFetch(true , result);
-    else onDataFetch(false,null);
-     console.log(result);
+    if (result?.status === true) onDataFetch(true, result);
+    else onDataFetch(false, null);
+    console.log(result);
   };
 
-  const changedate =( selectedDate)=>{
-    if(selectedDate===null)return;
+  const changedate = (selectedDate) => {
+    if (selectedDate === null) return;
     const startday = selectedDate.getDate(); // Returns the day of the month (1-31)
-    const startmonth = selectedDate.getMonth()+1; // Returns the month (0-11)
+    const startmonth = selectedDate.getMonth() + 1; // Returns the month (0-11)
     const startyear = selectedDate.getFullYear();
-    const date= startmonth+'/'+startday+'/'+startyear;
+    const date = startmonth + '/' + startday + '/' + startyear;
     console.log(date);
     return date;
-  }
+  };
 
   const back = () => {
     navigate('/imp');
@@ -110,7 +113,7 @@ function Bid({onDataFetch}) {
   return (
     <>
       <div className="bg-custom-purple text-white" style={navbarStyle}>
-        <button className="px-4" onClick={()=>back()}>
+        <button className="px-4" onClick={() => back()}>
           <BiArrowBack size={24} />
         </button>
         <div>
@@ -118,15 +121,21 @@ function Bid({onDataFetch}) {
         </div>
       </div>
       <div style={backStyle} className="text-white">
-        <div className="flex justify-center item-center p-5" >
-          <div className="" style={cardStyle} >
-            <p className="inline-block rounded p-3 border border-white mb-2 bg-blue-500 w-1/2" >Select Dates</p>
+        <div className="flex justify-center item-center p-5">
+          <div className="" style={cardStyle}>
+            <p className="inline-block rounded p-3 border border-white mb-2 bg-blue-500 w-1/2">Select Dates</p>
             <p className="mb-2">From Date</p>
             <DatePickerButton selectedDate={selectedDate} onDateChange={handleDateChange} />
-            <p className="mb-2 mt-2" >To Date</p>
+            <p className="mb-2 mt-2">To Date</p>
             <DatePickerButton selectedDate={selectedEndDate} onDateChange={handleEndDateChange} />
-            <div className="flex justify-center  ">
-              <button className="p-3 border border-black-500 rounded mt-4 bg-green-500 w-1/2" onClick={handleSubmit}>Submit</button>
+            <div className="flex justify-center">
+              <button
+                className="p-3 border border-black-500 rounded mt-4 bg-green-500 w-1/2"
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit'}
+              </button>
             </div>
           </div>
         </div>
