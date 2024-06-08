@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import StarModal from "./StarModal.jsx"
 
 function StarSingle() {
+  const singleDigitArray = Array.from({ length: 10 }, (_, index) => index.toString());
   const todayDate = new Date().toISOString().split("T")[0];
   const months = [
     "January", "February", "March", "April", "May", "June", "July", "August",
@@ -24,24 +25,28 @@ function StarSingle() {
   
   const formattedDate = day + "-" + months[monthIndex] + "-" + year;
   const [submit, setSubmit]= useState('');
- const navbarStyle = {
+
+  
+  console.log(formattedDate);
+  const navbarStyle = {
     height: "60px",
     display: "flex",
     alignItems: "center",
   };
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
-    backgroundSize: 'cover', // This will make the background image cover the container without 
-    backgroundPosition: 'center',
-    position:'relative',
-    paddingBottom:'400px',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    position: "relative",
+    paddingBottom: "400px",
   };
-  const cardStyle={
-    width:'400px',
-    display:'flex',
-    flexDirection:'column',
-    padding:'20px',
-  }
+  const cardStyle = {
+    width: "400px",
+    display: "flex",
+    flexDirection: "column",
+    padding: "20px",
+  };
+
   const digit = useRef();
   const date = useRef();
   const point = useRef();
@@ -113,6 +118,11 @@ function StarSingle() {
       console.log(typeof(walletAmt))
     }
   }, [res.wallet_amt]);
+
+  useEffect(() => {
+    calculateTimeLeft(); // Call calculateTimeLeft whenever openTime changes
+  }, [openTime]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -131,11 +141,12 @@ function StarSingle() {
     } else {
       setIsProceed(true);
       setFormErrors({});
+
       const newDataObject = {
         digits: digit.current.value,
         closedigits: "",
         points: point.current.value,
-        session: "close",
+        session: "",
       };
       const newWalletAmt = walletAmt - point.current.value;
 
@@ -162,7 +173,7 @@ function StarSingle() {
     const errors = {};
     if (!digit) {
       errors.digit = "Please enter the number";
-    } else if (parseInt(digit) >= 10) {
+    } else if (!singleDigitArray.includes(digit)) {
       errors.digit = `Number ${digit} is not valid`;
     }
     if (!point) {
@@ -174,8 +185,39 @@ function StarSingle() {
     }
     return errors;
   };
+
+  const calculateTimeLeft = () => {
+    
+    const openTimeWithoutSuffix = openTime.replace(/\s[AaPp][Mm]$/, "");
+    const openDateString = new Date().toLocaleDateString(); // Get current date as a string
+    const open = `${openDateString}T${openTimeWithoutSuffix}`;
+    const parts = open.split("T");
+    const dateParts = parts[0].split("/");
+    const timeParts = parts[1].split(":");
+    const formattedDateString = `${dateParts[2]}-${dateParts[0].padStart(
+      2,
+      "0"
+    )}-${dateParts[1].padStart(2, "0")}T${timeParts[0].padStart(
+      2,
+      "0"
+    )}:${timeParts[1].padStart(2, "0")}:00`;
+    let openDate = new Date(
+      `${dateParts[2]}-${dateParts[0].padStart(2, "0")}-${dateParts[1].padStart(
+        2,
+        "0"
+      )}T${timeParts[0].padStart(2, "0")}:${timeParts[1].padStart(2, "0")}:00`
+    );
+    if (openTime.match(/[Pp][Mm]$/)) {
+      const openHours = openDate.getHours();
+      openDate.setHours(openHours === 12 ? 12 : openHours + 12);
+    }
+
+    const openMillisec = Date.parse(openDate);
+    if (openMillisec <= Date.now()) {
+      setIsOpen(false);
+    }
+  };
   const totalPoints=submittedData.reduce((acc, curr) => acc + parseInt(curr.points), 0)
-  console.log(isProceed)
   return (
     <>
       <div className="bg-custom-purple text-white" style={navbarStyle}>
@@ -199,23 +241,30 @@ function StarSingle() {
           </li>
         </ul>
       </div>
-      <div style={backStyle} className="text-white">
-      <div className="flex justify-center items-center pt-5 ">
-        <div className="" style={cardStyle}>
-        <input
+      <div style={backStyle} className="text-white" >
+        <div className="flex justify-center items-center pt-5 ">
+          <div className="" style={cardStyle}>
+            <input
               type="date"
               value={todayDate}
               readOnly
               className="w-full flex justify-center p-4 text-black border border-black-500 rounded-xl text-center"
-            />  
-          <p className="my-2"> Digit</p>
-          <input
+            />
+            <p className="my-2">Open Digit</p>
+            <input
               type="number"
               inputMode="numeric"
               ref={digit}
               placeholder="Enter Digit"
               className="w-full p-4 border border-black-500 rounded-xl text-black"
+              list="digitList" // Step 2: Add list attribute
+              autoComplete="off" 
             />
+            <datalist id="digitList">
+  {singleDigitArray.map((digit, index) => (
+    <option key={index} value={digit} />
+  ))}
+</datalist>
             <p className="my-2">Points</p>
             <input
               type="number"
@@ -305,9 +354,10 @@ function StarSingle() {
               );
             })}
           </div>
-      </div>
+        </div>
       </div>
     </>
   );
 }
+
 export default StarSingle;

@@ -84,7 +84,7 @@ function Navbar() {
           <div className="text-xl fading-text">
 
             <div className="w-40">
-            <marquee scrollamount="4"> GT KALYAN MILAN MATKA</marquee>
+            <marquee scrollamount="4"> SATTA MATKA OFFICIALS</marquee>
             </div>
             
           </div>

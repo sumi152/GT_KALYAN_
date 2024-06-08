@@ -7,6 +7,11 @@ import usePayment from "../Hooks/usePayment";
 import { useSelector } from "react-redux";
 import useWallet from "../Hooks/useWallet";
 
+import { useRef } from "react";
+import withdraw_history_btn from "../Images/withdraw_history_btn.png";
+import withdraw_rules_btn from "../Images/withdraw_rules_btn.png";
+
+
 function WithdrawFunds() {
   const navbarStyle = {
     height: "60px",
@@ -39,7 +44,7 @@ function WithdrawFunds() {
     borderRadius: "5px",
     border: "1px solid #ffffff",
     display: "flex",
-    background: "linear-gradient(to right, #70D578, #033407)",
+    background: "linear-gradient(to right, #141384, #000000)",
     width: "300px",
   };
 
@@ -48,12 +53,14 @@ function WithdrawFunds() {
     padding: "20px",
     display: "flex",
     justifyContent: "center",
+
     alignItems: "center",
+
   };
 
   const btnStyle = {
-    background: "linear-gradient(to right, #33FF42, #7433FF)",
-    width: "300px",
+    background: "#E5B80B",
+    width: "200px",
     padding: "7px",
     borderRadius: "15px",
   };
@@ -66,8 +73,10 @@ function WithdrawFunds() {
   const [errorText, setErrorText] = useState("");
   const [selectedUPI, setSelectedUPI] = useState("");
   const [gamesUpi, setGamesUpi] = useState([]);
+
   const [walletAmt, setWalletAmt] = useState();
   const [isSubmitting, setIsSubmitting] = useState(false); // State to track form submission
+
 
   const navigate = useNavigate();
   const res = usePayment(token, number);
@@ -137,8 +146,12 @@ function WithdrawFunds() {
   const fetchData = async (token, amount, number, method2) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Cookie", "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee");
 
+    myHeaders.append(
+      "Cookie",
+      "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
+    );
+    
     const raw = JSON.stringify({
       env_type: "Prod",
       app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
@@ -147,6 +160,7 @@ function WithdrawFunds() {
       request_amount: amount,
       payment_method: method2,
     });
+    
 
     const requestOptions = {
       method: "POST",
@@ -175,37 +189,73 @@ function WithdrawFunds() {
           <h1 className="text-white px-3">Withdraw Fund</h1>
         </div>
       </div>
-      <div className="p-5" style={topStyle}>
+
+      <div className=" p-5" style={topStyle}>
+        <div style={{background:"white",width:"300px",margin:"auto",padding:"7px",borderRadius: "20px",marginBottom: "20px",}}>
+        <p className="text-red-500 mt-2">Withdraw Timings :- 07:00AM -10:00AM</p>
+        <p className="text-red-500 ">{errorText}</p>
+        </div>
+        <div  style={{   
+    padding: "10px",
+    width: "250px",
+    margin: "auto",
+
+    marginBottom: "20px",}}>
+        <button >
+          <img src={withdraw_rules_btn}/>
+        </button>
+      </div>
         <div className="" style={box1}>
           <p>Current Balance</p>
           <p>RS {walletAmt}</p>
         </div>
-        <div className="flex flex-col" style={box4}>
-          <input
-            type="text"
-            placeholder="Enter amount"
-            ref={amount}
-            className="placeholder-white text-white mb-2"
-            style={enterAmount}
-          />
+
+        <div className="flex flex-col"style={box4}>
+          <input type="text" placeholder="Enter Points" ref={amount} className="placeholder-white text-white mb-2" style={enterAmount} />
+
           <p className="text-red-500 ">{formErrors.amount}</p>
         </div>
         <div style={box4}>
-          <select className="text-white" value={selectedUPI} onChange={handleUPIChange} style={enterAmount}>
-            {gamesUpi.map((upi, index) => (
+
+          <select className="text-white"
+            value={selectedUPI}
+            onChange={handleUPIChange}
+            style={enterAmount}
+            
+          >
+        {gamesUpi.length === 0 ? (
+          <option value="" disabled>
+            Please set the method and number first
+          </option>
+        ) : (
+            gamesUpi.map((upi, index) => (
               <option key={index} value={upi.value} className="text-black">
                 {upi?.name}: {upi?.value}
               </option>
-            ))}
-          </select>
+          ))
+        )}
+      </select>
+
         </div>
         <div style={box4} className="flex flex-col">
+
           <button className="text-white rounded" style={btnStyle} onClick={handleSubmit} disabled={isSubmitting}>
             {isSubmitting ? "Submitting..." : "Withdraw Now"}
           </button>
           <p className="text-red-500 mt-2">Withdraw Timings :- 07:00AM -10:00AM</p>
           <p className="text-red-500 ">{errorText}</p>
+
         </div>
+        <div  style={{   
+    padding: "10px",
+    width: "250px",
+    margin: "auto",
+
+    marginBottom: "20px",}}>
+        <button >
+          <img src={withdraw_history_btn}/>
+        </button>
+      </div>
       </div>
     </>
   );
