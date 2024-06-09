@@ -122,7 +122,7 @@ function Starbid({ onDataFetch }) {
       <div style={backStyle} className="text-white">
         <div className="flex justify-center item-center p-5">
           <div className="" style={cardStyle}>
-            <p className="inline-block rounded p-3 border border-white mb-2 bg-blue-500 w-1/2">Select Dates</p>
+            <p className="inline-block rounded p-3 border border-white mb-2 bg-blue-950 w-full">Select Dates</p>
             <p className="mb-2">From Date</p>
             <DatePickerButton selectedDate={selectedDate} onDateChange={handleDateChange} />
             <p className="mb-2 mt-2">To Date</p>
