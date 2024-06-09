@@ -95,7 +95,7 @@ function LandingTop() {
         </Carousel>
       </div>
       <div className="relative flex flex-col items-center justify-center">
-  <div style={{ position: 'absolute', zIndex: 5 }}>
+  <div style={{ position: 'absolute', zIndex: 1 }}>
     <button onClick={() => navigate('/login')} className='flex justify-center'>
       <img className='h-20' src={black} alt="Game Rates" style={cellImageStyle} />
     </button>
