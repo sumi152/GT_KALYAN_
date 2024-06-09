@@ -9,6 +9,8 @@ import call from '../Images/call_helpline.png';
 import withdraw from '../Images/withdraw.png';
 import marker from '../Images/marker.png';
 import black from '../Images/blackjed.png';
+import star from '../Images/play_starline.png'
+import gali from '../Images/gali_disawar.png'
 import topBackground from '../Images/bg.png';
 import { useNavigate } from 'react-router-dom';
 import useCarosuel from '../Hooks/useCarosuel';
@@ -94,18 +96,18 @@ function LandingTop() {
       </div>
       <div className="relative flex flex-col items-center justify-center">
   <div style={{ position: 'absolute', zIndex: 5 }}>
-    <button onClick={() => navigate('/gameRates')} className='flex justify-center'>
+    <button onClick={() => navigate('/login')} className='flex justify-center'>
       <img className='h-20' src={black} alt="Game Rates" style={cellImageStyle} />
     </button>
   </div>
   <div className="flex space-x-4 mt-0">
     <div>
-      <button onClick={() => navigate('/imp9')}>
+      <button onClick={() => navigate('/login')}>
         <img src={addfund} alt="Add Fund" style={cellImageStyle} />
       </button>
     </div>
     <div>
-      <button onClick={() => navigate('/imp7')}>
+      <button onClick={() => navigate('/login')}>
         <img src={withdraw} alt="Withdraw" style={cellImageStyle} />
       </button>
     </div>
@@ -119,7 +121,7 @@ function LandingTop() {
       </a>
     </div>
     <div>
-      <button onClick={() => handleButtonClick('addFund')}>
+      <button onClick={() => navigate('/login')}>
         <img src={call} alt="Call" style={cellImageStyle} />
       </button>
     </div>
@@ -127,6 +129,14 @@ function LandingTop() {
 </div>
       <div style={markerStyle}>
         <img src={marker} alt="marker" />
+      </div>
+      <div className='flex justify-center items-start pb-5 col-span-full'>
+      <button className='mr-3' onClick={() => navigate('/login')}>
+              <img src={gali} alt="Add Fund" className='w-64 h-15' />
+            </button>
+            <button onClick={() => navigate('/login')}>
+              <img src={star} alt="Add Fund" className='w-64 h-15' />
+            </button>
       </div>
     </div>
   );
