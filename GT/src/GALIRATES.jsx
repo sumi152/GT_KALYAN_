@@ -50,7 +50,7 @@ function GALIRATES() {
     navigate("/imp");
   };
   const handleClick = () => {
-    window.location.href = resinfo1['web_starline_chart_url'];
+    window.open(resinfo1['web_starline_chart_url'], '_blank');
   };
 
   const [status, setStatus] = useState(false);
