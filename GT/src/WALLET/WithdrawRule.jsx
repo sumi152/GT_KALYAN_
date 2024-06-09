@@ -9,9 +9,10 @@ function WithdrawRule(){
     const topStyle = {
         backgroundImage: `url(${topBackground})`,
         backgroundSize: "cover",
-        height: "auto",
+        height: "100vh",
         width: "100%",
         paddingBottom: "100px",
+        paddingTop: "100px",
       };
       const navbarStyle = {
         height: "60px",

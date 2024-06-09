@@ -22,10 +22,10 @@ function IMP8() {
           <WithdrawFund/>
         </div>
 
-        <div className="  text-white flex flex-col  " style={topStyle}>
+        {/* <div className="  text-white flex flex-col  " style={topStyle}>
           {console.log('')}
           <WithdrawHistory />
-        </div>
+        </div> */}
       </div>
     
 

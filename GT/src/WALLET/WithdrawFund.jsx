@@ -23,7 +23,7 @@ function WithdrawFunds() {
   const topStyle = {
     backgroundImage: `url(${topBackground})`,
     backgroundSize: "cover",
-    height: "auto",
+    height: "100vh ", // Set the height of the div
     width: "100%",
     padding: "",
   };
