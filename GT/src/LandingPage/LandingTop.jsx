@@ -92,38 +92,39 @@ function LandingTop() {
           </div>
         </Carousel>
       </div>
-      <div className="flex flex-col items-center justify-center ">
-        <div className="flex">
-          <div className='mr-4'>
-            <button onClick={()=>goTo()}>
-              <img src={addfund} alt="Add Fund" style={cellImageStyle} />
-            </button>
-          </div>
-          <div>
-            <button onClick={()=>goTo()}>
-              <img src={withdraw} alt="Add Fund" style={cellImageStyle} />
-            </button>
-          </div>
-        </div>
-        <div style={centerStyle}>
-          <button onClick={()=>goTo()} className='flex justify-center'
-          >
-            <img  className=" h-24" src={black} alt="Add Fund" style={cellImageStyle} />
-          </button>
-        </div>
-        <div className="flex">
-          <div className='mr-4'>
-            <button onClick={()=>goTo()}>
-              <img src={whatsapp} alt="Add Fund" style={cellImageStyle} />
-            </button>
-          </div>
-          <div>
-            <button onClick={()=>goTo()}>
-              <img src={call} alt="Add Fund" style={cellImageStyle} />
-            </button>
-          </div>
-        </div>
-      </div>
+      <div className="relative flex flex-col items-center justify-center">
+  <div style={{ position: 'absolute', zIndex: 5 }}>
+    <button onClick={() => navigate('/gameRates')} className='flex justify-center'>
+      <img className='h-20' src={black} alt="Game Rates" style={cellImageStyle} />
+    </button>
+  </div>
+  <div className="flex space-x-4 mt-0">
+    <div>
+      <button onClick={() => navigate('/imp9')}>
+        <img src={addfund} alt="Add Fund" style={cellImageStyle} />
+      </button>
+    </div>
+    <div>
+      <button onClick={() => navigate('/imp7')}>
+        <img src={withdraw} alt="Withdraw" style={cellImageStyle} />
+      </button>
+    </div>
+  </div>
+  <div className="flex space-x-4 mt-4">
+    <div>
+      <a href="/login" target="_blank" rel="noopener noreferrer" className="flex justify-center items-center">
+        <button>
+          <img src={whatsapp} alt="WhatsApp" style={cellImageStyle} />
+        </button>
+      </a>
+    </div>
+    <div>
+      <button onClick={() => handleButtonClick('addFund')}>
+        <img src={call} alt="Call" style={cellImageStyle} />
+      </button>
+    </div>
+  </div>
+</div>
       <div style={markerStyle}>
         <img src={marker} alt="marker" />
       </div>

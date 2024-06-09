@@ -18,6 +18,10 @@ import ChangePass from "../Images/reset_pass.png";
 import lock_icon from "../Images/lock_icon.png";
 import user_profile from "../Images/user_profile.png";
 import question from "../Images/question.png";
+import website from "../Images/website.png";
+import share_icon from "../Images/share_icon.png";
+import policy from "../Images/policy.png";
+import telegram_icon from "../Images/telegram_icon.png";
 import { NavLink, useNavigate} from "react-router-dom";
 
 
@@ -64,7 +68,7 @@ function LandingNavbar() {
 
           <div className="text-xl fading-text">
             <div className="w-40">
-            <marquee scrollamount="4"> GT KALYAN MILAN MATKA</marquee>
+            <marquee scrollamount="4"> SATTA MATKA OFFICIALS</marquee>
             </div>
             
           </div>
@@ -83,15 +87,12 @@ function LandingNavbar() {
           <div className="px-6 pt-4">
             {/* User Info */}
             <div className="text-center mb-4">
-              <div className="text-xl font-bold">User</div>
-              <div className="text-sm opacity-75"></div>
+              <div className="text-xl font-bold">{"User"}</div>
+              <div className="text-sm opacity-75">{"0000000000"}</div>
             </div>
             {/* Logout Button */}
             <div className="flex justify-center mt-8">
-              <button className="flex items-center justify-center text-white font-bold rounded-full w-10 h-10 mx-2"
-              onClick={()=>{
-                navigate('login');
-              }}>
+              <button className="flex items-center justify-center text-white font-bold rounded-full w-10 h-10 mx-2">
                 <img
                   src={call24} // Replace with the path to your Button 1 image
                   alt="Button 1"
@@ -101,9 +102,9 @@ function LandingNavbar() {
               <div className="flex items-center mx-2">
                 <img src={logo} alt="Center Image" className="w-20 h-20" />
               </div>
-              <button className="flex items-center justify-center hover:bg-green-700 text-white font-bold rounded-full w-10 h-10 mx-2" onClick={handlelogout}>
+              <button className="flex items-center justify-center hover:bg-green-700 text-white font-bold rounded-full w-10 h-10 mx-2" >
                 <img
-                  src={logoutImg} // Replace with the path to your Button 1 image
+                  src={telegram_icon} // Replace with the path to your Button 1 image
                   alt="Button 1"
                   className="w-full h-full object-cover"
                 />
@@ -112,21 +113,23 @@ function LandingNavbar() {
           </div>
           <ul className="space-y-1.5">
             <li>
-              <a
-                href="login"
+              <NavLink
+                to='/login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
+                onClick={handleBackdropClick}
               >
                 <img
                   src={Home}
                   alt="Home"
                   className="w-8 h-8 mr-2 inline-block"
+
                 />
                 Home
-              </a>
+              </NavLink>
             </li>
             <li>
               <NavLink
-                to='login'
+                to='/login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -139,7 +142,7 @@ function LandingNavbar() {
             </li>
             <li>
               <NavLink
-                to='login'
+                to='/login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -153,7 +156,7 @@ function LandingNavbar() {
 
             <li>
               <NavLink
-                to='login'
+                to='/login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -167,7 +170,7 @@ function LandingNavbar() {
 
             <li>
               <NavLink
-                to='login'
+                to='/login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -181,7 +184,7 @@ function LandingNavbar() {
 
             <li>
               <NavLink
-                to='login'
+                to='/login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -195,7 +198,7 @@ function LandingNavbar() {
 
             <li>
               <NavLink
-                to='login'
+                to='/login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -209,7 +212,7 @@ function LandingNavbar() {
 
             <li>
               <NavLink
-                to='login'
+                to='/login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -222,22 +225,64 @@ function LandingNavbar() {
             </li>
 
             <li>
-              <a
-                href="login"
+              <NavLink
+                to='/login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
-                  src={Share}
+                  src={Rating}
+                  alt="Game Rates"
+                  className="w-8 h-8 mr-2 inline-block"
+                />
+                Rate our App
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to='/login'
+                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
+              >
+                <img
+                  src={website}
+                  alt="Game Rates"
+                  className="w-8 h-8 mr-2 inline-block"
+                />
+                Visit our Website
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to='/login'
+                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
+              >
+                <img
+                  src={Rating}
+                  alt="Game Rates"
+                  className="w-8 h-8 mr-2 inline-block"
+                />
+                Mail us
+              </NavLink>
+            </li>
+
+            <li>
+              <a
+                href="/login"
+                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
+              >
+                <img
+                  src={share_icon}
                   alt="Share"
                   className="w-8 h-8 mr-2 inline-block"
                 />
-                Share
+                Share our App
               </a>
             </li>
 
             <li>
               <NavLink
-                to='login'
+                to='/login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -251,24 +296,11 @@ function LandingNavbar() {
 
             <li>
               <NavLink
-                to='login'
+                to='/login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
-                  src={ChangePass}
-                  alt="Delete Account"
-                  className="w-8 h-8 mr-2 inline-block"
-                />
-                Delete Account
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to='/privacy'
-                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
-              >
-                <img
-                  src={lock_icon}
+                  src={policy}
                   alt="Privacy Policy"
                   className="w-8 h-8 mr-2 inline-block"
                 />
@@ -277,7 +309,7 @@ function LandingNavbar() {
             </li>
             <li>
               <NavLink
-                to='/about'
+                to='/login'
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -286,6 +318,21 @@ function LandingNavbar() {
                   className="w-8 h-8 mr-2 inline-block"
                 />
                 About Us
+              </NavLink>
+            </li>
+
+            <li  >
+              <NavLink
+                to='/login'
+                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
+               
+              >
+                <img
+                  src={logoutImg}
+                  alt="User Profile"
+                  className="w-8 h-8 mr-2 inline-block"
+                />
+                Log out
               </NavLink>
             </li>
           </ul>
