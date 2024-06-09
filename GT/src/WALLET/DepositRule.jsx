@@ -9,9 +9,10 @@ function DepositRule(){
     const topStyle = {
         backgroundImage: `url(${topBackground})`,
         backgroundSize: "cover",
-        height: "auto",
+        height: "100vh",
         width: "100%",
         paddingBottom: "300px",
+        paddingTop: "100px",
       };
       const navbarStyle = {
         height: "60px",
