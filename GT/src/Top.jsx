@@ -36,7 +36,7 @@ function Top() {
     maxHeight: '250px',
     maxWidth: '100%',
     height: 'auto',
-    width: '80%',
+    width: '100%',
   };
 
   const cellImageStyle = {

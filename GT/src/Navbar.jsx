@@ -74,8 +74,8 @@ function Navbar() {
 
 
   return (
-    <nav className="bg-custom-purple text-white relative p-4">
-      <div className="container mx-auto flex  flex-1 justify-between items-center">
+    <nav className="bg-custom-purple text-white relative p-3">
+      <div className="container flex mx-auto flex-1 justify-between items-center">
         <div className="flex items-center ">
           <div onClick={handleHamburgerClick} style={Hamburg} className="mr-4">
             <img src={HamburgerIcon} alt="Hamburger Icon" className="w-8 h-8" />
