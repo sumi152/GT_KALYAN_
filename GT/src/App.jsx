@@ -77,6 +77,7 @@ import AddFundHistory from './WALLET/AddFundHistroy.jsx'
 import WithdrawRule from './WALLET/WithdrawRule.jsx'
 import DepositRule from './WALLET/DepositRule.jsx'
 import WithdrawHistory from './WALLET/WithdrawHistory.jsx'
+import ScrollToTop from './ScrollToTop';
 // import RightDigit from './Gali_games/RightDigit.jsx'
 
 
@@ -98,6 +99,7 @@ function App() {
     {/* <Win/> */}
     <Provider store={appStore}>
     <BrowserRouter>
+    <ScrollToTop />
         <Routes>
         <Route path="/r" element={<> <Register/> </>}></Route>  
         <Route path="/star" element={<> <Starline/> </>}></Route>
