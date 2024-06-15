@@ -23,6 +23,7 @@ import website from "./Images/website.png";
 import share_icon from "./Images/share_icon.png";
 import policy from "./Images/policy.png";
 import telegram_icon from "./Images/telegram_icon.png";
+import acc from "./Images/acc.png";
 
 import { NavLink, useNavigate} from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
@@ -83,7 +84,7 @@ function Navbar() {
 
           <div className="text-xl fading-text">
 
-            <div className="w-40">
+            <div className="w-40 flex items-center">
             <marquee scrollamount="4"> SATTA MATKA OFFICIALS</marquee>
             </div>
             
@@ -108,9 +109,16 @@ function Navbar() {
         <div className={isSidebarActive ? "sidebar--active" : "sidebar"} style={sidebarStyle}>
           <div className="px-6 pt-4">
             {/* User Info */}
-            <div className="text-center mb-4">
-              <div className="text-xl font-bold">{username ? username : "sumit"}</div>
-              <div className="text-sm opacity-75">{mobile}</div>
+            <div className="text-center">
+              <div className="flex">
+              <img className="w-12 h-15"
+                  src={acc} // Replace with the path to your Button 1 image
+                  alt="Button 1"
+                />
+              <div className="text-xl font-bold ml-5">{username ? username : "sumit"}</div>
+
+              </div>
+
             </div>
             {/* Logout Button */}
             <div className="flex justify-center mt-8">

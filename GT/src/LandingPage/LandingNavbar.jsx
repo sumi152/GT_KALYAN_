@@ -22,6 +22,7 @@ import website from "../Images/website.png";
 import share_icon from "../Images/share_icon.png";
 import policy from "../Images/policy.png";
 import telegram_icon from "../Images/telegram_icon.png";
+import acc from "../Images/acc.png";
 import { NavLink, useNavigate} from "react-router-dom";
 
 
@@ -59,7 +60,7 @@ function LandingNavbar() {
 
 
   return (
-    <nav className="bg-custom-purple text-white relative p-4">
+    <nav className="bg-custom-purple text-white relative p-2">
       <div className="container mx-auto flex  flex-1 justify-between items-center">
         <div className="flex items-center ">
           <div onClick={handleHamburgerClick} style={Hamburg} className="mr-4">
@@ -67,7 +68,7 @@ function LandingNavbar() {
           </div>
 
           <div className="text-xl fading-text">
-            <div className="w-40">
+            <div className="w-40 flex items-center">
             <marquee scrollamount="4"> SATTA MATKA OFFICIALS</marquee>
             </div>
             
@@ -86,13 +87,19 @@ function LandingNavbar() {
         <div className={isSidebarActive ? "sidebar--active" : "sidebar"} style={sidebarStyle}>
           <div className="px-6 pt-4">
             {/* User Info */}
-            <div className="text-center mb-4">
-              <div className="text-xl font-bold">{"User"}</div>
-              <div className="text-sm opacity-75">{"0000000000"}</div>
+            <div className="mb-4 flex items-center justify-center">
+            <button className="w-10 h-10" onClick={handlelogout}>
+            <img
+                  src={acc} // Replace with the path to your Button 1 image
+                  alt="Button 1"
+                />
+                 </button>
+              <div className="text-xl font-bold ml-5">{"Satta Matka"}</div>
+              
             </div>
             {/* Logout Button */}
             <div className="flex justify-center mt-8">
-              <button className="flex items-center justify-center text-white font-bold rounded-full w-10 h-10 mx-2">
+              <button className="flex items-center justify-center text-white font-bold rounded-full w-10 h-10 mx-2" onClick={handlelogout}>
                 <img
                   src={call24} // Replace with the path to your Button 1 image
                   alt="Button 1"
@@ -102,7 +109,7 @@ function LandingNavbar() {
               <div className="flex items-center mx-2">
                 <img src={logo} alt="Center Image" className="w-20 h-20" />
               </div>
-              <button className="flex items-center justify-center hover:bg-green-700 text-white font-bold rounded-full w-10 h-10 mx-2" >
+              <button className="flex items-center justify-center hover:bg-green-700 text-white font-bold rounded-full w-10 h-10 mx-2" onClick={handlelogout}>
                 <img
                   src={telegram_icon} // Replace with the path to your Button 1 image
                   alt="Button 1"

@@ -28,7 +28,7 @@ function LandingTop() {
 
   const carouselContainerStyle = {
     padding: '20px',
-    paddingBottom: '40px',
+    paddingBottom: '15px',
     zIndex: '0',
   };
 
@@ -55,6 +55,7 @@ function LandingTop() {
   };
 
   const markerStyle = {
+    marginTop: '5px',
     display: 'flex',
     justifyContent: 'center',
     paddingBottom: '20px',
@@ -100,7 +101,7 @@ function LandingTop() {
       <img className='h-20' src={black} alt="Game Rates" style={cellImageStyle} />
     </button>
   </div>
-  <div className="flex space-x-4 mt-0">
+  <div className="flex space-x-4 mb-1">
     <div>
       <button onClick={() => navigate('/login')}>
         <img src={addfund} alt="Add Fund" style={cellImageStyle} />
@@ -130,7 +131,7 @@ function LandingTop() {
       <div style={markerStyle}>
         <img src={marker} alt="marker" />
       </div>
-      <div className='flex justify-center items-start pb-5 col-span-full'>
+      <div className='flex justify-center items-start pb-3 col-span-full'>
       <button className='mr-3' onClick={() => navigate('/login')}>
               <img src={gali} alt="Add Fund" className='w-64 h-15' />
             </button>
