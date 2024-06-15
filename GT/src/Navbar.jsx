@@ -71,6 +71,7 @@ function Navbar() {
     dispatch(removePass());
     navigate('/') 
   }
+  
 
 
 
@@ -119,6 +120,7 @@ function Navbar() {
 
               </div>
 
+              <div className="text-sm opacity-75 -ml-10">{mobile}</div>
             </div>
             {/* Logout Button */}
             <div className="flex justify-center mt-8">

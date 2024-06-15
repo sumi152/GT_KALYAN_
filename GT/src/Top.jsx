@@ -78,6 +78,15 @@ function Top() {
   
   const phoneNumber = "5555555";
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
+  const CallButton = ({ phoneNumber, imgSrc }) => (
+    <a href={`tel:${phoneNumber}`} >
+      <img
+        src={imgSrc}
+        alt="Call Button"
+        style={cellImageStyle}
+      />
+    </a>
+  );
 
 
   return (
@@ -134,9 +143,9 @@ function Top() {
       </a>
     </div>
     <div>
-      <button onClick={() => handleButtonClick('addFund')}>
-        <img src={call} alt="Call" style={cellImageStyle} />
-      </button>
+    <CallButton phoneNumber="+1234567890" imgSrc={call}  />
+      
+    
     </div>
   </div>
 </div>

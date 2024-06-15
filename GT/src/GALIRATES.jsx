@@ -140,9 +140,6 @@ function GALIRATES() {
                   </div>
                 </div>
               </div>
-              <div style={marker}>
-                <img src={starMarker} alt="" />
-              </div>
             </div>
           </div>
         </div>
