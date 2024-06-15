@@ -70,8 +70,9 @@ function Navbar() {
   const handlelogout = () => {
     dispatch(logout());
     dispatch(removePass());
-    navigate("/");
-  };
+    navigate('/') 
+  }
+  
 
   return (
     <nav className="bg-custom-purple text-white relative p-2">
@@ -121,6 +122,8 @@ function Navbar() {
                   {username ? username : "sumit"}
                 </div>
               </div>
+
+              <div className="text-sm opacity-75 -ml-10">{mobile}</div>
             </div>
             {/* Logout Button */}
             <div className="flex justify-center mt-8">

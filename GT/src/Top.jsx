@@ -1,7 +1,7 @@
 import React, { useState , useEffect, useMemo } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import cara1 from './Images/top1.jpeg';
+import cara1 from './Images/top1.png';
 import cara2 from './Images/top2.jpeg';
 import addfund from './Images/add_fund.png';
 import whatsapp from './Images/whatsapp.png';
@@ -93,6 +93,15 @@ function Top() {
   
   const phoneNumber = gameRates;
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
+  const CallButton = ({ phoneNumber, imgSrc }) => (
+    <a href={`tel:${phoneNumber}`} >
+      <img
+        src={imgSrc}
+        alt="Call Button"
+        style={cellImageStyle}
+      />
+    </a>
+  );
 
 
   return (
@@ -148,9 +157,9 @@ function Top() {
       </a>
     </div>
     <div>
-      <button onClick={() => handleButtonClick('addFund')}>
-        <img src={call} alt="Call" style={cellImageStyle} />
-      </button>
+    <CallButton phoneNumber="+1234567890" imgSrc={call}  />
+      
+    
     </div>
   </div>
 </div>

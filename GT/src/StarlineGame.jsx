@@ -50,12 +50,12 @@ function StarlineGame() {
     <div>
       {gameRates.map((game) => (
         <div key={game.game_id} className="mb-5">
-          <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-9 ml-2 mr-4 h-35 rounded-xl border border-white text-white">
+          <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-9 ml-2 mr-4 h-15 rounded-xl border border-white text-white">
             <p className="top-0 right-0">{game.game_name}</p>
             {console.log(game.close_time)}
             {(game.open_time && game.close_time_srt && game.msg_status === 1  ) ? <TimerStar closeTime={game.close_time_srt} />:"00:00:00"}
           </div>
-          <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 flex flex-col rounded-3xl border">
+          <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 pb-2 flex flex-col rounded-3xl border">
             <div className="flex justify-center items-center">
               <p>******</p>
             </div>
