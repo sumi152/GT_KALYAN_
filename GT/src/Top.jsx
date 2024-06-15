@@ -56,10 +56,10 @@ function Top() {
   };
 
   const markerStyle = {
-    marginTop: '5px',
+    // marginTop: '5px',
     display: 'flex',
     justifyContent: 'center',
-    paddingBottom: '20px',
+    // paddingBottom: '20px',
     gridColumn: '1 / -1',
   };
   const token = useSelector(state=>state.userDetail.token)
@@ -98,6 +98,7 @@ function Top() {
           height={'0px'}
           centerMode={false}
         >
+          {console.log(sd[0])}
           <div>
             <img src={sd[0]?.slider_image} alt="image 1" className="h-full w-full object-cover rounded-xl" style={imageStyle} />
           </div>
