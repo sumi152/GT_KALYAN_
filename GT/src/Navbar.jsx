@@ -1,7 +1,7 @@
 import WalletIcon from "./Images/wallet.png";
 import HamburgerIcon from "./Images/Hamburger.png";
 import "./Navbar.css";
-import React, { useState, useEffect, useRef ,useMemo} from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import "./Sidebar.css";
 import sidebarBackground from "./Images/bg.png";
 import logoutImg from "./Images/logout.png";
@@ -25,8 +25,8 @@ import policy from "./Images/policy.png";
 import telegram_icon from "./Images/telegram_icon.png";
 import acc from "./Images/acc.png";
 
-import { NavLink, useNavigate} from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { NavLink, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { logout } from "./Util/loginSlice";
 import useGameFront from "./Hooks/useGameFront";
 import { removePass } from "./Util/passslice";
@@ -40,39 +40,38 @@ function Navbar() {
   };
   const sidebarStyle = {
     backgroundImage: `url(${sidebarBackground})`,
-    backgroundSize:'cover'
+    backgroundSize: "cover",
     /* Add other background properties as needed */
   };
-  
-  const username = useSelector(state => state.userDetail.username);
-  const token = useSelector(state => state.userDetail.token);
-  const mobile = useSelector(state=>state.userDetail.mobile)
-  const [isBackdropActive, setBackdropActive] = useState(false)
-  const [isSidebarActive, setSidebarActive] = useState(false)
+
+  const username = useSelector((state) => state.userDetail.username);
+  const token = useSelector((state) => state.userDetail.token);
+  const mobile = useSelector((state) => state.userDetail.mobile);
+  const [isBackdropActive, setBackdropActive] = useState(false);
+  const [isSidebarActive, setSidebarActive] = useState(false);
   const navigate = useNavigate();
   const resinfo = useGameFront(token);
-  console.log(resinfo)
+  console.log(resinfo);
+  const telegram = resinfo["telegram_no"];
+  console.log(telegram);
 
-
-  const handleHamburgerClick = () => {  
-    console.log(isBackdropActive)
-    setBackdropActive(!isBackdropActive)
-    setSidebarActive(!isSidebarActive)
+  const handleHamburgerClick = () => {
+    console.log(isBackdropActive);
+    setBackdropActive(!isBackdropActive);
+    setSidebarActive(!isSidebarActive);
   };
-  const handleBackdropClick = () => {  
-    console.log(isBackdropActive)
-    setBackdropActive(!isBackdropActive)
-    setSidebarActive(!isSidebarActive)
+  const handleBackdropClick = () => {
+    console.log(isBackdropActive);
+    setBackdropActive(!isBackdropActive);
+    setSidebarActive(!isSidebarActive);
   };
   const dispatch = useDispatch();
 
-  const handlelogout =()=>{
+  const handlelogout = () => {
     dispatch(logout());
     dispatch(removePass());
-    navigate('/') 
-  }
-
-
+    navigate("/");
+  };
 
   return (
     <nav className="bg-custom-purple text-white relative p-2">
@@ -83,42 +82,45 @@ function Navbar() {
           </div>
 
           <div className="text-xl fading-text">
-
             <div className="w-40 flex items-center">
-            <marquee scrollamount="4"> SATTA MATKA OFFICIALS</marquee>
+              <marquee scrollamount="4"> SATTA MATKA OFFICIALS</marquee>
             </div>
-            
           </div>
 
-
           <ul className="font-bold text-lg flex flex-shrink: 0 absolute right-10 top-15">
-          <li className="flex items-center">
-            <NavLink to='/imp7' className="text-white flex items-center">
-              <img
-                src={WalletIcon}
-                alt="Wallet Icon"
-                className="w-8 h-8 mr-2"
-               
-              />
-              <span>{resinfo.wallet_amt}</span>
-            </NavLink>
-          </li>
-        </ul>
+            <li className="flex items-center">
+              <NavLink to="/imp7" className="text-white flex items-center">
+                <img
+                  src={WalletIcon}
+                  alt="Wallet Icon"
+                  className="w-8 h-8 mr-2"
+                />
+                <span>{resinfo.wallet_amt}</span>
+              </NavLink>
+            </li>
+          </ul>
         </div>
-        <div onClick={handleBackdropClick} className={isBackdropActive ? "backdrop--active" : "backdrop"}></div>
-        <div className={isSidebarActive ? "sidebar--active" : "sidebar"} style={sidebarStyle}>
+        <div
+          onClick={handleBackdropClick}
+          className={isBackdropActive ? "backdrop--active" : "backdrop"}
+        ></div>
+        <div
+          className={isSidebarActive ? "sidebar--active" : "sidebar"}
+          style={sidebarStyle}
+        >
           <div className="px-6 pt-4">
             {/* User Info */}
             <div className="text-center">
               <div className="flex">
-              <img className="w-12 h-15"
+                <img
+                  className="w-12 h-15"
                   src={acc} // Replace with the path to your Button 1 image
                   alt="Button 1"
                 />
-              <div className="text-xl font-bold ml-5">{username ? username : "sumit"}</div>
-
+                <div className="text-xl font-bold ml-5">
+                  {username ? username : "sumit"}
+                </div>
               </div>
-
             </div>
             {/* Logout Button */}
             <div className="flex justify-center mt-8">
@@ -132,19 +134,26 @@ function Navbar() {
               <div className="flex items-center mx-2">
                 <img src={logo} alt="Center Image" className="w-20 h-20" />
               </div>
-              <button className="flex items-center justify-center hover:bg-green-700 text-white font-bold rounded-full w-10 h-10 mx-2" >
-                <img
-                  src={telegram_icon} // Replace with the path to your Button 1 image
-                  alt="Button 1"
-                  className="w-full h-full object-cover"
-                />
-              </button>
+              <a
+                href={telegram} target="_blank"
+                className="flex items-center justify-center rounded-full w-10 h-10 mx-2 hover:bg-green-700"
+              >
+                {" "}
+                {/* Replace with your desired link */}
+                <button className="flex items-center justify-center text-white font-bold rounded-full w-full h-full">
+                  <img
+                    src={telegram_icon} // Replace with the path to your Button 1 image
+                    alt="Button 1"
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              </a>
             </div>
           </div>
           <ul className="space-y-1.5">
             <li>
               <NavLink
-                to='/imp'
+                to="/imp"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
                 onClick={handleBackdropClick}
               >
@@ -152,14 +161,13 @@ function Navbar() {
                   src={Home}
                   alt="Home"
                   className="w-8 h-8 mr-2 inline-block"
-
                 />
                 Home
               </NavLink>
             </li>
             <li>
               <NavLink
-                to='/profile'
+                to="/profile"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -172,7 +180,7 @@ function Navbar() {
             </li>
             <li>
               <NavLink
-                to='/imp9'
+                to="/imp9"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -186,7 +194,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/imp7'
+                to="/imp7"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -200,7 +208,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/imp3'
+                to="/imp3"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -214,7 +222,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/imp4'
+                to="/imp4"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -228,7 +236,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/htp'
+                to="/htp"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -242,7 +250,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/gameRates'
+                to="/gameRates"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -256,7 +264,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/gameRates'
+                to="/gameRates"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -270,7 +278,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/gameRates'
+                to="/gameRates"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -284,7 +292,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/gameRates'
+                to="/gameRates"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -312,7 +320,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/change'
+                to="/change"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -326,7 +334,7 @@ function Navbar() {
 
             <li>
               <NavLink
-                to='/privacy'
+                to="/privacy"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -339,7 +347,7 @@ function Navbar() {
             </li>
             <li>
               <NavLink
-                to='/about'
+                to="/about"
                 className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
               >
                 <img
@@ -351,12 +359,8 @@ function Navbar() {
               </NavLink>
             </li>
 
-            <li  onClick={handlelogout}>
-              <NavLink
-              
-                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
-               
-              >
+            <li onClick={handlelogout}>
+              <NavLink className="block py-2 px-4 hover:bg-gray-700 rounded-lg">
                 <img
                   src={logoutImg}
                   alt="User Profile"
@@ -372,4 +376,4 @@ function Navbar() {
   );
 }
 
-export default React.memo(Navbar) ;
+export default React.memo(Navbar);
