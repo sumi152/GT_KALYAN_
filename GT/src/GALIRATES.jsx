@@ -23,7 +23,7 @@ function GALIRATES() {
     width: "150px",
     padding: "7px",
     borderRadius: "15px",
-    margin: "20px 10px 0 10px",
+    margin: "20px 10px 0 0px",
   };
 
   const box1 = {
@@ -35,12 +35,12 @@ function GALIRATES() {
     background: "linear-gradient(to right, #33FF42, #7433FF)",
     height: "180px",
     width: "500px",
-    margin: "70px 20px 0 20px",
+    margin: "20px 10px 0 10px",
     borderRadius: "20px",
   };
 
   const marker = {
-    margin: "70px 20px -20px 20px",
+    margin: "20px 20px -20px 20px",
     display: "flex",
     justifyContent: "center",
   };

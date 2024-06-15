@@ -3,6 +3,7 @@ import Starbid from "./Starbid";
 import Starbiddata from "./Starbiddata";
 import topBackground from "../Images/bg.png";
 import search from '../Images/search.png';
+import { GoCircleSlash } from "react-icons/go";
 
 function IMP5() {
   const [fetchResultStatus, setFetchResultStatus] = useState(false);
@@ -30,15 +31,21 @@ function IMP5() {
           <Starbid onDataFetch={handleDataFetch} /> {/* Pass the function as prop */}
         </div>
 
-        <div className="text-white" style={topStyle}>
-          <p className="text-center">Transactions</p>
+        <div className="text-black" >
+          {/* <p className="text-center">Win History</p> */}
           {/* Conditionally render Windata components or the search image */}
           {fetchResultStatus && fetchResultData ? (
             fetchResultData.bid_data.map((item, index) => (
               <Starbiddata key={index} data={item} />
             ))
           ) : (
-            <img src={search} className="h-48 w-48 absolute left-1/2 transform -translate-x-1/2   " alt="Search" />
+            // <img  className="h-48 w-48 absolute left-1/2 transform -translate-x-1/2   " alt="Search" />
+            <div className=" flex flex-col justify-center items-center py-5"> 
+            <div className="flex items-start justify-center">
+            <GoCircleSlash className="w-16 h-16 text-blue-500" />
+          </div>
+            <p> NO DATA FOUND </p>
+          </div>
           )}
         </div>
       </div>
