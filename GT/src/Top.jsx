@@ -15,6 +15,7 @@ import useCarosuel from './Hooks/useCarosuel';
 import {  useSelector } from 'react-redux';
 import star from './Images/play_starline.png'
 import gali from './Images/gali_disawar.png'
+import useGameFront from "./Hooks/useGameFront";
 
 
 
@@ -70,13 +71,27 @@ function Top() {
       setsd(res.sliderdata);
     }
   }, [res]);
-  console.log(sd[0]?.slider_image)
+
+  // console.log(sd[0]?.slider_image)
   const navigate = useNavigate();
   const addF=()=>{
     navigate('/imp9');
   }
+
+  const unique = useSelector((state) => state.userDetail.token);
+  const resinfo = useGameFront(unique);
+  const [status, setStatus] = useState(false);
+  const [gameRates, setGameRates] = useState([{}]);
+
+  useEffect(() => {
+    if (resinfo && resinfo["mobile_1"]) {
+      setStatus(true);
+      setGameRates(resinfo["mobile_1"]);
+    }
+  }, [resinfo]);
+  console.log(gameRates)
   
-  const phoneNumber = "5555555";
+  const phoneNumber = gameRates;
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
   const CallButton = ({ phoneNumber, imgSrc }) => (
     <a href={`tel:${phoneNumber}`} >
@@ -107,7 +122,6 @@ function Top() {
           height={'0px'}
           centerMode={false}
         >
-          {console.log(sd[0])}
           <div>
             <img src={sd[0]?.slider_image} alt="image 1" className="h-full w-full object-cover rounded-xl" style={imageStyle} />
           </div>
