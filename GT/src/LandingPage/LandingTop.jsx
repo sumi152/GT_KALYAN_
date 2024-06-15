@@ -112,7 +112,7 @@ function LandingTop() {
       </button>
     </div>
   </div>
-  <div className="flex space-x-4 mt-4">
+  <div className="flex space-x-4 mt-14 ">
     <div>
       <a href="/login" target="_blank" rel="noopener noreferrer" className="flex justify-center items-center">
         <button>

@@ -107,12 +107,12 @@ function Top() {
         </Carousel>
       </div>
       <div className="relative flex flex-col items-center justify-center">
-  <div style={{ position: 'absolute', zIndex: 1 }}>
-    <button onClick={() => navigate('/gameRates')} className='flex justify-center'>
+  <div style={{ position: 'absolute' }}>
+    <button onClick={() => navigate('/gameRates')} className='flex justify-center mb-2'>
       <img className='h-20' src={black} alt="Game Rates" style={cellImageStyle} />
     </button>
   </div>
-  <div className="flex space-x-4 ">
+  <div className="flex space-x-4 mb-1 ">
     <div>
       <button onClick={() => navigate('/imp9')}>
         <img src={addfund} alt="Add Fund" style={cellImageStyle} />
@@ -124,7 +124,7 @@ function Top() {
       </button>
     </div>
   </div>
-  <div className="flex space-x-4 mt-4">
+  <div className="flex space-x-4 mt-14 ">
     <div>
       <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex justify-center items-center">
         <button>
