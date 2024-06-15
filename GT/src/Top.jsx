@@ -28,7 +28,7 @@ function Top() {
 
   const carouselContainerStyle = {
     padding: '20px',
-    paddingBottom: '40px',
+    paddingBottom: '15px',
     zIndex: '0',
   };
 
@@ -112,7 +112,7 @@ function Top() {
       <img className='h-20' src={black} alt="Game Rates" style={cellImageStyle} />
     </button>
   </div>
-  <div className="flex space-x-4 mt-0">
+  <div className="flex space-x-4 ">
     <div>
       <button onClick={() => navigate('/imp9')}>
         <img src={addfund} alt="Add Fund" style={cellImageStyle} />
@@ -143,7 +143,7 @@ function Top() {
       <div style={markerStyle}>
         <img src={marker} alt="marker" />
       </div>
-      <div className='flex justify-center items-start pb-5 col-span-full'>
+      <div className='flex justify-center items-start pb-3 col-span-full'>
       <button className='mr-3' onClick={() => navigate('/galiIMP')}>
               <img src={gali} alt="Add Fund" className='w-64 h-15' />
             </button>
