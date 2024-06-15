@@ -21,11 +21,13 @@ function GameFRONT() {
   };
   const laststyle = {
     display: "flex",
-    justifyContent: "space-around",
+    justifyContent: "center",
     alignItems: "center",
+    height:"7px",
+    gap: "7px"
   };
   const imgstyle = {
-    width: "50px",
+    width: "40px",
     height: "auto",
     marginTop: "-4px",
   };
@@ -45,7 +47,7 @@ function GameFRONT() {
     <div>
       {gameRates.map((game) => (
         <div key={game.game_id} className="mb-5">
-          <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-9 ml-2 mr-4 h-35 rounded-2xl border border-white text-white">
+          <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-9 ml-2 mr-4 h-15 rounded-2xl border border-white text-white">
             <p className="top-0 right-0">{game.game_name}</p>
             {game.open_time && game.close_time && game.msg_status === 1 ? (
               <Timer closeTime={game.close_time} />
@@ -53,7 +55,7 @@ function GameFRONT() {
               "00:00:00"
             )}
           </div>
-          <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 flex flex-col rounded-3xl border">
+          <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 pb-2 flex flex-col rounded-3xl border">
             <div
               className={`text-${
                 game.msg_status === 2 ? "red" : "green"
@@ -93,8 +95,8 @@ function GameFRONT() {
               </button>
             </div>
             <div style={laststyle}>
-              <p className="text-green-500">Open - {game.open_time}</p>
-              <p className="text-red-500">Close - {game.close_time}</p>
+              <p className="text-green-500"style={{ fontSize: '12px' }}>Open - {game.open_time}</p>
+              <p className="text-red-500"style={{ fontSize: '12px' }}>Close - {game.close_time}</p>
             </div>
           </div>
         </div>
