@@ -7,6 +7,8 @@ import useQRPAY from "./Hooks/useQRPAY";
 import { FaRegCopy } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import what from "./Images/whatsapp2.png";
+import { useSelector } from "react-redux";
+import useGameFront from "./Hooks/useGameFront";
 // import { useNavigate } from "react-router-dom";
 
 function QR_PAY() {
@@ -46,9 +48,24 @@ function QR_PAY() {
   console.log(gameRates);
   console.log(gameRates.upi_id);
 
+  
+  const unique = useSelector((state) => state.userDetail.token);
+  const resinfo1 = useGameFront(unique);
+  const [status1, setStatus1] = useState(false);
+  const [gameRates1, setGameRates1] = useState([{}]);
+
+  useEffect(() => {
+    if (resinfo1 && resinfo1["mobile_1"]) {
+      setStatus1(true);
+      setGameRates1(resinfo1["mobile_1"]);
+    }
+  }, [resinfo1]);
+  console.log(gameRates1)
+  
+  const phoneNumber = gameRates1;
+
   const [copied, setCopied] = useState(false);
   const textToCopy = gameRates.upi_id;
-  const phoneNumber = "5555555";
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
   return (
     <>
