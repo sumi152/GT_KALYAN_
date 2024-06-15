@@ -1,7 +1,7 @@
 import React, { useState , useEffect, useMemo } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import cara1 from '../Images/top1.jpeg';
+import cara1 from '../Images/top1.png';
 import cara2 from '../Images/top2.jpeg';
 import addfund from '../Images/add_fund.png';
 import whatsapp from '../Images/whatsapp.png';
