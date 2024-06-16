@@ -54,7 +54,7 @@ function StarGame() {
                 navigate("/starsingle", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Single Pana' } });
               }}
             >
-              <img src={url1} alt="Image 1" className="w-64 h-64" />
+              <img src={url1} alt="Image 1" className="w-64 h-48" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center   ">
@@ -62,7 +62,7 @@ function StarGame() {
             onClick={() => {
               navigate("/ssinglepana", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Single Pana' } });
             }}>
-              <img src={url3} alt="Image 2" className="w-64 h-64" />
+              <img src={url3} alt="Image 2" className="w-64 h-48" />
             </button>
           </div>
 
@@ -73,7 +73,7 @@ function StarGame() {
                 navigate("/sdoublepana",{ state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Single Pana' } });
               }}
             >
-              <img src={url4} alt="Image 3" className="w-64 h-64" />
+              <img src={url4} alt="Image 3" className="w-64 h-48" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center mt-4">
@@ -82,7 +82,7 @@ function StarGame() {
                 navigate("/stripplepana", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Single Pana' } });
               }}
             >
-              <img src={url5} alt="Image 4" className="w-64 h-64" />
+              <img src={url5} alt="Image 4" className="w-64 h-48" />
             </button>
           </div>
         </div>

@@ -47,7 +47,7 @@ function GameFRONT() {
     <div>
       {gameRates.map((game) => (
         <div key={game.game_id} className="mb-5">
-          <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-9 ml-2 mr-4 h-15 rounded-2xl border border-white text-white">
+          <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white">
             <p className="top-0 right-0">{game.game_name}</p>
             {game.open_time && game.close_time && game.msg_status === 1 ? (
               <Timer closeTime={game.close_time} />

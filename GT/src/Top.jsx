@@ -107,7 +107,6 @@ function Top() {
           height={'0px'}
           centerMode={false}
         >
-          {console.log(sd[0])}
           <div>
             <img src={sd[0]?.slider_image} alt="image 1" className="h-full w-full object-cover rounded-xl" style={imageStyle} />
           </div>

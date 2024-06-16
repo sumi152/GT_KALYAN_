@@ -97,7 +97,7 @@ function LandingGameFRONT() {
         </div>
       </div>
       <div className="mb-5">
-        <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-9 ml-2 mr-4 h-15 rounded-2xl border border-white text-white">
+        <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white">
           <p className="top-0 right-0">Milan Morning</p>
           00:00:00
         </div>

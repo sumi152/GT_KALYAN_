@@ -52,7 +52,7 @@ function GaliAllGame() {
                 navigate("/leftdigit", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Single Pana' } });
               }
             }}>
-              <img src={left} alt="Image 3" className="w-64 h-48" />
+              <img src={left} alt="Image 3" className="w-24 h-24" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center mt-4">
@@ -63,7 +63,7 @@ function GaliAllGame() {
                 navigate("/rightdigit", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Right Digit' } });
               }
             }}>
-              <img src={right} alt="Image 4" className="w-64 h-48" />
+              <img src={right} alt="Image 4" className="w-24 h-24" />
             </button>
           </div>
 
@@ -76,7 +76,7 @@ function GaliAllGame() {
                 navigate("/jodidigit", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Triple Pana' } });
               }
             }}>
-              <img src={jodi} alt="Image 5" className="w-48 h-48 pt-2 " />
+              <img src={jodi} alt="Image 5" className="w-40 h-40 pt-2 " />
             </button>
           </div>
         </div>
