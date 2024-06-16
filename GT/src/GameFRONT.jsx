@@ -71,7 +71,7 @@ function GameFRONT() {
               </div>
               <p>
                 {game.open_result && game.close_result
-                  ? `${game.open_result}_${game.close_result}`
+                  ? `${game.open_result}${game.close_result}`
                   : "***_**_***"}
               </p>
               <button

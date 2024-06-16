@@ -35,7 +35,7 @@ function GaliAllGame() {
           <BiArrowBack size={24} />
         </button>
         <div>
-          <h1 className="text-white px-3">SUPREME DAY</h1>
+          <h1 className="text-white px-3">{gameName}</h1>
         </div>
       </div>
 
