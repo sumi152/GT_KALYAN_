@@ -31,6 +31,7 @@ function Top() {
     padding: '8px',
     paddingBottom: '10px',
     zIndex: '0',
+    
   };
 
   const imageStyle = {

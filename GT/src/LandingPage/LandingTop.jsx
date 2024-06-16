@@ -27,8 +27,8 @@ function LandingTop() {
   };
 
   const carouselContainerStyle = {
-    padding: '20px',
-    paddingBottom: '15px',
+    padding: '8px',
+    paddingBottom: '10px',
     zIndex: '0',
   };
 
