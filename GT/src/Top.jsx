@@ -28,8 +28,8 @@ function Top() {
   };
 
   const carouselContainerStyle = {
-    padding: '20px',
-    paddingBottom: '15px',
+    padding: '8px',
+    paddingBottom: '10px',
     zIndex: '0',
   };
 
@@ -167,7 +167,7 @@ function Top() {
       <div style={markerStyle}>
         <img src={marker} alt="marker" />
       </div>
-      <div className='flex justify-center items-start pb-3 col-span-full'>
+      <div className='flex justify-center items-start pb-2 col-span-full'>
       <button className='mr-3' onClick={() => navigate('/galiIMP')}>
               <img src={gali} alt="Add Fund" className='w-64 h-15' />
             </button>
