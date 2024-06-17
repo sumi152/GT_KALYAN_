@@ -28,7 +28,9 @@ function Top() {
   };
 
   const carouselContainerStyle = {
-    padding: '8px',
+    paddingTop: '8px',
+    paddingLeft:'20px',
+    paddingRight:'20px',
     paddingBottom: '10px',
     zIndex: '0',
     
@@ -37,7 +39,7 @@ function Top() {
   const imageStyle = {
     maxHeight: '250px',
     maxWidth: '100%',
-    height: 'auto',
+    height: '100%',
     width: '100%',
   };
 
