@@ -15,7 +15,7 @@ function GALIIMP(){
         backgroundSize: 'cover',
         height: 'auto', // Set the height of the div
         width: '100%', // Set the width of the div
-        paddingBottom:'20px'
+        paddingBottom:'150px'
       };
     return (
         <>

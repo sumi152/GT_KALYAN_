@@ -140,7 +140,7 @@ function Top() {
     </button>
   </div>
   <div className="flex space-x-4 mb-1 ">
-    <div>
+    <div className='mr-10'>
       <button onClick={() => navigate('/imp9')}>
         <img src={addfund} alt="Add Fund" style={cellImageStyle} />
       </button>
@@ -151,16 +151,16 @@ function Top() {
       </button>
     </div>
   </div>
-  <div className="flex space-x-4 mt-14 ">
-    <div>
-      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex justify-center items-center">
+  <div className="flex space-x-4 mt-2 ">
+    <div className='mr-10'>
+      <a href={whatsappUrl}  target="_blank" rel="noopener noreferrer" className="flex justify-center items-center">
         <button>
           <img src={whatsapp} alt="WhatsApp" style={cellImageStyle} />
         </button>
       </a>
     </div>
     <div>
-    <CallButton phoneNumber="+1234567890" imgSrc={call}  />
+    <CallButton phoneNumber="+1234567890" className='' imgSrc={call}  />
       
     
     </div>

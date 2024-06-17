@@ -9,7 +9,7 @@ function Starline() {
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
     backgroundSize: "cover", // This will make the background image cover the container without
-    paddingBottom: "50px",
+    paddingBottom: "30px",
   };
   const navbarStyle = {
     height: "60px",
@@ -31,7 +31,7 @@ function Starline() {
 
   const priceStyle = {
     background: "linear-gradient(to right, #141384, #000000)",
-    height: "200px",
+    height: "180px",
     width: "500px",
     margin: "20px 20px 0 10px",
     borderRadius: "20px",

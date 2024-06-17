@@ -56,21 +56,23 @@ function StarlineGame() {
             {(game.open_time && game.close_time_srt && game.msg_status === 1  ) ? <TimerStar closeTime={game.close_time_srt} />:"00:00:00"}
           </div>
           <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 pb-2 flex flex-col rounded-3xl border">
-            <div className="flex justify-center items-center">
-              <p>******</p>
+            <div className="flex justify-center items-center ">
+              
+                <p className={`text-${
+                game.msg_status === 2 ? "red" : "green"
+              }-700 text-sm  font-bold`}>{game.msg_status === 2 ? "Market Closed" : "Market Running"}</p>
+              
             </div>
             <div style={centerstyle}>
               <div>
-              <a href={resinfo.web_starline_chart_url} target="_blank">
-                <img src={chart} style={imgstyle} alt="" />
-              </a>
+              {game.open_result && game.close_result
+                  ? `${game.open_result}${game.close_result}`
+                  : "***_*"}
               </div>
-              <div
-                className={`text-${
-                  game.msg_status === 2 ? "red" : "green"
-                }-500 text-sm flex justify-center items-center`}
-              >
-                {game.msg_status === 2 ? "Market Closed" : "Market Running"}
+              <div>
+                
+              <p className=" font-bold"style={{ fontSize: '12px' }}>Open Time - {game.open_time}</p>
+
               </div>
               <button
                 onClick={() => {

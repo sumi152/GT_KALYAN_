@@ -102,7 +102,7 @@ function LandingTop() {
     </button>
   </div>
   <div className="flex space-x-4 mb-1">
-    <div>
+    <div className='mr-10'>
       <button onClick={() => navigate('/login')}>
         <img src={addfund} alt="Add Fund" style={cellImageStyle} />
       </button>
@@ -113,8 +113,8 @@ function LandingTop() {
       </button>
     </div>
   </div>
-  <div className="flex space-x-4 mt-14 ">
-    <div>
+  <div className="flex space-x-4 ">
+    <div className='mr-10'>
       <a href="/login" target="_blank" rel="noopener noreferrer" className="flex justify-center items-center">
         <button>
           <img src={whatsapp} alt="WhatsApp" style={cellImageStyle} />

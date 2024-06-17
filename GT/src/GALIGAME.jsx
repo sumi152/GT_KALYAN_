@@ -42,7 +42,7 @@ function GALIGAME() {
 
   // console.log(resinfo['result']);
 
-  // console.log(gameRates);
+  console.log(gameRates);
 
   // console.log(resinfo);
   const navigate = useNavigate();
@@ -59,7 +59,9 @@ function GALIGAME() {
             
             <div style={centerstyle}>
               <div className="mt-8 ml-4">
-                <p className="text-custom-purple">**</p>
+                <p className="text-custom-purple">{game.open_result && game.close_result
+                  ? `${game.open_result}${game.close_result}`
+                  : "**"}</p>
               </div>
               <div
                 className={`text-${
