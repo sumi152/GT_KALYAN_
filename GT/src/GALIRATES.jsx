@@ -19,7 +19,7 @@ function GALIRATES() {
     alignItems: "center",
   };
   const btnStyle = {
-    background: "linear-gradient(to right, #33FF42, #000000)",
+    background: "linear-gradient(to right, #141384, #000000)",
     width: "150px",
     padding: "7px",
     borderRadius: "15px",
@@ -32,11 +32,13 @@ function GALIRATES() {
   };
 
   const priceStyle = {
-    background: "linear-gradient(to right, #33FF42, #7433FF)",
+    background: "linear-gradient(to right, #141384, #000000)",
     height: "180px",
     width: "500px",
     margin: "20px 10px 0 10px",
     borderRadius: "20px",
+
+    
   };
 
   const marker = {
@@ -111,7 +113,7 @@ function GALIRATES() {
                 </button>
               </div>
               <div className="flex justify-center align-items-center">
-                <div style={priceStyle} className="px-5 pb-2 pt-4 text-white">
+                <div style={priceStyle} className="px-5 pb-2 pt-4 text-white border border-white ">
                   <div className="flex flex-row justify-between p-2">
                     <p>Left Digit</p>
                     <p>:-</p>

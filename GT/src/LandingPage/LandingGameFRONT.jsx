@@ -67,7 +67,7 @@ function LandingGameFRONT() {
         </div>
       </div>
       <div className="mb-5">
-        <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white">
+        <div className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white"style={{background:"linear-gradient(to right, #141384, #0000)"}}>
           <p className="top-0 right-0">Shri Devi</p>
           00:00:00
         </div>
@@ -97,7 +97,7 @@ function LandingGameFRONT() {
         </div>
       </div>
       <div className="mb-5">
-        <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white">
+        <div className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white"style={{background:"linear-gradient(to right, #141384, #0000)"}}>
           <p className="top-0 right-0">Milan Morning</p>
           00:00:00
         </div>
@@ -127,7 +127,7 @@ function LandingGameFRONT() {
         </div>
       </div>
       <div className="mb-5">
-        <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white">
+        <div className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white"style={{background:"linear-gradient(to right, #141384, #0000)"}}>
           <p className="top-0 right-0">Kalyan Morning</p>
           00:00:00
         </div>
@@ -157,7 +157,7 @@ function LandingGameFRONT() {
         </div>
       </div>
       <div className="mb-5">
-        <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white">
+        <div className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white"style={{background:"linear-gradient(to right, #141384, #0000)"}}>
           <p className="top-0 right-0">Madhur Day</p>
       00:00:00
         </div>
@@ -187,7 +187,7 @@ function LandingGameFRONT() {
         </div>
       </div>
       <div className="mb-5">
-        <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white">
+        <div className=" flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white" style={{background:"linear-gradient(to right, #141384, #0000)"}}>
           <p className="top-0 right-0">Kalyan Night</p>
         00:00:0
         </div>

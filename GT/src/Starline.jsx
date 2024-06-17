@@ -17,7 +17,7 @@ function Starline() {
     alignItems: "center",
   };
   const btnStyle = {
-    background: "linear-gradient(to right, #33FF42, #000000)",
+    background: "linear-gradient(to right, #141384, #000000)",
     width: "150px",
     padding: "7px",
     borderRadius: "15px",
@@ -30,7 +30,7 @@ function Starline() {
   };
 
   const priceStyle = {
-    background: "linear-gradient(to right, #33FF42, #7433FF)",
+    background: "linear-gradient(to right, #141384, #000000)",
     height: "200px",
     width: "500px",
     margin: "20px 20px 0 10px",
@@ -112,7 +112,7 @@ function Starline() {
                 </button>
               </div>
             <div className="flex justify-center align-items-center">
-              <div style={priceStyle} className="px-5 py-2 text-white">
+              <div style={priceStyle} className="px-5 py-2 text-white border border-white">
                 
               <div className="flex flex-row justify-between p-2">
               <p>Single Digit</p>

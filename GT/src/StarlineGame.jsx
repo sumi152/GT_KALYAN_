@@ -25,7 +25,7 @@ function StarlineGame() {
     alignItems: "center",
   };
   const imgstyle = {
-    width: "50px",
+    width: "40px",
     height: "auto",
     marginTop: "-4px",
   };
@@ -50,7 +50,7 @@ function StarlineGame() {
     <div>
       {gameRates.map((game) => (
         <div key={game.game_id} className="mb-5">
-          <div className="bg-blue-500 flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-xl border border-white text-white">
+          <div className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-xl border border-white text-white" style={{background:"linear-gradient(to right, #141384, #0000)"}}>
             <p className="top-0 right-0">{game.game_name}</p>
             {console.log(game.close_time)}
             {(game.open_time && game.close_time_srt && game.msg_status === 1  ) ? <TimerStar closeTime={game.close_time_srt} />:"00:00:00"}
