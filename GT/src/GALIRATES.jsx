@@ -10,7 +10,7 @@ function GALIRATES() {
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
     backgroundSize: "cover", // This will make the background image cover the container without
-    paddingBottom: "50px",
+    paddingBottom: "10px",
     paddingTop: "0px"
   };
   const navbarStyle = {
@@ -33,9 +33,9 @@ function GALIRATES() {
 
   const priceStyle = {
     background: "linear-gradient(to right, #141384, #000000)",
-    height: "180px",
+    height: "140px",
     width: "500px",
-    margin: "20px 10px 0 10px",
+    margin: "20px 10px 0 30px",
     borderRadius: "20px",
 
     
@@ -113,7 +113,7 @@ function GALIRATES() {
                 </button>
               </div>
               <div className="flex justify-center align-items-center">
-                <div style={priceStyle} className="px-5 pb-2 pt-4 text-white border border-white ">
+                <div style={priceStyle} className="px-5  pt-2 text-white border border-white ">
                   <div className="flex flex-row justify-between p-2">
                     <p>Left Digit</p>
                     <p>:-</p>

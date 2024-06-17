@@ -120,16 +120,16 @@ function Starwin({ onDataFetch }) {
         </div>
       </div>
       <div style={backStyle} className="text-white">
-        <div className="flex justify-center item-center p-5">
+      <div className="flex justify-center item-center p-1">
           <div className="" style={cardStyle}>
-            <p className="inline-block rounded p-3 border border-white mb-2 bg-blue-950 w-full">Select Dates</p>
-            <p className="mb-2">From Date</p>
+            <p className="inline-block rounded p-3 border border-white  bg-blue-950 w-full">Select Dates</p>
+            <p className="">From Date</p>
             <DatePickerButton selectedDate={selectedDate} onDateChange={handleDateChange} />
-            <p className="mb-2 mt-2">To Date</p>
+            <p className="mt-1">To Date</p>
             <DatePickerButton selectedDate={selectedEndDate} onDateChange={handleEndDateChange} />
             <div className="flex justify-center">
               <button
-                className="p-3 border border-black-500 rounded mt-4 bg-green-500 w-1/2"
+                className="p-3 border border-black-500 rounded mt-2 bg-green-500 w-1/2"
                 onClick={handleSubmit}
                 disabled={isSubmitting}
               >
