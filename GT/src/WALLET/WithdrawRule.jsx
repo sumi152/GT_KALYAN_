@@ -12,7 +12,7 @@ function WithdrawRule(){
         height: "100vh",
         width: "100%",
         paddingBottom: "100px",
-        paddingTop: "100px",
+        paddingTop: "10px",
       };
       const navbarStyle = {
         height: "60px",

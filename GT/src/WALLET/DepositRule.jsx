@@ -12,7 +12,7 @@ function DepositRule(){
         height: "100vh",
         width: "100%",
         paddingBottom: "300px",
-        paddingTop: "100px",
+        paddingTop: "10px",
       };
       const navbarStyle = {
         height: "60px",

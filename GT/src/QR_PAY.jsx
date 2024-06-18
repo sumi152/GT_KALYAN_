@@ -28,7 +28,7 @@ function QR_PAY() {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "20px",
+    padding: "5px",
   };
   const back = () => {
     navigate("/addfund");
@@ -69,17 +69,8 @@ function QR_PAY() {
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
   return (
     <>
-      <div>
-        <div className="bg-custom-purple text-white" style={navbarStyle}>
-          <button className="px-4" onClick={() => back()}>
-            <BiArrowBack size={24} />
-          </button>
-          <div>
-            <h1 className="text-white px-3 ">SCAN QR</h1>
-          </div>
-        </div>
-      </div>
-      <div className="h-screen text-white" style={backStyle}>
+
+      <div className=" text-white" >
         <div style={cardStyle}>
           <p>Pay & Send the Screenshot </p>
           <p>With Registered Mobile Number</p>
