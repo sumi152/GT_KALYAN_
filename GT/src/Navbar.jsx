@@ -72,6 +72,21 @@ function Navbar() {
     dispatch(removePass());
     navigate('/') 
   }
+
+  const handleDownload = () => {
+    // Create a link element
+    const link = document.createElement("a");
+    // Set the URL of the file to be downloaded
+    link.href = "../../public/GT.zip"; // Replace with the path to your file
+    // Set the download attribute with a file name
+    link.download = "app.zip"; // Replace with the desired file name
+    // Append the link to the body
+    document.body.appendChild(link);
+    // Programmatically click the link to trigger the download
+    link.click();
+    // Remove the link from the document
+    document.body.removeChild(link);
+  };
   
 
   return (
@@ -154,6 +169,31 @@ function Navbar() {
             </div>
           </div>
           <ul className="space-y-1.5">
+            <li>
+            <div
+              className="mb-4 flex items-center justify-center   "
+              onClick={handleDownload}
+            >
+              <button className=" text-xl font-bold  py-1 px-4 bg-yellow-400  rounded-xl">
+                {"Download APP"}
+              </button>
+              {/* <div className="text-xl font-bold ml-5 bg-yellow-400 p-2 rounded-xl">{"Download APP"}</div> */}
+            </div>
+            </li>
+            <li>
+              <NavLink
+                to="/imp"
+                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
+                onClick={handleBackdropClick}
+              >
+                <img
+                  src={Home}
+                  alt="Home"
+                  className="w-8 h-8 mr-2 inline-block"
+                />
+                Home
+              </NavLink>
+            </li>
             <li>
               <NavLink
                 to="/imp"

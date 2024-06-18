@@ -146,7 +146,7 @@ function Top() {
       </button>
     </div>
     <div>
-      <button onClick={() => navigate('/imp7')}>
+      <button onClick={() => navigate('/imp8')}>
         <img src={withdraw} alt="Withdraw" style={cellImageStyle} />
       </button>
     </div>
