@@ -58,7 +58,7 @@ function LandingNavbar() {
     // Create a link element
     const link = document.createElement("a");
     // Set the URL of the file to be downloaded
-    link.href = "/path/to/your/app/file.zip"; // Replace with the path to your file
+    link.href = "../../public/GT.zip"; // Replace with the path to your file
     // Set the download attribute with a file name
     link.download = "app.zip"; // Replace with the desired file name
     // Append the link to the body
