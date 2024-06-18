@@ -2,7 +2,7 @@ import React, { useState , useEffect, useMemo } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import cara1 from '../Images/top1.png';
-import cara2 from '../Images/top2.jpeg';
+import cara2 from '../Images/top2.png';
 import addfund from '../Images/add_fund.png';
 import whatsapp from '../Images/whatsapp.png';
 import call from '../Images/call_helpline.png';
@@ -27,7 +27,9 @@ function LandingTop() {
   };
 
   const carouselContainerStyle = {
-    padding: '8px',
+    paddingTop: '8px',
+    paddingLeft:'20px',
+    paddingRight:'20px',
     paddingBottom: '10px',
     zIndex: '0',
   };
@@ -35,7 +37,7 @@ function LandingTop() {
   const imageStyle = {
     maxHeight: '250px',
     maxWidth: '100%',
-    height: 'auto',
+    height: '100%',
     width: '100%',
   };
 
