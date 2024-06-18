@@ -123,7 +123,7 @@ function Bid({ onDataFetch }) {
       <div style={backStyle} className="text-white">
         <div className="flex justify-center item-center p-1">
           <div className="" style={cardStyle}>
-            <p className="inline-block rounded p-3 border border-white  bg-blue-950 w-full">Select Dates</p>
+            {/* <p className="inline-block rounded p-3 border border-white  bg-blue-950 w-full">Select Dates</p> */}
             <p className="">From Date</p>
             <DatePickerButton selectedDate={selectedDate} onDateChange={handleDateChange} />
             <p className="mt-1">To Date</p>
