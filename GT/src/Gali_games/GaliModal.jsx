@@ -20,7 +20,7 @@ const GaliModal = ({
 
   const navigate = useNavigate();
   const notify = () => {
-    toast("Result Submitted");
+    toast("Bid Successfully Placed");
   };
 
   useEffect(() => {
