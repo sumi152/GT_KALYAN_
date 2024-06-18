@@ -105,7 +105,7 @@ function LandingNavbar() {
               className="mb-4 flex items-center justify-center   "
               onClick={handleDownload}
             >
-              <button className=" text-xl font-bold ml-5 p-3 bg-yellow-400  rounded-xl">
+              <button className=" text-xl font-bold  py-1 px-4 bg-yellow-400  rounded-xl ">
                 {"Download APP"}
               </button>
               {/* <div className="text-xl font-bold ml-5 bg-yellow-400 p-2 rounded-xl">{"Download APP"}</div> */}
