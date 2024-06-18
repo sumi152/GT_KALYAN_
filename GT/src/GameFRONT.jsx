@@ -69,7 +69,7 @@ function GameFRONT() {
                   <img src={chart} style={imgstyle} alt="" />
                 </a>
               </div>
-              <p>
+              <p className="text-blue-900 font-bold">
                 {game.open_result && game.close_result
                   ? `${game.open_result}${game.close_result}`
                   : "***_**_***"}
