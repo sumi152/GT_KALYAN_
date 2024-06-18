@@ -121,10 +121,10 @@ const StarModal = ({
       <div className="modal-container text-black flex flex-col rounded-tr-xl rounded-br-xl rounded-bl-none rounded-tl-xl font-bold py-4 px-2">
         <p>Once you placed a bid, it will not be cancelled</p>
         <p className="text-center">in any situation</p>
-        <p className="text-center bg-green-400 mb-2 py-2 text-white">
+        <p className="text-center bg-green-400 mb-2 py-2 text-white rounded-xl" style={{background: "linear-gradient(to right, #EAB308, #6D28D9)"}}>
           {pana}
         </p>
-        <div className="flex justify-between align-middle bg-green-900 text-white mb-2 py-2 px-2">
+        <div className="flex justify-between align-middle bg-emerald-900 text-white mb-2 py-2 px-2">
           <div className="flex flex-col">
             <p>Total Bid</p>
             <p className="text-center">{totalIndex}</p>
@@ -141,12 +141,12 @@ const StarModal = ({
         <div className="flex justify-around mt-2">
           <button
             onClick={closeModal}
-            className="model-btn p-4 bg-green-500 rounded-xl"
+            className="model-btn p-4 bg-yellow-500 rounded-xl border border-white"  style={{boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)"}}
           >
             CANCEL
           </button>
           <form onSubmit={handleSubmit}>
-            <button type="submit" className="bg-green-500 rounded-xl p-4">
+            <button type="submit" className="bg-yellow-500 rounded-xl p-4 border border-white"  style={{boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)"}}>
               SUBMIT
             </button>
           </form>

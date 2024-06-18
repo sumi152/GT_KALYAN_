@@ -43,8 +43,8 @@ function GaliAllGame() {
         className=" pl-2 flex justify-center items-start h-svh"
         style={backStyle}
       >
-        <div className="grid grid-cols-2" style={cardStyle}>
-        <div className="col-span-1 flex justify-center items-center mt-4 pt-10">
+        <div className="grid grid-cols-2 pt-10" style={cardStyle}>
+        <div className="col-span-1 flex justify-center items-center mt-4 ">
             <button
              onClick={()=>{
               if (gameId) {

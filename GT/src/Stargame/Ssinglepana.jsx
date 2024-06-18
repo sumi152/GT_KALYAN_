@@ -394,9 +394,9 @@ function Ssinglepana() {
               placeholder="Enter Points"
               className="w-full  p-4 border border-black-500 rounded-xl text-black"
             />
-            <div className="flex  mb-4">
+            <div className="flex  mb-4 text-black">
               <button
-                className={`p-4 border border-black-500 rounded-xl bg-blue-500 mt-4 ${
+                className={`p-4 border border-black-500 rounded-xl bg-yellow-500 mt-4 ${
                   isProceed ? "w-11/12" : "w-full"
                 }`}
                 onClick={handleSubmit}
@@ -406,7 +406,7 @@ function Ssinglepana() {
               {isProceed && (
                   <>
                     <button
-                      className="p-4 border border-black-500 rounded-xl bg-blue-500 mt-4 w-full ml-3"
+                      className="p-4 border border-black-500 rounded-xl bg-yellow-500 mt-4 w-full ml-3"
                       onClick={() => setShowModal(true)}
                     >
                       Submit
