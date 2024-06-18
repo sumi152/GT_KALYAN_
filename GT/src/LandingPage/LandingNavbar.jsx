@@ -54,20 +54,11 @@ function LandingNavbar() {
   const handlelogout = () => {
     navigate("login");
   };
-  const handleDownload = () => {
-    // Create a link element
-    const link = document.createElement("a");
-    // Set the URL of the file to be downloaded
-    link.href = "../../public/GT.zip"; // Replace with the path to your file
-    // Set the download attribute with a file name
-    link.download = "app.zip"; // Replace with the desired file name
-    // Append the link to the body
-    document.body.appendChild(link);
-    // Programmatically click the link to trigger the download
-    link.click();
-    // Remove the link from the document
-    document.body.removeChild(link);
+  const handleClick = () => {
+    // window.location.href = resinfo1['web_starline_chart_url'];
+    window.open('https://sattamatkaofficials.com/uploads/images/GT_1718623233.apk', '_blank');
   };
+  
 
   return (
     <nav className="bg-custom-purple text-white relative p-2">
@@ -103,9 +94,9 @@ function LandingNavbar() {
             {/* User Info */}
             <div
               className="mb-4 flex items-center justify-center   "
-              onClick={handleDownload}
+              onClick={handleClick}
             >
-              <button className=" text-xl font-bold  py-1 px-4 bg-yellow-400  rounded-xl ">
+              <button className=" text-xl font-bold  py-1 px-4 bg-amber-400 text-black  rounded-xl ">
                 {"Download APP"}
               </button>
               {/* <div className="text-xl font-bold ml-5 bg-yellow-400 p-2 rounded-xl">{"Download APP"}</div> */}
