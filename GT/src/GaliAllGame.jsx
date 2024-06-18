@@ -44,7 +44,7 @@ function GaliAllGame() {
         style={backStyle}
       >
         <div className="grid grid-cols-2" style={cardStyle}>
-        <div className="col-span-1 flex justify-center items-center mt-4">
+        <div className="col-span-1 flex justify-center items-center mt-4 pt-10">
             <button
              onClick={()=>{
               if (gameId) {
@@ -52,7 +52,7 @@ function GaliAllGame() {
                 navigate("/leftdigit", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Single Pana' } });
               }
             }}>
-              <img src={left} alt="Image 3" className="w-64 h-48" />
+              <img src={left} alt="Image 3" className="w-42 h-32" />
             </button>
           </div>
           <div className="col-span-1 flex justify-center items-center mt-4">
@@ -63,7 +63,7 @@ function GaliAllGame() {
                 navigate("/rightdigit", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Right Digit' } });
               }
             }}>
-              <img src={right} alt="Image 4" className="w-64 h-48" />
+              <img src={right} alt="Image 4" className="w-42 h-32" />
             </button>
           </div>
 
@@ -76,7 +76,7 @@ function GaliAllGame() {
                 navigate("/jodidigit", { state: { gameId : gameId, openTime : openTime, gameName: gameName, pana:'Triple Pana' } });
               }
             }}>
-              <img src={jodi} alt="Image 5" className="w-64 h-48 " />
+              <img src={jodi} alt="Image 5" className="w-42 h-36 " />
             </button>
           </div>
         </div>
