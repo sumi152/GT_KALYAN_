@@ -22,7 +22,7 @@ function Win({ onDataFetch }) {
     width: '400px',
     display: 'flex',
     flexDirection: 'column',
-    padding: '20px',
+    padding: '5px',
   };
   const navigate = useNavigate();
 
@@ -127,7 +127,7 @@ function Win({ onDataFetch }) {
             <DatePickerButton selectedDate={selectedEndDate} onDateChange={handleEndDateChange} />
             <div className="flex justify-center">
               <button
-                className="p-3 border border-black-500 rounded mt-2 bg-green-500 w-1/2"
+                className="p-3 border border-black-500 rounded mt-2  bg-white w-full font-bold text-black"
                 onClick={handleSubmit}
                 disabled={isSubmitting}
               >
