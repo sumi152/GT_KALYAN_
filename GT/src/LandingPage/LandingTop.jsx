@@ -96,7 +96,7 @@ function LandingTop() {
         </Carousel>
       </div>
       <div className="relative flex flex-col items-center justify-center">
-  <div style={{ position: 'absolute', zIndex: 1 }}>
+  <div style={{ position: 'absolute' }}>
     <button onClick={() => navigate('/login')} className='flex justify-center'>
       <img className='h-20' src={black} alt="Game Rates" style={cellImageStyle} />
     </button>
@@ -113,17 +113,17 @@ function LandingTop() {
       </button>
     </div>
   </div>
-  <div className="flex space-x-4 ">
-    <div className='mr-10'>
+  <div className="flex space-x-4  ">
+    <div className='mr-12'>
       <a href="/login" target="_blank" rel="noopener noreferrer" className="flex justify-center items-center">
         <button>
-          <img src={whatsapp} alt="WhatsApp" style={cellImageStyle} />
+          <img src={whatsapp} alt="WhatsApp"  style={cellImageStyle} className='w-36' />
         </button>
       </a>
     </div>
-    <div>
+    <div className='ml-3'>
       <button onClick={() => navigate('/login')}>
-        <img src={call} alt="Call" style={cellImageStyle} />
+        <img src={call} alt="Call"  style={cellImageStyle} className='w-36' />
       </button>
     </div>
   </div>
