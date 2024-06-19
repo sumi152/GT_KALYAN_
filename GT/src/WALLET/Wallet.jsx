@@ -41,7 +41,7 @@ function Wallet() {
 
   const box2 = {
     width: "80px",
-    padding: "15px",
+    // padding: "15px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -55,7 +55,16 @@ function Wallet() {
     display: "flex",
     flexDirection: "row",
     marginTop: "20px",
-    gap: "10px",
+    gap: "15px",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
+  const Container1 = {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: "20px",
+    // gap: "15px",
     justifyContent: "center",
     alignItems: "center",
   };
@@ -71,7 +80,7 @@ function Wallet() {
   };
 
   const radioImageStyle = {
-    width: "30px", // Adjust the width as needed
+    width: "25px", // Adjust the width as needed
   };
 
   const box4 = {
@@ -165,9 +174,9 @@ function Wallet() {
         </div>
         <div className="m-4" style={box4}>
           {/* <img src={frame} alt="" /> */}
-          <p className="font-bold text-white text-center border border-white py-2 ">PLEASE SELECT WITHDRAW METHOD HERE</p>
+          <p className="font-bold text-white text-center border border-white py-2 px-1 ">PLEASE SELECT WITHDRAW METHOD HERE</p>
         </div>
-        <div style={Container} className="border border-white rounded-md w-96 m-auto py-2">
+        <div style={Container1} className="border border-white rounded-md w-80 m-auto px-0   py-2">
           <div className="mr-6">
             <button style={box2} onClick={() => handleClick("1")}>
               <img src={phone_pe} alt="PhonePe" style={radioImageStyle} />
