@@ -94,6 +94,16 @@ function Login() {
     return errors;
   };
 
+  const CallButton = ({ phoneNumber, imgSrc }) => (
+    <a href={`tel:${phoneNumber}`} >
+      <img
+        src={imgSrc}
+        alt="Call Button"
+        style={cellImageStyle}
+      />
+    </a>
+  );
+
   const fetchData = async (phoneno, password) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -200,9 +210,8 @@ function Login() {
           </form>
           <div className="flex justify-between mt-2">
             <div>
-              <button>
-                <img src={call} alt="Add Fund" style={cellImageStyle} />
-              </button>
+            <CallButton phoneNumber="+1234567890" className='' imgSrc={call} style={cellImageStyle}  />
+             
             </div>
             <div className="mr-4">
               <button>

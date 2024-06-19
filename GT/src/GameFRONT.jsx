@@ -64,7 +64,7 @@ function GameFRONT() {
                 game.msg_status === 2 ? "red" : "green"
               }-700 text-sm flex justify-center items-center font-bold`}
             >
-              {game.msg_status === 2 ? "Market Closed" : "Market Running"}
+              {game.msg_status === 2 ? "MARKET CLOSED" : "MARKET RUNNING"}
             </div>
             <div style={centerstyle}>
               <div>

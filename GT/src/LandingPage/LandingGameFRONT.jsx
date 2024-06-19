@@ -8,8 +8,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Timer from "../Timer";
 
 function LandingGameFRONT() {
-
-
   const centerstyle = {
     display: "flex",
     justifyContent: "space-between",
@@ -20,8 +18,8 @@ function LandingGameFRONT() {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height:"7px",
-    gap: "7px"
+    height: "7px",
+    gap: "7px",
   };
   const imgstyle = {
     width: "40px",
@@ -29,194 +27,61 @@ function LandingGameFRONT() {
     marginTop: "-4px",
   };
 
-
-
-
   const navigate = useNavigate();
+
+  const games = [
+    "Kalyan Morning",
+    "Madhur Morning",
+    "Sridevi",
+    "Time Bazar",
+    "Madhur Day",
+    "Milan Day",
+    "Rajdhani Day",
+    "Supreme Day",
+    "Kalyan",
+    "Sridevi Night",
+    "Madhur Night",
+    "Supreme Night",
+    "Milan Night",
+    "Kalyan Night",
+    "Rajdhani Night",
+    "Main Bazar",
+  ];
 
   return (
     <div>
-            <div className="mb-5">
-        <div className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white"style={{background:"linear-gradient(to right, #141384, #0000)"}}>
-          <p className="top-0 right-0">Milan Morning</p>
-          00:00:00
-        </div>
-        <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 pb-2 flex flex-col rounded-3xl border">
-          <div className="text-green-700 font-bold text-sm flex justify-center items-center">
-            Login To Play
+      {games.map((game) => (
+        <div className="mb-5" key={game}>
+          <div
+            className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white"
+            style={{ background: "linear-gradient(to right, #141384, #0000)" }}
+          >
+            <p className="top-0 right-0">{game}</p>
+            {/* 00:00:00 */}
           </div>
-          <div style={centerstyle}>
-            <div>
-              <img src={chart} style={imgstyle} alt="" />
-            </div>
-            <p>***_**_***</p>
-            <div>
-              <button
-                onClick={() => {
-                  navigate("login");
-                }}
-              >
-                <img src={open} style={imgstyle} alt="" />
-              </button>
-            </div>
-          </div>
-          <div style={laststyle}>
-            <p className="text-green-700 font-bold" style={{ fontSize: '12px' }}>Open -</p>
-            <p className="text-red-700 font-bold" style={{ fontSize: '12px' }}>Close - </p>
-          </div>
-        </div>
-      </div>
-      <div className="mb-5">
-        <div className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white"style={{background:"linear-gradient(to right, #141384, #0000)"}}>
-          <p className="top-0 right-0">Milan Morning</p>
-          00:00:00
-        </div>
-        <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 pb-2 flex flex-col rounded-3xl border">
-          <div className="text-green-700 font-bold text-sm flex justify-center items-center">
-            Login To Play
-          </div>
-          <div style={centerstyle}>
-            <div>
-              <img src={chart} style={imgstyle} alt="" />
-            </div>
-            <p>***_**_***</p>
-            <div>
-              <button
-                onClick={() => {
-                  navigate("login");
-                }}
-              >
-                <img src={open} style={imgstyle} alt="" />
-              </button>
+          <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 pb-2 flex flex-col rounded-3xl border">
+            <div className="flex justify-between items-end py-2">
+              <div>
+                <img src={chart} style={imgstyle} alt="Chart" />
+              </div>
+              <div className="text-green-700 font-bold text-lg flex justify-center items-center">
+                Login To Play
+              </div>
+              <div className="">
+                <button
+                  onClick={() => {
+                    navigate("login");
+                  }}
+                >
+                  <img src={open} className="mt-1" style={imgstyle} alt="Open" />
+                </button>
+              </div>
             </div>
           </div>
-          <div style={laststyle}>
-            <p className="text-green-700 font-bold" style={{ fontSize: '12px' }}>Open -</p>
-            <p className="text-red-700 font-bold" style={{ fontSize: '12px' }}>Close - </p>
-          </div>
         </div>
-      </div>
-      <div className="mb-5">
-        <div className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white"style={{background:"linear-gradient(to right, #141384, #0000)"}}>
-          <p className="top-0 right-0">Milan Morning</p>
-          00:00:00
-        </div>
-        <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 pb-2 flex flex-col rounded-3xl border">
-          <div className="text-green-700 font-bold text-sm flex justify-center items-center">
-            Login To Play
-          </div>
-          <div style={centerstyle}>
-            <div>
-              <img src={chart} style={imgstyle} alt="" />
-            </div>
-            <p>***_**_***</p>
-            <div>
-              <button
-                onClick={() => {
-                  navigate("login");
-                }}
-              >
-                <img src={open} style={imgstyle} alt="" />
-              </button>
-            </div>
-          </div>
-          <div style={laststyle}>
-            <p className="text-green-700 font-bold" style={{ fontSize: '12px' }}>Open -</p>
-            <p className="text-red-700 font-bold" style={{ fontSize: '12px' }}>Close - </p>
-          </div>
-        </div>
-      </div>
-      <div className="mb-5">
-        <div className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white"style={{background:"linear-gradient(to right, #141384, #0000)"}}>
-          <p className="top-0 right-0">Milan Morning</p>
-          00:00:00
-        </div>
-        <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 pb-2 flex flex-col rounded-3xl border">
-          <div className="text-green-700 font-bold text-sm flex justify-center items-center">
-            Login To Play
-          </div>
-          <div style={centerstyle}>
-            <div>
-              <img src={chart} style={imgstyle} alt="" />
-            </div>
-            <p>***_**_***</p>
-            <div>
-              <button
-                onClick={() => {
-                  navigate("login");
-                }}
-              >
-                <img src={open} style={imgstyle} alt="" />
-              </button>
-            </div>
-          </div>
-          <div style={laststyle}>
-            <p className="text-green-700 font-bold" style={{ fontSize: '12px' }}>Open -</p>
-            <p className="text-red-700 font-bold" style={{ fontSize: '12px' }}>Close - </p>
-          </div>
-        </div>
-      </div>
-      <div className="mb-5">
-        <div className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white"style={{background:"linear-gradient(to right, #141384, #0000)"}}>
-          <p className="top-0 right-0">Milan Morning</p>
-          00:00:00
-        </div>
-        <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 pb-2 flex flex-col rounded-3xl border">
-          <div className="text-green-700 font-bold text-sm flex justify-center items-center">
-            Login To Play
-          </div>
-          <div style={centerstyle}>
-            <div>
-              <img src={chart} style={imgstyle} alt="" />
-            </div>
-            <p>***_**_***</p>
-            <div>
-              <button
-                onClick={() => {
-                  navigate("login");
-                }}
-              >
-                <img src={open} style={imgstyle} alt="" />
-              </button>
-            </div>
-          </div>
-          <div style={laststyle}>
-            <p className="text-green-700 font-bold" style={{ fontSize: '12px' }}>Open -</p>
-            <p className="text-red-700 font-bold" style={{ fontSize: '12px' }}>Close - </p>
-          </div>
-        </div>
-      </div>
-      <div className="mb-5">
-        <div className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white"style={{background:"linear-gradient(to right, #141384, #0000)"}}>
-          <p className="top-0 right-0">Milan Morning</p>
-          00:00:00
-        </div>
-        <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 pb-2 flex flex-col rounded-3xl border">
-          <div className="text-green-700 font-bold text-sm flex justify-center items-center">
-            Login To Play
-          </div>
-          <div style={centerstyle}>
-            <div>
-              <img src={chart} style={imgstyle} alt="" />
-            </div>
-            <p>***_**_***</p>
-            <div>
-              <button
-                onClick={() => {
-                  navigate("login");
-                }}
-              >
-                <img src={open} style={imgstyle} alt="" />
-              </button>
-            </div>
-          </div>
-          <div style={laststyle}>
-            <p className="text-green-700 font-bold" style={{ fontSize: '12px' }}>Open -</p>
-            <p className="text-red-700 font-bold" style={{ fontSize: '12px' }}>Close - </p>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
+
 export default LandingGameFRONT;

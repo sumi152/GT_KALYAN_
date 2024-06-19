@@ -60,7 +60,7 @@ function StarlineGame() {
               
                 <p className={`text-${
                 game.msg_status === 2 ? "red" : "green"
-              }-700 text-sm  font-bold`}>{game.msg_status === 2 ? "Market Closed" : "Market Running"}</p>
+              }-700 text-sm  font-bold`}>{game.msg_status === 2 ? "MARKET CLOSED" : "MARKET RUNNING"}</p>
               
             </div>
             <div style={centerstyle}>

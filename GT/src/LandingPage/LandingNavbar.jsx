@@ -114,7 +114,7 @@ function LandingNavbar() {
                 />
               </button>
               <div className="flex items-center mx-2">
-                <img src={logo} alt="Center Image" className="w-20 h-20" />
+                <img src={logo} alt="Center Image" className="w-22 h-24" />
               </div>
               <button
                 className="flex items-center justify-center hover:bg-green-700 text-white font-bold rounded-full w-10 h-10 mx-2"
