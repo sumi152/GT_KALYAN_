@@ -196,7 +196,7 @@ function WithdrawFunds() {
           <BiArrowBack size={24} />
         </button>
         <div className="flex justify-center items-center">
-          <img src={fund} alt="Wallet" />
+          {/* <img src={fund} alt="Wallet" /> */}
           <h1 className="text-white px-3">Withdraw Fund</h1>
         </div>
       </div>

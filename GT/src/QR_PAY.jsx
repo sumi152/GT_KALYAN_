@@ -59,13 +59,13 @@ function QR_PAY() {
   return (
     <>
 
-      <div className=" text-white" >
+      <div className=" text-white text-lg" >
         <div style={cardStyle}>
-          <p className="font-bold">Pay & Send the Screenshot </p>
+          <p className="font-bold mt-1">Pay & Send the Screenshot </p>
           <p className="font-bold">With Registered Mobile Number</p>
           <div className=" flex flex-col justify-center items-center">
-            <p className="font-bold"> Scan & Pay</p>
-            <img className="h-32 w-36" src={gameRates.qr_image} alt="" />
+            <p className="font-bold mt-1"> Scan & Pay</p>
+            <img className="h-32 w-36 mt-1" src={gameRates.qr_image} alt="" />
           </div>
 
           <div className=" flex  justify-between items-center border w-80  border-l-zinc-50 rounded-lg p-2 mt-4">
@@ -78,7 +78,7 @@ function QR_PAY() {
             <p>{copied && <span style={{ color: "green" }}>Copied!</span>}</p>
           </div>
 
-          <div className="flex flex-col items-center justify-center mt-1 font-bold">
+          <div className="flex flex-col items-center justify-center mt-1 mb-1 text-lg font-bold">
             <p>Send transaction Successful </p>
             <p>Screenshot on whatsapp</p>
           </div>
