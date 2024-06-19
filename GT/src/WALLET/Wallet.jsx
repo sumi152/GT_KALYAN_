@@ -40,7 +40,7 @@ function Wallet() {
   };
 
   const box2 = {
-    width: "90px",
+    width: "80px",
     padding: "20px",
     display: "flex",
     justifyContent: "center",
@@ -48,7 +48,7 @@ function Wallet() {
     flexDirection: "column",
     background: "white",
     borderRadius: "20px",
-    height: "95px",
+    height: "85px",
   };
 
   const Container = {
@@ -165,7 +165,7 @@ function Wallet() {
         </div>
         <div className="m-4" style={box4}>
           {/* <img src={frame} alt="" /> */}
-          <p className="font-bold text-white border border-white py-2 px-1">PLEASE SELECT WITHDRAW METHOD HERE</p>
+          <p className="font-bold text-white text-center border border-white py-2 ">PLEASE SELECT WITHDRAW METHOD HERE</p>
         </div>
         <div style={Container} className="border border-white rounded-md w-96 m-auto py-2">
           <div className="mr-6">
