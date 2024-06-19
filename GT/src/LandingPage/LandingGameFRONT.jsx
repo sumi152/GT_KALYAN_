@@ -22,7 +22,7 @@ function LandingGameFRONT() {
     gap: "7px",
   };
   const imgstyle = {
-    width: "40px",
+    width: "35px",
     height: "auto",
     marginTop: "-4px",
   };
@@ -53,13 +53,13 @@ function LandingGameFRONT() {
       {games.map((game) => (
         <div className="mb-5" key={game}>
           <div
-            className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white"
+            className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-6 h-15 rounded-2xl border border-white text-white"
             style={{ background: "linear-gradient(to right, #141384, #0000)" }}
           >
             <p className="top-0 right-0">{game}</p>
             {/* 00:00:00 */}
           </div>
-          <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 pb-2 flex flex-col rounded-3xl border">
+          <div className="bg-white mr-2 ml-7 z-2 -mt-7 p-1 pb-2 flex flex-col rounded-2xl border">
             <div className="flex justify-between items-end py-2">
               <div>
                 <img src={chart} style={imgstyle} alt="Chart" />

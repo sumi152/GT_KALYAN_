@@ -21,9 +21,6 @@ function GALIGAME() {
     marginTop: "-4px",
   };
   const laststyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     height:"7px",
     gap: "7px"
   };
@@ -51,24 +48,30 @@ function GALIGAME() {
     <div>
       {gameRates.map((game) => (
         <div key={game.game_id} className="mb-5">
-          <div className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-xl border border-white text-white"style={{background:"linear-gradient(to right, #141384, #0000)"}}>
+          <div className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-6 h-15 rounded-xl border border-white text-white"style={{background:"linear-gradient(to right, #141384, #0000)"}}>
             <p className="top-0 right-0">{game.game_name}</p>
             
           </div>
-          <div className="bg-white mr-2 ml-4 z-2 -mt-7 p-1 pb-2 flex flex-col rounded-3xl border">
+          <div className="bg-white mr-2 ml-7 z-2 -mt-6 p-1 flex flex-col rounded-2xl border ">
             
             <div style={centerstyle}>
-              <div className="mt-8 ml-4">
+              <div className="mt-7 ml-4">
                 <p className="text-custom-purple">{game.open_result && game.close_result
                   ? `${game.open_result}${game.close_result}`
                   : "**"}</p>
               </div>
               <div
-                className={`text-${
-                  game.msg_status === 2 ? "red" : "green"
-                }-700 text-sm flex justify-center items-center font-bold`}
+
               >
+                <div                className={`text-${
+                  game.msg_status === 2 ? "red" : "green"
+                }-700 text-sm flex justify-center items-center font-bold flex flex-col items-center`}>
                 {game.msg_status === 2 ? "MARKET CLOSED" : "MARKET RUNNING"}
+                </div>
+
+              <div className="flex justify-center items-center text-black pt-3" style={laststyle}>
+                <p style={{ fontSize: '12px' }}>Open Time : {game.open_time}</p>
+              </div>
               </div>
               <button
                 onClick={() => {
@@ -91,9 +94,7 @@ function GALIGAME() {
                 />
               </button>
             </div>
-            <div className="flex justify-center items-center" style={laststyle}>
-              <p style={{ fontSize: '12px' }}>Open Time : {game.open_time}</p>
-            </div>
+
           </div>
         </div>
       ))}

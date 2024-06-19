@@ -1,6 +1,5 @@
 import { BiArrowBack } from "react-icons/bi";
 import WalletIcon from "../Images/wallet.png";
-import topBackground from "../Images/bg.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import { TrashIcon } from "@heroicons/react/outline";
 import { useState, useRef, useEffect } from "react";
@@ -259,8 +258,7 @@ function JodiDigit() {
               type="date"
               value={todayDate}
               readOnly
-              className="w-full flex justify-center p-4 text-white border border-black border-2 rounded-xl text-center"
-              style={{ backgroundColor: "#330055" }}
+              className="w-full flex justify-center p-4text-black bg-white border border-black border-2 rounded-xl text-center"
             />
             <p className="my-2">Digit</p>
             <input
@@ -268,10 +266,9 @@ function JodiDigit() {
               inputMode="numeric"
               ref={digit}
               placeholder="Enter Digits"
-              className="w-full p-4 border border-black border-2 rounded-xl text-white"
+              className="w-full p-4 border border-black border-2 rounded-xl text-black bg-white"
               list="digitList" // Step 2: Add list attribute
               autoComplete="off" 
-              style={{ backgroundColor: "#330055" }}
             />
             <datalist id="digitList">
   {singleDigitArray.map((digit, index) => (
@@ -284,12 +281,11 @@ function JodiDigit() {
               inputMode="numeric"
               ref={point}
               placeholder="Enter Points"
-              className="w-full  p-4 border border-black border-2 rounded-xl text-white"
-              style={{ backgroundColor: "#330055" }}
+              className="w-full  p-4 border border-black border-2 rounded-xl text-black bg-white"
             />
-            <div className="flex  mb-4">
+            <div className="flex mb-4 text-black">
               <button
-                className={`p-4   bg-custom-purple mt-4 ${
+                className={`p-4   border border-black-500 rounded-xl bg-yellow-500 mt-4 ${
                   isProceed ? "w-11/12" : "w-full"
                 }`}
                 onClick={handleSubmit}
@@ -299,7 +295,7 @@ function JodiDigit() {
               {isProceed && (
                   <>
                     <button
-                      className="p-4  bg-custom-purple mt-4 w-full ml-3"
+                      className="p-4 border border-black-500 rounded-xl bg-yellow-500 mt-4 w-full ml-3 text-black" 
                       onClick={() => setShowModal(true)}
                     >
                       Submit

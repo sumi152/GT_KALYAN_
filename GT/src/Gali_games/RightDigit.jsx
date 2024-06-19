@@ -34,7 +34,7 @@ function RightDigit() {
     alignItems: "center",
   };
   const backStyle = {
-    backgroundColor: "#330055",
+    backgroundImage: `url(${topBackground})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     position: "relative",
@@ -247,8 +247,7 @@ function RightDigit() {
               type="date"
               value={todayDate}
               readOnly
-              className="w-full flex justify-center p-4 text-white border border-black border-2 rounded-xl text-center"
-              style={{ backgroundColor: "#330055" }}
+              className="w-full flex justify-center p-4 text-black border border-black border-2 rounded-xl text-center bg-white"
             />
             <p className="my-2">Digit</p>
             <input
@@ -256,10 +255,9 @@ function RightDigit() {
               inputMode="numeric"
               ref={digit}
               placeholder="Enter Digits"
-              className="w-full p-4 border border-black border-2 rounded-xl text-white"
+              className="w-full p-4 border border-black border-2 rounded-xl text-black bg-white"
               list="digitList" // Step 2: Add list attribute
               autoComplete="off" 
-              style={{ backgroundColor: "#330055" }}
             />
             <datalist id="digitList">
   {singleDigitArray.map((digit, index) => (
@@ -272,12 +270,11 @@ function RightDigit() {
               inputMode="numeric"
               ref={point}
               placeholder="Enter Points"
-              className="w-full  p-4 border border-black border-2 rounded-xl text-white"
-              style={{ backgroundColor: "#330055" }}
+              className="w-full  p-4 border border-black border-2 rounded-xl text-black bg-white"
             />
-            <div className="flex  mb-4">
+            <div className="flex  mb-4 text-black">
               <button
-                className={`p-4   bg-custom-purple mt-4 ${
+                className={`p-4  border border-black-500 rounded-xl bg-yellow-500 mt-4 ${
                   isProceed ? "w-11/12" : "w-full"
                 }`}
                 onClick={handleSubmit}
@@ -287,7 +284,7 @@ function RightDigit() {
               {isProceed && (
                   <>
                     <button
-                      className="p-4  bg-custom-purple mt-4 w-full ml-3"
+                      className="p-4 border border-black-500 rounded-xl bg-yellow-500 text-black mt-4 w-full ml-3"
                       onClick={() => setShowModal(true)}
                     >
                       Submit

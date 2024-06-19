@@ -129,7 +129,7 @@ function Navbar() {
                 </div>
               </div>
 
-              <div className="text-sm opacity-75 -mt-4 -ml-10">{mobile}</div>
+              <div className="text-sm opacity-75 -mt-4 -ml-6">{mobile}</div>
             </div>
             {/* Logout Button */}
             <div className="flex justify-center mt-8">

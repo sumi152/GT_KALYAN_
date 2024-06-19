@@ -29,8 +29,8 @@ function Top() {
 
   const carouselContainerStyle = {
     paddingTop: '8px',
-    paddingLeft:'20px',
-    paddingRight:'20px',
+    paddingLeft:'10px',
+    paddingRight:'10px',
     paddingBottom: '10px',
     zIndex: '0',
     

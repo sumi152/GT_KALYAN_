@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "./Util/loginSlice";
 import { addPass } from "./Util/passslice";
+import { ToastContainer, toast } from "react-toastify";
 
 function Login() {
   const navbarStyle = {
@@ -103,6 +104,10 @@ function Login() {
       />
     </a>
   );
+  const handleWhatsAppClick = () => {
+
+      toast.error("You need to login first");
+  };
 
   const fetchData = async (phoneno, password) => {
     const myHeaders = new Headers();
@@ -208,13 +213,13 @@ function Login() {
               </p>
             </div>  
           </form>
-          <div className="flex justify-between mt-2">
+          <div className="flex justify-between mt-2 pl-4">
             <div>
             <CallButton phoneNumber="+1234567890" className='' imgSrc={call} style={cellImageStyle}  />
              
             </div>
             <div className="mr-4">
-              <button>
+              <button onClick={handleWhatsAppClick}>
                 <img src={whatsapp} alt="Add Fund" style={cellImageStyle} />
               </button>
             </div>
