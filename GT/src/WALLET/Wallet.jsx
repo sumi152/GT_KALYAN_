@@ -41,7 +41,7 @@ function Wallet() {
 
   const box2 = {
     width: "80px",
-    padding: "20px",
+    padding: "15px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -55,7 +55,7 @@ function Wallet() {
     display: "flex",
     flexDirection: "row",
     marginTop: "20px",
-    gap: "20px",
+    gap: "10px",
     justifyContent: "center",
     alignItems: "center",
   };
