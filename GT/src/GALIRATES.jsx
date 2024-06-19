@@ -6,6 +6,7 @@ import useStarGameRate from "./Hooks/useStarGameRate";
 import useStarline from "./Hooks/useStarline";
 import { useState, useEffect } from "react";
 import useGaliGameRates from "./Hooks/useGaliGameRates";
+import useGaliGameFront from "./Hooks/useGaliGameFront";
 function GALIRATES() {
   const backStyle = {
     backgroundImage: `url(${topBackground})`,
@@ -52,7 +53,7 @@ function GALIRATES() {
     navigate("/imp");
   };
   const handleClick = () => {
-    window.open(resinfo1['web_starline_chart_url'], '_blank');
+    window.open(resinfo1['web_galidessar_chart_url'], '_blank');
   };
 
   const [status, setStatus] = useState(false);
@@ -60,7 +61,7 @@ function GALIRATES() {
   const [status1, setStatus1] = useState(false);
   const [gameRates1, setGameRates1] = useState([]);
   const resinfo = useGaliGameRates();
-  const resinfo1 = useStarline();
+  const resinfo1 = useGaliGameFront();
   useEffect(() => {
     if (resinfo1 && resinfo1["result"]) {
       setStatus1(true);

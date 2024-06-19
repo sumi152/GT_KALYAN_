@@ -11,7 +11,6 @@ import useWallet from "../Hooks/useWallet";
 import withdraw_history_btn from "../Images/withdraw_history_btn.png";
 import withdraw_rules_btn from "../Images/withdraw_rules_btn.png";
 
-
 function WithdrawFunds() {
   const navbarStyle = {
     height: "60px",
@@ -36,7 +35,7 @@ function WithdrawFunds() {
     borderRadius: "10px",
     background: "linear-gradient(to right, #141384, #000000)",
     color: "#fff",
-    marginBottom: "20px",
+    marginBottom: "",
   };
 
   const enterAmount = {
@@ -53,9 +52,17 @@ function WithdrawFunds() {
     padding: "20px",
     display: "flex",
     justifyContent: "center",
-
     alignItems: "center",
-
+    marginTop:"-4px"
+  };
+  const box5 = {
+    width: "auto",
+    padding: "20px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop:"-28px",
+    marginBottom:"4px"
   };
 
   const btnStyle = {
@@ -63,6 +70,7 @@ function WithdrawFunds() {
     width: "200px",
     padding: "7px",
     borderRadius: "15px",
+    marginTop:"-14px"
   };
 
   const amount = useRef();
@@ -76,7 +84,6 @@ function WithdrawFunds() {
 
   const [walletAmt, setWalletAmt] = useState();
   const [isSubmitting, setIsSubmitting] = useState(false); // State to track form submission
-
 
   const navigate = useNavigate();
   const res = usePayment(token, number);
@@ -106,7 +113,9 @@ function WithdrawFunds() {
 
   const handleUPIChange = (event) => {
     setSelectedUPI(event.target.value);
-    const selectedUpiType = gamesUpi.find((upi) => upi.value === event.target.value)?.type;
+    const selectedUpiType = gamesUpi.find(
+      (upi) => upi.value === event.target.value
+    )?.type;
     setMethod(selectedUpiType);
   };
 
@@ -151,7 +160,7 @@ function WithdrawFunds() {
       "Cookie",
       "ci_session=7c38fc1fc455fca9846d688fb8343f5c7ea71bee"
     );
-    
+
     const raw = JSON.stringify({
       env_type: "Prod",
       app_key: "jAFaRUulipsumXLLSLPFytYvUUsgfh",
@@ -160,7 +169,6 @@ function WithdrawFunds() {
       request_amount: amount,
       payment_method: method2,
     });
-    
 
     const requestOptions = {
       method: "POST",
@@ -169,7 +177,10 @@ function WithdrawFunds() {
       redirect: "follow",
     };
 
-    const response = await fetch("https://kalyanmilanofficialmatka.in/api-user-withdraw-fund-request", requestOptions);
+    const response = await fetch(
+      "https://kalyanmilanofficialmatka.in/api-user-withdraw-fund-request",
+      requestOptions
+    );
     const result = await response.json();
     if (result?.status === true) {
       setErrorText("");
@@ -191,71 +202,93 @@ function WithdrawFunds() {
       </div>
 
       <div className=" p-5" style={topStyle}>
-        <div style={{background:"white",width:"300px",margin:"auto",padding:"7px",borderRadius: "20px",marginBottom: "20px",}}>
-        <p className="text-red-500 mt-2">Withdraw Timings :- 07:00AM -10:00AM</p>
-        <p className="text-red-500 ">{errorText}</p>
+        <div
+          style={{
+            background: "white",
+            width: "300px",
+            margin: "auto",
+            borderRadius: "20px",
+            marginBottom: "20px",
+          }}
+        >
+          <p className="text-red-500 mt-2 py-2 pl-2">
+            Withdraw Timings :- 07:00AM -10:00AM
+          </p>
+          <p className="text-red-500 ">{errorText}</p>
         </div>
-        <div  style={{   
-    padding: "10px",
-    width: "250px",
-    margin: "auto",
-
-    marginBottom: "20px",}}>
-        <button onClick={() => navigate('/withdrawrule')}>
-          <img src={withdraw_rules_btn}/>
-        </button>
-      </div>
+        <div
+          style={{
+            padding: "10px",
+            width: "250px",
+            margin: "auto",
+            marginTop: "-14px",
+            marginBottom: "2px",
+          }}
+        >
+          <button onClick={() => navigate("/withdrawrule")}>
+            <img src={withdraw_rules_btn} />
+          </button>
+        </div>
         <div className="" style={box1}>
           <p>Current Balance</p>
           <p>RS {walletAmt}</p>
         </div>
 
-        <div className="flex flex-col"style={box4}>
-          <input type="text" placeholder="Enter Points" ref={amount} className="placeholder-white text-white mb-2" style={enterAmount} />
+        <div className="flex flex-col" style={box4}>
+          <input
+            type="text"
+            placeholder="Enter Points"
+            ref={amount}
+            className="placeholder-white text-white mb-2"
+            style={enterAmount}
+          />
 
           <p className="text-red-500 ">{formErrors.amount}</p>
         </div>
-        <div style={box4}>
-
-          <select className="text-white"
+        <div style={box5}>
+          <select
+            className="text-white"
             value={selectedUPI}
             onChange={handleUPIChange}
             style={enterAmount}
-            
           >
-        {gamesUpi.length === 0 ? (
-          <option value="" disabled>
-            Please set the method and number first
-          </option>
-        ) : (
-            gamesUpi.map((upi, index) => (
-              <option key={index} value={upi.value} className="text-black">
-                {upi?.name}: {upi?.value}
+            {gamesUpi.length === 0 ? (
+              <option value="" disabled>
+                Please set the method From Wallet First
               </option>
-          ))
-        )}
-      </select>
-
+            ) : (
+              gamesUpi.map((upi, index) => (
+                <option key={index} value={upi.value} className="text-black">
+                  {upi?.name}: {upi?.value}
+                </option>
+              ))
+            )}
+          </select>
         </div>
-        <div style={box4} className="flex flex-col">
-
-          <button className="text-white rounded" style={btnStyle} onClick={handleSubmit} disabled={isSubmitting}>
+        <div style={box4} className="flex flex-col ">
+          <button
+            className="text-white rounded"
+            style={btnStyle}
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+          >
             {isSubmitting ? "Submitting..." : "Withdraw Now"}
           </button>
-          <p className="text-red-500 mt-2">Withdraw Timings :- 07:00AM -10:00AM</p>
           <p className="text-red-500 ">{errorText}</p>
-
         </div>
-        <div  style={{   
-    padding: "10px",
-    width: "250px",
-    margin: "auto",
+        <div
+          style={{
+            padding: "10px",
+            width: "250px",
+            margin: "auto",
 
-    marginBottom: "20px",}}>
-        <button onClick={()=>navigate('/withdrawhistory')}>
-          <img src={withdraw_history_btn}/>
-        </button>
-      </div>
+            marginBottom: "20px",
+          }}
+        >
+          <button onClick={() => navigate("/withdrawhistory")}>
+            <img src={withdraw_history_btn} />
+          </button>
+        </div>
       </div>
     </>
   );

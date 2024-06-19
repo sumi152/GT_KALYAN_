@@ -129,7 +129,7 @@ function Navbar() {
                 </div>
               </div>
 
-              <div className="text-sm opacity-75 -ml-10">{mobile}</div>
+              <div className="text-sm opacity-75 -mt-4 -ml-10">{mobile}</div>
             </div>
             {/* Logout Button */}
             <div className="flex justify-center mt-8">
@@ -141,7 +141,7 @@ function Navbar() {
                 />
               </button>
               <div className="flex items-center mx-2">
-                <img src={logo} alt="Center Image" className="w-20 h-20" />
+                <img src={logo} alt="Center Image" className="w-22 h-24" />
               </div>
               <a
                 href={telegram} target="_blank"
@@ -171,20 +171,7 @@ function Navbar() {
               {/* <div className="text-xl font-bold ml-5 bg-yellow-400 p-2 rounded-xl">{"Download APP"}</div> */}
             </div>
             </li>
-            <li>
-              <NavLink
-                to="/imp"
-                className="block py-2 px-4 hover:bg-gray-700 rounded-lg"
-                onClick={handleBackdropClick}
-              >
-                <img
-                  src={Home}
-                  alt="Home"
-                  className="w-8 h-8 mr-2 inline-block"
-                />
-                Home
-              </NavLink>
-            </li>
+
             <li>
               <NavLink
                 to="/imp"
