@@ -50,7 +50,7 @@ function GameFRONT() {
           <div className=" flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-4 h-15 rounded-2xl border border-white text-white" style={{background:"linear-gradient(to right, #141384, #0000)"}}>
             <p className="top-0 right-0">{game.game_name}</p>
             {game.open_time && game.close_time && game.msg_status === 1 ? (
-              <Timer closeTime={game.close_time} />
+              <Timer closeTime={game.close_time_srt} />
             ) : (
               "00:00:00"
             )}
