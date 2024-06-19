@@ -29,7 +29,7 @@ function AddFunds() {
     backgroundSize: "cover",
     height: "auto ",
     width: "100%",
-    paddingBottom: "100px",
+    paddingBottom: "150px",
   };
 
   const box1 = {
@@ -88,7 +88,7 @@ function AddFunds() {
           <BiArrowBack size={24} />
         </button>
         <div className="flex justify-center items-center">
-          <img src={fund} alt="Wallet" />
+          {/* <img src={fund} alt="Wallet" /> */}
           <h1 className="text-white px-3">Add Fund</h1>
         </div>
       </div>
@@ -107,7 +107,7 @@ function AddFunds() {
             <img src={deposit_rules_btn} />
           </button>
         </div>
-        <div className="" style={box1}>
+        <div className="mt-1" style={box1}>
           <p>Current Balance</p>
           <p>RS {res.wallet_amt}</p>
         </div>

@@ -135,7 +135,7 @@ function Wallet() {
           <BiArrowBack size={24} />
         </button>
         <div className="flex justify-center items-center">
-          <img src={fund} alt="Wallet" />
+          {/* <img src={fund} alt="Wallet" /> */}
           <h1 className="text-white px-3">Wallet</h1>
         </div>
       </div>
@@ -164,9 +164,10 @@ function Wallet() {
           </div>
         </div>
         <div className="m-4" style={box4}>
-          <img src={frame} alt="" />
+          {/* <img src={frame} alt="" /> */}
+          <p className="font-bold text-white border border-white py-2 px-1">PLEASE SELECT WITHDRAW METHOD HERE</p>
         </div>
-        <div style={Container}>
+        <div style={Container} className="border border-white rounded-md w-96 m-auto py-2">
           <div className="mr-6">
             <button style={box2} onClick={() => handleClick("1")}>
               <img src={phone_pe} alt="PhonePe" style={radioImageStyle} />
