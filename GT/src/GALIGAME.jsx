@@ -66,9 +66,9 @@ function GALIGAME() {
               <div
                 className={`text-${
                   game.msg_status === 2 ? "red" : "green"
-                }-500 text-sm flex justify-center items-center`}
+                }-700 text-sm flex justify-center items-center font-bold`}
               >
-                {game.msg_status === 2 ? "Market Closed" : "Market Running"}
+                {game.msg_status === 2 ? "MARKET CLOSED" : "MARKET RUNNING"}
               </div>
               <button
                 onClick={() => {

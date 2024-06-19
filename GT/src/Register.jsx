@@ -86,7 +86,15 @@ function Register() {
       setIsSubmitting(false);
     }
   };
-
+  const CallButton = ({ phoneNumber, imgSrc }) => (
+    <a href={`tel:${phoneNumber}`} >
+      <img
+        src={imgSrc}
+        alt="Call Button"
+        style={cellImageStyle}
+      />
+    </a>
+  );
   const validate = (username, phoneno, password) => {
     const errors = {};
     const regex = /^[6-9]{1}[0-9]{9}$/;
@@ -234,9 +242,7 @@ function Register() {
             </div>
             <div className="flex justify-between mt-2">
               <div>
-                <button>
-                  <img src={call} alt="Add Fund" style={cellImageStyle} />
-                </button>
+              <CallButton phoneNumber="+1234567890" className='' imgSrc={call} style={cellImageStyle}  />
               </div>
 
               <div className="mr-4">

@@ -195,7 +195,7 @@ function Otp() {
           <div className="text-gray-500" style={{ margin: "30px 20px 0 0" }}>
             I didn't receive any code.{" "}
             {counter === 0 && (
-              <button className="ml-3" onClick={handleResendOtp}>
+              <button className="ml-3 text-red-500 font-bold" onClick={handleResendOtp}>
                 RESEND
               </button>
             )}
