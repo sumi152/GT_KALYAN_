@@ -9,6 +9,7 @@ import useGameFront from "../Hooks/useGameFront";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GaliModal from "./GaliModal.jsx"
+import topBackground from "../Images/bg.png";
 
 function JodiDigit() {
 
@@ -45,7 +46,7 @@ function JodiDigit() {
     alignItems: "center",
   };
   const backStyle = {
-    backgroundColor: "#330055",
+    backgroundImage: `url(${topBackground})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     position: "relative",
