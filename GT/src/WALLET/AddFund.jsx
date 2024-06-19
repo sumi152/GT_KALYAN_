@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import useWallet from "../Hooks/useWallet"
 import deposit_history_btn from "../Images/deposit_history_btn.png";
 import deposit_rules_btn from "../Images/deposit_rules_btn.png";
+import QR_PAY from "../QR_PAY";
 
 function AddFunds() {
   const [currentBalance, setCurrentBalance] = useState(0);
@@ -188,75 +189,16 @@ function AddFunds() {
           <p>Current Balance</p>
           <p>RS {res.wallet_amt}</p>
         </div>
-        <div className="p-5 sm:w-auto md:max-w-lg lg:max-w-lg " style={box2}>
-          <h1 className="pb-3 text-white">Add Point</h1>
-          <input
-            type="number"
-            className="text-white border rounded p-2 placeholder-white"
-            placeholder="Enter amount"
-            style={enterAmount}
-            value={amountToAdd}
-            onChange={(e) => setAmountToAdd(e.target.value)}
-          />
-          <div style={gridContainer}>
-            <button className="col-span-2" style={buttonStyle} onClick={() => setAmountToAdd(500)}>
-              500
-            </button>
-            <button className="col-span-2" style={buttonStyle} onClick={() => setAmountToAdd(1000)}>
-              1000
-            </button>
-            <button className="col-span-2" style={buttonStyle} onClick={() => setAmountToAdd(2000)}>
-              2000
-            </button>
-            <button style={secondRowButtonStyle} onClick={() => setAmountToAdd(5000)}>
-              5000
-            </button>
-            <button style={secondRowButtonStyle} onClick={() => setAmountToAdd(10000)}>
-              10000
-            </button>
-          </div>
-        </div>
-        <div style={radioContainer}>
-          <div style={box3}>
-            <label style={radioStyle}>
-              <input type="radio" style={radioInputStyle} name="radioGroup" />
-              <span className="" style={radioLabelStyle}>
-                <img src={phone_pe} alt="PhonePe" style={radioImageStyle} />
-                PhonePe
-              </span>
-            </label>
-          </div>
-          <div style={box3}>
-            <label style={radioStyle}>
-              <input type="radio" style={radioInputStyle} name="radioGroup" />
-              <span className="" style={radioLabelStyle}>
-                <img src={gpay} alt="PhonePe" style={radioImageStyle} />
-                GPay
-              </span>
-            </label>
-          </div>
-          <div style={box3}>
-            <label style={radioStyle}>
-              <input type="radio" style={radioInputStyle} name="radioGroup" />
-              <span className="ml-2" style={radioLabelStyle}>
-                Others
-              </span>
-            </label>
-          </div>
-        </div>
-        <div style={box4}>
-          <button className="text-black border rounded" style={btnStyle} onClick={handleAddFunds}>
-            ADD MONEY
-          </button>
-        </div>
         <div className="flex justify-center items-center">
-        <p className="text-white mb-2">Or</p>
+        {/* <p className="text-white mb-2">Or</p> */}
         </div>
         <div style={box4}>
-          <button className="text-black border rounded w-64" style={{background: "#E5B80B",width: "300px",padding: "7px",borderRadius: "15px",}}  onClick={() => navigate('/qrpay')} >
+          <p className="text-black border rounded w-64" style={{background: "#E5B80B",width: "300px",padding: "7px",borderRadius: "15px",}} >
             QR PAY
-          </button>
+            </p>
+          {/* </button> */}
         </div>
+        <QR_PAY/>
         <div  style={{   
     padding: "10px",
     width: "250px",
