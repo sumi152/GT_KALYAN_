@@ -28,7 +28,7 @@ function Top() {
   };
 
   const carouselContainerStyle = {
-    paddingTop: '8px',
+    paddingTop: '10px',
     paddingLeft:'10px',
     paddingRight:'10px',
     paddingBottom: '10px',
@@ -41,6 +41,8 @@ function Top() {
     maxWidth: '100%',
     height: '100%',
     width: '100%',
+    paddingBottom: '30px',
+
   };
 
   const cellImageStyle = {
@@ -109,7 +111,7 @@ function Top() {
 
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2" style={topStyle}>
-      <div style={carouselContainerStyle}>
+      <div style={carouselContainerStyle} className='rounded-xl'>
         <Carousel
           showStatus={false}
           showThumbs={false}
@@ -126,10 +128,10 @@ function Top() {
           centerMode={false}
         >
           <div>
-            <img src={sd[0]?.slider_image} alt="image 1" className="h-full w-full object-cover rounded-xl" style={imageStyle} />
+            <img src={sd[0]?.slider_image} alt="image 1" className="object-cover rounded-xl" style={imageStyle} />
           </div>
           <div>
-            <img src={sd[1]?.slider_image} alt="image 2" className="h-full w-full object-cover rounded-xl" style={imageStyle} />
+            <img src={sd[1]?.slider_image} alt="image 2" className=" object-cover rounded-xl" style={imageStyle} />
           </div>
         </Carousel>
       </div>
