@@ -30,7 +30,7 @@ function LandingTop() {
     paddingTop: '8px',
     paddingLeft:'10px',
     paddingRight:'10px',
-    paddingBottom: '10px',
+    paddingBottom: '5px',
     zIndex: '0',
   };
 
@@ -43,7 +43,7 @@ function LandingTop() {
 
   const cellImageStyle = {
     maxWidth: '150px',
-    maxHeight: '150px',
+    maxHeight: '100px',
     objectFit: 'cover',
   };
 

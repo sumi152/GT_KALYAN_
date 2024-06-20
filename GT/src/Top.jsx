@@ -28,10 +28,10 @@ function Top() {
   };
 
   const carouselContainerStyle = {
-    paddingTop: '10px',
+    paddingTop: '8px',
     paddingLeft:'10px',
     paddingRight:'10px',
-    paddingBottom: '10px',
+    paddingBottom: '5px',
     zIndex: '0',
     
   };
@@ -41,13 +41,12 @@ function Top() {
     maxWidth: '100%',
     height: '100%',
     width: '100%',
-    paddingBottom: '30px',
 
   };
 
   const cellImageStyle = {
     maxWidth: '150px',
-    maxHeight: '150px',
+    maxHeight: '100px',
     objectFit: 'cover',
   };
 
@@ -123,7 +122,7 @@ function Top() {
           stopOnHover={true}
           swipeable={true}
           dynamicHeight={true}
-          width={'100%'}
+          width={'99%'}
           height={'0px'}
           centerMode={false}
         >
