@@ -258,7 +258,7 @@ function JodiDigit() {
               type="date"
               value={todayDate}
               readOnly
-              className="w-full flex justify-center p-4text-black bg-white border border-black border-2 rounded-xl text-center"
+              className="w-full flex justify-center p-4 text-black bg-white border border-black border-2 rounded-xl text-center"
             />
             <p className="my-2">Digit</p>
             <input
