@@ -65,12 +65,12 @@ function GALIGAME() {
               >
                 <div                className={`text-${
                   game.msg_status === 2 ? "red" : "green"
-                }-700 text-sm flex justify-center items-center font-bold flex flex-col items-center`}>
+                }-700 text-sm flex justify-center items-center font-bold  flex-col`}>
                 {game.msg_status === 2 ? "MARKET CLOSED" : "MARKET RUNNING"}
                 </div>
 
               <div className="flex justify-center items-center text-black pt-3" style={laststyle}>
-                <p style={{ fontSize: '12px' }}>Open Time : {game.open_time}</p>
+                <p className="font-bold">Open Time : {game.open_time}</p>
               </div>
               </div>
               <button
