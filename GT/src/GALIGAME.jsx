@@ -52,10 +52,10 @@ function GALIGAME() {
             <p className="top-0 right-0">{game.game_name}</p>
             
           </div>
-          <div className="bg-white mr-2 ml-7 z-2 -mt-6 p-1 flex flex-col rounded-2xl border ">
+          <div className="bg-white mr-2 ml-7 z-2 -mt-6 p-1 flex flex-col rounded-2xl border " style={{height:"60px"}}>
             
             <div style={centerstyle}>
-              <div className="mt-7 ml-4">
+              <div className="mt-5 ml-4">
                 <p className="text-custom-purple">{game.open_result && game.close_result
                   ? `${game.open_result}${game.close_result}`
                   : "**"}</p>
@@ -86,7 +86,7 @@ function GALIGAME() {
                     });
                   }
                 }}
-              >
+               className="mt-4">
                 <img
                   src={game.msg_status === 2 ? close : open}
                   style={imgstyle}

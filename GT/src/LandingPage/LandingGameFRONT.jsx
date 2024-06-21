@@ -53,7 +53,7 @@ function LandingGameFRONT() {
       {games.map((game) => (
         <div className="mb-5" key={game}>
           <div
-            className="flex justify-between items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-6 h-15 rounded-2xl border border-white text-white"
+            className="flex justify-between justify-center items-center pt-1 pl-2 pr-2 pb-7 ml-2 mr-6 h-15 rounded-2xl border border-white text-white"
             style={{ background: "linear-gradient(to right, #141384, #0000)" }}
           >
             <p className="top-0 right-0">{game}</p>
@@ -67,7 +67,7 @@ function LandingGameFRONT() {
               <div className="text-green-700 font-bold text-lg flex justify-center items-center">
                 Login To Play
               </div>
-              <div className="">
+              <div className="flex justify-center items-center">
                 <button
                   onClick={() => {
                     navigate("login");
