@@ -7,10 +7,10 @@ import frame from "../Images/frame_addfund.png";
 import paytm from "../Images/paytm.png";
 import { useNavigate } from "react-router-dom";
 import PaymentModal from "../PaymentModel.jsx";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import useWallet from "../Hooks/useWallet.jsx";
 import { useSelector } from "react-redux";
-import wallet_history_btn from "../Images/wallet_history_btn.png"
+import wallet_history_btn from "../Images/wallet_history_btn.png";
 
 function Wallet() {
   const navbarStyle = {
@@ -132,11 +132,6 @@ function Wallet() {
     }
   }, [res.wallet_amt]);
 
-
-
-
-  
-
   return (
     <>
       <div className="bg-custom-purple text-white " style={navbarStyle}>
@@ -161,57 +156,82 @@ function Wallet() {
             </button>
           </div>
           <div>
-            <button onClick={() => withd()} className="bg-orange-500" style={box3}>
+            <button
+              onClick={() => withd()}
+              className="bg-orange-500"
+              style={box3}
+            >
               - Withdraw Fund
             </button>
           </div>
 
           <div>
-            <button className="bg-teal-500" style={box3} onClick={() => trans()}>
+            <button
+              className="bg-teal-500"
+              style={box3}
+              onClick={() => trans()}
+            >
               Transfer
             </button>
           </div>
         </div>
-        <div className="m-4" style={box4}>
-          {/* <img src={frame} alt="" /> */}
-          <p className="font-bold text-white text-center border border-white py-2 px-1 ">PLEASE SELECT WITHDRAW METHOD HERE</p>
+        <div className="border border-white rounded-md w-80 m-auto mt-2 mb-2">
+          {" "}
+          <div className="" style={box4}>
+            {/* <img src={frame} alt="" /> */}
+            <p className="font-bold text-white text-center px-1 ">
+              PLEASE SELECT WITHDRAW METHOD HERE
+            </p>
+          </div>
+          <div
+            style={Container1}
+            className=" w-80 m-auto px-0 pb-2"
+          >
+            <div className="mr-6">
+              <button style={box2} onClick={() => handleClick("1")}>
+                <img src={phone_pe} alt="PhonePe" style={radioImageStyle} />
+                PhonePe
+              </button>
+            </div>
+            <div className="mr-6">
+              <button style={box2} onClick={() => handleClick("2")}>
+                <img
+                  className="mb-1 mt-2"
+                  src={paytm}
+                  alt="PhonePe"
+                  style={radioImageStyle}
+                />
+                Paytm
+              </button>
+            </div>
+
+            <div>
+              <button style={box2} onClick={() => handleClick("3")}>
+                <img src={gpay} alt="PhonePe" style={radioImageStyle} />
+                GPay
+              </button>
+              {showModal && (
+                <PaymentModal closeModal={closeModal} option={selectedOption} />
+              )}
+            </div>
+          </div>
         </div>
-        <div style={Container1} className="border border-white rounded-md w-80 m-auto px-0   py-2">
-          <div className="mr-6">
-            <button style={box2} onClick={() => handleClick("1")}>
-              <img src={phone_pe} alt="PhonePe" style={radioImageStyle} />
-              PhonePe
-            </button>
-          </div>
-          <div className="mr-6">
-            <button style={box2} onClick={() => handleClick("2")}>
-              <img className="mb-1 mt-2" src={paytm} alt="PhonePe" style={radioImageStyle} />
-              Paytm
-            </button>
-          </div>
 
-          <div>
-            <button style={box2} onClick={() => handleClick("3")}>
-              <img src={gpay} alt="PhonePe" style={radioImageStyle} />
-              GPay
-            </button>
-            {showModal && <PaymentModal closeModal={closeModal} option={selectedOption} />}
-          </div>
+        <div
+          style={{
+            padding: "10px",
+            width: "250px",
+            margin: "auto",
+
+            marginBottom: "20px",
+          }}
+        >
+          <button onClick={() => navigate("/transaction")}>
+            <img src={wallet_history_btn} />
+          </button>
         </div>
-        <div  style={{   
-    padding: "10px",
-    width: "250px",
-    margin: "auto",
-
-    marginBottom: "20px",}}>
-        <button onClick={() => navigate('/transaction')} >
-          <img src={wallet_history_btn}/>
-        </button>
-      </div>
-
 
         {/* <p className="mt-4 text-center text-white">Transactions</p> */}
-
       </div>
     </>
   );
