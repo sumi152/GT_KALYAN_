@@ -25,13 +25,20 @@ function LandingTop() {
     height: 'auto', // Set the height of the div
     width: '100%' // Set the width of the div
   };
-
-  const carouselContainerStyle = {
-    paddingTop: '8px',
-    paddingLeft:'10px',
-    paddingRight:'10px',
-    paddingBottom: '10px',
+  
+  const baseCarouselContainerStyle = {
+    paddingTop: '0px',
+    paddingLeft: '10px',
+    paddingRight: '10px',
+    paddingBottom: '5px',
     zIndex: '0',
+  };
+
+
+  const carouselContainerStyleRight = {
+    ...baseCarouselContainerStyle,
+    transform: 'scale(1, 0.80)', // Scale vertically
+    transformOrigin: 'right',
   };
 
   const imageStyle = {
@@ -43,7 +50,7 @@ function LandingTop() {
 
   const cellImageStyle = {
     maxWidth: '150px',
-    maxHeight: '150px',
+    maxHeight: '100px',
     objectFit: 'cover',
   };
 
@@ -73,7 +80,7 @@ function LandingTop() {
 
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2" style={topStyle}>
-      <div style={carouselContainerStyle}>
+      <div style={carouselContainerStyleRight}>
         <Carousel
           showStatus={false}
           showThumbs={false}

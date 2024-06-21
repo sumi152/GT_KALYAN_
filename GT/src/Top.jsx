@@ -1,4 +1,4 @@
-import React, { useState , useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import cara1 from './Images/top1.png';
@@ -12,12 +12,10 @@ import black from './Images/blackjed.png';
 import topBackground from './Images/bg.png';
 import { useNavigate } from 'react-router-dom';
 import useCarosuel from './Hooks/useCarosuel';
-import {  useSelector } from 'react-redux';
-import star from './Images/play_starline.png'
-import gali from './Images/gali_disawar.png'
+import { useSelector } from 'react-redux';
+import star from './Images/play_starline.png';
+import gali from './Images/gali_disawar.png';
 import useGameFront from "./Hooks/useGameFront";
-
-
 
 function Top() {
   const topStyle = {
@@ -27,27 +25,31 @@ function Top() {
     width: '100%' // Set the width of the div
   };
 
-  const carouselContainerStyle = {
-    paddingTop: '10px',
-    paddingLeft:'10px',
-    paddingRight:'10px',
-    paddingBottom: '10px',
+  const baseCarouselContainerStyle = {
+    paddingTop: '0px',
+    paddingLeft: '10px',
+    paddingRight: '10px',
+    paddingBottom: '5px',
     zIndex: '0',
-    
+  };
+
+
+  const carouselContainerStyleRight = {
+    ...baseCarouselContainerStyle,
+    transform: 'scale(1, 0.80)', // Scale vertically
+    transformOrigin: 'right',
   };
 
   const imageStyle = {
-    maxHeight: '250px',
-    maxWidth: '100%',
+    maxHeight: '237.5px', // 95% of 250px
+    maxWidth: '100%', // 95% of 100%
     height: '100%',
     width: '100%',
-    paddingBottom: '30px',
-
   };
 
   const cellImageStyle = {
     maxWidth: '150px',
-    maxHeight: '150px',
+    maxHeight: '100px',
     objectFit: 'cover',
   };
 
@@ -55,31 +57,25 @@ function Top() {
     width: 'auto',
     padding: '10px',
     borderRadius: '50%', // Make it circular
-    // backgroundColor: 'white',
-    // background: "linear-gradient(to right, #a832a6, #242224)",
-
-
   };
 
   const markerStyle = {
-    // marginTop: '5px',
     display: 'flex',
     justifyContent: 'center',
-    // paddingBottom: '20px',
     gridColumn: '1 / -1',
   };
-  const token = useSelector(state=>state.userDetail.token)
+
+  const token = useSelector(state => state.userDetail.token);
   const res = useCarosuel(token);
   const [sd, setsd] = useState([]);
   useEffect(() => {
-    if (res && res.sliderdata ) {
+    if (res && res.sliderdata) {
       setsd(res.sliderdata);
     }
   }, [res]);
 
-  // console.log(sd[0]?.slider_image)
   const navigate = useNavigate();
-  const addF=()=>{
+  const addF = () => {
     navigate('/imp9');
   }
 
@@ -94,8 +90,8 @@ function Top() {
       setGameRates(resinfo["mobile_1"]);
     }
   }, [resinfo]);
-  console.log(gameRates)
-  
+  console.log(gameRates);
+
   const phoneNumber = gameRates;
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
   const CallButton = ({ phoneNumber, imgSrc }) => (
@@ -108,10 +104,9 @@ function Top() {
     </a>
   );
 
-
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2" style={topStyle}>
-      <div style={carouselContainerStyle} className='rounded-xl'>
+      <div style={carouselContainerStyleRight} className='rounded-xl'>
         <Carousel
           showStatus={false}
           showThumbs={false}
@@ -135,50 +130,48 @@ function Top() {
           </div>
         </Carousel>
       </div>
-      <div className="relative flex flex-col items-center justify-center">
-  <div style={{ position: 'absolute' }}>
-    <button onClick={() => navigate('/gameRates')} className='flex justify-center mb-2'>
-      <img className='h-20' src={black} alt="Game Rates" style={cellImageStyle} />
-    </button>
-  </div>
-  <div className="flex space-x-4 mb-1 ">
-    <div className='mr-10'>
-      <button onClick={() => navigate('/imp9')}>
-        <img src={addfund} alt="Add Fund" style={cellImageStyle} />
-      </button>
-    </div>
-    <div>
-      <button onClick={() => navigate('/imp8')}>
-        <img src={withdraw} alt="Withdraw" style={cellImageStyle} />
-      </button>
-    </div>
-  </div>
-  <div className="flex space-x-4 mt-2 ">
-    <div className='mr-10'>
-      <a href={whatsappUrl}  target="_blank" rel="noopener noreferrer" className="flex justify-center items-center">
-        <button>
-          <img src={whatsapp} alt="WhatsApp" style={cellImageStyle} />
-        </button>
-      </a>
-    </div>
-    <div>
-    <CallButton phoneNumber="+1234567890" className='' imgSrc={call}  />
-      
-    
-    </div>
-  </div>
-</div>
+      <div className="relative flex flex-col items-center justify-center -mt-4">
+        <div style={{ position: 'absolute' }}>
+          <button onClick={() => navigate('/gameRates')} className='flex justify-center mb-2'>
+            <img className='h-20' src={black} alt="Game Rates" style={cellImageStyle} />
+          </button>
+        </div>
+        <div className="flex space-x-4 mb-1 ">
+          <div className='mr-10'>
+            <button onClick={() => navigate('/imp9')}>
+              <img src={addfund} alt="Add Fund" style={cellImageStyle} />
+            </button>
+          </div>
+          <div>
+            <button onClick={() => navigate('/imp8')}>
+              <img src={withdraw} alt="Withdraw" style={cellImageStyle} />
+            </button>
+          </div>
+        </div>
+        <div className="flex space-x-4 mt-2 ">
+          <div className='mr-10'>
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex justify-center items-center">
+              <button>
+                <img src={whatsapp} alt="WhatsApp" style={cellImageStyle} />
+              </button>
+            </a>
+          </div>
+          <div>
+            <CallButton phoneNumber="+1234567890" className='' imgSrc={call} />
+          </div>
+        </div>
+      </div>
 
       <div style={markerStyle}>
         <img src={marker} alt="marker" />
       </div>
       <div className='flex justify-center items-start pb-2 col-span-full'>
-      <button className='mr-3' onClick={() => navigate('/galiIMP')}>
-              <img src={gali} alt="Add Fund" className='w-64 h-15' />
-            </button>
-            <button onClick={() => navigate('/imp2')}>
-              <img src={star} alt="Add Fund" className='w-64 h-15' />
-            </button>
+        <button className='mr-3' onClick={() => navigate('/galiIMP')}>
+          <img src={gali} alt="Add Fund" className='w-64 h-15' />
+        </button>
+        <button onClick={() => navigate('/imp2')}>
+          <img src={star} alt="Add Fund" className='w-64 h-15' />
+        </button>
       </div>
     </div>
   );
