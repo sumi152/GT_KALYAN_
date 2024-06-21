@@ -55,16 +55,16 @@ function StarlineGame() {
             {console.log(game.close_time)}
             {(game.open_time && game.close_time_srt && game.msg_status === 1  ) ? <TimerStar closeTime={game.close_time_srt} />:"00:00:00"}
           </div>
-          <div className="bg-white mr-2 ml-7 z-2 -mt-7 p-2  flex flex-col rounded-2xl border">
-            <div className="flex justify-center items-center ">
+          <div className="bg-white mr-2 ml-7 z-2 -mt-7 p-2 pb-3  flex justify-center  flex-col rounded-2xl border">
+            <div className="flex justify-center items-center">
               
                 <p className={`text-${
                 game.msg_status === 2 ? "red" : "green"
-              }-700 text-sm  font-bold`}>{game.msg_status === 2 ? "MARKET CLOSED" : "MARKET RUNNING"}</p>
+              }-700 text-sm  font-bold mt-2`}>{game.msg_status === 2 ? "MARKET CLOSED" : "MARKET RUNNING"}</p>
               
             </div>
             <div style={centerstyle}>
-              <div className="text-blue-900 font-bold">
+              <div className="text-blue-900 font-bold -mt-3">
               {game.open_result
                   ? `${game.open_result}`
                   : "***_*"}
@@ -81,7 +81,7 @@ function StarlineGame() {
                     navigate("/stargame", { state: { gameId: game.game_id, openTime:game.open_time , gameName: game.game_name} });
                   }
                 }}
-              >
+              className="-mt-3">
                 <img
                   src={game.msg_status === 2 ? close : open}
                   style={imgstyle}

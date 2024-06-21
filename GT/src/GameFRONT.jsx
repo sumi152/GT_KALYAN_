@@ -24,7 +24,7 @@ function GameFRONT() {
     justifyContent: "center",
     alignItems: "center",
     height: "7px",
-    gap: "7px",
+    gap: "13px",
   };
   const imgstyle = {
     width: "35px",
@@ -99,7 +99,7 @@ function GameFRONT() {
             </div>
             <div style={laststyle}>
               <p
-                className="text-green-700 font-bold p-2"
+                className="text-green-700 font-bold p-4"
                 style={{ fontSize: "12px" }}
               >
                 Open - {game.open_time}
