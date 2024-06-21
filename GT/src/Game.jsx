@@ -21,7 +21,9 @@ function Game() {
 
   const cardStyle = {
     width: "400px",
-    padding:"40px",
+    // padding:"40px",
+    paddingTop:"0px",
+    paddingBottom: "80px"
   };
 
   const backStyle = {
@@ -51,7 +53,7 @@ function Game() {
         </div>
       </div>
 
-      <div className="pl-2 flex justify-center" style={backStyle}>
+      <div className="pl-2 flex justify-center -mt-8" style={backStyle}>
         <div className="grid grid-cols-2 gap-2 " style={cardStyle}>
           <div className="col-span-1 flex justify-center items-center ">
             <button
@@ -77,7 +79,7 @@ function Game() {
           </div>
 
           {/* Second row with two columns */}
-          <div className="col-span-1 flex justify-center items-center mt-2">
+          <div className="col-span-1 flex justify-center items-center -mt-12">
             <button
               onClick={() => {
                 if (gameId) {
@@ -88,7 +90,7 @@ function Game() {
               <img src={url3} alt="Image 3" className="w-32 h-32" />
             </button>
           </div>
-          <div className="col-span-1 flex justify-center items-center mt-2">
+          <div className="col-span-1 flex justify-center items-center -mt-12">
             <button
               onClick={() => {
                 if (gameId) {
@@ -101,7 +103,7 @@ function Game() {
           </div>
 
           {/* Third row with one column */}
-          <div className="col-span-2 flex justify-center items-center mt-2">
+          <div className="col-span-2 flex justify-center items-center -mt-12">
             <button
               onClick={() => {
                 if (gameId) {
@@ -114,7 +116,7 @@ function Game() {
           </div>
 
           {/* Fourth row with two columns */}
-          <div className="col-span-1 flex justify-center items-center mt-2">
+          <div className="col-span-1 flex justify-center items-center -mt-12">
             <button
               onClick={() => {
                 if (gameId) {
@@ -125,7 +127,7 @@ function Game() {
               <img src={url6} alt="Image 6" className="w-32 h-32" />
             </button>
           </div>
-          <div className="col-span-1 flex justify-center items-center mt-2">
+          <div className="col-span-1 flex justify-center items-center -mt-12">
             <button
               onClick={() => {
                 if (gameId) {
