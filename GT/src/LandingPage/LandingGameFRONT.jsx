@@ -22,7 +22,7 @@ function LandingGameFRONT() {
     gap: "7px",
   };
   const imgstyle = {
-    width: "35px",
+    width: "40px",
     height: "auto",
     marginTop: "-4px",
   };

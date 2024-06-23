@@ -27,7 +27,7 @@ function GameFRONT() {
     gap: "13px",
   };
   const imgstyle = {
-    width: "35px",
+    width: "40px",
     height: "auto",
     marginTop: "-4px",
   };
