@@ -56,8 +56,8 @@ function GALIGAME() {
             
             <div style={centerstyle}>
               <div className="mt-5 ml-4">
-                <p className="text-custom-purple">{game.open_result && game.close_result
-                  ? `${game.open_result}${game.close_result}`
+                <p className="text-blue-900 font-bold">{game.open_result
+                  ? `${game.open_result}`
                   : "**"}</p>
               </div>
               <div
